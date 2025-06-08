@@ -18,29 +18,57 @@ const Servicess = () => {
     {
       id: 1,
       image: teachertraining,
-      title: "Teachers Training Programs",
-      route: "/services/teacher-training",
+      title: "Teachers Training Programs 200 Hours",
+      route: "/services/teacher-training-200",
       features: [
         "Comprehensive 200-hour certification program",
         "Expert guidance from experienced instructors",
         "Yoga Alliance registered certificate"
       ],
-      price: "$1800"
+      price: "$1899"
     },
+
+
     {
-      id: 2,
-      image: online,
-      title: "Online Courses",
-      route: "/services/online-courses",
+      id: 9,
+      image: teachertraining,
+      title: "Teachers Training Programs 300 Hours",
+      route: "/services/teacher-training-300",
       features: [
-        "Learn from comfort of your home",
-        "Flexible scheduling and self-paced learning",
-        "3 days free trial access"
+        "Comprehensive 300-hour certification program",
+        "Expert guidance from experienced instructors",
+        "Yoga Alliance registered certificate"
       ],
-      price: "$299"
+      price: "$1999"
     },
+     {
+      id: 7,
+      image: Retreats,
+      title: "OUR RETREATS",
+      route: "/services/retreats",
+      features: [
+        "7-14 days immersive spiritual experience",
+        "Beautiful natural locations",
+        "All meals and accommodation included"
+      ],
+      price: "$2500"
+    },
+        {
+      id: 2,
+      image: teachertraining,
+      title: "Teachers Training Programs 100 Hours",
+      route: "/services/teacher-training-100",
+      features: [
+        "Comprehensive 100-hour certification program",
+        "Expert guidance from experienced instructors",
+        "Yoga Alliance registered certificate"
+      ],
+      price: "$1399"
+    },
+  
+      
     {
-      id: 3,
+      id: 4,
       image: community,
       title: "Community Services",
       route: "/services/community-services",
@@ -52,7 +80,7 @@ const Servicess = () => {
       price: "Free"
     },
     {
-      id: 4,
+      id: 5,
       image: temple,
       title: "Membership - Temple Yoga Program",
       route: "/services/temple-yoga",
@@ -64,7 +92,7 @@ const Servicess = () => {
       price: "$99/month"
     },
     {
-      id: 5,
+      id: 6,
       image: merchandise,
       title: "Merchandise",
       route: "/services/merchandise",
@@ -76,7 +104,7 @@ const Servicess = () => {
       price: "$25-$150"
     },
     {
-      id: 6,
+      id: 7,
       image: Retreats,
       title: "OUR RETREATS",
       route: "/services/retreats",
@@ -88,7 +116,7 @@ const Servicess = () => {
       price: "$2500"
     },
     {
-      id: 7,
+      id: 8,
       image: events,
       title: "Events",
       route: "/services/events",
@@ -100,7 +128,7 @@ const Servicess = () => {
       price: "$50-$200"
     },
     {
-      id: 8,
+      id: 9,
       image: online,
       title: "Advanced Online Courses",
       route: "/services/advanced-online-courses",

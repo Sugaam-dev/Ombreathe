@@ -12,7 +12,7 @@ function Cont() {
         <h1 style={{fontSize:"50px",fontFamily:"Caudex, serif"}}>Contact</h1>
         <div className="contwt">
        
-        <a href="" style={{display:"flex",alignItems:"center",textAlign:"center",textDecoration:"none",fontSize:"20px"}}><span style={{fontSize:"30px",marginRight:"10px"}}> <IoLogoWhatsapp style={{color:"green"}} /></span> +91 9699447007</a>
+        <a href="" style={{display:"flex",alignItems:"center",textAlign:"center",textDecoration:"none",fontSize:"20px"}}><span style={{fontSize:"30px",marginRight:"10px"}}> <IoLogoWhatsapp style={{color:"green"}} /></span> +91 7829997007</a>
         </div>
         <div className="contwt">
        

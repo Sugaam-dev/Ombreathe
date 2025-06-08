@@ -53,7 +53,7 @@ function Offering ()  {
     </div>
     <div className="cardcontent">
     <img src="./images/036-yoga.png" alt="" />
-                    <h1>Yoga and meditation </h1>
+                    <h1>Prenatal Yoga Teacher Training Course </h1>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec</p>
                     <Link to='/contact'> <button>Discover more</button></Link>
     </div>

@@ -2,7 +2,7 @@
 import { Outlet } from 'react-router-dom';
 import ScrollToTop from './Components/ScrollToTop';
 import Navbar from './Components/Header/Navbar';
-import ScrollTop from './Components/ScrollTop';
+
 
 import Whatsapp from './Components/Whatsapp';
 import logo from './images/yogalayaaLogo.png'
@@ -43,7 +43,7 @@ function Layout() {
         <Outlet />
       </main>
       <Whatsapp />
-      <ScrollTop />
+     
       <Footer/>
     </div>
   );

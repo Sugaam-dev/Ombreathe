@@ -101,7 +101,7 @@
 }
 
 .soulfit-credential-card:hover .soulfit-icon-container {
-  background: #ea580c;
+  background: #E34133;
   transform: scale(1.1) rotate(12deg);
 }
 
@@ -189,7 +189,7 @@
    CTA BUTTON STYLES
 ======================================== */
 .soulfit-cta-button {
-  background: #f97316;
+  background: #E34133;
   color: white;
   font-weight: bold;
   padding: 1rem 2rem;

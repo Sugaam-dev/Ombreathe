@@ -6,32 +6,41 @@ const WhyChoose = () => {
     {
       iconSymbol: "📊",
       title: "10+ Years Of Experience",
-      description: "A un Angleso semblar un simplificat Angles, quam un skepticbridge."
+      description: "With over 10 years of teaching experience, Yogalayaa offers authentic training in Himalayan Yoga, Ashtanga, Vinyasa, Aerial Yoga, Hasta Yoga, and more.Join us for transformative programs in Bali, Rishikesh, and McLeod Ganj — where tradition meets soul."
+
     },
     {
       iconSymbol: "💻",
-      title: "Online Courses Available",
-      description: "A un Angleso semblar un simplificat Angles, quam un skepticbridge."
+      title: "Online Courses",
+      description:"Online Yoga Courses by Yogalayaa Learn authentic yoga from the comfort of your home with Yogalayaa’s expertly designed online courses. Explore Hatha, Ashtanga, Vinyasa, Meditation, Pranayama, and more — guided by experienced teachers with over 10 years of training excellence.Flexible, accessible, and certified — your yoga journey starts here, anytime, anywhere."
+
+
+
     },
     {
       iconSymbol: "🎓",
-      title: "6,000+ Certified Yoga Students",
-      description: "A un Angleso semblar un simplificat Angles, quam un skepticbridge."
+      title: "6,000+ Teaching Hours Completed",
+      description: "6,000+ Teaching Hours Completed Our experienced teachers have led thousands of hours of yoga trainings, retreats, and workshops.Each hour reflects our deep commitment to authentic teaching, personal growth, and yogic wisdom."
+
+
+
     },
     {
       iconSymbol: "🏆",
       title: "Yoga Alliance Certified",
-      description: "A un Angleso semblar un simplificat Angles, quam un skepticbridge."
+      description: `All our teacher training programs are internationally recognized and certified by Yoga Alliance, ensuring high standards and global credibility.`
     },
     {
       iconSymbol: "🎁",
       title: "Special Workshops",
-      description: "A un Angleso semblar un simplificat Angles, quam un skepticbridge."
+      description: "We offer focused sessions including Corporate Yoga, Stress Relief Workshops, Mindfulness Programs, Sound Healing, Pranayama, and more.Designed for individuals, teams, and organizations seeking balance, wellness, and inner clarity."
+
     },
     {
       iconSymbol: "🌿",
       title: "Holistic Approach",
-      description: "A un Angleso semblar un simplificat Angles, quam un skepticbridge."
+      description: `At Yogalayaa, we integrate the physical, mental, emotional, and spiritual aspects of yoga.
+Our teachings go beyond asanas — embracing breathwork, meditation, lifestyle, and inner healing for complete well-being.`
     }
   ];
 

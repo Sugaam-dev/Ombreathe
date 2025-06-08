@@ -5,10 +5,10 @@ const Yogaschool = () => {
       <div className="yogaschool">
         <div className="yogaa">
           <div className="heading">
-            <h1>Best Yoga School In Rishikesh, India</h1>
+            <h1>Best Yoga School In India and Indonesia</h1>
             <img src="./images/lg.png" alt="logo" />
           </div>
-
+{/* remove it and add slider with bali rishikesh and himalayaa  */}
           <div className="join">
             <h3>Want To Join The Best Yoga School In Rishikesh, India?</h3>
             <p>

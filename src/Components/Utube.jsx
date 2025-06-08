@@ -10,20 +10,14 @@ function Utube() {
       </div>
       <div className="contt">
         <h3>
-          Awaken Your Inner Yogi and Embrace the Magic of Rishikesh with Yogalayaa
-          Yoga Ashram
+       Awaken Your Inner Yogi and Embrace the Magic of Rishikesh, Bali, and McLeod Ganj with Yogalayaa Yoga Ashram
         </h3>
         <p>
-          Welcome to Yogalayaa Yoga Ashram: the leading yoga school in Rishikesh.
-          Our Yoga Teacher Training courses in Rishikesh are accredited by Yoga
-          Alliance and offer a comprehensive and immersive learning experience
-          for students of all levels. Our experienced and certified teachers
-          provide personalized attention and guidance to help you develop a
-          strong foundation in the practice of yoga. Our school is located in
-          the heart of Rishikesh and provides a serene and spiritual environment
-          for learning. Whether you are looking to deepen your practice or
-          become a certified yoga teacher, our Yoga TTC in Rishikesh will
-          empower you to achieve your goal
+      Welcome to Yogalayaa Yoga Ashram, a leading yoga school with centers in Rishikesh, Bali, and McLeod Ganj. Our Yoga Teacher Training courses are Yoga Alliance accredited and offer a comprehensive, immersive learning experience for practitioners of all levels.
+
+Guided by experienced and certified teachers, we provide personalized attention to help you build a strong foundation in yoga practice. Nestled in serene and spiritual locations, our schools create the perfect environment for growth, healing, and transformation.
+
+Whether you want to deepen your practice or become a certified yoga teacher, Yogalayaa’s TTC programs in Rishikesh, Bali, and McLeod Ganj will empower you to reach your goals.
         </p>
       </div>
       <div className="utube">

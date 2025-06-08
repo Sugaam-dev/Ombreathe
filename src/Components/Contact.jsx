@@ -44,7 +44,7 @@ function Contact() {
             <h2>
               <FaPhoneAlt /> Phone
             </h2>
-            <p>9898989890</p>
+            <p>+91-7829997007</p>
             <h2>
               <MdEmail /> Email
             </h2>
@@ -52,7 +52,7 @@ function Contact() {
             <h2>
               <CiLocationOn /> Address
             </h2>
-            <p>Vasant Vihar, Delhi, India</p>
+            <p>1972, 22nd Main Rd, Vanganahalli, 1st Sector, HSR Layout, Bengaluru, Karnataka 560102</p>
             <ul>
               <li>
                 <a href="#">
@@ -123,14 +123,16 @@ function Contact() {
             ></iframe> */}
 
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d7777.7748603796435!2d77.647486!3d12.914956!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae14849898aad5%3A0xb3ce28359ae311ea!2s1972%2C%2022nd%20A%20Main%20Rd%2C%20Vanganahalli%2C%201st%20Sector%2C%20HSR%20Layout%2C%20Bengaluru%2C%20Karnataka%20560102!5e0!3m2!1sen!2sin!4v1724749987656!5m2!1sen!2sin"
-              width="100%"
+               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3519.251736888909!2d77.6467562!3d12.914163700000001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae15b1f01663c1%3A0x174babce4553003a!2sYogalayaa!5e1!3m2!1sen!2sin!4v1749394149166!5m2!1sen!2sin"
+               width="100%"
               height="500px"
               style={{ border: 0 }}
               allowFullScreen=""
               loading="lazy"
               referrerpolicy="no-referrer-when-downgrade"
             ></iframe>
+
+         
           </div>
         </div>
       </div>

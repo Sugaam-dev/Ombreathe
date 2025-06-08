@@ -215,17 +215,48 @@ import nitin from '../../images/Teachers/nitin.webp'
 import pulkit from '../../images/Teachers/pulkit.webp'
 import abhishekh from '../../images/Teachers/abhishekh.webp'
 import savitri from '../../images/Teachers/savitri.webp'
+import ranjan from '../../images/Teachers/ranjan.jpeg'
+import ishani from '../../images/Teachers/Ishani.jpeg'
+import lg from '../../images/lg.png'
 const YogaTeachers = () => {
  const [showAll, setShowAll] = useState(false);
 
   const teachers = [
+      {
+      id: 10,
+      name: "YOGI RANJAN",
+      image:ranjan,
+      title: "Yoga Instructor",
+      description: "Practicing yogi for over 10 years, specializing in Vedic Meditation and Kundalini Yoga. Georgia brings ancient wisdom to modern practice.",
+      experience: "10+ Years",
+      socials: {
+        instagram: "https://instagram.com/georgia",
+        facebook: "https://facebook.com/georgia",
+        twitter: "https://twitter.com/georgia",
+        youtube: "https://youtube.com/georgia"
+      }
+    },
+       {
+      id: 11,
+      name: "Ishani Ghate",
+      image:ishani,
+      title: "Yoga Therapist & Trainer",
+      description: "Practicing yogi for over 8 years, specializing in Vedic Meditation and Kundalini Yoga. Georgia brings ancient wisdom to modern practice.",
+      experience: "8+ Years",
+      socials: {
+        instagram: "https://instagram.com/georgia",
+        facebook: "https://facebook.com/georgia",
+        twitter: "https://twitter.com/georgia",
+        youtube: "https://youtube.com/georgia"
+      }
+    },
     {
       id: 1,
       name: "NITIN DOBRIYAL",
       image:nitin,
       title: "Yoga Instructor",
-      description: "Practicing yogi for over 10 years, specializing in Vedic Meditation and Kundalini Yoga. Georgia brings ancient wisdom to modern practice.",
-      experience: "10+ Years",
+      description: "Practicing yogi for over 6 years, specializing in Vedic Meditation and Kundalini Yoga. Georgia brings ancient wisdom to modern practice.",
+      experience: "6+ Years",
       socials: {
         instagram: "https://instagram.com/georgia",
         facebook: "https://facebook.com/georgia",
@@ -252,8 +283,8 @@ const YogaTeachers = () => {
       name: "ABHISHEKH THALWAL",
       image: abhishekh,
       title: "Astanga Yoga, Hatha Yoga",
-      description: "Has 10 years of teaching experience, certified in 500 hours in 2020, and in hatha and 500 hours in Ayurveda in 2021.",
-      experience: "10+ Years",
+      description: "Has 7 years of teaching experience, certified in 500 hours in 2020, and in hatha and 500 hours in Ayurveda in 2021.",
+      experience: "7+ Years",
       socials: {
         instagram: "https://instagram.com/rama",
         twitter: "https://twitter.com/rama",
@@ -266,8 +297,8 @@ const YogaTeachers = () => {
       name: "SAVITRI DEVI-GURUMAA",
       image:savitri ,
       title: "KRI Professional Teachers",
-      description: "Certified meditation teacher with 25 years of experience in various contemplative practices and mindfulness techniques.",
-      experience: "25+ Years",
+      description: "Certified meditation teacher with 20 years of experience in various contemplative practices and mindfulness techniques.",
+      experience: "20+ Years",
       socials: {
         instagram: "https://instagram.com/sarah",
         youtube: "https://youtube.com/sarah",
@@ -303,7 +334,7 @@ const YogaTeachers = () => {
         <div className="yogaa">
           <div className="heading">
             <h1>Our Yoga Teachers</h1>
-            <img src="./images/lg.png" alt="logo" />
+            <img src={lg} alt="logo" />
           </div>
         </div>
       </div>

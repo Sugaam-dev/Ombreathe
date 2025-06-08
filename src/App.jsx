@@ -11,6 +11,9 @@ import Package3 from './Components/Package3';
 import Package4 from './Components/Package4';
 import Layout from './Layout';
 import Service1 from './Components/Services/Service1/Service1';
+import Service2 from './Components/Services/Hours500/Service2';
+import Service300 from './Components/Services/Hours300/Service300';
+import Service100 from './Components/Services/Hours100/Service100';
 
 // Import individual service components (you'll need to create these)
 // import TeacherTraining from './Components/Services/TeacherTraining/TeacherTraining';
@@ -38,14 +41,17 @@ function App() {
           <Route path="service" element={<Servicess/>} />
           
           {/* Individual Service Routes */}
-          <Route path="services/teacher-training" element={<Service1/>} />
-          <Route path="services/online-courses" element={<Service1 />} />
+          <Route path="services/teacher-training-200" element={<Service1/>} />
+          <Route path="services/teacher-training-500" element={<Service2/>} />
+          <Route path="services/teacher-training-300" element={<Service300/>} />
+                <Route path="services/teacher-training-100" element={<Service100/>} />
           <Route path="services/community-services" element={<Service1 />} />
           <Route path="services/temple-yoga" element={<Service1 />} />
           <Route path="services/merchandise" element={<Service1 />} />
           <Route path="services/retreats" element={<Service1 />} />
           <Route path="services/events" element={<Service1 />} />
           <Route path="services/advanced-online-courses" element={<Service1 />} />
+         
         </Route>
       </Routes>
     </BrowserRouter>

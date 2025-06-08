@@ -26,7 +26,7 @@ import ImageSliderBanner from "./Banner/ImageSliderBanner ";
 import Blog from "./Blog/Blog";
 import guru from '../images/sadguru.webp'
 import BannerImage from "./HomeCredentials/BannerImage";
-import YogaTrainingSection from "./Services/Service_page";
+
 import Training200 from "./Services/Service1/Training200";
 import HouseOfYoga from "./Services/Service1/HouseOfYoga";
 

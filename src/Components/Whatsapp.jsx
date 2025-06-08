@@ -8,7 +8,7 @@ function Whatsapp() {
 
       <div className="icon-container">
         <div className="whatsapp-wave"></div>
-        <a href="https://wa.me/8797879750?texr=Welcome to Soulfit" target='_blank'><IoLogoWhatsapp className='wt' /></a>
+        <a href="https://wa.me/7829997007?texr=Welcome to Soulfit" target='_blank'><IoLogoWhatsapp className='wt' /></a>
     </div>
     </>
   )
