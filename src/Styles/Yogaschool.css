@@ -1,0 +1,143 @@
+
+*{
+    margin: 0px;
+    padding: 0px;
+
+}
+.yogaschool{
+    /* background-color: #F6F9F6; */
+  padding-bottom: 30px;
+}
+.yogaa img{
+width: 300px;
+
+}
+.yogaa{
+    padding-top: 3%;
+    width: 90%;
+    margin-left: 5%;
+
+
+}
+.join{
+    margin-top: 30px;
+    font-family: 'Roboto';
+    font-size: 18px;
+    line-height: 25px;
+}
+.join h3{
+    margin-bottom: 20px;
+}
+.yogaa .heading{
+text-align: center;
+
+}
+
+.box{
+    margin-top: 30px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    font-family: 'Roboto';
+    line-height: 25px;
+    font-size: 18px;
+}
+.box1{
+    width: 50%;
+    height: 700px;
+    border: 2px solid rgba(0, 0, 0, 0.225);
+    border-radius: 5px;
+    box-shadow: 1px 2px 30px rgba(128, 128, 128, 0.77);
+}
+.box1 img{
+    width: 98%;
+    height: 688px;
+    border-radius: 5px;
+    margin-left: 6px;
+    margin-top: 5px;
+
+}
+.box2{
+    width: 60%;
+    margin-left: 50px;
+}
+.boxcontent{
+    display: grid;
+    grid-template-columns: 300px 300px;
+    grid-template-rows: 100px 100px;
+    grid-gap: 10px;
+    margin-top: 50px;
+}
+.item1{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.itemlogo img{
+width: 60px;
+margin-right: 20px;
+}
+.itemlogo{
+    transition: 0.5s;
+    /* transform: scale(1); */
+    position: relative;
+    transition: transform 500ms;
+    
+}
+.item1:hover >.itemlogo{
+    cursor: pointer;
+    transform: rotateY(180deg);
+
+
+}
+
+@media (max-width:450px) {
+    .boxcontent{
+        display: grid;
+        grid-template-columns: 250px;
+        grid-template-rows: 100px;
+        grid-gap: 10px;
+    }
+    .box{
+display: flex;
+flex-direction: column;
+    }
+    .box1{
+        width: 100%;
+        height: 700px;
+        border: 1px solid black;
+        border-radius: 5px;
+    }
+    .box2{
+        width: 100%;
+        margin-left: 0px;
+    }
+    .box1 img{
+        width: 98%;
+        height: 690px;
+        border-radius: 5px;
+        margin-left: 5px;
+        margin-top: 5px;
+    }
+}
+
+@media (max-width:768px) {
+    .boxcontent{
+        display: grid;
+        grid-template-columns: 300px;
+        grid-template-rows: 100px;
+        grid-gap: 10px;
+    }
+
+}
+
+@media only screen and (769px< width <=1023px) {
+    .boxcontent{
+        display: grid;
+        grid-template-columns: 300px;
+        grid-template-rows: 100px;
+        grid-gap: 10px;
+    }
+}
+

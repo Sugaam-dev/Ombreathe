@@ -1,0 +1,75 @@
+.what{
+    background: transparent;
+    position: sticky;
+  bottom: 20px;
+ 
+    z-index: 10;
+}
+/* .wt{
+    margin-left: 40px;
+font-size: 40px;
+color: green;
+} */
+
+
+
+/* .wt {
+    font-size: 50px;
+    color: #25D366;
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.2;
+    }
+} */
+.icon-container {
+    position: sticky;
+    bottom: 95px;
+    left: 10px;
+    width: 60px;
+    height: 60px;
+    z-index: 10;
+    
+}
+@media (450px < width <=1440px ) {
+    .icon-container{
+        left: 92%;
+        bottom: 20px;
+    }
+}
+.wt {
+    font-size: 50px;
+    color: #25D366; /* WhatsApp green */
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    z-index: 10;
+}
+
+.whatsapp-wave {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: rgba(37, 211, 102, 0.5); /* Lighter WhatsApp green */
+    z-index: 10;
+    animation: wave 1.5s infinite ease-out;
+}
+
+@keyframes wave {
+    0% {
+        transform: scale(0.8);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1.5);
+        opacity: 0;
+    }
+}

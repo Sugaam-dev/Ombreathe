@@ -1,0 +1,9 @@
+<svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 44" width="52" height="44">
+	<title>course-icon3-svg</title>
+	<defs>
+		<image  width="52" height="44" id="img1" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADQAAAAsCAMAAAAdI2svAAAAAXNSR0IB2cksfwAAAFRQTFRFAAAAFGqmAHa8CW6wB2+yAHW7GmihAXS6AXW7EmqoBHG2Bm+zF2ijDmyrCm2uEWuoFmmlAnO4AXW6D2uqBXC0DGysGmmgG2WgCG6wAXS5A3K3BXC0V6YXXAAAABx0Uk5TAKv/8fb/Ov//vPz4g9rqx5v+/9H641wf8//9+zayJt8AAAHFSURBVHicnZXrlqsgDIV1a8TiDbAC4vu/5wlj56x2qljKD2/LzySbnVgUr6tEVWSvGtRkQ6JFmQ2hxi0bovqLSCS/gbp8qMeQDzGSD42YoHKh+htImxl9LkT3BTaTsZgruExIoZyybDT7oXFYCo3uU6RZwUtSFxXE8BkUUDo7Ap6vrYb4SHfoeOwfqU0E/UFpkPupftyPBOjpAmoRu1w+VaM2Ao1JqCS0LUvxklSp96xPV+O1rsa/HupBl3utTWE76f83h9twEYvfQd0ALAHWgUtUEhjnq/5qMGzEZ9W1oM2AOs6N1kuoDfslCxN2JRekp2eDhaIlJhlT3DVpKvZjuiZPc+F5f+TsNG4lhcA1pgV0tFFpEPbN0j+ajL1K+zdCYk/LLiG6t4oTY6V0TR78q/FacAjy7iec5dacE5CKkLqD1m34tQYJ/pWkQk3EDrAUnp+VuBc3JPw+kGav4dXaCydszDk0kqBW/TWth7olvFSBjKnfCmAxWnEKSSItxJutncFbzzx9kii0R90qiOQpBBPoKH3HVjyzrYBmKY5mOQ+39WSqsXNkffhJi86cTKcOWpy0N9tY4NAYAycxHveBin70j5t/SP8SjFR2cM0AAAAASUVORK5CYII="/>
+	</defs>
+	<style>
+	</style>
+	<use id="img1" href="#img1" x="0" y="0"/>
+</svg>

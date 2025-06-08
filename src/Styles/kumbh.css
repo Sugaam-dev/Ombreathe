@@ -1,0 +1,86 @@
+.kumbh{
+    background-color: #F6F9F6;
+    height: 100%;
+    width: 100%;
+    padding-bottom: 10px;
+    margin-top: 50px;
+}
+.headingk{
+    padding-top: 10px;
+    text-align: center;
+    font-family: Caudex, serif;
+}
+.headingk img{
+    width: 300px;
+}
+.kumbhcont{
+    height: 90%;
+    width: 90%;
+    padding: 20px 30px;
+    margin-left: 5%;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    background-color: #fff;
+}
+.kbox{
+    display: flex;
+    justify-content: space-between;
+}
+.kbox p{
+width: 60%;
+padding-right: 0px;
+font-size: 16px;
+line-height: 25px;
+}
+.kbox img{
+    width: 40%;
+
+    }
+    .kboxs p{
+        line-height: 25px;
+    }
+
+
+
+    .kk{
+        text-align: center;
+       
+    }
+    .kk h1{
+        padding: 20px 0px;
+        font-family: Caudex, serif;
+    }
+    .kk p{
+        line-height: 25px;
+    }
+
+    .kumbhcont button{
+        padding: 6px 15px;
+        margin-top: 5px;
+        border-radius: 10px 10px 10px 10px;
+        border: 1px solid crimson;
+    }
+
+    @media (max-width:450px) {
+        .kbox{
+         flex-direction: column-reverse;
+        }
+        .kbox img{
+            width: 100%;
+            }
+            .kbox p{
+                width: 100%;
+               
+                }
+                .headingk img{
+                    width: 70%;
+                }
+    }
+
+    @media (600px < width <=768px) {
+        
+        .kbox img{
+        
+            height: 100%;
+        }
+    }

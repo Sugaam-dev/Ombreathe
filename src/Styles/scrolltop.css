@@ -1,0 +1,32 @@
+.scrollbut{
+    position: sticky;
+  
+bottom: 150px;
+top: 346px;
+
+
+}
+
+.si{
+   font-size: 30px;
+   color: #0678e3 ;
+  position: absolute;
+  left: 95%;
+ transition: .2s;
+ cursor: pointer;
+
+}
+.si:hover{
+    font-size: 40px;
+}
+
+@media (450px< width <=768px) {
+    .si{
+        left: 93%;
+    }
+}
+@media (max-width:450px) {
+    .si{
+        left: 86%;
+    }
+}

@@ -1,0 +1,143 @@
+.package{
+
+    height: 100%;
+    width: 100%;
+    text-align: center;
+    font-family: Caudex, serif;
+}
+.headpackage{
+    margin: 30px 0px;
+    color: #CF2156;
+}
+.description p{
+    padding: 10px 50px;
+    font-family: 'Roboto';
+    font-size: 18px;
+    line-height: 25px;
+   
+}
+.description img{
+    width: 50%;
+}
+.description h2{
+    margin-bottom: 10px;
+   
+}
+.iti span{
+    color: crimson;
+    font-size: 22px;
+    font-weight: 700;
+}
+.iti p{
+    padding: 10px 100px;
+    font-family: 'Roboto';
+    font-size: 18px;
+}
+.iti h3{
+    color: #CF2156;
+}
+
+.det{
+    display: grid;
+    grid-template-columns: 400px 400px 400px;
+    grid-template-rows: 320px;
+    grid-gap: 20px;
+width: 90%;
+margin-left: 10%;
+margin-top: 50px;
+}
+.gg{
+    background-color: rgba(164, 244, 244, 0.764);
+padding-top: 20px;
+}
+.gg p{
+    padding: 5px 20px;
+    font-size: 18px;
+    /* line-height: 2px; */
+    text-align: justify;
+}
+.gg p span{
+    color: #CF2156;
+    margin-right: 10px;
+}
+.gg .day{
+display: flex;
+justify-content: space-between;
+padding: 10px 20px;
+align-items: center;
+text-align: center;
+ 
+}
+.day h3{
+    width: 80%;
+}
+
+.gg .headingg{
+ text-align: center;
+ color: #CF2156;
+}
+.gg h3{
+    font-style: italic;
+}
+.gg button{
+    margin-top: 10%;
+    padding: 10px 50px;
+    transition: 0.5s;
+    background: linear-gradient(to top, #0a2add,#dd9bdfe1 50%, #fff 50% );
+    background-size: 100% 200%;
+    background-position: top;
+    cursor: pointer;
+    font-family: 'Roboto';
+    border: 1px solid crimson;
+    font-size: 18px;
+}
+.gg button:hover{
+    background-position: bottom;
+}
+@media (max-width:1439px) {
+    .description img{
+   
+        width: 100%;
+          
+      }
+      .iti p{
+        padding: 10px 5px;
+    }
+    .description p{
+        padding: 10px 5px;
+    }
+}
+
+@media (max-width:450px) {
+    .det{
+      
+        grid-template-columns: 100%;
+        grid-template-rows: 300px 300px 300px;
+      
+    width: 100%;
+    margin-left: 0px;
+    }
+    .description img{
+        width: 90%;
+    }
+}
+@media (450px < width <=978px) {
+    .det{
+      
+        grid-template-columns: 300px 300px;
+        grid-template-rows: 300px;
+      
+    width: 80%;
+    margin-left: 80px;
+    }
+}
+@media (978px < width <=1439px) {
+    .det{
+      
+        grid-template-columns: 300px 300px;
+        grid-template-rows: 300px;
+      
+    width: 80%;
+    margin-left: 20%;
+    }
+}

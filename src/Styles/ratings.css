@@ -1,0 +1,162 @@
+.reviewslide{
+    width: 50%;
+}
+.headingr{
+ text-align: center;
+width: 98%;
+font-family: Caudex, serif;
+margin-top: 5%; 
+}
+.headingr img{
+    width: 300px;
+}
+.reviews{
+    /* background-color: blue; */
+    margin-right: 50px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 40px;
+
+}
+.rating{
+    display: flex;
+    justify-content: space-evenly;
+    width: 95%;
+    margin-top: 20px;
+}
+.ratingslide{
+    width: 50%;
+    display: grid;
+    grid-template-columns: 223px 223px;
+    grid-template-rows: 70px 70px;
+    grid-gap: 50px 30px;
+    margin-left: 10px;
+    margin-top: 50px;
+
+}
+element.style{
+    display: none;
+}
+
+.ratingslide img{
+width: 600px;
+}
+.ratingbox{
+    /* background-color: aquamarine; */
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    text-align: center;
+    
+   
+}
+.iconn{
+    font-size: 60px;
+    color: rgba(7, 7, 59, 0.721);
+    
+}
+.star{
+    color: yellow;
+    font-size: 23px;
+}
+
+.name{
+    display: flex;
+    justify-content: center;
+    padding: 10px 0px;
+}
+.city{
+    display: flex;
+    justify-content: center;
+    padding-bottom: 20px;
+}
+.decrip{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+.image{
+    display: flex;
+    justify-content: center;
+ padding: 20px 0px;
+}
+.image img{
+    height: 120px;
+    width: 120px;
+    border: 1 pax solid rgb(216, 15, 15);
+    border-radius: 100%;
+}
+/* .reviews h3{
+color: red;
+padding-top: 7px;
+
+margin-top: 40px;
+} */
+
+/* .reviews img{
+    height: 170px;
+    width: 170px;
+    border: 1 pax solid rgb(216, 15, 15);
+    border-radius: 100%;
+} */
+@media (max-width:450px) {
+    .rating{
+       flex-direction: column;
+       width: 96%;
+    }
+    .reviewslide{
+        width: 95%;
+    }
+    .ratingslide{
+        width: 100%;
+        padding-left: 8px;
+    }
+    .reviews{
+        margin-top: 00px;
+    }
+    .reviews h3{
+      
+      
+        padding-top: 7px;
+       
+        margin-top: 40px;
+        }
+        .headingr img{
+            width: 70%;
+        }
+
+        .ratingslide img{
+            width: 310px;
+            }
+            .ratingslide{
+                grid-template-columns: 300px;
+                grid-template-rows: 70px 70px 70px 70px;
+            }
+}
+@media (max-width:768px) {
+    .ratingslide img{
+        width: 310px;
+        }
+        .reviews{
+            margin-top: 0px;
+        }
+        .ratingslide{
+            grid-template-columns: 300px;
+            grid-template-rows: 70px 70px 70px 70px;
+        }
+        .ratingslide{
+           margin-top: 10px;
+            grid-gap: 10px 30px;
+    
+        }
+}
+@media (max-width:1030px) {
+    .ratingslide img{
+        width: 310px;
+        }
+        .reviews{
+            margin-top: 0px;
+        }
+}

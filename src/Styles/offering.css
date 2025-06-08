@@ -1,0 +1,153 @@
+.offering{
+    padding: 0px;
+    margin: 0px;
+    width: 100%;
+    height: 100%;
+
+
+    margin-top: 10%;
+}
+.offerheading{
+    font-family: Caudex, serif;
+    text-align: center;
+   
+}
+.offerheading img{
+    width: 300px;
+}
+.offerheading p{
+    font-size: 20px;
+}
+
+.offeringcards{
+    display: grid;
+    grid-template-columns: 600px 600px;
+   grid-template-rows: 400px 400px;
+ grid-gap: 40px;
+/* margin-left: 140px; */
+}
+.card1{
+    display: flex;
+   
+
+    border: 1px solid black;
+    border-radius: 20px 20px 80px 20px;
+}
+.cardimg{
+ /* background-color: red; */
+ width: 50%;
+}
+.cardcontent{
+  /* background-color: aqua ; */
+  width: 50%;
+  border-radius: 20px 20px 80px 20px;
+  padding-top: 20px;
+}
+
+.cardimg img{
+    width: 85%;
+    height: 100%;
+    border-radius: 20px 80px 20px 20px;
+}
+.oo{
+    display: flex;
+    /* position: relative; */
+align-items: center;
+justify-content: center;
+/* text-align: center; */
+margin-top: 50px;
+margin-bottom: 50px;
+/* left: 50px; */
+}
+
+
+.cardcontent button{
+    padding: 15px 40px;
+    margin-top: 30px;
+    transition: 0.5s;
+    border-radius: 20px 10px 20px 10px;
+    cursor: pointer;
+
+}
+.cardcontent button:hover{
+    border-radius: 10px 20px 10px 20px;
+}
+.cardcontent p{
+    line-height: 30px;
+    font-size: 18px;
+}
+
+
+@media (max-width:450px) {
+    .offeringcards{
+   
+        grid-template-columns: 300px ;
+       grid-template-rows: 820px 820px 820px 820px;
+   grid-gap: 40px;
+    }
+    .cardcontent{
+     text-align: center;
+    }
+  
+    .card1{
+        display: flex;
+        flex-direction: column;
+    }
+    .cardimg img{
+        width: 100%;
+        height: 100%;
+        border-radius: 20px 80px 20px 20px;
+    }
+    .cardimg{
+        /* background-color: red; */
+        width: 100%;
+       }
+       .cardcontent{
+        /* background-color: aqua ; */
+        width: 100%;
+        border-radius: 20px 20px 80px 20px;
+        padding-top: 20px;
+      }
+      .offerheading h1{
+        width: 100%;
+        font-size: 20px;
+      }
+      .offering{
+        margin-top: 45%;
+      }
+      .offerheading img{
+       width: 70%;
+      }
+      .card1{
+  
+        border: 1px solid black;
+        border-radius: 20px 80px 20px 20px;
+    }
+    
+}
+
+@media only screen and (451px<= width <=768px) {
+
+    .offering{
+        margin-top: 15%;
+    }
+.offeringcards{
+    display: grid;
+    grid-template-columns: 600px;
+   grid-template-rows: 400px 400px;
+ grid-gap: 40px;
+/* margin-left: 140px; */
+}
+
+}
+
+@media only screen and (779px<= width <=1439px) {
+    .offeringcards{
+        display: grid;
+        grid-template-columns: 600px;
+       grid-template-rows: 400px 400px;
+     grid-gap: 40px;
+    /* margin-left: 140px; */
+    }
+    
+    }
