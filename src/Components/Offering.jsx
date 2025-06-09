@@ -13,7 +13,7 @@ function Offering() {
     <>
       <div className="offering">
         <div className="offerheading">
-          <p>what we offering</p>
+          <p>what we offerings</p>
           <h1>Discover Our Holistic Offerings</h1>
           <img src="./images/lg.png" alt="logo" />
         </div>
