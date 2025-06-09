@@ -12,8 +12,8 @@ function Offering() {
   return (
     <>
       <div className="offering">
-        <div className="offerheading">
-          <p>what we offerings</p>
+        <div className="offerheading" style={{paddingTop:'20px'}}>
+         
           <h1>Discover Our Holistic Offering</h1>
           <img src="./images/lg.png" alt="logo" />
         </div>
