@@ -44,7 +44,7 @@ const HouseOfYoga = ({ backgroundImage }) => {
               <p>Friendly Certification</p>
             </div>
             <div className="col-md-2">
-              <div style={statStyle}>12 Days</div>
+              <div style={statStyle}>13 Days</div>
               <p>Foundation Training</p>
             </div>
             <div className="col-md-2">

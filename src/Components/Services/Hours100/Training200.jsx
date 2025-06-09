@@ -1,6 +1,8 @@
 import React from 'react';
 import a from '../../../images/services/200.webp'
 import HouseOfYoga from './HouseOfYoga';
+import A from '../../../images/cirtificats/yoga.png'
+import Ly from '../../../images/cirtificats/YACEP.png'
 
 const Training200 = () => {
   return (
@@ -59,7 +61,7 @@ const Training200 = () => {
                             fontWeight: '600',
                             fontSize: 'clamp(2rem, 5vw, 3rem)'
                           }}>
-                      Contact for Pricing
+             $1399
                     </span>
                   </div>
                   
@@ -156,32 +158,39 @@ const Training200 = () => {
                 <div className="col-12 col-lg-6">
                   {/* Certification badges */}
                   <div className="d-flex gap-3 mb-3 justify-content-start justify-content-lg-end">
-                    <div className="rounded-circle d-flex align-items-center justify-content-center"
+                      <div className="rounded-circle d-flex align-items-center justify-content-center"
                          style={{
-                           width: '80px',
-                           height: '80px',
-                           border: '3px solid #2E3A87',
+                           width: '100px',
+                           height: '100px',
                            color: '#2E3A87'
                          }}>
-                      <div className="text-center">
-                        <div style={{ fontSize: '11px', fontWeight: 'bold', lineHeight: '1' }}>FOUNDATION</div>
-                        <div style={{ fontSize: '20px', fontWeight: 'bold', lineHeight: '1' }}>100</div>
-                        <div style={{ fontSize: '9px', lineHeight: '1' }}>HOURS</div>
-                      </div>
+                      <img 
+                        src={A} 
+                        alt="300 Hour Certification" 
+                        style={{
+                          width: '70px',
+                          height: '70px',
+                          objectFit: 'contain'
+                        }}
+                      />
                     </div>
-                    <div className="rounded-circle d-flex align-items-center justify-content-center"
+                     <div className="rounded-circle d-flex align-items-center justify-content-center"
                          style={{
-                           width: '80px',
-                           height: '80px',
-                           border: '3px solid #2E3A87',
+                           width: '100px',
+                           height: '100px',
                            color: '#2E3A87'
                          }}>
-                      <div className="text-center">
-                        <div style={{ fontSize: '8px', fontWeight: 'bold', lineHeight: '1' }}>YOGALAYAA</div>
-                        <div style={{ fontSize: '16px', fontWeight: 'bold', lineHeight: '1' }}>BALI</div>
-                        <div style={{ fontSize: '8px', lineHeight: '1' }}>CERTIFIED</div>
-                      </div>
+                      <img 
+                        src={Ly} 
+                        alt="300 Hour Certification" 
+                        style={{
+                          width: '70px',
+                          height: '70px',
+                          objectFit: 'contain'
+                        }}
+                      />
                     </div>
+                  
                   </div>
 
                   {/* Certificate text - aligned to right on desktop */}

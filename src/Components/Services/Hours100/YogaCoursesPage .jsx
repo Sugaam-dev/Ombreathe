@@ -201,7 +201,7 @@ const YogaCoursesPage = ({ heading = "100-hour Foundation Yoga Teacher Training"
         {/* Training Structure Section */}
         <div className="row mt-5">
           <div className="col-12">
-            <h3 className="text-center mb-4" style={{ color: '#4a4a8b' }}>12-Day Foundation Training Structure</h3>
+            <h3 className="text-center mb-4" style={{ color: '#4a4a8b' }}>13-Day Foundation Training Structure</h3>
             <div className="row g-4">
               <div className="col-md-6 col-lg-4">
                 <div className="card border-0" style={{ backgroundColor: '#e3f2fd' }}>
@@ -226,7 +226,7 @@ const YogaCoursesPage = ({ heading = "100-hour Foundation Yoga Teacher Training"
               <div className="col-md-6 col-lg-4">
                 <div className="card border-0" style={{ backgroundColor: '#e8f5e8' }}>
                   <div className="card-body text-center p-4">
-                    <h5 style={{ color: '#388e3c' }}>Days 9-12</h5>
+                    <h5 style={{ color: '#388e3c' }}>Days 9-13</h5>
                     <p style={{ color: '#424242', fontSize: '0.9rem' }}>
                       Class sequencing, practice teaching, integration, assessment, and graduation ceremony
                     </p>

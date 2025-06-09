@@ -1,9 +1,9 @@
 import React from 'react';
-
+import a from '../../../images/Gallery/16.jpg'
 const DailySchedulePage = ({ 
   title = "Sample Daily Schedule",
   description = "Experience the perfect blend of adventure and yoga in our 7-day retreat. Each day is thoughtfully designed to combine thrilling outdoor activities with peaceful yoga sessions, creating a transformative journey through Bali's stunning landscapes and rich culture.",
-  scheduleImage = "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
+  scheduleImage = a
 }) => {
   
   const morningSchedule = [

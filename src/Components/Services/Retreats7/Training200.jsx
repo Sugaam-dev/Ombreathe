@@ -1,4 +1,5 @@
 import React from 'react';
+import a from '../../../images/Gallery/Canyoneering-Bali.jpg'
 
 const Training200 = () => {
   return (
@@ -108,7 +109,7 @@ const Training200 = () => {
             {/* Image Section */}
             <div className="col-12 mb-4 d-flex justify-content-center">
               <img 
-                src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"
+                src={a}
                 alt="Adventure and yoga in Bali" 
                 className="img-fluid"
                 style={{ 

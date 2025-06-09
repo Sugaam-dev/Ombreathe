@@ -1,7 +1,12 @@
 import React from 'react';
 import "./Styles/whychoose.css";
+import { useNavigate } from 'react-router-dom';
 
 const WhyChoose = () => {
+  const navigate =useNavigate()
+  const navi=()=>{
+    navigate('/contact')
+  }
   const credentials = [
     {
       iconSymbol: "📊",
@@ -78,7 +83,7 @@ Our teachings go beyond asanas — embracing breathwork, meditation, lifestyle, 
             <div className="soulfit-cta-card">
               <h2>Ready to Begin Your Journey?</h2>
               <p>Join thousands of students who have transformed their lives through yoga. Start your practice today with personalized guidance and support.</p>
-              <button className="soulfit-cta-button">Start Your Practice Today</button>
+              <button className="soulfit-cta-button" onClick={navi}>Start Your Practice Today</button>
             </div>
           </div>
         </div>

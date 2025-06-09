@@ -135,7 +135,7 @@ const Accordion = () => {
           <p className="section-subtitle">
             {activeCategory === 'training' 
               ? 'Everything you need to know about Yogalaya\'s certification program' 
-              : 'Discover our transformative retreat experiences in Rishikesh'
+              : 'Discover our transformative retreat experiences'
             }
           </p>
         </div>

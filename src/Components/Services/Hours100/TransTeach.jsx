@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
-
+import hata from '../../../images/Gallery/hata.webp'
+import pranayam from '../../../images/Gallery/pranayam.jpg'
+import gentle from '../../../images/Gallery/gentle.jpeg'
 const TransTeach = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [imagesVisible, setImagesVisible] = useState({});
@@ -22,19 +24,19 @@ const TransTeach = () => {
 
   const yogaImages = [
     {
-      src: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      src: hata,
       alt: "Basic Hatha yoga practice for beginners",
       title: "Foundational Hatha Yoga",
       description: "Gentle introduction to basic postures, breathing, and meditation for complete beginners"
     },
     {
-      src: "https://images.unsplash.com/photo-1593810450967-f9c42742e326?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      src:gentle,
       alt: "Basic Vinyasa flow for beginners",
       title: "Gentle Vinyasa Flow",
       description: "Simple flowing sequences connecting breath with movement in accessible, beginner-friendly practice"
     },
     {
-      src: "https://images.unsplash.com/photo-1599901860904-17e6ed7083a0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      src: pranayam,
       alt: "Basic pranayama and meditation",
       title: "Fundamental Pranayama",
       description: "Essential breathing techniques and basic meditation practices for stress relief and relaxation"

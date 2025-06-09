@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import a from '../../images/Gallery/1.jpeg';
 import b from '../../images/Gallery/2.jpeg';
 import c from '../../images/Gallery/3.jpeg';
@@ -45,8 +45,7 @@ const Gallery = ({
     {
       src: g,
       caption: "Image 4"
-    }
-    ,
+    },
     {
       src: h,
       caption: "Image 2"
@@ -58,8 +57,7 @@ const Gallery = ({
     {
       src: j,
       caption: "Image 4"
-    }
-    ,
+    },
     {
       src: k,
       caption: "Image 2"
@@ -71,8 +69,7 @@ const Gallery = ({
     {
       src: m,
       caption: "Image 4"
-    }
-    ,
+    },
     {
       src: n,
       caption: "Image 2"
@@ -97,14 +94,15 @@ const Gallery = ({
       src: s,
       caption: "Image 4"
     }
-
-    
   ],
   showThumbnails = true,
   autoPlay = true,
   interval = 5000
 }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const touchStartX = useRef(0);
+  const touchEndX = useRef(0);
+  const [isDragging, setIsDragging] = useState(false);
 
   // Auto-play functionality
   useEffect(() => {
@@ -128,6 +126,84 @@ const Gallery = ({
     setCurrentIndex((prev) => (prev + 1) % images.length);
   };
 
+  // Touch/Swipe handlers
+  const handleTouchStart = (e) => {
+    touchStartX.current = e.touches[0].clientX;
+    setIsDragging(true);
+  };
+
+  const handleTouchMove = (e) => {
+    if (!isDragging) return;
+    touchEndX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchEnd = () => {
+    if (!isDragging) return;
+    setIsDragging(false);
+    
+    const swipeThreshold = 50; // Minimum distance for a swipe
+    const swipeDistance = touchStartX.current - touchEndX.current;
+
+    if (Math.abs(swipeDistance) > swipeThreshold) {
+      if (swipeDistance > 0) {
+        // Swiped left - go to next image
+        goToNext();
+      } else {
+        // Swiped right - go to previous image
+        goToPrevious();
+      }
+    }
+
+    // Reset touch positions
+    touchStartX.current = 0;
+    touchEndX.current = 0;
+  };
+
+  // Mouse handlers for desktop drag support
+  const handleMouseDown = (e) => {
+    e.preventDefault();
+    touchStartX.current = e.clientX;
+    setIsDragging(true);
+  };
+
+  const handleMouseMove = (e) => {
+    if (!isDragging) return;
+    touchEndX.current = e.clientX;
+  };
+
+  const handleMouseUp = () => {
+    if (!isDragging) return;
+    setIsDragging(false);
+    
+    const swipeThreshold = 50;
+    const swipeDistance = touchStartX.current - touchEndX.current;
+
+    if (Math.abs(swipeDistance) > swipeThreshold) {
+      if (swipeDistance > 0) {
+        goToNext();
+      } else {
+        goToPrevious();
+      }
+    }
+
+    touchStartX.current = 0;
+    touchEndX.current = 0;
+  };
+
+  // Keyboard navigation
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'ArrowLeft') {
+        goToPrevious();
+      } else if (e.key === 'ArrowRight') {
+        goToNext();
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
+
   if (!images || images.length === 0) {
     return <div className="text-center py-5">No images to display</div>;
   }
@@ -143,7 +219,21 @@ const Gallery = ({
         {/* Main Carousel */}
         <div className="row justify-content-center mb-4">
           <div className="col-12 col-md-11 col-lg-10">
-            <div className="position-relative shadow-lg rounded overflow-hidden" style={{ backgroundColor: '#f8f9fa' }}>
+            <div 
+              className="position-relative shadow-lg rounded overflow-hidden" 
+              style={{ 
+                backgroundColor: '#f8f9fa',
+                cursor: isDragging ? 'grabbing' : 'grab',
+                userSelect: 'none'
+              }}
+              onTouchStart={handleTouchStart}
+              onTouchMove={handleTouchMove}
+              onTouchEnd={handleTouchEnd}
+              onMouseDown={handleMouseDown}
+              onMouseMove={handleMouseMove}
+              onMouseUp={handleMouseUp}
+              onMouseLeave={handleMouseUp} // Handle mouse leaving the area
+            >
               {/* Main Image */}
               <div style={{ 
                 minHeight: '300px',
@@ -164,8 +254,10 @@ const Gallery = ({
                     width: 'auto',
                     height: 'auto',
                     objectFit: 'contain',
-                    transition: 'opacity 0.5s ease-in-out'
+                    transition: isDragging ? 'none' : 'opacity 0.5s ease-in-out',
+                    pointerEvents: 'none' // Prevent image dragging
                   }}
+                  draggable={false}
                 />
                 
                 {/* Caption */}
@@ -240,12 +332,11 @@ const Gallery = ({
                   ))}
                 </div>
               )}
+
+             
             </div>
           </div>
         </div>
-
-        {/* Thumbnail Navigation */}
-       
 
         {/* Image Counter */}
         <div className="text-center mt-4">

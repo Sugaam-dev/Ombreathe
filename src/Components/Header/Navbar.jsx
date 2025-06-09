@@ -410,7 +410,7 @@ const Navbar = () => {
                   onClick={closeMenu}
                   activeClassName="active"
                 >
-                  Services
+                Programs
                 </NavLink>
               </li>
               <li className="nav-item">

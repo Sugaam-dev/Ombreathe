@@ -49,7 +49,7 @@ const Yogaschool = () => {
                 <div className="location-content">
                   <h3>Want To Join The Best Yoga School In Rishikesh, India?</h3>
                   <p>
-                    Experience the spiritual birthplace of yoga in Rishikesh, nestled in the foothills of the Himalayas. Our Rishikesh location offers authentic traditional yoga teachings in the most sacred environment. Join thousands of practitioners who have transformed their lives through our comprehensive yoga teacher training programs in this holy city.
+                    Experience the spiritual birthplace of yoga in Rishikesh, nestled in the foothills of the Himalayas. Our Bali and Rishikesh location offers authentic traditional yoga teachings in the most sacred environment. Join thousands of practitioners who have transformed their lives through our comprehensive yoga teacher training programs in this holy city.
                   </p>
                 </div>
               </div>
@@ -82,10 +82,10 @@ const Yogaschool = () => {
               <p>
                 All yoga courses are conducted by the skilled yoga teachers.
                 Living Yoga School is best known for its unique yoga courses in
-                Rishikesh. Our school is accredited by Yoga Alliance and offers
+                Bali and Rishikesh. Our school is accredited by Yoga Alliance and offers
                 immersive and comprehensive courses. We help you to develop a
                 strong foundation in yoga. Living Yoga School in India is
-                located in a spiritual and serene environment in Rishikesh.
+                located in a spiritual and serene environment in Bali and Rishikesh.
                 Whether you want to become a teacher, instructor, or deepen your
                 yoga practice, we will help you achieve your goal. <br /> <br /> We prepare
                 you to develop your unique teaching method for self-study and
@@ -97,9 +97,9 @@ const Yogaschool = () => {
                 provide high-quality education and you are invited to learn yoga
                 in a nurturing and safe environment. From the birthplace of
                 Yoga, we offer several online classes, retreats, and yoga
-                training in Rishikesh. Consider Living Yoga School for any yoga
+                training in Bali and Rishikesh. Consider Living Yoga School for any yoga
                 course. We are an International Yoga Alliance-recognized yoga
-                school in Rishikesh, India to offer Yoga Alliance-certified
+                school in Bali and Rishikesh, India to offer Yoga Alliance-certified
                 courses in India.
               </p>
               <div className="boxcontent">
@@ -109,7 +109,7 @@ const Yogaschool = () => {
                   </div>
                   <div className="item2">
                     <h3>No. 1 Yoga School</h3>
-                    <p>Best Yoga School in Rishikesh, India</p>
+                    <p>Best Yoga School in Bali and Rishikesh, India</p>
                   </div>
                 </div>
                 <div className="item1" data-aos="zoom-in" data-aos-delay="100" data-aos-offset="30" data-aos-duration="500">

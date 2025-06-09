@@ -2,6 +2,7 @@ import React from 'react';
 import a from '../../../images/services/200.webp'
 import L300 from '../../../images/cirtificats/300.png'
 import Lyoga from '../../../images/cirtificats/yoga.png'
+import Ly from '../../../images/cirtificats/YACEP.png'
 import { useNavigate } from 'react-router-dom';
 
 
@@ -67,7 +68,7 @@ const Training200 = () => {
                             fontWeight: '600',
                             fontSize: 'clamp(2rem, 5vw, 3rem)'
                           }}>
-                      Contact for Pricing
+                   $1999
                     </span>
                   </div>
                   
@@ -188,6 +189,22 @@ const Training200 = () => {
                          }}>
                       <img 
                         src={Lyoga} 
+                        alt="300 Hour Certification" 
+                        style={{
+                          width: '70px',
+                          height: '70px',
+                          objectFit: 'contain'
+                        }}
+                      />
+                    </div>
+                      <div className="rounded-circle d-flex align-items-center justify-content-center"
+                         style={{
+                           width: '100px',
+                           height: '100px',
+                           color: '#2E3A87'
+                         }}>
+                      <img 
+                        src={Ly} 
                         alt="300 Hour Certification" 
                         style={{
                           width: '70px',

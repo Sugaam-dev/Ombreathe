@@ -13,6 +13,7 @@ import Gallery from '../../HomeCredentials/Gallery'
 import YogaTeachers from '../../Teachers/YogaTeachers'
 import Ratings from '../../Ratings'
 import Training200 from './Training200'
+import daily from '../../../images/Gallery/16.jpg'
 function Retreats7Medi() {
   return (
     <>
@@ -22,7 +23,7 @@ function Retreats7Medi() {
       <Transformation  backgroundImage={a}/>
       <TransTeach/>
       <YogaCoursesPage/>
-      <DailySchedulePage />
+            <DailySchedulePage  scheduleImage={daily} />
       <Gallery/>
       <YogaTeachers/>
       <Accordion/>

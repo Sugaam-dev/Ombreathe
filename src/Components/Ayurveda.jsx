@@ -108,7 +108,7 @@ Yogalayaa is dedicated to giving Ayurveda the platform it deserves. We connect y
 
 Choosing Ayurveda through Yogalayaa means embracing a lifestyle rooted in nature's wisdom. Discover the path to lasting vitality and holistic health with Yogalayaa—where ancient wisdom meets modern wellness.</p>
             <Link to="/contact">
-              <button>make appointment</button>
+              <button>Book Appointment</button>
             </Link>
           </div>
         </div>

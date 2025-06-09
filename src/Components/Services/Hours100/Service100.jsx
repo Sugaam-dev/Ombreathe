@@ -12,6 +12,7 @@ import Contact from '../../Contact'
 import Gallery from '../../HomeCredentials/Gallery'
 import YogaTeachers from '../../Teachers/YogaTeachers'
 import Ratings from '../../Ratings'
+import daily from '../../../images/Gallery/16.jpg'
 function Service100() {
   return (
     <>
@@ -21,7 +22,7 @@ function Service100() {
       <Transformation  backgroundImage={a}/>
       <TransTeach/>
       <YogaCoursesPage/>
-      <DailySchedulePage />
+      <DailySchedulePage  scheduleImage={daily} />
       <Gallery/>
       <YogaTeachers/>
       <Accordion/>

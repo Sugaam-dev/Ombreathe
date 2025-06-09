@@ -1,8 +1,3 @@
-
-
-
-
-
 import React from 'react';
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -12,16 +7,13 @@ import {
   faLocationDot,
   faChevronUp
 } from "@fortawesome/free-solid-svg-icons";
-import { FaFacebookF, FaInstagram, FaYoutube, FaXTwitter } from "react-icons/fa6";
+import { FaFacebookF, FaInstagram, FaYoutube, FaWhatsapp } from "react-icons/fa6";
 import logo from '../../images/logo4.png';
-import L300 from '../../images/cirtificats/300.png'
-// Import certification logos (you'll need to add these to your images folder)
 import yoga from '../../images/cirtificats/yoga.png';
 import Two from '../../images/cirtificats/200.png';
 import L500 from '../../images/cirtificats/500.webp'
-// import ryt200Logo from '../../images/ryt-200-logo.png';
-// import ryt300Logo from '../../images/ryt-300-logo.png';
-// import ryt500Logo from '../../images/ryt-500-logo.png';
+import L300 from '../../images/cirtificats/300yy.png'
+import y from '../../images/cirtificats/YACEP.png'
 
 const Footer = () => {
   const scrollToTop = () => {
@@ -29,6 +21,14 @@ const Footer = () => {
       top: 0,
       behavior: 'smooth'
     });
+  };
+
+  const openWhatsApp = () => {
+    const phoneNumber = "917483987568"; // Your WhatsApp number (without + and spaces)
+    const message = "Hello! I'm interested in learning more about your yoga programs.";
+    const encodedMessage = encodeURIComponent(message);
+    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+    window.open(whatsappUrl, '_blank');
   };
 
   return (
@@ -39,7 +39,7 @@ const Footer = () => {
           <div className="row g-4">
             {/* Brand Section */}
             <div className="col-lg-4 col-md-6">
-              <div className="footer-brand">
+              <div className="footer-brand pe-lg-4" style={{borderRight: '1px solid rgba(255,255,255,0.2)', minHeight: '300px'}}>
                 <img 
                   src={logo} 
                   alt="Yogalayaa Logo" 
@@ -82,15 +82,6 @@ const Footer = () => {
                     >
                       <FaYoutube />
                     </a>
-                    <a 
-                      href="https://twitter.com/yogalayaa" 
-                      className="btn btn-outline-light btn-sm rounded-circle p-2"
-                      aria-label="Twitter"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <FaXTwitter />
-                    </a>
                   </div>
                 </div>
               </div>
@@ -98,162 +89,129 @@ const Footer = () => {
 
             {/* Quick Links */}
             <div className="col-lg-2 col-md-6">
-              <h6 className="text-uppercase fw-bold mb-3">Quick Links</h6>
-              <ul className="list-unstyled">
-                <li className="mb-2">
-                  <Link to="/" className="footer-link">
-                    Home
-                  </Link>
-                </li>
-                <li className="mb-2">
-                  <Link to="/about" className="footer-link">
-                    About Us
-                  </Link>
-                </li>
-                <li className="mb-2">
-                  <Link to="/services" className="footer-link">
-                    Services
-                  </Link>
-                </li>
-                <li className="mb-2">
-                  <Link to="" className="footer-link">
-                    Classes
-                  </Link>
-                </li>
-                <li className="mb-2">
-                  <Link to="/contact" className="footer-link">
-                    Contact
-                  </Link>
-                </li>
-              </ul>
-            </div>
-
-            {/* Programs */}
-            <div className="col-lg-2 col-md-6">
-              <h6 className="text-uppercase fw-bold mb-3">Programs</h6>
-              <ul className="list-unstyled">
-                <li className="mb-2">
-                  <Link to="/service" className="footer-link">
-                    Teacher Training
-                  </Link>
-                </li>
-                <li className="mb-2">
-                  <Link to="/service" className="footer-link">
-                    Workshops
-                  </Link>
-                </li>
-                <li className="mb-2">
-                  <Link to="/service" className="footer-link">
-                    Retreats
-                  </Link>
-                </li>
-                <li className="mb-2">
-                  <Link to="/service" className="footer-link">
-                    Online Classes
-                  </Link>
-                </li>
-                <li className="mb-2">
-                  <Link to="/service" className="footer-link">
-                    Private Sessions
-                  </Link>
-                </li>
-              </ul>
+              <div className="px-lg-3" style={{borderRight: '1px solid rgba(255,255,255,0.2)', minHeight: '300px'}}>
+                <h6 className="text-uppercase fw-bold mb-3">Quick Links</h6>
+                <ul className="list-unstyled">
+                  <li className="mb-2">
+                    <Link to="/" className="footer-link">
+                      Home
+                    </Link>
+                  </li>
+                  <li className="mb-2">
+                    <Link to="/about" className="footer-link">
+                      About Us
+                    </Link>
+                  </li>
+                  <li className="mb-2">
+                    <Link to="/services" className="footer-link">
+                      Programs
+                    </Link>
+                  </li>
+                  <li className="mb-2">
+                    <Link to="/contact" className="footer-link">
+                      Contact
+                    </Link>
+                  </li>
+                </ul>
+              </div>
             </div>
 
             {/* Contact Info */}
-            <div className="col-lg-4 col-md-6">
-              <h6 className="text-uppercase fw-bold mb-3">Contact Info</h6>
-              <ul className="list-unstyled contact-info">
-                <li className="mb-3 d-flex align-items-start">
-                  <FontAwesomeIcon 
-                    icon={faPhone} 
-                    className="me-3 mt-1 flex-shrink-0" 
-                    style={{ color: '#42A5F6' }} 
-                  />
-                  <div>
-                    <p className="mb-1">
+            <div className="col-lg-6 col-md-12">
+              <div className="ps-lg-4">
+                <h6 className="text-uppercase fw-bold mb-3">Contact Info</h6>
+                <ul className="list-unstyled contact-info">
+                  <li className="mb-3 d-flex align-items-start">
+                    <FontAwesomeIcon 
+                      icon={faPhone} 
+                      className="me-3 mt-1 flex-shrink-0" 
+                      style={{ color: '#42A5F6' }} 
+                    />
+                    <div>
+                      <p className="mb-1">
+                        <a 
+                          href="tel:+917483987568" 
+                          className="footer-link"
+                        >
+                          +91-7483987568
+                        </a>
+                      </p>
+                      <small className="contact-hours">Mon - Sat, 6:00 AM - 8:00 PM</small>
+                    </div>
+                  </li>
+                  <li className="mb-3 d-flex align-items-start">
+                    <FontAwesomeIcon 
+                      icon={faEnvelope} 
+                      className="me-3 mt-1 flex-shrink-0" 
+                      style={{ color: '#42A5F6' }} 
+                    />
+                    <div>
                       <a 
-                        href="tel:+917829997007" 
+                        href="mailto:yogalayaaofficial@gmail.com" 
                         className="footer-link"
                       >
-                        +91-7829997007
+                        yogalayaaofficial@gmail.com
                       </a>
-                    </p>
-                    <small className="contact-hours">Mon - Sat, 6:00 AM - 8:00 PM</small>
-                  </div>
-                </li>
-                <li className="mb-3 d-flex align-items-start">
-                  <FontAwesomeIcon 
-                    icon={faEnvelope} 
-                    className="me-3 mt-1 flex-shrink-0" 
-                    style={{ color: '#42A5F6' }} 
-                  />
-                  <div>
-                    <a 
-                      href="mailto:info@yogalayaa.com" 
-                      className="footer-link"
-                    >
-                      info@yogalayaa.com
-                    </a>
-                  </div>
-                </li>
-                <li className="mb-3 d-flex align-items-start">
-                  <FontAwesomeIcon 
-                    icon={faLocationDot} 
-                    className="me-3 mt-1 flex-shrink-0" 
-                    style={{ color: '#42A5F6' }} 
-                  />
-                  <div>
-                    <address className="mb-0 footer-address">
-                    1972, 22nd Main Rd, Vanganahalli, 1st Sector, HSR Layout, Bengaluru, Karnataka 560102
-                    </address>
-                  </div>
-                </li>
-              </ul>
+                    </div>
+                  </li>
+                  <li className="mb-3 d-flex align-items-start">
+                    <FontAwesomeIcon 
+                      icon={faLocationDot} 
+                      className="me-3 mt-1 flex-shrink-0" 
+                      style={{ color: '#42A5F6' }} 
+                    />
+                    <div>
+                      <address className="mb-0 footer-address">
+                        1972, 22nd Main Rd, Vanganahalli, 1st Sector, HSR Layout, Bengaluru, Karnataka 560102
+                      </address>
+                    </div>
+                  </li>
+                </ul>
 
-              {/* Certification Logos */}
-              <div className="certifications mt-4">
-                <h6 className="text-uppercase fw-bold mb-3">Certified By</h6>
-                <div className="d-flex flex-wrap gap-3 align-items-center">
-                  {/* Yoga Alliance Logo */}
-                  <div className="cert-logo">
-                    <img 
-                      src={yoga} 
-                      alt="Yoga Alliance Certified" 
-                      className=""
-                      style={{ maxHeight: '100px' }}
-                      title="Yoga Alliance Certified School"
-                    />
-                  </div>
-                  {/* RYT 200 */}
-                  <div className="cert-logo">
-                    <img 
-                      src={Two}
-                      alt="RYT 200 Certified" 
-                      className=""
-                      style={{ maxHeight: '100px' }}
-                      title="Registered Yoga Teacher 200 Hours"
-                    />
-                  </div>
-                  {/* RYT 300 */}
-                  <div className="cert-logo">
-                    <img 
-                      src={L300}
-                      alt="RYT 300 Certified" 
-                      className=""
-                      style={{ maxHeight: '100px' }}
-                      title="Registered Yoga Teacher 300 Hours"
-                    />
-                  </div>
-                  {/* RYT 500 */}
-                  <div className="cert-logo">
-                    <img 
-                      src={L500}
-                      alt="RYT 500 Certified" 
-                      className=""
-                      style={{ maxHeight: '100px' }}
-                      title="Registered Yoga Teacher 500 Hours"
-                    />
+                {/* Certification Logos */}
+                <div className="certifications mt-4">
+                  <h6 className="text-uppercase fw-bold mb-3">Certified By</h6>
+                  <div className="d-flex flex-wrap gap-3 align-items-center">
+                    <div className="cert-logo">
+                      <img 
+                        src={yoga} 
+                        alt="Yoga Alliance Certified" 
+                        style={{ maxHeight: '100px' }}
+                        title="Yoga Alliance Certified School"
+                      />
+                    </div>
+                    <div className="cert-logo">
+                      <img 
+                        src={Two}
+                        alt="RYT 200 Certified" 
+                        style={{ maxHeight: '100px' }}
+                        title="Registered Yoga Teacher 200 Hours"
+                      />
+                    </div>
+                    <div className="cert-logo">
+                      <img 
+                        src={L300}
+                        alt="RYT 300 Certified" 
+                        style={{ maxHeight: '100px' }}
+                        title="Registered Yoga Teacher 300 Hours"
+                      />
+                    </div>
+                    <div className="cert-logo">
+                      <img 
+                        src={L500}
+                        alt="RYT 500 Certified" 
+                        style={{ maxHeight: '100px' }}
+                        title="Registered Yoga Teacher 500 Hours"
+                      />
+                    </div>
+                    <div className="cert-logo">
+                      <img 
+                        src={y}
+                        alt="YACEP Certified" 
+                        style={{ maxHeight: '100px' }}
+                        title="Yoga Alliance Continuing Education Provider"
+                      />
+                    </div>
                   </div>
                 </div>
               </div>
@@ -273,20 +231,44 @@ const Footer = () => {
             </div>
             <div className="col-md-6 text-md-end">
               <p className="mb-0 copyright-text-white">
-                Designed by <a href="https://sugaam.in" className="footer-link-copyright-white">Sugaam.in</a>
+                Designed by <a href="https://www.pmrgsolution.com/" className="footer-link-copyright-white">PMRG Solution</a>
               </p>
             </div>
           </div>
         </div>
       </div>
 
+      {/* WhatsApp Floating Button */}
+      <button
+        onClick={openWhatsApp}
+        className="btn position-fixed whatsapp-btn rounded-circle shadow-lg"
+        style={{ 
+          width: '60px', 
+          height: '60px',
+          bottom: '20px',
+          left: '20px',
+          zIndex: 1000,
+          transition: 'all 0.3s ease',
+          backgroundColor: '#25D366',
+          borderColor: '#25D366',
+          color: 'white',
+          fontSize: '24px'
+        }}
+        aria-label="Contact us on WhatsApp"
+        title="Chat with us on WhatsApp"
+      >
+        <FaWhatsapp />
+      </button>
+
       {/* Scroll to Top Button */}
       <button
         onClick={scrollToTop}
-        className="btn position-fixed bottom-0 end-0 m-4 rounded-circle shadow-lg scroll-top-btn"
+        className="btn position-fixed scroll-top-btn rounded-circle shadow-lg"
         style={{ 
           width: '50px', 
           height: '50px',
+          bottom: '20px',
+          right: '20px',
           zIndex: 1000,
           transition: 'all 0.3s ease',
           backgroundColor: '#42A5F6',
@@ -347,35 +329,6 @@ const Footer = () => {
           width: 100%;
         }
         
-        .footer-link-copyright {
-          color: #000 !important;
-          text-decoration: none !important;
-          transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-          font-weight: 500;
-          position: relative;
-          display: inline-block;
-        }
-        
-        .footer-link-copyright::after {
-          content: '';
-          position: absolute;
-          width: 0;
-          height: 2px;
-          bottom: -2px;
-          left: 0;
-          background: linear-gradient(90deg, #42A5F6, #2E8AD4);
-          transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        
-        .footer-link-copyright:hover {
-          color: #42A5F6 !important;
-          transform: translateX(5px);
-        }
-        
-        .footer-link-copyright:hover::after {
-          width: 100%;
-        }
-        
         .copyright-text-white {
           color: #ffffff !important;
           font-weight: 400;
@@ -410,10 +363,6 @@ const Footer = () => {
           width: 100%;
         }
         
-        .bg-darker {
-          background-color: #1a252f !important;
-        }
-        
         .social-links .btn {
           border: 2px solid rgba(255, 255, 255, 0.3);
           backdrop-filter: blur(10px);
@@ -434,6 +383,72 @@ const Footer = () => {
           box-shadow: 0 10px 30px rgba(66, 165, 246, 0.4) !important;
         }
         
+        .whatsapp-btn:hover {
+          transform: translateY(-5px) scale(1.1);
+          background-color: #128C7E !important;
+          border-color: #128C7E !important;
+          box-shadow: 0 10px 30px rgba(37, 211, 102, 0.6) !important;
+          animation: whatsapp-hover 0.6s ease-in-out infinite alternate;
+        }
+        
+        @keyframes whatsapp-hover {
+          0% {
+            transform: translateY(-5px) scale(1.1) rotate(-2deg);
+          }
+          100% {
+            transform: translateY(-5px) scale(1.1) rotate(2deg);
+          }
+        }
+        
+        .whatsapp-btn {
+          animation: whatsapp-blink 1.5s infinite ease-in-out, pulse 3s infinite;
+          position: relative;
+          overflow: hidden;
+        }
+        
+        .whatsapp-btn::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: -100%;
+          width: 100%;
+          height: 100%;
+          background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+          animation: shimmer 2s infinite;
+        }
+        
+        @keyframes whatsapp-blink {
+          0%, 50% { 
+            opacity: 1; 
+            transform: scale(1);
+          }
+          25% { 
+            opacity: 0.7; 
+            transform: scale(1.05);
+          }
+        }
+        
+        @keyframes pulse {
+          0% {
+            box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+          }
+          70% {
+            box-shadow: 0 0 0 15px rgba(37, 211, 102, 0);
+          }
+          100% {
+            box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+          }
+        }
+        
+        @keyframes shimmer {
+          0% {
+            left: -100%;
+          }
+          100% {
+            left: 100%;
+          }
+        }
+        
         .cert-logo {
           transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
@@ -445,11 +460,20 @@ const Footer = () => {
         .cert-logo img {
           transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
           border: 2px solid transparent;
+          border-radius: 8px;
         }
         
         .cert-logo:hover img {
           border-color: #42A5F6;
           box-shadow: 0 5px 15px rgba(66, 165, 246, 0.2);
+        }
+        
+        @media (max-width: 991px) {
+          .footer-brand, .px-lg-3 {
+            border-right: none !important;
+            margin-right: 0 !important;
+            margin-bottom: 30px;
+          }
         }
         
         @media (max-width: 768px) {
@@ -459,6 +483,25 @@ const Footer = () => {
           
           .social-links .d-flex {
             justify-content: center;
+          }
+          
+          .whatsapp-btn {
+            width: 50px !important;
+            height: 50px !important;
+            font-size: 20px !important;
+            bottom: 15px !important;
+            left: 15px !important;
+          }
+          
+          .scroll-top-btn {
+            bottom: 15px !important;
+            right: 15px !important;
+          }
+        }
+        
+        @media (max-width: 480px) {
+          .whatsapp-btn {
+            bottom: 80px !important;
           }
         }
       `}</style>

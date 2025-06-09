@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react';
+import a from '../../../images/Gallery/Bali-Activities.jpg'
+import b from '../../../images/Gallery/20.jpg'
 
+import c from '../../../images/Gallery/11.jpg'
 const TransTeach = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [imagesVisible, setImagesVisible] = useState({});
@@ -22,19 +25,19 @@ const TransTeach = () => {
 
   const experienceImages = [
     {
-      src: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      src:a,
       alt: "Adventure activities in Bali",
       title: "Adventure Activities",
       description: "Jungle trekking, white-water rafting, waterfall visits, and Bali swings for thrilling experiences"
     },
     {
-      src: "https://images.unsplash.com/photo-1593810450967-f9c42742e326?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      src: b,
       alt: "Yoga and meditation sessions",
       title: "Yoga & Meditation",
       description: "Daily yoga sessions, meditation practices, and relaxation techniques in stunning natural settings"
     },
     {
-      src: "https://images.unsplash.com/photo-1599901860904-17e6ed7083a0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      src: c,
       alt: "Cultural experiences in Bali",
       title: "Cultural Immersion",
       description: "Temple visits, traditional Kecak dance, rice field walks, and authentic Balinese experiences"

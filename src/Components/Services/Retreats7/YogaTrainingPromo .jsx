@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
-
+import a from '../../../images/Gallery/Canyoneering-Bali.jpg'
+import b from '../../../images/Gallery/baliadventure.jpg'
+import c from '../../../images/Gallery/Bali-Activities.jpg'
 const YogaTrainingPromo = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [animatedItems, setAnimatedItems] = useState({});
@@ -340,7 +342,7 @@ const YogaTrainingPromo = () => {
                 <div className="ytp-images-container">
                   <div className={`ytp-main-image ${isVisible ? 'ytp-visible' : ''}`}>
                     <img 
-                      src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" 
+                      src={a} 
                       alt="Adventure and yoga retreat in Ubud Bali"
                     />
                   </div>
@@ -348,13 +350,13 @@ const YogaTrainingPromo = () => {
                   <div className="ytp-secondary-images">
                     <div className={`ytp-secondary-image ${isVisible ? 'ytp-visible' : ''}`} style={{ transitionDelay: '0.4s' }}>
                       <img 
-                        src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"  
+                        src={b}
                         alt="Healthy organic meals in Bali"
                       />
                     </div>
                     <div className={`ytp-secondary-image ${isVisible ? 'ytp-visible' : ''}`} style={{ transitionDelay: '0.6s' }}>
                       <img 
-                        src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                        src={c}
                         alt="Luxury accommodation in Ubud"
                       />
                     </div>

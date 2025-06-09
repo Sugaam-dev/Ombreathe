@@ -1,214 +1,4 @@
-
-
-
-
-
-
-
-
-
-
-
-
-// import React from 'react';
-// import Slider from 'react-slick';
-// import { FaInstagram, FaFacebook, FaTwitter, FaYoutube, FaLinkedin } from 'react-icons/fa';
-// import './YogaTeacherCarousel.css'
-// // Import slick styles
-// import "slick-carousel/slick/slick.css";
-// import "slick-carousel/slick/slick-theme.css";
-
-// const YogaTeachers = () => {
-//   const instructors = [
-//     {
-//       name: "Georgia Talcott",
-//       image: "/path/to/your/image1.jpg",
-//       title: "Yoga Teacher (E-RYT 500)",
-//       description: "Practicing yogi for over 20 years, specializing in Vedic Meditation and Kundalini Yoga",
-//       socials: {
-//         instagram: "https://instagram.com/georgia",
-//         facebook: "https://facebook.com/georgia",
-//         twitter: "https://twitter.com/georgia",
-//         youtube: "https://youtube.com/georgia"
-//       }
-//     },
-//     {
-//       name: "Wissam Barakeh",
-//       image: "/path/to/your/image2.jpg",
-//       title: "Founder of House of Om",
-//       description: "Registered Yoga Teacher, Sound Healing and Hypnotherapist master",
-//       socials: {
-//         instagram: "https://instagram.com/wissam",
-//         linkedin: "https://linkedin.com/in/wissam",
-//         facebook: "https://facebook.com/wissam",
-//         youtube: "https://youtube.com/wissam"
-//       }
-//     },
-//     {
-//       name: "Rama",
-//       image: "/path/to/your/image3.jpg",
-//       title: "Spiritual Guide & Yoga Practitioner",
-//       description: "Instructor has 3 years of teaching experience, certified in 500 hours in 2020, and in hatha and 500 hours in Ayurveda in 2021",
-//       socials: {
-//         instagram: "https://instagram.com/rama",
-//         twitter: "https://twitter.com/rama",
-//         facebook: "https://facebook.com/rama",
-//         linkedin: "https://linkedin.com/in/rama"
-//       }
-//     },
-//     {
-//       name: "Sarah Johnson",
-//       image: "/path/to/your/image4.jpg",
-//       title: "Mindfulness & Meditation Expert",
-//       description: "Certified meditation teacher with 15 years of experience in various contemplative practices",
-//       socials: {
-//         instagram: "https://instagram.com/sarah",
-//         youtube: "https://youtube.com/sarah",
-//         twitter: "https://twitter.com/sarah",
-//         facebook: "https://facebook.com/sarah"
-//       }
-//     },
-//     {
-//       name: "Michael Chen",
-//       image: "/path/to/your/image5.jpg",
-//       title: "Ashtanga Yoga Specialist",
-//       description: "Traditional Ashtanga practitioner and teacher, trained in Mysore, India",
-//       socials: {
-//         instagram: "https://instagram.com/michael",
-//         facebook: "https://facebook.com/michael",
-//         linkedin: "https://linkedin.com/in/michael",
-//         youtube: "https://youtube.com/michael"
-//       }
-//     }
-//   ];
-
-//   const getSocialIcon = (platform) => {
-//     switch(platform) {
-//       case 'instagram': return <FaInstagram />;
-//       case 'facebook': return <FaFacebook />;
-//       case 'twitter': return <FaTwitter />;
-//       case 'youtube': return <FaYoutube />;
-//       case 'linkedin': return <FaLinkedin />;
-//       default: return null;
-//     }
-//   };
-
-//   // Custom Arrow Components
-//   const CustomPrevArrow = ({ onClick }) => (
-//     <button
-//       className="slick-arrow slick-prev-custom"
-//       onClick={onClick}
-//       type="button"
-//     >
-//       <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-//         <path d="M15 18L9 12L15 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-//       </svg>
-//     </button>
-//   );
-
-//   const CustomNextArrow = ({ onClick }) => (
-//     <button
-//       className="slick-arrow slick-next-custom"
-//       onClick={onClick}
-//       type="button"
-//     >
-//       <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-//         <path d="M9 18L15 12L9 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-//       </svg>
-//     </button>
-//   );
-
-//   // Slick settings
-//   const settings = {
-//     dots:false,
-//     infinite: true,
-//     speed: 500,
-//     slidesToShow: 3,
-//     slidesToScroll: 1,
-//     autoplay: true,
-//     autoplaySpeed: 5000,
-//     pauseOnHover: true,
-//     prevArrow: <CustomPrevArrow />,
-//     nextArrow: <CustomNextArrow />,
-//     responsive: [
-//       {
-//         breakpoint: 1024,
-//         settings: {
-//           slidesToShow: 3,
-//           slidesToScroll: 1,
-//         }
-//       },
-//       {
-//         breakpoint: 768,
-//         settings: {
-//           slidesToShow: 2,
-//           slidesToScroll: 1,
-//         }
-//       },
-//       {
-//         breakpoint: 640,
-//         settings: {
-//           slidesToShow: 1,
-//           slidesToScroll: 1,
-//         }
-//       }
-//     ]
-//   };
-
-//   return (
-//     <>
-    
-//         <div className="yogaschool">
-//         <div className="yogaa">
-//           <div className="heading">
-//             <h1>Yoga Teachers</h1>
-//             <img src="./images/lg.png" alt="logo" />
-//           </div>
-//         </div>
-//       </div>
-    
-//     <div className="yoga-carousel-container">
-//       <Slider {...settings} className="instructor-slider">
-//         {instructors.map((instructor, index) => (
-//           <div key={index} className="slide-wrapper">
-//             <div className="instructor-card">
-//               <div className="card-image">
-//                 <img 
-//                   src={instructor.image} 
-//                   alt={instructor.name}
-//                 />
-//               </div>
-//               <div className="card-content">
-//                 <h3 className="card-title">{instructor.name}</h3>
-//                 <p className="card-subtitle">{instructor.title}</p>
-//                 <p className="card-description">{instructor.description}</p>
-//                 <div className="social-icons">
-//                   {Object.entries(instructor.socials).map(([platform, url]) => (
-//                     <a
-//                       key={platform}
-//                       href={url}
-//                       className="social-link"
-//                       target="_blank"
-//                       rel="noopener noreferrer"
-//                     >
-//                       {getSocialIcon(platform)}
-//                     </a>
-//                   ))}
-//                 </div>
-//               </div>
-//             </div>
-//           </div>
-//         ))}
-//       </Slider>
-//     </div>
-//     </>
-//   );
-// };
-
-// export default YogaTeachers;
-
-// YogaTeachers.jsx
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import './YogaTeachers.css';
 import { FaInstagram, FaFacebook, FaTwitter, FaYoutube, FaLinkedin } from 'react-icons/fa';
 import nitin from '../../images/Teachers/nitin.webp'
@@ -218,11 +8,13 @@ import savitri from '../../images/Teachers/savitri.webp'
 import ranjan from '../../images/Teachers/ranjan.jpeg'
 import ishani from '../../images/Teachers/Ishani.jpeg'
 import lg from '../../images/lg.png'
+
 const YogaTeachers = () => {
- const [showAll, setShowAll] = useState(false);
+  const [showAll, setShowAll] = useState(false);
+  const sectionRef = useRef(null); // Add ref to target the section
 
   const teachers = [
-      {
+    {
       id: 10,
       name: "YOGI RANJAN",
       image:ranjan,
@@ -236,7 +28,7 @@ const YogaTeachers = () => {
         youtube: "https://youtube.com/georgia"
       }
     },
-       {
+    {
       id: 11,
       name: "Ishani Ghate",
       image:ishani,
@@ -327,17 +119,36 @@ const YogaTeachers = () => {
     e.target.onerror = null; // Prevent infinite loop if fallback also fails
   };
 
+  // Updated function to handle showing more teachers
+  const handleShowMore = () => {
+    setShowAll(true);
+  };
+
+  // Updated function to handle showing less teachers with scroll
+  const handleShowLess = () => {
+    setShowAll(false);
+    // Scroll to the top of the section after a short delay to let the DOM update
+    setTimeout(() => {
+      if (sectionRef.current) {
+        sectionRef.current.scrollIntoView({ 
+          behavior: 'smooth', 
+          block: 'start' 
+        });
+      }
+    }, 100);
+  };
+
   return (
     <div className="yoga-teachers-wrapper">
-      <div className="yoga-teachers-container">
-         <div className="yogaschool">
-        <div className="yogaa">
-          <div className="heading">
-            <h1>Our Yoga Teachers</h1>
-            <img src={lg} alt="logo" />
+      <div className="yoga-teachers-container" ref={sectionRef}>
+        <div className="yogaschool">
+          <div className="yogaa">
+            <div className="heading">
+              <h1>Our Yoga Teachers</h1>
+              <img src={lg} alt="logo" />
+            </div>
           </div>
         </div>
-      </div>
 
         <div className="teachers-grid">
           {displayedTeachers.map((teacher, index) => (
@@ -389,14 +200,14 @@ const YogaTeachers = () => {
         <div className="see-more-container">
           {!showAll ? (
             <button 
-              onClick={() => setShowAll(true)}
+              onClick={handleShowMore}
               className="see-more-btn"
             >
               See More Teachers
             </button>
           ) : (
             <button 
-              onClick={() => setShowAll(false)}
+              onClick={handleShowLess}
               className="show-less-btn"
             >
               Show Less
@@ -407,6 +218,5 @@ const YogaTeachers = () => {
     </div>
   );
 };
-
 
 export default YogaTeachers;

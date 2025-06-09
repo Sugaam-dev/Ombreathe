@@ -34,7 +34,8 @@
 
 .contact-in:nth-child(1) {
 	flex: 30%;
-	background: url(../images/yogaback.jpg);
+	background: url(../images/AyurvedaBack.jpeg);
+	/* background: #000; */
 	color: #fff;
 }
 

@@ -1,5 +1,5 @@
 // Servicess.jsx
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Styles/Services.css';
 import teachertraining from '../../images/services/Teachers_training.jpg'
@@ -14,6 +14,7 @@ import a from '../../images/Gallery/8.jpg'
 const Servicess = () => {
   const [showAll, setShowAll] = useState(false);
   const navigate = useNavigate();
+  const sectionRef = useRef(null); // Add ref to target the section
 
   const yogaPrograms = [
     {
@@ -28,7 +29,6 @@ const Servicess = () => {
       ],
       price: "$1899"
     },
-
 
     {
       id: 9,
@@ -168,14 +168,33 @@ const Servicess = () => {
     navigate(route);
   }, [navigate]);
 
+  // Function to handle showing more programs
+  const handleShowMore = () => {
+    setShowAll(true);
+  };
+
+  // Function to handle showing less programs with scroll
+  const handleShowLess = () => {
+    setShowAll(false);
+    // Scroll to the top of the section after a short delay to let the DOM update
+    setTimeout(() => {
+      if (sectionRef.current) {
+        sectionRef.current.scrollIntoView({ 
+          behavior: 'smooth', 
+          block: 'start' 
+        });
+      }
+    }, 100);
+  };
+
   return (
     <div className="yoga-cards-wrapper">
-      <div className="yoga-cards-container">
+      <div className="yoga-cards-container" ref={sectionRef}>
         <div className="section-header">
           <div className="yogaschool">
             <div className="yogaa">
               <div className="heading">
-                <h1>Services</h1>
+                <h1>Programs</h1>
                 <img src="./images/lg.png" alt="logo" />
               </div>
             </div>
@@ -227,14 +246,14 @@ const Servicess = () => {
         <div className="see-more-container">
           {!showAll ? (
             <button 
-              onClick={() => setShowAll(true)}
+              onClick={handleShowMore}
               className="see-more-btn"
             >
               See More Programs
             </button>
           ) : (
             <button 
-              onClick={() => setShowAll(false)}
+              onClick={handleShowLess}
               className="show-less-btn"
             >
               Show Less

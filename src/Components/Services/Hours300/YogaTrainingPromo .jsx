@@ -1,4 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import a from '../../../images/Gallery/20.jpg'
+import b from '../../../images/Gallery/22.jpg'
+import c from '../../../images/Gallery/5.jpeg'
 
 const YogaTrainingPromo = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -340,7 +343,7 @@ const YogaTrainingPromo = () => {
                 <div className="ytp-images-container">
                   <div className={`ytp-main-image ${isVisible ? 'ytp-visible' : ''}`}>
                     <img 
-                      src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" 
+          src={a}
                       alt="Yoga group practice in Bali"
                     />
                   </div>
@@ -348,14 +351,14 @@ const YogaTrainingPromo = () => {
                   <div className="ytp-secondary-images">
                     <div className={`ytp-secondary-image ${isVisible ? 'ytp-visible' : ''}`} style={{ transitionDelay: '0.4s' }}>
                       <img 
-                        src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"  
-                        alt="Healthy sattvic meal in Bali"
+                         src={b}  
+                          alt="Healthy sattvic meal in Bali"
                       />
                     </div>
                     <div className={`ytp-secondary-image ${isVisible ? 'ytp-visible' : ''}`} style={{ transitionDelay: '0.6s' }}>
                       <img 
-                        src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
-                        alt="Balinese resort accommodation"
+  src={c}  
+  alt="Balinese resort accommodation"
                       />
                     </div>
                   </div>

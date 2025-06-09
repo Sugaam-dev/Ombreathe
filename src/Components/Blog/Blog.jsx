@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import './Blog.css';
 import ractangle from '../../images/Blog/Rectangle_1.webp'
 import health from '../../images/Blog/health.webp'
@@ -7,6 +7,7 @@ import food from '../../images/Blog/food.webp'
 
 const Blog = () => {
   const [showAll, setShowAll] = useState(false);
+  const sectionRef = useRef(null); // Add ref to target the section
 
   const cardData = [
     {
@@ -49,8 +50,27 @@ const Blog = () => {
 
   const visibleCards = showAll ? cardData : cardData.slice(0, 3);
 
+  // Function to handle showing more blog posts
+  const handleShowMore = () => {
+    setShowAll(true);
+  };
+
+  // Function to handle showing less blog posts with scroll
+  const handleShowLess = () => {
+    setShowAll(false);
+    // Scroll to the top of the section after a short delay to let the DOM update
+    setTimeout(() => {
+      if (sectionRef.current) {
+        sectionRef.current.scrollIntoView({ 
+          behavior: 'smooth', 
+          block: 'start' 
+        });
+      }
+    }, 100);
+  };
+
   return (
-    <div className="main-container">
+    <div className="main-container" ref={sectionRef}>
        <div className="yogaschool">
             <div className="yogaa">
               <div className="heading">
@@ -61,8 +81,8 @@ const Blog = () => {
           </div>
       <div className="card-container">
         <div className="cards-grid">
-          {visibleCards.map((card) => (
-            <div key={card.id} className="card">
+          {visibleCards.map((card, index) => (
+            <div key={card.id} className={`card ${showAll && index >= 3 ? 'fade-in' : ''}`}>
               <div className="card-image">
                 <img src={card.image} alt={card.title} />
                 <div className="card-overlay"></div>
@@ -76,12 +96,21 @@ const Blog = () => {
         </div>
         
         <div className="show-more-container">
-          <button 
-            className="show-more-btn"
-            onClick={() => setShowAll(!showAll)}
-          >
-            {showAll ? 'SHOW LESS' : 'SHOW MORE'}
-          </button>
+          {!showAll ? (
+            <button 
+              className="show-more-btn"
+              onClick={handleShowMore}
+            >
+              SHOW MORE
+            </button>
+          ) : (
+            <button 
+              className="show-more-btn"
+              onClick={handleShowLess}
+            >
+              SHOW LESS
+            </button>
+          )}
         </div>
       </div>
     </div>

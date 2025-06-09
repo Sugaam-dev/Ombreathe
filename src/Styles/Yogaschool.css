@@ -17,12 +17,12 @@
 
 .yogaa .heading {
     text-align: center;
-    margin-bottom: 2rem;
+ 
 }
 
 .yogaa .heading h1 {
     font-size: clamp(1.5rem, 4vw, 2.5rem);
-    margin-bottom: 1rem;
+    /* margin-bottom: 1rem; */
     color: #333;
     line-height: 1.2;
 }
@@ -325,8 +325,8 @@
     }
     
     .box2 p {
-        font-size: 0.85rem;
-        line-height: 1.4;
+        font-size: 18px;
+        line-height: 30px;
         margin-bottom: 1.2rem;
         text-align: left;
     }
@@ -412,8 +412,8 @@
     }
     
     .box2 p {
-        font-size: 0.8rem;
-        line-height: 1.3;
+        font-size: 18px;
+        line-height: 30px;
     }
     
     .item1 {

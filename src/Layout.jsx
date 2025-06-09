@@ -42,7 +42,7 @@ function Layout() {
       <main>
         <Outlet />
       </main>
-      <Whatsapp />
+     
      
       <Footer/>
     </div>

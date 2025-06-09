@@ -66,9 +66,9 @@
 .ayurvedcontent button {
     padding: 16px 70px;
     margin-top: 10%;
-    border-radius: 20px;
+
     border: 1px solid #E30613;
-    border-radius: 25px 10px 25px 10px;
+    border-radius: 45px ;
     transition: 0.5s;
     font-size: 18px;
     cursor: pointer;
@@ -84,7 +84,7 @@
 }
 
 .ayurvedcontent button:hover {
-    border-radius: 10px 25px 10px 25px;
+    border-radius: 20px;
 }
 
 .cccc {
