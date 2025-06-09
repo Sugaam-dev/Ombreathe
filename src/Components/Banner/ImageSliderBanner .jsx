@@ -7,6 +7,7 @@ import b from '../../images/2.jpg';
 import c from '../../images/3.jpg';
 import d from '../../images/4.jpg';
 import e from '../../images/5.jpg';
+import { useNavigate } from 'react-router-dom';
 
 const ImageSliderBanner = () => {
   // Sample images - you can replace these with your own image URLs
@@ -14,6 +15,12 @@ const ImageSliderBanner = () => {
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+
+  const navigate=useNavigate();
+
+  const teacher=()=>{
+    navigate('/service')
+  }
 
   // Auto-play functionality
   useEffect(() => {
@@ -98,14 +105,14 @@ const ImageSliderBanner = () => {
         <div className="slider-buttons-container">
           <button 
             className="slider-button teacher-training-btn" 
-            onClick={handleTeacherTraining}
+            onClick={teacher}
           >
             Teacher Training Program in Bali
           </button>
           
           <button 
             className="slider-button retreat-program-btn" 
-            onClick={handleRetreatProgram}
+            onClick={teacher}
           >
             Retreat Program in Bali
           </button>

@@ -1,33 +1,105 @@
 import React, { useState, useEffect } from 'react';
+import a from '../../images/Gallery/1.jpeg';
+import b from '../../images/Gallery/2.jpeg';
+import c from '../../images/Gallery/3.jpeg';
+import e from '../../images/Gallery/4.jpeg';
+import f from '../../images/Gallery/5.jpeg';
+import g from '../../images/Gallery/6.jpeg';
+import h from '../../images/Gallery/7.jpg';
+import i from '../../images/Gallery/8.jpg';
+import j from '../../images/Gallery/9.jpg';
+import k from '../../images/Gallery/10.jpg';
+import l from '../../images/Gallery/11.jpg';
+import m from '../../images/Gallery/12.jpg';
+import n from '../../images/Gallery/13.jpg';
+import o from '../../images/Gallery/14.jpg';
+import p from '../../images/Gallery/15.jpg';
+import q from '../../images/Gallery/16.jpg';
+import r from '../../images/Gallery/17.jpg';
+import s from '../../images/Gallery/18.jpg';
+import t from '../../images/Gallery/19.jpg';
+import u from '../../images/Gallery/20.jpg';
+
 const Gallery = ({ 
   images = [
     {
-      src: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
-      alt: "Yoga class session",
-      caption: "Morning Yoga Practice"
+      src: a,
+      caption: "Image 1"
     },
     {
-      src: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
-      alt: "Meditation session",
-      caption: "Peaceful Meditation"
+      src: b,
+      caption: "Image 2"
     },
     {
-      src: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
-      alt: "Outdoor yoga",
-      caption: "Outdoor Yoga Sessions"
+      src: c,
+      caption: "Image 3"
     },
     {
-      src: "https://images.unsplash.com/photo-1593811167562-9cef47bfc4d7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
-      alt: "Yoga studio",
-      caption: "Beautiful Studio Space"
+      src: e,
+      caption: "Image 2"
     },
     {
-      src: "https://images.unsplash.com/photo-1545389336-cf090694435e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
-      alt: "Group yoga",
-      caption: "Community Practice"
+      src: f,
+      caption: "Image 3"
+    },
+    {
+      src: g,
+      caption: "Image 4"
     }
-  ],
+    ,
+    {
+      src: h,
+      caption: "Image 2"
+    },
+    {
+      src: i,
+      caption: "Image 3"
+    },
+    {
+      src: j,
+      caption: "Image 4"
+    }
+    ,
+    {
+      src: k,
+      caption: "Image 2"
+    },
+    {
+      src: l,
+      caption: "Image 3"
+    },
+    {
+      src: m,
+      caption: "Image 4"
+    }
+    ,
+    {
+      src: n,
+      caption: "Image 2"
+    },
+    {
+      src: o,
+      caption: "Image 3"
+    },
+    {
+      src: p,
+      caption: "Image 4"
+    },
+    {
+      src: q,
+      caption: "Image 2"
+    },
+    {
+      src: r,
+      caption: "Image 3"
+    },
+    {
+      src: s,
+      caption: "Image 4"
+    }
 
+    
+  ],
   showThumbnails = true,
   autoPlay = true,
   interval = 5000
@@ -56,26 +128,42 @@ const Gallery = ({
     setCurrentIndex((prev) => (prev + 1) % images.length);
   };
 
+  if (!images || images.length === 0) {
+    return <div className="text-center py-5">No images to display</div>;
+  }
+
   return (
     <div className="container-fluid py-5">
       <div className="container">
         {/* Title */}
         <div className="text-center mb-5">
-        
+          <h2 className="display-4">Gallery</h2>
         </div>
 
         {/* Main Carousel */}
         <div className="row justify-content-center mb-4">
-          <div className="col-lg-10">
-            <div className="position-relative shadow-lg rounded overflow-hidden">
+          <div className="col-12 col-md-11 col-lg-10">
+            <div className="position-relative shadow-lg rounded overflow-hidden" style={{ backgroundColor: '#f8f9fa' }}>
               {/* Main Image */}
-              <div style={{ height: '500px', overflow: 'hidden' }}>
+              <div style={{ 
+                minHeight: '300px',
+                height: 'auto',
+                maxHeight: '80vh',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                backgroundColor: '#f8f9fa'
+              }}>
                 <img
                   src={images[currentIndex].src}
-                  className="w-100 h-100"
-                  alt={images[currentIndex].alt}
+                  alt={images[currentIndex].caption || `Image ${currentIndex + 1}`}
+                  className="img-fluid"
                   style={{
-                    objectFit: 'cover',
+                    maxWidth: '100%',
+                    maxHeight: '100%',
+                    width: 'auto',
+                    height: 'auto',
+                    objectFit: 'contain',
                     transition: 'opacity 0.5s ease-in-out'
                   }}
                 />
@@ -91,100 +179,73 @@ const Gallery = ({
                       zIndex: 10
                     }}
                   >
-                    <div className="bg-dark bg-opacity-75 rounded px-4 py-2">
-                      <h5 className="mb-0 text-white">{images[currentIndex].caption}</h5>
-                    </div>
+                  
                   </div>
                 )}
               </div>
 
               {/* Navigation Arrows */}
-              <button
-                className="position-absolute top-50 start-0 translate-middle-y btn btn-dark btn-sm ms-2"
-                onClick={goToPrevious}
-                style={{ zIndex: 10, opacity: 0.8 }}
-                onMouseEnter={(e) => e.target.style.opacity = '1'}
-                onMouseLeave={(e) => e.target.style.opacity = '0.8'}
-              >
-                <span style={{ fontSize: '1.2rem' }}>‹</span>
-              </button>
-              
-              <button
-                className="position-absolute top-50 end-0 translate-middle-y btn btn-dark btn-sm me-2"
-                onClick={goToNext}
-                style={{ zIndex: 10, opacity: 0.8 }}
-                onMouseEnter={(e) => e.target.style.opacity = '1'}
-                onMouseLeave={(e) => e.target.style.opacity = '0.8'}
-              >
-                <span style={{ fontSize: '1.2rem' }}>›</span>
-              </button>
+              {images.length > 1 && (
+                <>
+                  <button
+                    className="position-absolute top-50 start-0 translate-middle-y btn btn-dark btn-sm ms-2"
+                    onClick={goToPrevious}
+                    style={{ zIndex: 10, opacity: 0.8 }}
+                    onMouseEnter={(e) => e.target.style.opacity = '1'}
+                    onMouseLeave={(e) => e.target.style.opacity = '0.8'}
+                    aria-label="Previous image"
+                  >
+                    <span style={{ fontSize: '1.2rem' }}>‹</span>
+                  </button>
+                  
+                  <button
+                    className="position-absolute top-50 end-0 translate-middle-y btn btn-dark btn-sm me-2"
+                    onClick={goToNext}
+                    style={{ zIndex: 10, opacity: 0.8 }}
+                    onMouseEnter={(e) => e.target.style.opacity = '1'}
+                    onMouseLeave={(e) => e.target.style.opacity = '0.8'}
+                    aria-label="Next image"
+                  >
+                    <span style={{ fontSize: '1.2rem' }}>›</span>
+                  </button>
+                </>
+              )}
 
               {/* Dot Indicators */}
-              <div 
-                className="position-absolute d-flex justify-content-center gap-2"
-                style={{
-                  bottom: '15px',
-                  left: '50%',
-                  transform: 'translateX(-50%)',
-                  zIndex: 10
-                }}
-              >
-                {images.map((_, index) => (
-                  <button
-                    key={index}
-                    className={`rounded-circle border-0 ${
-                      index === currentIndex ? 'bg-white' : 'bg-secondary'
-                    }`}
-                    onClick={() => goToSlide(index)}
-                    style={{
-                      width: '12px',
-                      height: '12px',
-                      opacity: index === currentIndex ? 1 : 0.6,
-                      transition: 'opacity 0.3s ease'
-                    }}
-                  ></button>
-                ))}
-              </div>
+              {images.length > 1 && (
+                <div 
+                  className="position-absolute d-flex justify-content-center gap-2"
+                  style={{
+                    bottom: '15px',
+                    left: '50%',
+                    transform: 'translateX(-50%)',
+                    zIndex: 10
+                  }}
+                >
+                  {images.map((_, index) => (
+                    <button
+                      key={index}
+                      className={`rounded-circle border-0 ${
+                        index === currentIndex ? 'bg-white' : 'bg-secondary'
+                      }`}
+                      onClick={() => goToSlide(index)}
+                      style={{
+                        width: '12px',
+                        height: '12px',
+                        opacity: index === currentIndex ? 1 : 0.6,
+                        transition: 'opacity 0.3s ease'
+                      }}
+                      aria-label={`Go to image ${index + 1}`}
+                    ></button>
+                  ))}
+                </div>
+              )}
             </div>
           </div>
         </div>
 
         {/* Thumbnail Navigation */}
-        {showThumbnails && (
-          <div className="row justify-content-center">
-            <div className="col-lg-10">
-              <div className="d-flex flex-wrap justify-content-center gap-2">
-                {images.map((image, index) => (
-                  <button
-                    key={index}
-                    type="button"
-                    className={`btn p-0 border rounded overflow-hidden shadow-sm ${
-                      index === currentIndex ? 'border-primary border-3' : 'border-light'
-                    }`}
-                    onClick={() => goToSlide(index)}
-                    style={{
-                      width: '80px',
-                      height: '60px',
-                      transition: 'all 0.3s ease'
-                    }}
-                  >
-                    <img
-                      src={image.src}
-                      alt={`Thumbnail ${index + 1}`}
-                      className="w-100 h-100"
-                      style={{
-                        objectFit: 'cover',
-                        opacity: index === currentIndex ? 1 : 0.7,
-                        transform: index === currentIndex ? 'scale(1.05)' : 'scale(1)',
-                        transition: 'all 0.3s ease'
-                      }}
-                    />
-                  </button>
-                ))}
-              </div>
-            </div>
-          </div>
-        )}
+       
 
         {/* Image Counter */}
         <div className="text-center mt-4">

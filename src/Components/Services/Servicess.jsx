@@ -9,6 +9,7 @@ import merchandise from '../../images/services/Merchandise.jpg'
 import community from '../../images/services/Community service.webp'
 import Retreats from '../../images/services/Retreats.jpg'
 import events from '../../images/services/Events.webp'
+import a from '../../images/Gallery/8.jpg'
 
 const Servicess = () => {
   const [showAll, setShowAll] = useState(false);
@@ -45,13 +46,25 @@ const Servicess = () => {
       id: 7,
       image: Retreats,
       title: "OUR RETREATS",
-      route: "/services/retreats",
+      route: "/services/retreat-7-adventure",
       features: [
-        "7-14 days immersive spiritual experience",
+        "7 days Adventure and immersive spiritual experience",
         "Beautiful natural locations",
         "All meals and accommodation included"
       ],
-      price: "$2500"
+      price: "$1099"
+    },
+    {
+      id: 7,
+      image: a,
+      title: "OUR RETREATS",
+      route: "/services/retreat-7-meditation",
+      features: [
+        "7 days Meditation, Yoga and immersive spiritual experience",
+        "Beautiful natural locations",
+        "All meals and accommodation included"
+      ],
+      price: "$1099"
     },
         {
       id: 2,

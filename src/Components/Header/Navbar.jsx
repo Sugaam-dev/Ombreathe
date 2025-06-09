@@ -1,9 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import logo from '../../images/yogalayaaLogo.png';
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+
+ const navigate=useNavigate()
+
+  const contact=()=>{
+    navigate('/contact')
+  }
 
   // Handle scroll effect
   useEffect(() => {
@@ -351,7 +358,8 @@ const Navbar = () => {
 
           {/* Desktop CTA Button */}
           <div className="d-none d-lg-block order-lg-3">
-            <button className="book-appointment-btn">
+            <button className="book-appointment-btn"
+            onClick={contact}>
               Book Appointment
             </button>
           </div>

@@ -1,20 +1,10 @@
 import React from 'react';
-import a from '../../../images/services/200.webp'
-import L300 from '../../../images/cirtificats/300.png'
-import Lyoga from '../../../images/cirtificats/yoga.png'
-import { useNavigate } from 'react-router-dom';
-
-
 
 const Training200 = () => {
-   const navigate =useNavigate()
-    const navi=()=>{
-      navigate('/contact')
-    }
   return (
     <>
    <div>
-      {/* First Section - Yoga Training Offer */}
+      {/* First Section - Retreat Offer */}
       <div className="min-vh-100 d-flex align-items-center justify-content-center">
         <div className="container">
           <div className="row justify-content-center">
@@ -30,9 +20,9 @@ const Training200 = () => {
                         letterSpacing: '2px',
                         fontSize: 'clamp(0.8rem, 2vw, 1rem)'
                       }}>
-                    300-Hour Yoga Alliance Accredited<br />
-                    Advanced Ashtanga Vinyasa Yoga Teacher Training<br />
-                    In Ubud, Bali with Yogalayaa
+                    7 Day Adventure and Yoga Retreat<br />
+                    In Lovely Ubud, Bali, Indonesia<br />
+                    With Yogalayaa
                   </h6>
                 </div>
 
@@ -45,7 +35,7 @@ const Training200 = () => {
                         lineHeight: '1.2',
                         fontSize: 'clamp(2rem, 5vw, 3.5rem)'
                       }}>
-                    Become an advanced certified yoga teacher with transformative journey
+                    Combine the thrill of adventure with the serenity of yoga
                   </h1>
                   
                   <p className="lead mb-0" 
@@ -54,7 +44,7 @@ const Training200 = () => {
                        fontSize: 'clamp(1rem, 2.5vw, 1.5rem)',
                        fontWeight: '300'
                      }}>
-                    35 Days intensive advanced training in the spiritual heart of Bali - deepening Jeevatmaa to Shivatmaa connection
+                    7 days of transformative experiences in Bali's most spiritual destination
                   </p>
                 </div>
 
@@ -67,7 +57,7 @@ const Training200 = () => {
                             fontWeight: '600',
                             fontSize: 'clamp(2rem, 5vw, 3rem)'
                           }}>
-                      Contact for Pricing
+                      $1099 USD
                     </span>
                   </div>
                   
@@ -77,7 +67,7 @@ const Training200 = () => {
                        fontWeight: '500',
                        fontSize: 'clamp(0.9rem, 2vw, 1.1rem)'
                      }}>
-                    *Inclusive of accommodation, meals, excursions & advanced certification
+                    *All-inclusive: accommodation, meals, activities & yoga sessions
                   </p>
                 </div>
 
@@ -100,8 +90,8 @@ const Training200 = () => {
                           onMouseLeave={(e) => {
                             e.target.style.transform = 'translateY(0)';
                             e.target.style.boxShadow = '0 8px 25px rgba(46, 58, 135, 0.3)';
-                          }} onClick={navi}>
-                    Book Your Spot
+                          }}>
+                    Book Your Retreat
                   </button>
                 </div>
 
@@ -111,15 +101,15 @@ const Training200 = () => {
         </div>
       </div>
 
-      {/* Second Section - Certificate Information */}
+      {/* Second Section - What's Included */}
       <section className="py-5">
         <div className="container">
           <div className="row">
-            {/* Image Section - Proper sized with rounded corners */}
+            {/* Image Section */}
             <div className="col-12 mb-4 d-flex justify-content-center">
               <img 
-                src={a}
-                alt="Yoga practitioners in Bali nature" 
+                src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"
+                alt="Adventure and yoga in Bali" 
                 className="img-fluid"
                 style={{ 
                   maxWidth: '900px',
@@ -143,63 +133,56 @@ const Training200 = () => {
                         fontSize: 'clamp(2rem, 4vw, 3rem)',
                         lineHeight: '1.2'
                       }}>
-                    After completing the<br />
-                    course...
+                    What's included in<br />
+                    your retreat...
                   </h2>
                   
                   <div className="mb-3">
-                    <h5 style={{ color: '#2E3A87', fontWeight: '500' }}>What you'll gain from 300-Hour Advanced Training:</h5>
+                    <h5 style={{ color: '#2E3A87', fontWeight: '500' }}>Your adventure includes:</h5>
                     <ul className="list-unstyled" style={{ color: '#6B7280' }}>
-                      <li className="mb-2">• Advanced authentic yoga from indigenous yoga masters</li>
-                      <li className="mb-2">• Comprehensive advanced knowledge - theoretical and practical</li>
-                      <li className="mb-2">• Specialized therapeutic applications and injury prevention</li>
-                      <li className="mb-2">• Advanced Sanskrit studies and traditional texts</li>
-                      <li className="mb-2">• 300-Hour Yoga Alliance RYT certification (requires 200-Hour prerequisite)</li>
-                      <li className="mb-2">• Advanced teaching methodology and class sequencing</li>
+                      <li className="mb-2">• 6 nights luxury accommodation with A/C & pool</li>
+                      <li className="mb-2">• Free airport pickup from Ngurah Rai (DPS)</li>
+                      <li className="mb-2">• Daily yoga sessions and meditation</li>
+                      <li className="mb-2">• Adventure activities: rafting, trekking, temple visits</li>
+                      <li className="mb-2">• Traditional Kecak dance performance</li>
+                      <li className="mb-2">• Certificate of completion & yoga kit</li>
                     </ul>
                   </div>
                 </div>
 
-                {/* Right side - Certificates and text */}
+                {/* Right side - Certificates and ratings */}
                 <div className="col-12 col-lg-6">
-                  {/* Certification badges */}
+                  {/* Rating badges */}
                   <div className="d-flex gap-3 mb-3 justify-content-start justify-content-lg-end">
                     <div className="rounded-circle d-flex align-items-center justify-content-center"
                          style={{
-                           width: '100px',
-                           height: '100px',
+                           width: '80px',
+                           height: '80px',
+                           border: '3px solid #2E3A87',
                            color: '#2E3A87'
                          }}>
-                      <img 
-                        src={L300} 
-                        alt="300 Hour Certification" 
-                        style={{
-                          width: '70px',
-                          height: '70px',
-                          objectFit: 'contain'
-                        }}
-                      />
+                      <div className="text-center">
+                        <div style={{ fontSize: '11px', fontWeight: 'bold', lineHeight: '1' }}>FOOD</div>
+                        <div style={{ fontSize: '20px', fontWeight: 'bold', lineHeight: '1' }}>4.75</div>
+                        <div style={{ fontSize: '9px', lineHeight: '1' }}>RATING</div>
+                      </div>
                     </div>
-                       <div className="rounded-circle d-flex align-items-center justify-content-center"
+                    <div className="rounded-circle d-flex align-items-center justify-content-center"
                          style={{
-                           width: '100px',
-                           height: '100px',
+                           width: '80px',
+                           height: '80px',
+                           border: '3px solid #2E3A87',
                            color: '#2E3A87'
                          }}>
-                      <img 
-                        src={Lyoga} 
-                        alt="300 Hour Certification" 
-                        style={{
-                          width: '70px',
-                          height: '70px',
-                          objectFit: 'contain'
-                        }}
-                      />
+                      <div className="text-center">
+                        <div style={{ fontSize: '8px', fontWeight: 'bold', lineHeight: '1' }}>TEACHERS</div>
+                        <div style={{ fontSize: '20px', fontWeight: 'bold', lineHeight: '1' }}>4.5</div>
+                        <div style={{ fontSize: '9px', lineHeight: '1' }}>RATING</div>
+                      </div>
                     </div>
-                  
                   </div>
 
-                  {/* Certificate text - aligned to right on desktop */}
+                  {/* Info text */}
                   <div className="text-start text-lg-end">
                     <p className="mb-1" 
                        style={{ 
@@ -207,7 +190,7 @@ const Training200 = () => {
                          fontSize: 'clamp(1rem, 2.5vw, 1.2rem)',
                          fontWeight: '400'
                        }}>
-                      You will receive a 300-Hour Yoga Alliance certificate.
+                      Highly rated retreat experience with excellent food and teachers.
                     </p>
                     <p className="mb-1" 
                        style={{ 
@@ -215,7 +198,7 @@ const Training200 = () => {
                          fontSize: 'clamp(1rem, 2.5vw, 1.2rem)',
                          fontWeight: '400'
                        }}>
-                      Advanced level recognized worldwide.
+                      Located 8 minutes from Ubud Palace and Market.
                     </p>
                     <p className="mb-0" 
                        style={{ 
@@ -223,7 +206,7 @@ const Training200 = () => {
                          fontSize: 'clamp(0.9rem, 2vw, 1.1rem)',
                          fontWeight: '500'
                        }}>
-                      Deepening Jeevatmaa To Shivatmaa Connection
+                      Transform your mind, body and spirit in Bali
                     </p>
                   </div>
                 </div>
@@ -233,7 +216,6 @@ const Training200 = () => {
         </div>
       </section>
     </div>
-  
     </>
   );
 };
