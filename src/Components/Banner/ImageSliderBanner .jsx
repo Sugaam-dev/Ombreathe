@@ -46,6 +46,16 @@ const ImageSliderBanner = () => {
     setTimeout(() => setIsAutoPlaying(true), 5000);
   };
 
+  const handleTeacherTraining = () => {
+    // Add your navigation logic for Teacher Training Program
+    console.log('Teacher Training Program in Bali clicked');
+  };
+
+  const handleRetreatProgram = () => {
+    // Add your navigation logic for Retreat Program
+    console.log('Retreat Program in Bali clicked');
+  };
+
   const texts = [
     'Holistic Yoga Training.',
     'Kundalini Yoga Courses.',
@@ -83,12 +93,23 @@ const ImageSliderBanner = () => {
             <AutoTyping texts={texts} speed={100} delay={1500} />
           </span> 
         </div>
-        <button className="slider-button" onClick={() => {
-          // Add your navigation logic here
-          console.log('Explore Now clicked');
-        }}>
-          Explore Now
-        </button>
+        
+        {/* Two Buttons Container */}
+        <div className="slider-buttons-container">
+          <button 
+            className="slider-button teacher-training-btn" 
+            onClick={handleTeacherTraining}
+          >
+            Teacher Training Program in Bali
+          </button>
+          
+          <button 
+            className="slider-button retreat-program-btn" 
+            onClick={handleRetreatProgram}
+          >
+            Retreat Program in Bali
+          </button>
+        </div>
       </div>
 
       {/* Navigation Arrows */}
