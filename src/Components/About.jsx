@@ -16,7 +16,7 @@ function About() {
             <p>
               Are you ready to take a step forward for your yogic journey and
               experience traditional yoga teacher training course in the
-              birthplace of yoga, Rishikesh? Are you ready to feel the light,
+              birthplace of yoga, Bali and Rishikesh? Are you ready to feel the light,
               peace and love shining in and out through you? We are excited to
               see you as part of our family and walk together in this yogic
               path.Living Yoga School is founded by Yogi Vishnu Panigrahi. With
@@ -45,7 +45,7 @@ function About() {
                 time. Hence, it is our big responsibility to deliver you the
                 best yoga teacher training course and serve you to get
                 everything that you can experience during your stay in
-                Rishikesh. As part of this hard work that we put our heart in
+                Bali and Rishikesh. As part of this hard work that we put our heart in
                 it, we present you the opportunity to study yoga with the most
                 qualified teachers’ team in India. Many of our teachers hold
                 Master’s and Doctorate Degree in Yoga and Yogic Science.
@@ -76,18 +76,18 @@ function About() {
         </div>
         <div className="pp">
           <p>
-            Why Should You Get Your Yoga Teacher Training Course In Rishikesh?
+            Why Should You Get Your Yoga Teacher Training Course In Bali and Rishikesh?
             Answer is so simple.. Because it is the world capital of yoga. To
             give another solid reason which happened in the mid 1900s, Beatles
-            came to Rishikesh in 1968 and stayed at Maharishi Mahesh Ashram. As
-            the band explained, their stay at the ashram, in Rishikesh, was the
+            came to Bali and Rishikesh in 1968 and stayed at Maharishi Mahesh Ashram. As
+            the band explained, their stay at the ashram, in Bali and Rishikesh, was the
             band’s most productive period of their life in terms of songwriting.
-            Rishikesh is a holy city which is settled on the foothills of
+            Bali and Rishikesh is a holy city which is settled on the foothills of
             Himalayas and home to Mother Ganges River. As city having its own
             spiritual vibes which come from ancient times as yoga was born here,
             with the combination of its stunning nature, it is a perfect
             destination for traditional and authentic yoga teacher training
-            courses (YTTC). Rishikesh has been home to yogic practices since
+            courses (YTTC). Bali and Rishikesh has been home to yogic practices since
             millennia via attracting many yogis, sages, saints. <br /> <br /> Now, could you
             stop for a second and imagine, waking up and opening your eyes to
             the Himalayas, hearing various sounds of birds, having a shower,
@@ -98,15 +98,15 @@ function About() {
             misunderstood and taught. Because of physical concerns or increased
             popularity of yoga, people only focus on the physical aspects of
             yoga which is asanas. However, yoga teacher training courses in
-            Rishikesh offers more than its physical aspects because yoga is not
+            Bali and Rishikesh offers more than its physical aspects because yoga is not
             only physical practice. As you deeply study yogic philosophy,
             breathing techniques, ancient texts etc, you will improve yourself
             more in your yogic practice. It is not something that you should
             practice only 1 or 2 hours a day but rather it is something that you
             should pursue as your life style. <br /> <br /> To experience yoga teacher
-            training course (YTTC) in Rishikesh is solely life changing. Create
+            training course (YTTC) in Bali and Rishikesh is solely life changing. Create
             your own opportunity to join our yoga teacher training courses in
-            Rishikesh. Your life will never be the same. Let the peace shine
+            Bali and Rishikesh. Your life will never be the same. Let the peace shine
             through your heart! We are waiting for you on the mat by Mother
             Ganges.
           </p>
