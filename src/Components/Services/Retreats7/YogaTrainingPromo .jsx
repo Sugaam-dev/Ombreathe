@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import a from '../../../images/Gallery/Canyoneering-Bali.jpg'
 import b from '../../../images/Gallery/baliadventure.jpg'
 import c from '../../../images/Gallery/Bali-Activities.jpg'
+
 const YogaTrainingPromo = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [animatedItems, setAnimatedItems] = useState({});

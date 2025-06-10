@@ -1,10 +1,17 @@
-import React, { useState } from 'react';
+import React, { 
+  useState, 
+  useMemo, 
+  useCallback, 
+  memo
+} from 'react';
 import lg from '../images/lg.png'
+
 const Accordion = () => {
   const [activeIndex, setActiveIndex] = useState(null);
   const [activeCategory, setActiveCategory] = useState('training');
 
-  const faqData = {
+  // Memoized FAQ data - only performance optimization
+  const faqData = useMemo(() => ({
     training: [
       {
         title: 'What is Yogalaya\'s teacher training program?',
@@ -69,17 +76,19 @@ const Accordion = () => {
         content: 'Absolutely! Our retreats welcome practitioners of all levels, from complete beginners to advanced yogis. Our experienced instructors provide modifications and personalized guidance to ensure everyone can participate comfortably and safely.',
       },
     ]
-  };
+  }), []);
 
-  const onTitleClick = (index) => {
+  // Memoized event handlers - only performance optimization
+  const onTitleClick = useCallback((index) => {
     setActiveIndex(index === activeIndex ? null : index);
-  };
+  }, [activeIndex]);
 
-  const onCategoryClick = (category) => {
+  const onCategoryClick = useCallback((category) => {
     setActiveCategory(category);
     setActiveIndex(null); // Reset active item when switching categories
-  };
+  }, []);
 
+  // Your original rendering logic - exactly the same
   const renderedItems = faqData[activeCategory].map((item, index) => {
     const active = index === activeIndex ? 'active' : '';
 
@@ -102,7 +111,12 @@ const Accordion = () => {
         <div className="yogaa">
           <div className="heading">
             <h1>Frequently Asked Questions</h1>
-            <img src={lg} alt="logo" className="logo-img" />
+            <img 
+              src={lg} 
+              alt="Yogalayaa Logo" 
+              className="logo-img"
+              loading="eager"
+            />
           </div>
         </div>
       </div>
@@ -112,6 +126,7 @@ const Accordion = () => {
           <button 
             className={`tab-button ${activeCategory === 'training' ? 'active' : ''}`}
             onClick={() => onCategoryClick('training')}
+            type="button"
           >
             <span className="tab-icon">🧘‍♀️</span>
             Teacher Training
@@ -119,6 +134,7 @@ const Accordion = () => {
           <button 
             className={`tab-button ${activeCategory === 'retreats' ? 'active' : ''}`}
             onClick={() => onCategoryClick('retreats')}
+            type="button"
           >
             <span className="tab-icon">🏔️</span>
             Retreats
@@ -148,10 +164,7 @@ const Accordion = () => {
       <style jsx>{`
         .faq-wrapper {
           min-height: 100vh;
-         
         }
-
-       
 
         .heading h1 {
           font-size: 2.5rem;
@@ -426,4 +439,4 @@ const Accordion = () => {
   );
 };
 
-export default Accordion;
+export default memo(Accordion);

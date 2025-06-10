@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import a from '../../images/Gallery/1.jpeg';
 import b from '../../images/Gallery/2.jpeg';
 import c from '../../images/Gallery/3.jpeg';
@@ -21,90 +21,41 @@ import t from '../../images/Gallery/19.jpg';
 import u from '../../images/Gallery/20.jpg';
 
 const Gallery = ({ 
-  images = [
-    {
-      src: a,
-      caption: "Image 1"
-    },
-    {
-      src: b,
-      caption: "Image 2"
-    },
-    {
-      src: c,
-      caption: "Image 3"
-    },
-    {
-      src: e,
-      caption: "Image 2"
-    },
-    {
-      src: f,
-      caption: "Image 3"
-    },
-    {
-      src: g,
-      caption: "Image 4"
-    },
-    {
-      src: h,
-      caption: "Image 2"
-    },
-    {
-      src: i,
-      caption: "Image 3"
-    },
-    {
-      src: j,
-      caption: "Image 4"
-    },
-    {
-      src: k,
-      caption: "Image 2"
-    },
-    {
-      src: l,
-      caption: "Image 3"
-    },
-    {
-      src: m,
-      caption: "Image 4"
-    },
-    {
-      src: n,
-      caption: "Image 2"
-    },
-    {
-      src: o,
-      caption: "Image 3"
-    },
-    {
-      src: p,
-      caption: "Image 4"
-    },
-    {
-      src: q,
-      caption: "Image 2"
-    },
-    {
-      src: r,
-      caption: "Image 3"
-    },
-    {
-      src: s,
-      caption: "Image 4"
-    }
-  ],
   showThumbnails = true,
   autoPlay = true,
   interval = 5000
 }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [imagesLoaded, setImagesLoaded] = useState({});
   const touchStartX = useRef(0);
   const touchEndX = useRef(0);
   const [isDragging, setIsDragging] = useState(false);
 
-  // Auto-play functionality
+  // Memoized images array
+  const images = useMemo(() => [
+    { src: a, caption: "Yoga Practice in Nature" },
+    { src: b, caption: "Meditation Session" },
+    { src: c, caption: "Asana Practice" },
+    { src: e, caption: "Peaceful Moments" },
+    { src: f, caption: "Yoga Community" },
+    { src: g, caption: "Mindful Practice" },
+    { src: h, caption: "Serene Environment" },
+    { src: i, caption: "Group Session" },
+    { src: j, caption: "Tranquil Setting" },
+    { src: k, caption: "Yoga Journey" },
+    { src: l, caption: "Spiritual Practice" },
+    { src: m, caption: "Wellness Focus" },
+    { src: n, caption: "Harmony & Balance" },
+    { src: o, caption: "Peaceful Practice" },
+    { src: p, caption: "Mindfulness" },
+    { src: q, caption: "Yoga Flow" },
+    { src: r, caption: "Inner Peace" },
+    { src: s, caption: "Yogic Life" },
+    { src: t, caption: "Meditation Space" },
+    { src: u, caption: "Yoga Bliss" }
+  ], []);
+
+  // Auto-play functionality with cleanup
   useEffect(() => {
     if (autoPlay && images.length > 1) {
       const timer = setInterval(() => {
@@ -114,64 +65,31 @@ const Gallery = ({
     }
   }, [autoPlay, interval, images.length]);
 
-  const goToSlide = (index) => {
+  // Memoized navigation functions
+  const goToSlide = useCallback((index) => {
     setCurrentIndex(index);
-  };
+  }, []);
 
-  const goToPrevious = () => {
+  const goToPrevious = useCallback(() => {
     setCurrentIndex((prev) => (prev - 1 + images.length) % images.length);
-  };
+  }, [images.length]);
 
-  const goToNext = () => {
+  const goToNext = useCallback(() => {
     setCurrentIndex((prev) => (prev + 1) % images.length);
-  };
+  }, [images.length]);
 
-  // Touch/Swipe handlers
-  const handleTouchStart = (e) => {
+  // Optimized touch handlers
+  const handleTouchStart = useCallback((e) => {
     touchStartX.current = e.touches[0].clientX;
     setIsDragging(true);
-  };
+  }, []);
 
-  const handleTouchMove = (e) => {
+  const handleTouchMove = useCallback((e) => {
     if (!isDragging) return;
     touchEndX.current = e.touches[0].clientX;
-  };
+  }, [isDragging]);
 
-  const handleTouchEnd = () => {
-    if (!isDragging) return;
-    setIsDragging(false);
-    
-    const swipeThreshold = 50; // Minimum distance for a swipe
-    const swipeDistance = touchStartX.current - touchEndX.current;
-
-    if (Math.abs(swipeDistance) > swipeThreshold) {
-      if (swipeDistance > 0) {
-        // Swiped left - go to next image
-        goToNext();
-      } else {
-        // Swiped right - go to previous image
-        goToPrevious();
-      }
-    }
-
-    // Reset touch positions
-    touchStartX.current = 0;
-    touchEndX.current = 0;
-  };
-
-  // Mouse handlers for desktop drag support
-  const handleMouseDown = (e) => {
-    e.preventDefault();
-    touchStartX.current = e.clientX;
-    setIsDragging(true);
-  };
-
-  const handleMouseMove = (e) => {
-    if (!isDragging) return;
-    touchEndX.current = e.clientX;
-  };
-
-  const handleMouseUp = () => {
+  const handleTouchEnd = useCallback(() => {
     if (!isDragging) return;
     setIsDragging(false);
     
@@ -188,7 +106,38 @@ const Gallery = ({
 
     touchStartX.current = 0;
     touchEndX.current = 0;
-  };
+  }, [isDragging, goToNext, goToPrevious]);
+
+  // Optimized mouse handlers
+  const handleMouseDown = useCallback((e) => {
+    e.preventDefault();
+    touchStartX.current = e.clientX;
+    setIsDragging(true);
+  }, []);
+
+  const handleMouseMove = useCallback((e) => {
+    if (!isDragging) return;
+    touchEndX.current = e.clientX;
+  }, [isDragging]);
+
+  const handleMouseUp = useCallback(() => {
+    if (!isDragging) return;
+    setIsDragging(false);
+    
+    const swipeThreshold = 50;
+    const swipeDistance = touchStartX.current - touchEndX.current;
+
+    if (Math.abs(swipeDistance) > swipeThreshold) {
+      if (swipeDistance > 0) {
+        goToNext();
+      } else {
+        goToPrevious();
+      }
+    }
+
+    touchStartX.current = 0;
+    touchEndX.current = 0;
+  }, [isDragging, goToNext, goToPrevious]);
 
   // Keyboard navigation
   useEffect(() => {
@@ -202,7 +151,31 @@ const Gallery = ({
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, []);
+  }, [goToPrevious, goToNext]);
+
+  // Image preloading for smoother transitions
+  useEffect(() => {
+    const preloadImage = (src, index) => {
+      const img = new Image();
+      img.onload = () => {
+        setImagesLoaded(prev => ({ ...prev, [index]: true }));
+      };
+      img.src = src;
+    };
+
+    // Preload current and next/previous images
+    const preloadIndexes = [
+      currentIndex,
+      (currentIndex + 1) % images.length,
+      (currentIndex - 1 + images.length) % images.length
+    ];
+
+    preloadIndexes.forEach(index => {
+      if (!imagesLoaded[index]) {
+        preloadImage(images[index].src, index);
+      }
+    });
+  }, [currentIndex, images, imagesLoaded]);
 
   if (!images || images.length === 0) {
     return <div className="text-center py-5">No images to display</div>;
@@ -213,7 +186,10 @@ const Gallery = ({
       <div className="container">
         {/* Title */}
         <div className="text-center mb-5">
-          <h2 className="display-4">Gallery</h2>
+          <h2 className="display-4" style={{ color: '#2E3A87', fontWeight: '400' }}>
+            Gallery
+          </h2>
+          <p className="lead text-muted">Moments from our yoga journey</p>
         </div>
 
         {/* Main Carousel */}
@@ -232,7 +208,7 @@ const Gallery = ({
               onMouseDown={handleMouseDown}
               onMouseMove={handleMouseMove}
               onMouseUp={handleMouseUp}
-              onMouseLeave={handleMouseUp} // Handle mouse leaving the area
+              onMouseLeave={handleMouseUp}
             >
               {/* Main Image */}
               <div style={{ 
@@ -246,7 +222,7 @@ const Gallery = ({
               }}>
                 <img
                   src={images[currentIndex].src}
-                  alt={images[currentIndex].caption || `Image ${currentIndex + 1}`}
+                  alt={images[currentIndex].caption || `Gallery Image ${currentIndex + 1}`}
                   className="img-fluid"
                   style={{
                     maxWidth: '100%',
@@ -255,9 +231,11 @@ const Gallery = ({
                     height: 'auto',
                     objectFit: 'contain',
                     transition: isDragging ? 'none' : 'opacity 0.5s ease-in-out',
-                    pointerEvents: 'none' // Prevent image dragging
+                    pointerEvents: 'none',
+                    opacity: imagesLoaded[currentIndex] ? 1 : 0.7
                   }}
                   draggable={false}
+                  loading="lazy"
                 />
                 
                 {/* Caption */}
@@ -265,13 +243,18 @@ const Gallery = ({
                   <div 
                     className="position-absolute d-none d-md-block"
                     style={{
-                      bottom: '20px',
+                      bottom: '60px',
                       left: '50%',
                       transform: 'translateX(-50%)',
                       zIndex: 10
                     }}
                   >
-                  
+                    <span 
+                      className="badge bg-dark bg-opacity-75 px-3 py-2"
+                      style={{ fontSize: '0.9rem' }}
+                    >
+                      {images[currentIndex].caption}
+                    </span>
                   </div>
                 )}
               </div>
@@ -328,12 +311,10 @@ const Gallery = ({
                         transition: 'opacity 0.3s ease'
                       }}
                       aria-label={`Go to image ${index + 1}`}
-                    ></button>
+                    />
                   ))}
                 </div>
               )}
-
-             
             </div>
           </div>
         </div>
@@ -349,4 +330,4 @@ const Gallery = ({
   );
 };
 
-export default Gallery;
+export default React.memo(Gallery);

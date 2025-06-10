@@ -1,78 +1,145 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import { IoChevronBack, IoChevronForward } from 'react-icons/io5';
+import { useNavigate } from 'react-router-dom';
 import AutoTyping from '../AutoTyping';
 import './Banner.css';
-import a from '../../images/1.webp';
-import b from '../../images/2.jpg';
-import c from '../../images/3.jpg';
-import d from '../../images/4.jpg';
-import e from '../../images/5.jpg';
-import { useNavigate } from 'react-router-dom';
 
 const ImageSliderBanner = () => {
-  // Sample images - you can replace these with your own image URLs
-  const images = [a, b, c, d, e];
-
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+  const [imagesLoaded, setImagesLoaded] = useState({});
+  const [isLoading, setIsLoading] = useState(true);
 
-  const navigate=useNavigate();
+  const navigate = useNavigate();
 
-  const teacher=()=>{
-    navigate('/service')
-  }
+  // Memoized images array to prevent recreation
+  const images = useMemo(() => {
+    const imagePromises = [
+      import('../../images/1.webp'),
+      import('../../images/2.jpg'),
+      import('../../images/3.jpg'),
+      import('../../images/4.jpg'),
+      import('../../images/5.jpg')
+    ];
+    return imagePromises;
+  }, []);
 
-  // Auto-play functionality
+  // Load images dynamically for better performance
   useEffect(() => {
-    if (!isAutoPlaying) return;
+    const loadImages = async () => {
+      try {
+        const loadedImageSources = await Promise.all(images);
+        const imageMap = {};
+        
+        loadedImageSources.forEach((img, index) => {
+          imageMap[index] = img.default;
+        });
+        
+        setImagesLoaded(imageMap);
+        setIsLoading(false);
+      } catch (error) {
+        console.error('Error loading images:', error);
+        setIsLoading(false);
+      }
+    };
+
+    loadImages();
+  }, [images]);
+
+  // Memoized image sources array
+  const imageSources = useMemo(() => 
+    Object.values(imagesLoaded), [imagesLoaded]
+  );
+
+  // Memoized texts for AutoTyping
+  const texts = useMemo(() => [
+    'Holistic Yoga Training.',
+    'Kundalini Yoga Courses.',
+    'Retreats & Workshops.',
+  ], []);
+
+  // Memoized navigation function
+  const teacher = useCallback(() => {
+    navigate('/service');
+  }, [navigate]);
+
+  // Auto-play functionality with cleanup
+  useEffect(() => {
+    if (!isAutoPlaying || imageSources.length === 0) return;
     
     const interval = setInterval(() => {
       setCurrentIndex((prevIndex) => 
-        prevIndex === images.length - 1 ? 0 : prevIndex + 1
+        prevIndex === imageSources.length - 1 ? 0 : prevIndex + 1
       );
     }, 4000);
 
     return () => clearInterval(interval);
-  }, [currentIndex, isAutoPlaying, images.length]);
+  }, [currentIndex, isAutoPlaying, imageSources.length]);
 
-  const goToPrevious = () => {
+  // Memoized navigation functions
+  const goToPrevious = useCallback(() => {
     setIsAutoPlaying(false);
-    setCurrentIndex(currentIndex === 0 ? images.length - 1 : currentIndex - 1);
+    setCurrentIndex(prev => prev === 0 ? imageSources.length - 1 : prev - 1);
     setTimeout(() => setIsAutoPlaying(true), 5000);
-  };
+  }, [imageSources.length]);
 
-  const goToNext = () => {
+  const goToNext = useCallback(() => {
     setIsAutoPlaying(false);
-    setCurrentIndex(currentIndex === images.length - 1 ? 0 : currentIndex + 1);
+    setCurrentIndex(prev => prev === imageSources.length - 1 ? 0 : prev + 1);
     setTimeout(() => setIsAutoPlaying(true), 5000);
-  };
+  }, [imageSources.length]);
 
-  const goToSlide = (index) => {
+  const goToSlide = useCallback((index) => {
     setIsAutoPlaying(false);
     setCurrentIndex(index);
     setTimeout(() => setIsAutoPlaying(true), 5000);
-  };
+  }, []);
 
-  const handleTeacherTraining = () => {
-    // Add your navigation logic for Teacher Training Program
-    console.log('Teacher Training Program in Bali clicked');
-  };
+  // Image preloading for smoother transitions
+  useEffect(() => {
+    if (imageSources.length === 0) return;
 
-  const handleRetreatProgram = () => {
-    // Add your navigation logic for Retreat Program
-    console.log('Retreat Program in Bali clicked');
-  };
+    const preloadImage = (src) => {
+      const img = new Image();
+      img.src = src;
+    };
 
-  const texts = [
-    'Holistic Yoga Training.',
-    'Kundalini Yoga Courses.',
-    'Retreats & Workshops.',
-  ];
+    // Preload next and previous images
+    const nextIndex = (currentIndex + 1) % imageSources.length;
+    const prevIndex = (currentIndex - 1 + imageSources.length) % imageSources.length;
+    
+    if (imageSources[nextIndex]) preloadImage(imageSources[nextIndex]);
+    if (imageSources[prevIndex]) preloadImage(imageSources[prevIndex]);
+  }, [currentIndex, imageSources]);
+
+  // Loading state
+  if (isLoading) {
+    return (
+      <div className="slider-container" style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <div className="text-center">
+          <div className="spinner-border text-light mb-3" role="status">
+            <span className="visually-hidden">Loading...</span>
+          </div>
+          <p className="text-light">Loading yoga experience...</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (imageSources.length === 0) {
+    return (
+      <div className="slider-container" style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <div className="text-center text-light">
+          <p>Unable to load images. Please refresh the page.</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="slider-container">
       {/* Background Images using img tags */}
-      {images.map((image, index) => (
+      {imageSources.map((image, index) => (
         <div
           key={index}
           className="slider-image-wrapper"
@@ -85,6 +152,10 @@ const ImageSliderBanner = () => {
             alt={`Yoga training slide ${index + 1}`}
             className="slider-image"
             loading={index === 0 ? "eager" : "lazy"}
+            onLoad={() => {
+              // Mark image as loaded for potential future optimizations
+              console.log(`Image ${index + 1} loaded`);
+            }}
           />
           <div className="slider-overlay"></div>
         </div>
@@ -106,6 +177,8 @@ const ImageSliderBanner = () => {
           <button 
             className="slider-button teacher-training-btn" 
             onClick={teacher}
+            type="button"
+            aria-label="Navigate to Teacher Training Program in Bali"
           >
             Teacher Training Program in Bali
           </button>
@@ -113,6 +186,8 @@ const ImageSliderBanner = () => {
           <button 
             className="slider-button retreat-program-btn" 
             onClick={teacher}
+            type="button"
+            aria-label="Navigate to Retreat Program in Bali"
           >
             Retreat Program in Bali
           </button>
@@ -140,7 +215,7 @@ const ImageSliderBanner = () => {
 
       {/* Dot Indicators */}
       <div className="dots-container">
-        {images.map((_, index) => (
+        {imageSources.map((_, index) => (
           <button
             key={index}
             onClick={() => goToSlide(index)}
@@ -160,4 +235,4 @@ const ImageSliderBanner = () => {
   );
 };
 
-export default ImageSliderBanner;
+export default React.memo(ImageSliderBanner);

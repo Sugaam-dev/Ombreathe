@@ -1,23 +1,17 @@
 import React from 'react';
-import guru from '../../images/sadguru.webp'
-const BannerImage = () => {
+import guru from '../../images/sadguru.webp';
+
+const BannerImage = React.memo(() => {
   return (
-    <>
- 
-      
-      <div className="banner-container">
-        <img 
+    <section className="banner-container">
+      <picture>
+        <source srcSet={guru} media="(min-width: 768px)" />
+        <img
           src={guru}
           alt="Banner image"
-          className="img-fluid w-100 d-none d-md-block banner-desktop"
+          className="img-fluid w-100 banner-image"
         />
-        
-        <img
-             src={guru} 
-          alt="Banner image"
-          className="img-fluid w-100 d-block d-md-none banner-mobile"
-        />
-      </div>
+      </picture>
 
       <style jsx>{`
         .banner-container {
@@ -25,28 +19,28 @@ const BannerImage = () => {
           overflow: hidden;
         }
 
-        /* Desktop/Tablet - Fixed height banner */
-        .banner-desktop {
-          height: 60vh;
-          min-height: 400px;
+        .banner-image {
+          width: 100%;
+          height: auto;
           object-fit: cover;
           object-position: center;
         }
 
-        /* Mobile - Full image display */
-        .banner-mobile {
-          height: auto;
-          object-fit: contain;
+        @media (min-width: 768px) {
+          .banner-image {
+            height: 60vh;
+            min-height: 400px;
+          }
         }
 
         @media (max-width: 575.98px) {
-          .banner-desktop {
-            min-height: 300px;
+          .banner-image {
+            object-fit: contain;
           }
         }
       `}</style>
-    </>
+    </section>
   );
-};
+});
 
 export default BannerImage;

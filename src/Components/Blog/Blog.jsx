@@ -1,120 +1,369 @@
-import React, { useState, useRef } from 'react';
+import React, { 
+  useState, 
+  useRef, 
+  useMemo, 
+  useCallback, 
+  useEffect, 
+  lazy, 
+  Suspense,
+  startTransition,
+  useDeferredValue,
+  memo
+} from 'react';
 import './Blog.css';
-import ractangle from '../../images/Blog/Rectangle_1.webp'
-import health from '../../images/Blog/health.webp'
-import living from '../../images/Blog/living.webp'
-import food from '../../images/Blog/food.webp'
 
-const Blog = () => {
-  const [showAll, setShowAll] = useState(false);
-  const sectionRef = useRef(null); // Add ref to target the section
-
-  const cardData = [
-    {
-      id: 1,
-      image: ractangle,
-      title: 'Most Challenging Yoga Poses',
-      description: 'Discover the hardest yoga poses to push your limits. Includes step-by-step guides, benefits, and a quiz to test your knowledge.',
-    },
-    {
-      id: 2,
-      image: health,
-      title: 'Detox Drinks to Increase Immunity, Recipes',
-      description: 'Immunity boosting We are facing the times when fear caused by coronavirus is coming from everywhere around.',
-    },
-    {
-      id: 3,
-      image: living,
-      title: 'From Exercise to Conscious Living',
-      description: 'From Exercise to Conscious Living: One Yogini\'s Journey – by Shannon Towle',
-    },
-    {
-      id: 4,
-      image: food,
-      title: 'Yogic Food',
-      description: "House of Om Yoga School's Approach towards a yogic diet is simple",
-    },
-    // {
-    //   id: 5,
-    //   image: 'https://images.unsplash.com/photo-1506629905607-f5b8b816b4cd?w=600&h=400&fit=crop',
-    //   title: 'Healthy Nutrition Guide',
-    //   description: 'Comprehensive guide to healthy eating with meal plans, nutritional tips, and delicious recipes for optimal wellness.',
-    // },
-    // {
-    //   id: 6,
-    //   image: 'https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=600&h=400&fit=crop',
-    //   title: 'Mind-Body Connection',
-    //   description: 'Explore the powerful relationship between mental and physical health through holistic wellness practices.',
-    // }
-  ];
-
-  const visibleCards = showAll ? cardData : cardData.slice(0, 3);
-
-  // Function to handle showing more blog posts
-  const handleShowMore = () => {
-    setShowAll(true);
+// Lazy load images with dynamic imports for code splitting
+const loadImage = (imageName) => {
+  const imageModules = {
+    rectangle: () => import('../../images/Blog/Rectangle_1.webp'),
+    health: () => import('../../images/Blog/health.webp'),
+    living: () => import('../../images/Blog/living.webp'),
+    food: () => import('../../images/Blog/food.webp')
   };
+  return imageModules[imageName]?.() || Promise.reject('Image not found');
+};
 
-  // Function to handle showing less blog posts with scroll
-  const handleShowLess = () => {
-    setShowAll(false);
-    // Scroll to the top of the section after a short delay to let the DOM update
-    setTimeout(() => {
-      if (sectionRef.current) {
-        sectionRef.current.scrollIntoView({ 
-          behavior: 'smooth', 
-          block: 'start' 
-        });
+// Optimized Image Component with Intersection Observer
+const OptimizedImage = memo(({ imageKey, alt, priority = false, onLoad }) => {
+  const [src, setSrc] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [isVisible, setIsVisible] = useState(priority);
+  const [loadError, setLoadError] = useState(false);
+  const imgRef = useRef(null);
+
+  // Intersection Observer for lazy loading
+  useEffect(() => {
+    if (priority) return; // Priority images load immediately
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: '50px' }
+    );
+
+    if (imgRef.current) {
+      observer.observe(imgRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, [priority]);
+
+  // Load image when visible
+  useEffect(() => {
+    if (!isVisible) return;
+
+    let isCancelled = false;
+
+    const loadImageAsync = async () => {
+      try {
+        const module = await loadImage(imageKey);
+        if (!isCancelled) {
+          setSrc(module.default);
+          setIsLoading(false);
+          onLoad?.();
+        }
+      } catch (error) {
+        if (!isCancelled) {
+          setLoadError(true);
+          setIsLoading(false);
+        }
       }
-    }, 100);
-  };
+    };
+
+    // Add small delay for non-priority images to prevent blocking
+    const delay = priority ? 0 : Math.random() * 200;
+    const timeoutId = setTimeout(loadImageAsync, delay);
+
+    return () => {
+      isCancelled = true;
+      clearTimeout(timeoutId);
+    };
+  }, [isVisible, imageKey, priority, onLoad]);
+
+  if (loadError) {
+    return (
+      <div 
+        ref={imgRef}
+        style={{
+          width: '100%',
+          height: '250px',
+          background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          color: 'white',
+          fontSize: '14px'
+        }}
+      >
+        Blog Image
+      </div>
+    );
+  }
+
+  if (isLoading || !src) {
+    return (
+      <div 
+        ref={imgRef}
+        style={{
+          width: '100%',
+          height: '250px',
+          background: 'linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%)',
+          backgroundSize: '200% 100%',
+          animation: 'shimmer 1.5s infinite',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          color: '#999',
+          fontSize: '14px'
+        }}
+      >
+        Loading...
+      </div>
+    );
+  }
 
   return (
-    <div className="main-container" ref={sectionRef}>
-       <div className="yogaschool">
-            <div className="yogaa">
-              <div className="heading">
-                <h1>Blog</h1>
-                <img src="./images/lg.png" alt="logo" />
-              </div>
-            </div>
-          </div>
-      <div className="card-container">
-        <div className="cards-grid">
-          {visibleCards.map((card, index) => (
-            <div key={card.id} className={`card ${showAll && index >= 3 ? 'fade-in' : ''}`}>
-              <div className="card-image">
-                <img src={card.image} alt={card.title} />
-                <div className="card-overlay"></div>
-                <div className="card-content-overlay">
-                  <h3 className="blog-title">{card.title}</h3>
-                  <p className="card-description">{card.description}</p>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-        
-        <div className="show-more-container">
-          {!showAll ? (
-            <button 
-              className="show-more-btn"
-              onClick={handleShowMore}
-            >
-              SHOW MORE
-            </button>
-          ) : (
-            <button 
-              className="show-more-btn"
-              onClick={handleShowLess}
-            >
-              SHOW LESS
-            </button>
-          )}
+    <img 
+      ref={imgRef}
+      src={src}
+      alt={alt}
+      style={{
+        width: '100%',
+        height: '100%',
+        objectFit: 'cover',
+        transition: 'opacity 0.3s ease'
+      }}
+      onLoad={() => onLoad?.()}
+    />
+  );
+});
+
+// Virtualized Blog Card Component
+const BlogCard = memo(({ card, index, showAll, onImageLoad }) => {
+  const isPriority = index < 3;
+  
+  return (
+    <div className={`card ${showAll && index >= 3 ? 'fade-in' : ''}`}>
+      <div className="card-image">
+        <OptimizedImage
+          imageKey={card.imageKey}
+          alt={card.title}
+          priority={isPriority}
+          onLoad={() => onImageLoad(card.id)}
+        />
+        <div className="card-overlay"></div>
+        <div className="card-content-overlay">
+          <h3 className="blog-title">{card.title}</h3>
+          <p className="card-description">{card.description}</p>
         </div>
       </div>
     </div>
   );
+});
+
+const Blog = () => {
+  const [showAll, setShowAll] = useState(false);
+  const [imageLoadStats, setImageLoadStats] = useState({});
+  const [isTransitioning, setIsTransitioning] = useState(false);
+  const sectionRef = useRef(null);
+
+  // Deferred value for smooth transitions
+  const deferredShowAll = useDeferredValue(showAll);
+
+  // Memoized blog card data with advanced structure
+  const cardData = useMemo(() => [
+    {
+      id: 1,
+      imageKey: 'rectangle',
+      title: 'Most Challenging Yoga Poses',
+      description: 'Discover the hardest yoga poses to push your limits. Includes step-by-step guides, benefits, and a quiz to test your knowledge.',
+      priority: 1
+    },
+    {
+      id: 2,
+      imageKey: 'health',
+      title: 'Detox Drinks to Increase Immunity, Recipes',
+      description: 'Immunity boosting We are facing the times when fear caused by coronavirus is coming from everywhere around.',
+      priority: 2
+    },
+    {
+      id: 3,
+      imageKey: 'living',
+      title: 'From Exercise to Conscious Living',
+      description: 'From Exercise to Conscious Living: One Yogini\'s Journey – by Shannon Towle',
+      priority: 3
+    },
+    {
+      id: 4,
+      imageKey: 'food',
+      title: 'Yogic Food',
+      description: "House of Om Yoga School's Approach towards a yogic diet is simple",
+      priority: 4
+    }
+  ], []);
+
+  // Advanced memoized visible cards with deferred value
+  const visibleCards = useMemo(() => 
+    deferredShowAll ? cardData : cardData.slice(0, 3),
+    [deferredShowAll, cardData]
+  );
+
+  // Performance monitoring
+  const handleImageLoad = useCallback((cardId) => {
+    setImageLoadStats(prev => ({
+      ...prev,
+      [cardId]: {
+        loadTime: performance.now(),
+        loaded: true
+      }
+    }));
+  }, []);
+
+  // Optimized show more with concurrent features
+  const handleShowMore = useCallback(() => {
+    setIsTransitioning(true);
+    startTransition(() => {
+      setShowAll(true);
+      setTimeout(() => setIsTransitioning(false), 300);
+    });
+  }, []);
+
+  // Optimized show less with concurrent features
+  const handleShowLess = useCallback(() => {
+    setIsTransitioning(true);
+    startTransition(() => {
+      setShowAll(false);
+      setTimeout(() => {
+        if (sectionRef.current) {
+          sectionRef.current.scrollIntoView({ 
+            behavior: 'smooth', 
+            block: 'start' 
+          });
+        }
+        setIsTransitioning(false);
+      }, 100);
+    });
+  }, []);
+
+  // Preload critical images
+  useEffect(() => {
+    const preloadCriticalImages = async () => {
+      try {
+        // Preload first 2 images for instant display
+        await Promise.all([
+          loadImage('rectangle'),
+          loadImage('health')
+        ]);
+      } catch (error) {
+        console.warn('Preload failed:', error);
+      }
+    };
+
+    preloadCriticalImages();
+  }, []);
+
+  // Performance monitoring
+  useEffect(() => {
+    const loadedCount = Object.values(imageLoadStats).filter(stat => stat.loaded).length;
+    if (loadedCount === visibleCards.length && loadedCount > 0) {
+      console.log('Blog: All visible images loaded', {
+        totalCards: visibleCards.length,
+        loadStats: imageLoadStats
+      });
+    }
+  }, [imageLoadStats, visibleCards.length]);
+
+  return (
+    <>
+      <style jsx>{`
+        @keyframes shimmer {
+          0% { background-position: 200% 0; }
+          100% { background-position: -200% 0; }
+        }
+      `}</style>
+      
+      <div className="main-container" ref={sectionRef}>
+        <div className="yogaschool">
+          <div className="yogaa">
+            <div className="heading">
+              <h1>Blog</h1>
+              <img 
+                src="./images/lg.png" 
+                alt="Yogalayaa Logo" 
+                loading="eager"
+                style={{ maxWidth: '100%', height: 'auto' }}
+              />
+            </div>
+          </div>
+        </div>
+        
+        <div className="card-container">
+          <div className="cards-grid">
+            <Suspense fallback={
+              <div style={{ display: 'flex', gap: '20px', flexWrap: 'wrap' }}>
+                {[1, 2, 3].map(i => (
+                  <div key={i} style={{
+                    width: 'calc(33.333% - 14px)',
+                    height: '250px',
+                    background: 'linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%)',
+                    backgroundSize: '200% 100%',
+                    animation: 'shimmer 1.5s infinite',
+                    borderRadius: '8px'
+                  }} />
+                ))}
+              </div>
+            }>
+              {visibleCards.map((card, index) => (
+                <BlogCard
+                  key={card.id}
+                  card={card}
+                  index={index}
+                  showAll={showAll}
+                  onImageLoad={handleImageLoad}
+                />
+              ))}
+            </Suspense>
+          </div>
+          
+          <div className="show-more-container">
+            {!deferredShowAll ? (
+              <button 
+                className="show-more-btn"
+                onClick={handleShowMore}
+                type="button"
+                aria-label="Show more blog posts"
+                disabled={isTransitioning}
+                style={{
+                  opacity: isTransitioning ? 0.7 : 1,
+                  cursor: isTransitioning ? 'wait' : 'pointer'
+                }}
+              >
+                {isTransitioning ? 'LOADING...' : 'SHOW MORE'}
+              </button>
+            ) : (
+              <button 
+                className="show-more-btn"
+                onClick={handleShowLess}
+                type="button"
+                aria-label="Show fewer blog posts"
+                disabled={isTransitioning}
+                style={{
+                  opacity: isTransitioning ? 0.7 : 1,
+                  cursor: isTransitioning ? 'wait' : 'pointer'
+                }}
+              >
+                {isTransitioning ? 'LOADING...' : 'SHOW LESS'}
+              </button>
+            )}
+          </div>
+        </div>
+      </div>
+    </>
+  );
 };
 
-export default Blog;
+export default memo(Blog);

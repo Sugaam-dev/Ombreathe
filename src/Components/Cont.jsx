@@ -34,7 +34,8 @@ function Cont() {
               {" "}
               <IoLogoWhatsapp style={{ color: "green" }} />
             </span>{" "}
-            +91-7483987568
+            +91-7483987568 /
+            +91-78299 97007
           </a>
         </div>
         <div className="contwt">

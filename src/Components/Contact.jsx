@@ -1,6 +1,13 @@
-import React from "react";
-import { useRef, useState } from "react";
-import emailjs from "@emailjs/browser";
+import React, { 
+  useState, 
+  useCallback, 
+  useMemo, 
+  memo,
+  useRef,
+  lazy,
+  Suspense,
+  startTransition
+} from "react";
 import "../Styles/Contact.css";
 
 import { FaFacebookF } from "react-icons/fa";
@@ -10,143 +17,283 @@ import { FaPhoneAlt } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 import { CiLocationOn } from "react-icons/ci";
 
-function Contact() {
-  const form = useRef();
+// Lazy load Google Maps for better performance
+const LazyGoogleMap = lazy(() => 
+  Promise.resolve({
+    default: memo(() => (
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3519.251736888909!2d77.6467562!3d12.914163700000001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae15b1f01663c1%3A0x174babce4553003a!2sYogalayaa!5e1!3m2!1sen!2sin!4v1749394149166!5m2!1sen!2sin"
+        width="100%"
+        height="500px"
+        style={{ border: 0 }}
+        allowFullScreen=""
+        loading="lazy"
+        referrerPolicy="no-referrer-when-downgrade"
+        title="Yogalayaa Location Map"
+      />
+    ))
+  })
+);
+
+// Memoized Contact Info Component
+const ContactInfo = memo(() => {
+  const contactData = useMemo(() => ({
+    phone: ['+91 7483987568', '+91 7829997007'],
+    email: 'yogalayaaofficial@gmail.com',
+    address: '1972, 22nd Main Rd, Vanganahalli, 1st Sector, HSR Layout, Bengaluru, Karnataka 560102',
+    socialLinks: [
+      { icon: FaFacebookF, href: '#', label: 'Facebook' },
+      { icon: IoLogoYoutube, href: '#', label: 'YouTube' },
+      { icon: FaInstagram, href: '#', label: 'Instagram' }
+    ]
+  }), []);
+
+  return (
+    <div className="contact-in">
+      <h1>Contact Info</h1>
+      
+      <h2>
+        <FaPhoneAlt /> Phone
+      </h2>
+      {contactData.phone.map((number, index) => (
+        <p key={index}>{number}</p>
+      ))}
+      
+      <h2>
+        <MdEmail /> Email
+      </h2>
+      <p>{contactData.email}</p>
+      
+      <h2>
+        <CiLocationOn /> Address
+      </h2>
+      <p>{contactData.address}</p>
+      
+      <ul>
+        {contactData.socialLinks.map(({ icon: Icon, href, label }, index) => (
+          <li key={index}>
+            <a href={href} aria-label={label}>
+              <Icon />
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+});
+
+// Optimized Form Component
+const ContactForm = memo(() => {
   const [isLoading, setIsLoading] = useState(false);
   const [message, setMessage] = useState("");
+  const [formErrors, setFormErrors] = useState({});
+  const formRef = useRef(null);
 
-  // const sendEmail = (e) => {
-  //   e.preventDefault();
-  //   setIsLoading(true);
-  //   setMessage("");
+  // Memoized validation function
+  const validateForm = useCallback((formData) => {
+    const errors = {};
+    const name = formData.get('name');
+    const email = formData.get('email');
+    const phone = formData.get('phone');
 
-  //   // Replace these with your actual EmailJS credentials from your dashboard
-  //   const serviceId = "service_xxxxxxx"; // Replace with your Service ID
-  //   const templateId = "template_xxxxxxx"; // Replace with your Template ID
-  //   const publicKey = "xxxxxxxxxxxxxxx"; // Replace with your Public Key
+    // Validate name
+    if (!name || name.trim().length < 2) {
+      errors.name = 'Name must be at least 2 characters long';
+    }
 
-  //   // Add additional template parameters
-  //   const templateParams = {
-  //     from_name: form.current.from_name.value,
-  //     from_email: form.current.from_email.value,
-  //     subject: form.current.subject.value,
-  //     message: form.current.message.value,
-  //     to_email: "pamirnayak5@gmail.com", // Your receiving email
-  //     reply_to: form.current.from_email.value // For easy replies
-  //   };
+    // Validate email
+    const emailRegex = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/i;
+    if (!email || !emailRegex.test(email)) {
+      errors.email = 'Please enter a valid email address';
+    }
 
-  //   emailjs
-  //     .send(serviceId, templateId, templateParams, publicKey)
-  //     .then(
-  //       (result) => {
-  //         console.log("SUCCESS!", result.text);
-  //         setMessage("Message sent successfully! We'll get back to you soon.");
-  //         form.current.reset(); // Clear the form
-  //         setIsLoading(false);
-  //       },
-  //       (error) => {
-  //         console.log("FAILED...", error.text);
-  //         setMessage("Failed to send message. Please try again.");
-  //         setIsLoading(false);
-  //       }
-  //     );
-  // };
+    // Validate phone
+    const phoneRegex = /^[0-9+\-\s\(\)]{10,15}$/;
+    if (!phone || !phoneRegex.test(phone)) {
+      errors.phone = 'Please enter a valid phone number (10-15 digits)';
+    }
+
+    return errors;
+  }, []);
+
+  // Optimized form submission
+  const handleSubmit = useCallback(async (e) => {
+    e.preventDefault();
+    
+    startTransition(() => {
+      setIsLoading(true);
+      setMessage("");
+      setFormErrors({});
+    });
+
+    const formData = new FormData(e.target);
+
+    // Validate form
+    const errors = validateForm(formData);
+    if (Object.keys(errors).length > 0) {
+      setFormErrors(errors);
+      setIsLoading(false);
+      setMessage("Please fix the errors below and try again.");
+      return;
+    }
+
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: formData,
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        setMessage("Message sent successfully! We'll get back to you soon.");
+        formRef.current?.reset();
+      } else {
+        throw new Error(data.message || "Form submission failed");
+      }
+    } catch (error) {
+      setMessage("Failed to send message. Please try again.");
+    } finally {
+      setIsLoading(false);
+    }
+  }, [validateForm]);
+
+  // Memoized form fields configuration
+  const formFields = useMemo(() => [
+    {
+      type: 'text',
+      name: 'name',
+      placeholder: 'Full Name *',
+      required: true,
+      minLength: 2,
+      maxLength: 50,
+      error: formErrors.name
+    },
+    {
+      type: 'email',
+      name: 'email',
+      placeholder: 'Email Address *',
+      required: true,
+      pattern: '[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,}$',
+      title: 'Please enter a valid email address',
+      error: formErrors.email
+    },
+    {
+      type: 'tel',
+      name: 'phone',
+      placeholder: 'Contact Number',
+      pattern: '[0-9+\\-\\s\\(\\)]{10,15}',
+      title: 'Please enter a valid phone number (10-15 digits)',
+      error: formErrors.phone
+    },
+    {
+      type: 'text',
+      name: 'custom_subject',
+      placeholder: 'Subject'
+    }
+  ], [formErrors]);
+
+  return (
+    <div className="contact-in">
+      <h1>Send a Message</h1>
+      <form ref={formRef} onSubmit={handleSubmit}>
+        {/* Web3Forms required fields */}
+        <input type="hidden" name="access_key" value="2e13458e-fb95-446d-9a33-62f7beb7e793" />
+        <input type="hidden" name="subject" value="New Enquiry from Yogalayaa Website" />
+        <input type="hidden" name="from_name" value="Yogalayaa Website" />
+        
+        {formFields.map((field) => (
+          <div key={field.name}>
+            <input
+              type={field.type}
+              name={field.name}
+              placeholder={field.placeholder}
+              className={`contact-in-input ${field.error ? 'error' : ''}`}
+              required={field.required}
+              minLength={field.minLength}
+              maxLength={field.maxLength}
+              pattern={field.pattern}
+              title={field.title}
+            />
+            {field.error && <span className="error-text">{field.error}</span>}
+          </div>
+        ))}
+        
+        <textarea
+          name="message"
+          placeholder="Message"
+          className="contact-in-input"
+          rows={5}
+        />
+        
+        <input 
+          type="submit" 
+          value={isLoading ? "Sending..." : "Send"} 
+          className="contact-in-btn"
+          disabled={isLoading}
+        />
+      </form>
+      
+      {message && (
+        <div 
+          className={`message ${message.includes('successfully') ? 'success' : 'error'}`}
+          role="alert"
+          aria-live="polite"
+        >
+          {message}
+        </div>
+      )}
+    </div>
+  );
+});
+
+// Map Loading Component
+const MapLoader = memo(() => (
+  <div 
+    style={{
+      width: '100%',
+      height: '500px',
+      background: 'linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%)',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      color: '#666',
+      fontSize: '16px',
+      borderRadius: '8px'
+    }}
+  >
+    Loading map...
+  </div>
+));
+
+function Contact() {
+  // Memoized header content
+  const headerContent = useMemo(() => ({
+    title: "Get In Touch With Yogalayaa",
+    logo: "./images/lg.png"
+  }), []);
 
   return (
     <>
       <div className="cont">
         <div className="headingc">
-          <h1>Get In Touch With Yogalayaa</h1>
-          <img src="./images/lg.png" alt="" />
+          <h1>{headerContent.title}</h1>
+          <img 
+            src={headerContent.logo} 
+            alt="Yogalayaa Logo"
+            loading="eager"
+            style={{ maxWidth: '100%', height: 'auto' }}
+          />
         </div>
+        
         <div className="contact-wrap">
+          <ContactInfo />
+          <ContactForm />
+          
           <div className="contact-in">
-            <h1>Contact Info</h1>
-            <h2>
-              <FaPhoneAlt /> Phone
-            </h2>
-            <p>+91-7483987568</p>
-            <h2>
-              <MdEmail /> Email
-            </h2>
-            <p>yogalayaaofficial@gmail.com</p>
-            <h2>
-              <CiLocationOn /> Address
-            </h2>
-            <p>1972, 22nd Main Rd, Vanganahalli, 1st Sector, HSR Layout, Bengaluru, Karnataka 560102</p>
-            <ul>
-              <li>
-                <a href="#">
-                  <FaFacebookF />
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  <IoLogoYoutube />
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  <FaInstagram />
-                </a>
-              </li>
-            </ul>
-          </div>
-
-          <div className="contact-in">
-            <h1>Send a Message</h1>
-            <form >
-              <input
-                type="text"
-                placeholder="Full Name"
-                name="from_name"
-                className="contact-in-input"
-                required
-              />
-              <input
-                type="email"
-                placeholder="Email"
-                name="from_email"
-                className="contact-in-input"
-                required
-              />
-              <input
-                type="text"
-                placeholder="Subject"
-                name="subject"
-                className="contact-in-input"
-                required
-              />
-              <textarea
-                name="message"
-                placeholder="Message"
-                className="contact-in-input"
-                required
-              />
-              <input 
-                type="submit" 
-                value={isLoading ? "Sending..." : "Send"} 
-                className="contact-in-btn"
-                disabled={isLoading}
-              />
-            </form>
-            {message && (
-              <div className={`message ${message.includes('successfully') ? 'success' : 'error'}`}>
-                {message}
-              </div>
-            )}
-          </div>
-
-          <div className="contact-in">
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3519.251736888909!2d77.6467562!3d12.914163700000001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae15b1f01663c1%3A0x174babce4553003a!2sYogalayaa!5e1!3m2!1sen!2sin!4v1749394149166!5m2!1sen!2sin"
-              width="100%"
-              height="500px"
-              style={{ border: 0 }}
-              allowFullScreen=""
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-            />
+            <Suspense fallback={<MapLoader />}>
+              <LazyGoogleMap />
+            </Suspense>
           </div>
         </div>
       </div>
@@ -154,4 +301,4 @@ function Contact() {
   );
 }
 
-export default Contact;
+export default memo(Contact);

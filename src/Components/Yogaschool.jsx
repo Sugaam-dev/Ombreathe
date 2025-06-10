@@ -1,11 +1,21 @@
+import React, { useEffect, useState, useMemo, useCallback } from "react";
+import { lazy, Suspense } from "react";
 import "../Styles/Yogaschool.css";
-import { useEffect } from "react";
 import "aos/dist/aos.css";
 import Aos from "aos";
-import Slider from 'react-slick';
+
+// Lazy load Slider component
+const Slider = lazy(() => import("react-slick"));
 
 const Yogaschool = () => {
-  const locationSettings = {
+  const [images, setImages] = useState({
+    logo: null,
+    yogaSchool: null
+  });
+  const [isSliderLoaded, setIsSliderLoaded] = useState(false);
+
+  // Memoized slider settings
+  const locationSettings = useMemo(() => ({
     dots: true,
     infinite: true,
     speed: 300,
@@ -14,24 +24,137 @@ const Yogaschool = () => {
     slidesToShow: 1,
     slidesToScroll: 1,
     fade: false,
-    cssEase: 'ease-in-out',
-    lazyLoad: 'ondemand',
+    cssEase: "ease-in-out",
+    lazyLoad: "ondemand",
     pauseOnHover: true,
     pauseOnFocus: true,
     swipeToSlide: true,
-    touchThreshold: 10
-  };
+    touchThreshold: 10,
+  }), []);
 
+  // Memoized slide content
+  const slideContent = useMemo(() => [
+    {
+      title: "Want To Join The Best Yoga School In Rishikesh, India?",
+      description: "Experience the spiritual birthplace of yoga in Rishikesh, nestled in the foothills of the Himalayas. Our Bali and Rishikesh location offers authentic traditional yoga teachings in the most sacred environment. Join thousands of practitioners who have transformed their lives through our comprehensive yoga teacher training programs in this holy city."
+    },
+    {
+      title: "Discover Yoga Paradise In Bali, Indonesia",
+      description: "Immerse yourself in the tropical serenity of Bali while deepening your yoga practice. Our Bali location combines traditional yoga wisdom with the island's natural beauty and spiritual energy. Experience transformative yoga training surrounded by lush landscapes, ancient temples, and the warm hospitality of Balinese culture."
+    },
+    {
+      title: "Find Inner Peace In The Himalayas",
+      description: "Escape to the majestic Himalayas for the ultimate yoga retreat experience. Our Himalayan location offers pristine mountain air, breathtaking views, and complete tranquility for deep meditation and yoga practice. Connect with nature and yourself in one of the world's most spiritually powerful locations."
+    }
+  ], []);
+
+  // Memoized features data
+  const features = useMemo(() => [
+    {
+      icon: "https://livingyogaschool.com/images/about-icon1.svg",
+      title: "No. 1 Yoga School",
+      description: "Best Yoga School in Bali and Rishikesh, India",
+      delay: 0
+    },
+    {
+      icon: "https://livingyogaschool.com/images/about-icon3.svg",
+      title: "Intense Yoga Teachings",
+      description: "Comprehensive & immersive yoga courses",
+      delay: 100
+    },
+    {
+      icon: "https://livingyogaschool.com/images/about-icon4.svg",
+      title: "Ancient Wisdom",
+      description: "Yoga is the journey into the self",
+      delay: 200
+    },
+    {
+      icon: "https://livingyogaschool.com/images/about-icon2.svg",
+      title: "Traditional Methodology",
+      description: "Natural Healing for body & mind",
+      delay: 300
+    }
+  ], []);
+
+  // Load images dynamically
   useEffect(() => {
-    Aos.init({ 
+    const loadImages = async () => {
+      try {
+        // Use actual image imports or URLs as needed
+        setImages({
+          logo: "./images/lg.png",
+          yogaSchool: "./images/yoga-school.webp"
+        });
+      } catch (error) {
+        console.error("Error loading images:", error);
+      }
+    };
+
+    loadImages();
+  }, []);
+
+  // Initialize AOS with cleanup
+  useEffect(() => {
+    Aos.init({
       duration: 800,
       offset: 100,
-      easing: 'ease-out',
+      easing: "ease-out",
       once: true,
       mirror: false,
-      anchorPlacement: 'top-bottom'
+      anchorPlacement: "top-bottom",
     });
+
+    return () => {
+      Aos.refresh();
+    };
   }, []);
+
+  // Intersection Observer for lazy loading slider
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && !isSliderLoaded) {
+            setIsSliderLoaded(true);
+          }
+        });
+      },
+      { 
+        threshold: 0.1,
+        rootMargin: '50px 0px'
+      }
+    );
+
+    const sliderElement = document.querySelector('.location-slider');
+    if (sliderElement) {
+      observer.observe(sliderElement);
+    }
+
+    return () => {
+      if (sliderElement) {
+        observer.unobserve(sliderElement);
+      }
+    };
+  }, [isSliderLoaded]);
+
+  // Memoized slider loading component
+  const SliderLoader = useCallback(() => (
+    <div className="slider-loading" style={{ 
+      height: '200px', 
+      display: 'flex', 
+      alignItems: 'center', 
+      justifyContent: 'center',
+      backgroundColor: '#f8f9fa',
+      borderRadius: '8px'
+    }}>
+      <div className="text-center">
+        <div className="spinner-border text-primary mb-2" role="status">
+          <span className="visually-hidden">Loading...</span>
+        </div>
+        <p className="text-muted small">Loading locations...</p>
+      </div>
+    </div>
+  ), []);
 
   return (
     <>
@@ -39,106 +162,101 @@ const Yogaschool = () => {
         <div className="yogaa">
           <div className="heading">
             <h1>Best Yoga School In India and Indonesia</h1>
-            <img src="./images/lg.png" alt="logo" />
+            {images.logo && (
+              <img 
+                src={images.logo} 
+                alt="Yogalayaa Logo" 
+                loading="lazy"
+                style={{ maxWidth: '100%', height: 'auto' }}
+              />
+            )}
           </div>
 
-          {/* Location Slider */}
+          {/* Location Slider with Lazy Loading */}
           <div className="location-slider">
-            <Slider {...locationSettings}>
-              <div className="location-slide">
-                <div className="location-content">
-                  <h3>Want To Join The Best Yoga School In Rishikesh, India?</h3>
-                  <p>
-                    Experience the spiritual birthplace of yoga in Rishikesh, nestled in the foothills of the Himalayas. Our Bali and Rishikesh location offers authentic traditional yoga teachings in the most sacred environment. Join thousands of practitioners who have transformed their lives through our comprehensive yoga teacher training programs in this holy city.
-                  </p>
-                </div>
-              </div>
-              
-              <div className="location-slide">
-                <div className="location-content">
-                  <h3>Discover Yoga Paradise In Bali, Indonesia</h3>
-                  <p>
-                    Immerse yourself in the tropical serenity of Bali while deepening your yoga practice. Our Bali location combines traditional yoga wisdom with the island's natural beauty and spiritual energy. Experience transformative yoga training surrounded by lush landscapes, ancient temples, and the warm hospitality of Balinese culture.
-                  </p>
-                </div>
-              </div>
-              
-              <div className="location-slide">
-                <div className="location-content">
-                  <h3>Find Inner Peace In The Himalayas</h3>
-                  <p>
-                    Escape to the majestic Himalayas for the ultimate yoga retreat experience. Our Himalayan location offers pristine mountain air, breathtaking views, and complete tranquility for deep meditation and yoga practice. Connect with nature and yourself in one of the world's most spiritually powerful locations.
-                  </p>
-                </div>
-              </div>
-            </Slider>
+            {isSliderLoaded ? (
+              <Suspense fallback={<SliderLoader />}>
+                <Slider {...locationSettings}>
+                  {slideContent.map((slide, index) => (
+                    <div key={index} className="location-slide">
+                      <div className="location-content">
+                        <h3>{slide.title}</h3>
+                        <p>{slide.description}</p>
+                      </div>
+                    </div>
+                  ))}
+                </Slider>
+              </Suspense>
+            ) : (
+              <SliderLoader />
+            )}
           </div>
 
           <div className="box">
-            <div className="box1" data-aos="fade-right" data-aos-offset="50" data-aos-duration="600">
-              <img src="./images/yoga-school.webp" alt="Yoga School" />
+            <div
+              className="box1"
+              data-aos="fade-right"
+              data-aos-offset="50"
+              data-aos-duration="600"
+            >
+              {images.yogaSchool && (
+                <img 
+                  src={images.yogaSchool} 
+                  alt="Yoga School" 
+                  loading="lazy"
+                  style={{ maxWidth: '100%', height: 'auto' }}
+                />
+              )}
             </div>
-            <div className="box2" data-aos="fade-left" data-aos-offset="50" data-aos-duration="600">
+            <div
+              className="box2"
+              data-aos="fade-left"
+              data-aos-offset="50"
+              data-aos-duration="600"
+            >
               <p>
-                All yoga courses are conducted by the skilled yoga teachers.
-                Living Yoga School is best known for its unique yoga courses in
-                Bali and Rishikesh. Our school is accredited by Yoga Alliance and offers
-                immersive and comprehensive courses. We help you to develop a
-                strong foundation in yoga. Living Yoga School in India is
-                located in a spiritual and serene environment in Bali and Rishikesh.
-                Whether you want to become a teacher, instructor, or deepen your
-                yoga practice, we will help you achieve your goal. <br /> <br /> We prepare
-                you to develop your unique teaching method for self-study and
-                growth as a teacher. That's why we are one of the top yoga
-                schools in India. Our yoga training focuses on replacing your
-                bad habits and routines with a positive and yogic life. We bring
-                grace and spirituality into practice to celebrate the qualities
-                and diversities and seek greater connection in nature. <br /> <br /> We
-                provide high-quality education and you are invited to learn yoga
-                in a nurturing and safe environment. From the birthplace of
-                Yoga, we offer several online classes, retreats, and yoga
-                training in Bali and Rishikesh. Consider Living Yoga School for any yoga
-                course. We are an International Yoga Alliance-recognized yoga
-                school in Bali and Rishikesh, India to offer Yoga Alliance-certified
-                courses in India.
+                At Yogalayaa, all courses are led by skilled and certified yoga
+                teachers dedicated to delivering authentic, immersive, and Yoga
+                Alliance-accredited programs. Whether you're beginning your
+                journey or aiming to become a certified instructor, our
+                comprehensive training helps you build a strong, mindful
+                foundation in yoga. <br/> <br/> With serene campuses in both Bali and
+                Rishikesh, we offer an inspiring environment that nurtures
+                self-growth, discipline, and spiritual connection. At Yogalayaa,
+                we guide you to develop your own teaching style, deepen your
+                practice, and embrace a holistic yogic lifestyle. <br/> <br/> Our courses
+                are designed to transform habits, enhance awareness, and lead
+                you toward a life of balance, clarity, and inner peace.<br/> <br/> From
+                in-person teacher training and retreats to online programs,
+                Yogalayaa offers a global platform to learn, grow, and share
+                yoga with the world — all rooted in the spiritual essence of
+                traditional Indian yoga. <br/> <br/> Join us at Yogalayaa and step into your
+                fullest potential as a student, seeker, or teacher of yoga.
               </p>
               <div className="boxcontent">
-                <div className="item1" data-aos="zoom-in" data-aos-delay="0" data-aos-offset="30" data-aos-duration="500">
-                  <div className="itemlogo">
-                    <img src="https://livingyogaschool.com/images/about-icon1.svg" alt="No. 1 Yoga School" />
+                {features.map((feature, index) => (
+                  <div
+                    key={index}
+                    className="item1"
+                    data-aos="zoom-in"
+                    data-aos-delay={feature.delay}
+                    data-aos-offset="30"
+                    data-aos-duration="500"
+                  >
+                    <div className="itemlogo">
+                      <img
+                        src={feature.icon}
+                        alt={feature.title}
+                        loading="lazy"
+                        style={{ maxWidth: '100%', height: 'auto' }}
+                      />
+                    </div>
+                    <div className="item2">
+                      <h3>{feature.title}</h3>
+                      <p>{feature.description}</p>
+                    </div>
                   </div>
-                  <div className="item2">
-                    <h3>No. 1 Yoga School</h3>
-                    <p>Best Yoga School in Bali and Rishikesh, India</p>
-                  </div>
-                </div>
-                <div className="item1" data-aos="zoom-in" data-aos-delay="100" data-aos-offset="30" data-aos-duration="500">
-                  <div className="itemlogo">
-                    <img src="https://livingyogaschool.com/images/about-icon3.svg" alt="Intense Yoga Teachings" />
-                  </div>
-                  <div className="item2">
-                    <h3>Intense Yoga Teachings</h3>
-                    <p>Comprehensive & immersive yoga courses</p>
-                  </div>
-                </div>
-                <div className="item1" data-aos="zoom-in" data-aos-delay="200" data-aos-offset="30" data-aos-duration="500">
-                  <div className="itemlogo">
-                    <img src="https://livingyogaschool.com/images/about-icon4.svg" alt="Ancient Wisdom" />
-                  </div>
-                  <div className="item2">
-                    <h3>Ancient Wisdom</h3>
-                    <p>Yoga is the journey into the self</p>
-                  </div>
-                </div>
-                <div className="item1" data-aos="zoom-in" data-aos-delay="300" data-aos-offset="30" data-aos-duration="500">
-                  <div className="itemlogo">
-                    <img src="https://livingyogaschool.com/images/about-icon2.svg" alt="Traditional Methodology" />
-                  </div>
-                  <div className="item2">
-                    <h3>Traditional Methodology</h3>
-                    <p>Natural Healing for body & mind</p>
-                  </div>
-                </div>
+                ))}
               </div>
             </div>
           </div>
@@ -148,4 +266,4 @@ const Yogaschool = () => {
   );
 };
 
-export default Yogaschool;
+export default React.memo(Yogaschool);
