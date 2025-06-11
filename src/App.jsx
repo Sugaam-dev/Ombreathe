@@ -16,6 +16,12 @@ import Service300 from './Components/Services/Hours300/Service300';
 import Service100 from './Components/Services/Hours100/Service100';
 import Retreats7 from './Components/Services/Retreats7/Retreats7';
 import Retreats7Medi from './Components/Services/Retreats7Med/Retreats7Medi';
+import AboutUs_page from './Components/AboutUs/AboutUs_page';
+import MembershipProgram from './Components/Services/Membership/MembershipProgram';
+import shaktiSadhanaData from './Components/Services/Membership/data/shaktiSadhanaData';
+
+
+
 
 // Import individual service components (you'll need to create these)
 // import TeacherTraining from './Components/Services/TeacherTraining/TeacherTraining';
@@ -33,7 +39,9 @@ function App() {
       <Routes>
         <Route path="/" element={<Layout/>}>
           <Route index element={<Home />} />
-          <Route path="about" element={<About />} />
+          {/* <Route path="about" element={<About />} /> */}
+            <Route path="about" element={<AboutUs_page/>} />
+
           <Route path="contact" element={<Cont />} />
           <Route path="services" element={<Servicess />} />
           <Route path="package1" element={<Package1 />} />
@@ -55,6 +63,9 @@ function App() {
           <Route path="services/retreats" element={<Service1 />} />
           <Route path="services/events" element={<Service1 />} />
           <Route path="services/advanced-online-courses" element={<Service1 />} />
+             {/* <Route path="shiv" element={<MembershipProgram data={shaktiSadhanaData}/>} /> */}
+        
+       
          
         </Route>
       </Routes>
