@@ -105,6 +105,7 @@ html, body {
   align-items: center;
   justify-content: center;
   overflow: hidden;
+      height: 30px;
 }
 
 .type span {
