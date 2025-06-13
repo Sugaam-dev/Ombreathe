@@ -136,7 +136,7 @@ const MembershipProgram = ({ data }) => {
 
                   <div className="col-12 col-lg-6">
                     <div className="mp-certification-section">
-                      <div className="mp-cert-badges">
+                      {/* <div className="mp-cert-badges">
                         {data.certifications.map((cert, index) => (
                           <div key={index} className="mp-cert-circle">
                             <img 
@@ -146,7 +146,7 @@ const MembershipProgram = ({ data }) => {
                             />
                           </div>
                         ))}
-                      </div>
+                      </div> */}
 
                       <div className="mp-cert-text">
                         {data.completion.certificationText.map((text, index) => (

@@ -114,7 +114,7 @@ const Servicess = () => {
       id: 5,
       imageKey: 'temple',
       title: "Membership - Temple Yoga Program",
-      route: "/services/temple-yoga",
+      route: "/programs/Membership-Temple-Yoga-Program",
       features: [
         "Unlimited access to temple yoga sessions",
         "Spiritual guidance and meditation classes",

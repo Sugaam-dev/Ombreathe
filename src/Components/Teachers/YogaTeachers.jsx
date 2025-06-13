@@ -35,10 +35,10 @@ const YogaTeachers = () => {
       experience: "10+ Years",
       priority: 1,
       socials: {
-        instagram: "https://instagram.com/yogiranjan",
-        facebook: "https://facebook.com/yogiranjan",
-        twitter: "https://twitter.com/yogiranjan",
-        youtube: "https://youtube.com/yogiranjan"
+        instagram: "https://www.instagram.com/rockymohakud?igsh=Mm1lYnN6amcwdnQx",
+        facebook: "https://www.facebook.com/share/1AmTEw7K2b/",
+        twitter: "https://x.com/Yogalayaa_",
+        youtube: "https://www.youtube.com/@yogalayaa"
       }
     },
     {
@@ -247,6 +247,7 @@ const YogaTeachers = () => {
           {displayedTeachers.map((teacher, index) => {
             const imageLoadState = imageLoadStates[teacher.id] || 'loading';
             const imageSrc = imageMap[teacher.imageKey];
+            const isFirstCard = index === 0; // Check if this is the first card
             
             return (
               <div key={teacher.id} className={`teacher-card ${showAll && index >= 3 ? 'fade-in' : ''}`}>
@@ -289,7 +290,8 @@ const YogaTeachers = () => {
                   <p className="teacher-title">{teacher.title}</p>
                   <p className="teacher-description">{teacher.description}</p>
                   
-                  <SocialLinks socials={teacher.socials} />
+                  {/* Only show social links on the first card */}
+                  {isFirstCard && <SocialLinks socials={teacher.socials} />}
                   
                   <button 
                     className="contact-btn"

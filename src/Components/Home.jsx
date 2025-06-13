@@ -37,6 +37,7 @@ import Transformation from "./Services/Service1/Transformation"
 import TransTeach from "./Services/Service1/TransTeach"
 import Service1 from "./Services/Service1/Service1"
 import Gallery from "./HomeCredentials/Gallery"
+import Navbar from './Header/Navbar'
 
 // Lazy load only the components that are actually used
 const WhyChooseLazy = lazy(() => import("./HomeCredentials/WhyChoose"))

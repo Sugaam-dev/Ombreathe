@@ -19,6 +19,10 @@ import Retreats7Medi from './Components/Services/Retreats7Med/Retreats7Medi';
 import AboutUs_page from './Components/AboutUs/AboutUs_page';
 import MembershipProgram from './Components/Services/Membership/MembershipProgram';
 import shaktiSadhanaData from './Components/Services/Membership/data/shaktiSadhanaData';
+import CardsMembership from './Components/Services/Membership/CardsMembership';
+import shivShaktiSadhanaData from './Components/Services/Membership/data/shivShaktiSadhanaData';
+import saptaRishiSadhanaData from './Components/Services/Membership/data/saptaRishiSadhanaData';
+import pashuPatayaaData from './Components/Services/Membership/data/pashuPatayaaData';
 
 
 
@@ -63,9 +67,13 @@ function App() {
           <Route path="services/retreats" element={<Service1 />} />
           <Route path="services/events" element={<Service1 />} />
           <Route path="services/advanced-online-courses" element={<Service1 />} />
-             {/* <Route path="shiv" element={<MembershipProgram data={shaktiSadhanaData}/>} /> */}
+             
+             <Route path="programs/Membership-Temple-Yoga-Program" element={<CardsMembership/>} />
         
-       
+       <Route path="programs/shakti-sadhana" element={<MembershipProgram data={shaktiSadhanaData}/>} />
+       <Route path="programs/shiv-shakti-sadhana" element={<MembershipProgram data={shivShaktiSadhanaData}/>} />
+       <Route path="programs/sapta-rishi-sadhana" element={<MembershipProgram data={saptaRishiSadhanaData}/>} />
+       <Route path="programs/pashu-patayaa-sadhana" element={<MembershipProgram data={pashuPatayaaData}/>} />
          
         </Route>
       </Routes>

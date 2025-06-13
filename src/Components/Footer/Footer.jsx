@@ -110,7 +110,7 @@ const OptimizedImage = memo(({ imageKey, alt, style, title, className }) => {
 const SocialLinks = memo(() => {
   const socialData = useMemo(() => [
     {
-      href: "https://facebook.com/yogalayaa",
+      href: "https://www.facebook.com/profile.php?id=100090950655442",
       icon: FaFacebookF,
       label: "Facebook"
     },
@@ -439,6 +439,22 @@ const Footer = () => {
 
       {/* Custom Styles */}
       <style jsx>{`
+
+
+
+
+  .social-links h6,
+  .px-lg-3 h6,
+  .ps-lg-4 h6,
+  .certifications h6 {
+    color: #FF9933 !important;
+  }
+
+  /* Optional: Ensure icons in ContactInfo use white instead of blue */
+  .contact-info svg {
+    color: #FF9933 !important;
+  }
+
         .footer-description {
           color: #000 !important;
           font-weight: 500;
@@ -473,12 +489,12 @@ const Footer = () => {
           height: 2px;
           bottom: -2px;
           left: 0;
-          background: linear-gradient(90deg, #42A5F6, #2E8AD4);
+          background: linear-gradient(rgb(255, 153, 51));
           transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
         
         .footer-link:hover {
-          color: #42A5F6 !important;
+          color: #ffffff !important;
           transform: translateX(5px);
         }
         

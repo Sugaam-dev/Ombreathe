@@ -23,6 +23,7 @@
 .yogaa .heading h1 {
     font-size: clamp(1.5rem, 4vw, 2.5rem);
     /* margin-bottom: 1rem; */
+    margin-top: 30px;
     color: #333;
     line-height: 1.2;
 }

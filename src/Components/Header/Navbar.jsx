@@ -1,560 +1,535 @@
-import React, { 
-  useState, 
-  useEffect, 
-  useCallback, 
-  useMemo, 
-  memo,
-  useRef
-} from 'react';
-import { NavLink, useNavigate } from "react-router-dom";
-import logo from '../../images/yogalayaaLogo.png';
-
-// Memoized Navigation Item Component
-const NavigationItem = memo(({ to, label, onClick, className = "nav-link" }) => (
-  <li className="nav-item">
-    <NavLink 
-      to={to}
-      className={className}
-      onClick={onClick}
-      end={to === '/'}
-    >
-      {label}
-    </NavLink>
-  </li>
-));
-
-// Memoized Book Appointment Button
-const BookAppointmentButton = memo(({ onClick, className = "book-appointment-btn", children = "Book Appointment" }) => (
-  <button 
-    className={className} 
-    onClick={onClick}
-    type="button"
-    aria-label="Book yoga appointment"
-  >
-    {children}
-  </button>
-));
-
-// Optimized Logo Component
-const NavbarLogo = memo(() => (
-  <a className="navbar-brand" href="/">
-    <img 
-      src={logo}
-      alt="Yogalayaa Yoga School" 
-      className="navbar-logo"
-      loading="eager"
-      width="auto"
-      height="80"
-    />
-  </a>
-));
-
-// Mobile Menu Toggle Button
-const MobileToggle = memo(({ isMenuOpen, onToggle }) => (
-  <button 
-    className="navbar-toggler d-lg-none"
-    type="button"
-    onClick={onToggle}
-    aria-expanded={isMenuOpen}
-    aria-label="Toggle navigation menu"
-  >
-    <span className="toggler-icon">☰</span>
-  </button>
-));
-
-// Mobile Close Button
-const MobileCloseButton = memo(({ onClose }) => (
-  <div className="close-menu d-lg-none" onClick={onClose}>
-    <span>✕</span>
-  </div>
-));
-
+import React, { useState, useEffect } from 'react';
+import logo from '../../images/logo4.png'
 const Navbar = () => {
-  const [scrolled, setScrolled] = useState(false);
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const navigate = useNavigate();
-  const scrollTimeoutRef = useRef(null);
+  const [isNavCollapsed, setIsNavCollapsed] = useState(true);
+  const [activeLink, setActiveLink] = useState('');
+  const [dropdownOpen, setDropdownOpen] = useState({});
 
-  // Memoized navigation items
-  const navigationItems = useMemo(() => [
-    { to: "/", label: "Home" },
-    { to: "/about", label: "About" },
-    { to: "/service", label: "Programs" },
-    { to: "/contact", label: "Contact" }
-  ], []);
-
-  // Optimized scroll handler with RAF and throttling
-  const handleScroll = useCallback(() => {
-    if (scrollTimeoutRef.current) {
-      cancelAnimationFrame(scrollTimeoutRef.current);
-    }
-    
-    scrollTimeoutRef.current = requestAnimationFrame(() => {
-      const isScrolled = window.scrollY > 10;
-      setScrolled(prevScrolled => {
-        return prevScrolled !== isScrolled ? isScrolled : prevScrolled;
-      });
-    });
-  }, []);
-
-  // Optimized scroll effect
+  // Set active link based on current URL on component mount
   useEffect(() => {
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-      if (scrollTimeoutRef.current) {
-        cancelAnimationFrame(scrollTimeoutRef.current);
-      }
-    };
-  }, [handleScroll]);
-
-  // Memoized navigation handler
-  const contact = useCallback(() => {
-    navigate('/contact');
-  }, [navigate]);
-
-  // Memoized mobile booking handler
-  const handleMobileBooking = useCallback(() => {
-    contact();
-    setIsMenuOpen(false);
-  }, [contact]);
-
-  // Memoized menu toggle
-  const toggleMenu = useCallback(() => {
-    setIsMenuOpen(prev => !prev);
-  }, []);
-
-  // Memoized close menu handler
-  const closeMenu = useCallback(() => {
-    setIsMenuOpen(false);
-  }, []);
-
-  // Memoized navbar classes
-  const navbarClasses = useMemo(() => 
-    `navbar navbar-expand-lg custom-navbar ${scrolled ? 'navbar-scrolled' : ''}`,
-    [scrolled]
-  );
-
-  // Memoized collapse classes
-  const collapseClasses = useMemo(() => 
-    `navbar-collapse ${isMenuOpen ? 'show' : ''}`,
-    [isMenuOpen]
-  );
-
-  // Close menu on escape key
-  useEffect(() => {
-    const handleEscape = (e) => {
-      if (e.key === 'Escape' && isMenuOpen) {
-        setIsMenuOpen(false);
-      }
-    };
-
-    if (isMenuOpen) {
-      document.addEventListener('keydown', handleEscape);
-      document.body.style.overflow = 'hidden'; // Prevent background scroll
+    const currentPath = window.location.pathname;
+    if (currentPath === '/') {
+      setActiveLink('home');
+    } else if (currentPath === '/about') {
+      setActiveLink('about');
+    } else if (currentPath === '/contact') {
+      setActiveLink('contact');
+    } else if (currentPath.includes('/web-development') || 
+               currentPath.includes('/mobile-development') || 
+               currentPath.includes('/data-science') || 
+               currentPath.includes('/cybersecurity') || 
+               currentPath.includes('/cloud-computing') || 
+               currentPath.includes('/all-programs')) {
+      setActiveLink('programs');
     } else {
-      document.body.style.overflow = '';
+      setActiveLink('');
     }
+  }, []);
 
-    return () => {
-      document.removeEventListener('keydown', handleEscape);
-      document.body.style.overflow = '';
-    };
-  }, [isMenuOpen]);
+  const handleNavCollapse = () => setIsNavCollapsed(!isNavCollapsed);
 
-  // Performance monitoring
+  const handleLinkClick = (linkName) => {
+    setActiveLink(linkName);
+    setDropdownOpen({}); // Close all dropdowns when clicking regular links
+    if (window.innerWidth < 992) {
+      setIsNavCollapsed(true); // Close mobile menu for regular links
+    }
+    // Let the browser handle navigation naturally - don't prevent default
+  };
+
+  const toggleDropdown = (dropdownName, event) => {
+    event.preventDefault();
+    event.stopPropagation();
+    
+    setDropdownOpen(prev => {
+      const newState = {};
+      // Close all other dropdowns
+      Object.keys(prev).forEach(key => {
+        newState[key] = false;
+      });
+      // Toggle the clicked dropdown
+      newState[dropdownName] = !prev[dropdownName];
+      return newState;
+    });
+    
+    setActiveLink(dropdownName);
+  };
+
+  const handleDropdownHover = (dropdownName, isHovering) => {
+    // Only handle hover on larger screens
+    if (window.innerWidth >= 992) {
+      if (isHovering) {
+        setDropdownOpen(prev => ({
+          ...prev,
+          [dropdownName]: true
+        }));
+      } else {
+        // Small delay before closing to allow moving to dropdown
+        setTimeout(() => {
+          setDropdownOpen(prev => ({
+            ...prev,
+            [dropdownName]: false
+          }));
+        }, 300); // Increased delay for better UX
+      }
+    }
+  };
+
+  // Close dropdowns when clicking outside
   useEffect(() => {
-    if (process.env.NODE_ENV === 'development') {
-      console.log('Navbar: Component optimized with memoization and RAF scroll handling');
-    }
+    const handleClickOutside = (event) => {
+      if (!event.target.closest('.dropdown')) {
+        setDropdownOpen({});
+      }
+    };
+    document.addEventListener('click', handleClickOutside);
+    return () => document.removeEventListener('click', handleClickOutside);
   }, []);
 
   return (
     <>
-      {/* Optimized Styles with CSS-in-JS */}
+      {/* Bootstrap CSS */}
+      <link 
+        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" 
+        rel="stylesheet" 
+      />
+      
+      <nav className="navbar navbar-expand-lg navbar-light premium-navbar shadow-lg fixed-top">
+        <div className="container">
+          {/* Logo */}
+          <a className="navbar-brand logo-brand" href="/" onClick={() => handleLinkClick('home')}>
+            <div className="logo-container">
+              <img 
+                src={logo}
+                alt="Logo" 
+                className="logo-image"
+              />
+            </div>
+          </a>
+
+          {/* Mobile toggle button */}
+          <button 
+            className="navbar-toggler custom-toggler" 
+            type="button" 
+            onClick={handleNavCollapse}
+            aria-controls="navbarNav" 
+            aria-expanded={!isNavCollapsed}
+            aria-label="Toggle navigation"
+          >
+            <span className="navbar-toggler-icon"></span>
+          </button>
+
+          {/* Navigation menu */}
+          <div className={`${isNavCollapsed ? 'collapse' : ''} navbar-collapse`} id="navbarNav">
+            <ul className="navbar-nav ms-auto">
+              {/* Home */}
+              <li className="nav-item">
+                <a 
+                  className={`nav-link premium-link ${activeLink === 'home' ? 'active' : ''}`} 
+                  href="/"
+                  onClick={() => handleLinkClick('home')}
+                >
+                  Home
+                  <span className="link-underline"></span>
+                </a>
+              </li>
+
+              {/* About */}
+              <li className="nav-item">
+                <a 
+                  className={`nav-link premium-link ${activeLink === 'about' ? 'active' : ''}`} 
+                  href="/about"
+                  onClick={() => handleLinkClick('about')}
+                >
+                  About
+                  <span className="link-underline"></span>
+                </a>
+              </li>
+
+              {/* Programs Dropdown */}
+              <li className="nav-item dropdown dropdown-hover-container"
+                  onMouseEnter={() => handleDropdownHover('programs', true)}
+                  onMouseLeave={() => handleDropdownHover('programs', false)}>
+                <a 
+                  className={`nav-link premium-link dropdown-toggle-custom ${activeLink === 'programs' ? 'active' : ''}`}
+                  href="#" 
+                  role="button" 
+                  onClick={(e) => toggleDropdown('programs', e)}
+                >
+                  Programs
+                  <span className={`dropdown-arrow ${dropdownOpen.programs ? 'rotated' : ''}`}>▼</span>
+                  <span className="link-underline"></span>
+                </a>
+                
+                {/* Invisible bridge for smooth hover transition */}
+                <div className="dropdown-bridge"></div>
+                
+                {dropdownOpen.programs && (
+                  <div className="dropdown-menu-custom premium-dropdown show">
+                    <a className="dropdown-item-custom premium-dropdown-item" href="/programs/Membership-Temple-Yoga-Program">
+                      Membership Programs
+                    </a>
+                   
+                    <hr className="dropdown-divider-custom" />
+                    <a className="dropdown-item-custom premium-dropdown-item" href="/service">
+                      View All Programs
+                    </a>
+                  </div>
+                )}
+              </li>
+
+              {/* Contact */}
+              <li className="nav-item">
+                <a 
+                  className={`nav-link premium-link ${activeLink === 'contact' ? 'active' : ''}`} 
+                  href="/contact"
+                  onClick={() => handleLinkClick('contact')}
+                >
+                  Contact
+                  <span className="link-underline"></span>
+                </a>
+              </li>
+
+              {/* Book Appointment Button */}
+              <li className="nav-item ms-3">
+                <a className="btn book-appointment-btn" href="/contact">
+                  Book Appointment
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+
       <style jsx>{`
-        /* Global Styles */
-        body {
-          padding-top: 80px !important;
-          transition: padding-top 0.3s ease;
+        /* Premium Navbar Styles */
+        .premium-navbar {
+          background: white !important;
+          backdrop-filter: blur(20px);
+          border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+          transition: all 0.3s ease;
         }
 
-        /* Custom Navbar Styles */
-        .custom-navbar {
-          position: fixed;
-          top: 0;
+        /* Body padding to account for fixed navbar */
+        body {
+          padding-top: 80px;
+        }
+
+        /* Logo Styles */
+        .logo-brand {
+          text-decoration: none !important;
+          transition: all 0.3s ease;
+        }
+
+        .logo-container {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+        }
+
+        .logo-image {
+          height: 75px;
+          width: auto;
+          transition: all 0.3s ease;
+        }
+
+        .logo-brand:hover .logo-image {
+          transform: scale(1.05);
+          filter: brightness(1.1);
+        }
+
+        /* Premium Navigation Links */
+        .premium-link {
+          position: relative;
+          padding: 0.8rem 1.2rem !important;
+          color: #000 !important;
+          font-weight: 500;
+          transition: all 0.3s ease;
+          overflow: hidden;
+          text-decoration: none;
+          font-size:18px;
+        }
+
+        .premium-link:hover {
+          color: #007bff !important;
+          transform: translateY(-2px);
+          text-shadow: 0 0 10px rgba(0, 123, 255, 0.5);
+          filter: drop-shadow(0 0 5px rgba(0, 123, 255, 0.3));
+        }
+
+        /* Active Link State */
+        .premium-link.active {
+          color: #007bff !important;
+          text-shadow: 0 0 10px rgba(0, 123, 255, 0.5);
+          filter: drop-shadow(0 0 5px rgba(0, 123, 255, 0.3));
+        }
+
+        .premium-link.active .link-underline {
+          width: 100%;
+        }
+
+        /* Animated Underline Effect */
+        .link-underline {
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          width: 0;
+          height: 3px;
+          background: linear-gradient(90deg, #007bff, #0056b3);
+          transition: width 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+          border-radius: 2px;
+          box-shadow: 0 0 8px rgba(0, 123, 255, 0.4);
+        }
+
+        .premium-link:hover .link-underline {
+          width: 100%;
+        }
+
+        /* Dropdown Positioning and Hover Container */
+        .dropdown {
+          position: relative;
+        }
+
+        .dropdown-hover-container {
+          position: relative;
+        }
+
+        /* Invisible bridge between dropdown trigger and menu */
+        .dropdown-bridge {
+          position: absolute;
+          top: 100%;
           left: 0;
           right: 0;
+          height: 10px;
+          background: transparent;
+          z-index: 999;
+        }
+
+        /* Dropdown Arrow Animation */
+        .dropdown-arrow {
+          transition: transform 0.3s ease;
+          font-size: 0.8rem;
+          margin-left: 0.5rem;
+          display: inline-block;
+          color: #000;
+        }
+
+        .premium-link:hover .dropdown-arrow {
+          color: #007bff;
+          text-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+        }
+
+        .premium-link.active .dropdown-arrow {
+          color: #007bff;
+          text-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+        }
+
+        .dropdown-arrow.rotated {
+          transform: rotate(180deg);
+        }
+
+        /* Custom Dropdown Menu */
+        .dropdown-menu-custom {
+          position: absolute;
+          top: calc(100% + 10px); /* Account for bridge height */
+          left: 0;
+          background: rgba(255, 255, 255, 0.95);
+          backdrop-filter: blur(20px);
+          border: 1px solid rgba(255, 255, 255, 0.2);
+          border-radius: 12px;
+          box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+          padding: 0.5rem 0;
+          min-width: 220px;
           z-index: 1000;
-          background-color: white;
-          box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-          transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-          min-height: 80px;
-          will-change: background-color, box-shadow;
-          backface-visibility: hidden;
-          transform: translateZ(0);
+          animation: dropdownFadeIn 0.3s ease;
         }
 
-        .custom-navbar.navbar-scrolled {
-          background-color: rgba(255, 255, 255, 0.95);
-          backdrop-filter: blur(12px);
-          box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+        @keyframes dropdownFadeIn {
+          from {
+            opacity: 0;
+            transform: translateY(-10px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
         }
 
-        .custom-navbar .navbar-brand {
-          padding: 0;
-        }
-
-        .navbar-logo {
-          height: 80px;
-          width: auto;
-          cursor: pointer;
-          transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-          will-change: transform;
-        }
-
-        .navbar-logo:hover {
-          transform: scale(1.05) translateZ(0);
-        }
-
-        /* Desktop Navigation */
-        .navbar-nav .nav-link {
-          color: #374151 !important;
+        /* Custom Dropdown Items - Removed hover background */
+        .dropdown-item-custom {
+          display: block;
+          padding: 0.75rem 1.5rem;
+          color: #333;
           font-weight: 500;
-          font-size: 1.2rem;
-          padding: 0.5rem 1.25rem !important;
-          transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+          text-decoration: none;
+          transition: all 0.3s ease;
+          border-radius: 8px;
+          margin: 0 0.5rem;
           position: relative;
-          border-bottom: 2px solid transparent;
-          margin: 0 0.25rem;
-          will-change: color, transform;
+          overflow: hidden;
         }
 
-        .navbar-nav .nav-link:hover {
-          color: #4F46E5 !important;
-          transform: translateY(-1px);
+        .dropdown-item-custom:hover {
+          color: #007bff; /* Only change color, no background */
+          transform: translateX(5px);
+          text-decoration: none;
+          text-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
         }
 
-        .navbar-nav .nav-link::after {
+        .dropdown-item-custom::before {
           content: '';
           position: absolute;
-          bottom: -2px;
-          left: 50%;
-          transform: translateX(-50%);
+          left: 0;
+          top: 0;
           width: 0;
-          height: 2px;
-          background-color: #4F46E5;
-          transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+          height: 100%;
+          background: linear-gradient(90deg, #007bff, #0056b3);
+          transition: width 0.3s ease;
+          z-index: -1;
+          box-shadow: 0 0 10px rgba(0, 123, 255, 0.4);
         }
 
-        .navbar-nav .nav-link:hover::after {
-          width: calc(100% - 2.5rem);
+        .dropdown-item-custom:hover::before {
+          width: 4px;
         }
 
-        .navbar-nav .nav-link.active {
-          color: #4F46E5 !important;
-          font-weight: 600;
-        }
-
-        .navbar-nav .nav-link.active::after {
-          width: calc(100% - 2.5rem);
+        /* Custom Dropdown Divider */
+        .dropdown-divider-custom {
+          height: 1px;
+          margin: 0.5rem 1rem;
+          background: rgba(0, 0, 0, 0.1);
+          border: 0;
         }
 
         /* Book Appointment Button */
         .book-appointment-btn {
-          background: linear-gradient(135deg, #4F46E5 0%, #7C3AED 100%);
-          color: white;
-          border: none;
-          padding: 12px 24px;
-          border-radius: 50px;
-          font-size: 1rem;
+          background: linear-gradient(135deg, #ff6b6b, #ff8e8e) !important;
+          color: white !important;
+          border: none !important;
+          padding: 0.6rem 1.5rem !important;
+          border-radius: 25px !important;
           font-weight: 600;
-          cursor: pointer;
-          transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-          box-shadow: 0 4px 15px rgba(79, 70, 229, 0.3);
-          position: relative;
-          overflow: hidden;
-          animation: pulse-glow 3s infinite;
-          will-change: transform, box-shadow;
-          backface-visibility: hidden;
-        }
-
-        .book-appointment-btn::before {
-          content: '';
-          position: absolute;
-          top: 0;
-          left: -100%;
-          width: 100%;
-          height: 100%;
-          background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-          transition: left 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .book-appointment-btn:hover::before {
-          left: 100%;
+          transition: all 0.3s ease;
+          box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+          text-decoration: none;
+          animation: blinkButton 2s infinite;
         }
 
         .book-appointment-btn:hover {
-          background: linear-gradient(135deg, #4338CA 0%, #6D28D9 100%);
-          box-shadow: 0 8px 25px rgba(79, 70, 229, 0.4);
-          transform: translateY(-2px) translateZ(0);
+          background: linear-gradient(135deg, #ff5252, #ff6b6b) !important;
+          color: white !important;
+          transform: translateY(-3px);
+          box-shadow: 0 8px 25px rgba(255, 107, 107, 0.5);
+          text-decoration: none;
+          animation: none; /* Stop blinking on hover */
         }
 
-        .book-appointment-btn:active {
-          transform: translateY(0) translateZ(0);
-        }
-
-        @keyframes pulse-glow {
-          0%, 100% {
-            box-shadow: 0 4px 15px rgba(79, 70, 229, 0.3), 0 0 0 0 rgba(79, 70, 229, 0.7);
+        @keyframes blinkButton {
+          0%, 50% {
+            opacity: 1;
           }
-          50% {
-            box-shadow: 0 8px 25px rgba(79, 70, 229, 0.5), 0 0 0 8px rgba(79, 70, 229, 0);
+          25%, 75% {
+            opacity: 0.7;
           }
         }
 
-        /* Custom Toggler */
-        .navbar-toggler {
-          border: none;
-          padding: 8px;
-          border-radius: 6px;
-          transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-          will-change: background-color;
+        .custom-toggler {
+          border: 2px solid rgba(255, 255, 255, 0.3);
+          border-radius: 8px;
+          padding: 0.5rem;
+          transition: all 0.3s ease;
         }
 
-        .navbar-toggler:focus {
-          box-shadow: none;
+        .custom-toggler:hover {
+          border-color: #ffd700;
+          background: rgba(255, 215, 0, 0.1);
         }
 
-        .navbar-toggler:hover {
-          background-color: #EEF2FF;
+        .custom-toggler:focus {
+          box-shadow: 0 0 0 0.2rem rgba(255, 215, 0, 0.25);
         }
 
-        .navbar-toggler .toggler-icon {
-          font-size: 1.4rem;
-          color: #374151;
-          transition: color 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .navbar-toggler:hover .toggler-icon {
-          color: #4F46E5;
-        }
-
-        /* Mobile Styles */
+        /* Mobile Responsive */
         @media (max-width: 991.98px) {
           body {
-            padding-top: 70px !important;
-          }
-
-          .custom-navbar {
-            min-height: 70px;
-          }
-
-          .navbar-logo {
-            height: 65px;
-          }
-
-          .navbar-collapse {
-            position: fixed;
-            top: 0;
-            right: ${isMenuOpen ? '0' : '-100%'};
-            width: 320px;
-            height: 100vh;
-            background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
-            padding: 100px 0 40px 0;
-            transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: -15px 0 40px rgba(0, 0, 0, 0.1);
-            border-left: 1px solid #e2e8f0;
-            overflow-y: auto;
-            z-index: 1050;
-            will-change: right;
-            backface-visibility: hidden;
-            transform: translateZ(0);
-          }
-
-          .navbar-nav {
-            flex-direction: column;
-            width: 100%;
+            padding-top: 70px;
           }
 
           .navbar-nav .nav-item {
-            width: 100%;
-            border-bottom: 1px solid #f1f5f9;
+            text-align: center;
+            margin: 0.25rem 0;
+          }
+          
+          .premium-link {
+            padding: 1rem !important;
+            border-radius: 8px;
+            margin: 0.25rem 0;
           }
 
-          .navbar-nav .nav-link {
-            display: block;
-            width: 100%;
-            color: #374151 !important;
-            font-size: 1.1rem;
-            font-weight: 500;
-            padding: 20px 30px !important;
-            border-radius: 0;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-            border-bottom: none;
-            border-left: 4px solid transparent;
-            margin: 0;
-            will-change: background-color, padding-left, border-left-color;
+          .book-appointment-btn {
+            margin-top: 1rem;
+            margin-bottom: 0.5rem;
+            width: auto;
           }
 
-          .navbar-nav .nav-link::after {
+          /* Hide bridge on mobile */
+          .dropdown-bridge {
             display: none;
           }
 
-          .navbar-nav .nav-link:hover {
-            background-color: #f8fafc;
-            color: #4F46E5 !important;
-            border-left-color: #4F46E5;
-            padding-left: 35px !important;
-          }
-
-          .navbar-nav .nav-link.active {
-            background-color: #eef2ff;
-            color: #4F46E5 !important;
-            font-weight: 600;
-            border-left-color: #4F46E5;
-          }
-
-          .mobile-cta {
+          /* Mobile Dropdown Styles */
+          .dropdown-menu-custom {
+            position: static !important;
+            background: rgba(0, 123, 255, 0.95);
+            border: none;
+            border-radius: 0;
+            box-shadow: none;
+            margin: 0.5rem 0;
+            padding: 0.5rem 0;
             width: 100%;
-            margin-top: 30px;
-            padding: 0 30px;
-            border-top: 1px solid #e2e8f0;
-            padding-top: 30px;
-          }
-
-          .mobile-cta .book-appointment-btn {
-            width: 100%;
-            padding: 15px;
-            font-size: 1.1rem;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(79, 70, 229, 0.2);
-          }
-
-          .close-menu {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            z-index: 1051;
-            background-color: #f3f4f6;
-            border: 1px solid #d1d5db;
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            font-size: 1.1rem;
-            color: #6b7280;
-            will-change: background-color, transform, border-color;
-          }
-
-          .close-menu:hover {
-            background-color: #ef4444;
-            color: white;
-            transform: rotate(90deg) translateZ(0);
-            border-color: #ef4444;
-          }
-        }
-
-        @media (max-width: 480px) {
-          .navbar-collapse {
-            width: 100%;
-          }
-
-          .navbar-nav .nav-link {
-            padding: 18px 25px !important;
-          }
-
-          .navbar-nav .nav-link:hover {
-            padding-left: 30px !important;
-          }
-
-          .mobile-cta {
-            padding: 0 25px;
-          }
-
-          .close-menu {
-            top: 15px;
-            right: 15px;
-            width: 28px;
-            height: 28px;
-            font-size: 1rem;
-          }
-        }
-
-        /* Performance optimizations */
-        * {
-          box-sizing: border-box;
-        }
-
-        .navbar-nav .nav-link,
-        .book-appointment-btn,
-        .navbar-toggler,
-        .close-menu {
-          transform: translateZ(0);
-        }
-
-        /* Reduced motion for accessibility */
-        @media (prefers-reduced-motion: reduce) {
-          .custom-navbar,
-          .navbar-logo,
-          .navbar-nav .nav-link,
-          .book-appointment-btn,
-          .navbar-toggler,
-          .close-menu,
-          .navbar-collapse {
-            transition: none;
             animation: none;
+            top: auto !important;
           }
+
+          /* Ensure dropdown shows when open on mobile */
+          .dropdown-menu-custom.show {
+            display: block !important;
+          }
+
+          .dropdown-item-custom {
+            color: white;
+            margin: 0;
+            border-radius: 0;
+            padding: 0.75rem 2rem;
+          }
+
+          .dropdown-item-custom:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: none;
+            color: white;
+            text-shadow: none;
+          }
+
+          .dropdown-item-custom::before {
+            display: none;
+          }
+
+          .link-underline {
+            display: none;
+          }
+        }
+
+        /* Ensure dropdown appears above other content */
+        .navbar {
+          z-index: 1030;
+        }
+
+        .dropdown-menu-custom {
+          z-index: 1031;
         }
       `}</style>
-
-      <nav className={navbarClasses}>
-        <div className="container-fluid px-4 px-lg-5" style={{ maxWidth: '1400px' }}>
-          {/* Logo */}
-          <NavbarLogo />
-
-          {/* Desktop CTA Button */}
-          <div className="d-none d-lg-block order-lg-3">
-            <BookAppointmentButton onClick={contact} />
-          </div>
-
-          {/* Mobile Menu Toggle */}
-          <MobileToggle isMenuOpen={isMenuOpen} onToggle={toggleMenu} />
-
-          {/* Navigation Menu */}
-          <div className={collapseClasses}>
-            {/* Close button for mobile */}
-            <MobileCloseButton onClose={closeMenu} />
-
-            <ul className="navbar-nav mx-auto">
-              {navigationItems.map(({ to, label }) => (
-                <NavigationItem
-                  key={to}
-                  to={to}
-                  label={label}
-                  onClick={closeMenu}
-                />
-              ))}
-            </ul>
-
-            {/* Mobile CTA */}
-            <div className="mobile-cta d-lg-none">
-              <BookAppointmentButton 
-                onClick={handleMobileBooking}
-                className="book-appointment-btn"
-              />
-            </div>
-          </div>
-        </div>
-      </nav>
     </>
   );
 };
 
-export default memo(Navbar);
+export default Navbar;

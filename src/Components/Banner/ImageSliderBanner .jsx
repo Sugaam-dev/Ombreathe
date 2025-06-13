@@ -9,8 +9,19 @@ const ImageSliderBanner = () => {
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
   const [imagesLoaded, setImagesLoaded] = useState({});
   const [isLoading, setIsLoading] = useState(true);
+  const [screenSize, setScreenSize] = useState(window.innerWidth);
 
   const navigate = useNavigate();
+
+  // Track screen size for responsive behavior
+  useEffect(() => {
+    const handleResize = () => {
+      setScreenSize(window.innerWidth);
+    };
+    
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   // Memoized images array to prevent recreation
   const images = useMemo(() => {
@@ -51,12 +62,28 @@ const ImageSliderBanner = () => {
     Object.values(imagesLoaded), [imagesLoaded]
   );
 
-  // Memoized texts for AutoTyping
-  const texts = useMemo(() => [
-    'Holistic Yoga Training.',
-    'Kundalini Yoga Courses.',
-    'Retreats & Workshops.',
-  ], []);
+  // Responsive texts for AutoTyping based on screen size
+  const texts = useMemo(() => {
+    if (screenSize <= 480) {
+      return [
+        'Holistic Yoga Training.',
+        'Kundalini Yoga Courses.',
+        'Retreats & Workshops.',
+      ];
+    } else if (screenSize <= 768) {
+      return [
+        'Holistic Yoga Training Programs.',
+        'Kundalini Yoga Courses.',
+        'Peaceful Retreats & Workshops.',
+      ];
+    } else {
+      return [
+        'Holistic Yoga Training.',
+        'Kundalini Yoga Courses.',
+        'Retreats & Workshops.',
+      ];
+    }
+  }, [screenSize]);
 
   // Memoized navigation function
   const teacher = useCallback(() => {
@@ -115,7 +142,13 @@ const ImageSliderBanner = () => {
   // Loading state
   if (isLoading) {
     return (
-      <div className="slider-container" style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+      <div className="slider-container" style={{ 
+        minHeight: '100vh', 
+        display: 'flex', 
+        alignItems: 'center', 
+        justifyContent: 'center',
+        backgroundColor: '#000'
+      }}>
         <div className="text-center">
           <div className="spinner-border text-light mb-3" role="status">
             <span className="visually-hidden">Loading...</span>
@@ -128,7 +161,13 @@ const ImageSliderBanner = () => {
 
   if (imageSources.length === 0) {
     return (
-      <div className="slider-container" style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+      <div className="slider-container" style={{ 
+        minHeight: '100vh', 
+        display: 'flex', 
+        alignItems: 'center', 
+        justifyContent: 'center',
+        backgroundColor: '#000'
+      }}>
         <div className="text-center text-light">
           <p>Unable to load images. Please refresh the page.</p>
         </div>
@@ -144,7 +183,8 @@ const ImageSliderBanner = () => {
           key={index}
           className="slider-image-wrapper"
           style={{
-            opacity: index === currentIndex ? 1 : 0
+            opacity: index === currentIndex ? 1 : 0,
+            backgroundImage: `url(${image})`
           }}
         >
           <img
@@ -155,6 +195,9 @@ const ImageSliderBanner = () => {
             onLoad={() => {
               // Mark image as loaded for potential future optimizations
               console.log(`Image ${index + 1} loaded`);
+            }}
+            onError={(e) => {
+              console.error(`Failed to load image ${index + 1}:`, e);
             }}
           />
           <div className="slider-overlay"></div>
@@ -168,7 +211,11 @@ const ImageSliderBanner = () => {
         </h1>
         <div className="type">
           <span>
-            <AutoTyping texts={texts} speed={100} delay={1500} />
+            <AutoTyping 
+              texts={texts} 
+              speed={screenSize <= 480 ? 80 : 100} 
+              delay={screenSize <= 480 ? 1200 : 1500} 
+            />
           </span> 
         </div>
         
@@ -180,7 +227,9 @@ const ImageSliderBanner = () => {
             type="button"
             aria-label="Navigate to Teacher Training Program in Bali"
           >
-            Teacher Training Program in Bali
+            {screenSize <= 480 ? 'Teacher Training' : 
+             screenSize <= 768 ? 'Teacher Training Program' : 
+             'Teacher Training Program in Bali'}
           </button>
           
           <button 
@@ -189,7 +238,9 @@ const ImageSliderBanner = () => {
             type="button"
             aria-label="Navigate to Retreat Program in Bali"
           >
-            Retreat Program in Bali
+            {screenSize <= 480 ? 'Retreat Program' : 
+             screenSize <= 768 ? 'Retreat Program' : 
+             'Retreat Program in Bali'}
           </button>
         </div>
       </div>
@@ -201,7 +252,7 @@ const ImageSliderBanner = () => {
         aria-label="Previous image"
         type="button"
       >
-        <IoChevronBack size={24} />
+        <IoChevronBack size={screenSize <= 480 ? 18 : 24} />
       </button>
       
       <button
@@ -210,7 +261,7 @@ const ImageSliderBanner = () => {
         aria-label="Next image"
         type="button"
       >
-        <IoChevronForward size={24} />
+        <IoChevronForward size={screenSize <= 480 ? 18 : 24} />
       </button>
 
       {/* Dot Indicators */}
@@ -225,12 +276,6 @@ const ImageSliderBanner = () => {
           />
         ))}
       </div>
-
-      {/* Auto-play indicator */}
-      <div 
-        className={`auto-play-indicator ${isAutoPlaying ? 'active' : 'inactive'}`}
-        title={isAutoPlaying ? 'Auto-play is active' : 'Auto-play is paused'}
-      ></div>
     </div>
   );
 };

@@ -91,7 +91,7 @@ const shaktiSadhanaData = {
   about: {
     sectionTitle: "ABOUT SHAKTI SADHANA",
     heading: `Join us for a life-changing
-    <span class="mp-highlight">Sacred Pilgrimage</span> to 12 Shakti
+   Sacred Pilgrimage to 12 Shakti
     Peeths during Navratri`
   },
 
@@ -249,13 +249,13 @@ const shaktiSadhanaData = {
 
   // Transformation section
   transformation: {
-    mainText: `Embarking on a <span class="mp-transformation-highlight">Shakti Sadhana pilgrimage</span> is a transformative journey connecting you with the divine feminine energy across India's most powerful temples`,
+    mainText: `Embarking on a Shakti Sadhana pilgrimage is a transformative journey connecting you with the divine feminine energy across India's most powerful temples`,
     subtitle: "At Yogalayaa, our sacred program is designed to awaken your inner goddess through temple visits, ancient practices, and spiritual communion with the Divine Mother"
   },
 
   // Practices section
   practices: {
-    heading: `Comprehensive practices of <span class="mp-practices-highlight">Devi Yoga, Navarna Mantra Sadhana, and Sri Lalita Sahasranama</span> exploring
+    heading: `Comprehensive practices of Devi Yoga, Navarna Mantra Sadhana, and Sri Lalita Sahasranama exploring
     Divine Feminine energies - a fusion of Temple Yoga and Bhakti`,
     description: "Our Shakti Sadhana program dives deep into traditional goddess worship practices, helping you understand the sacred feminine principles, temple protocols, and ancient sadhanas. Beyond physical practice, explore the divine feminine energy, chakra systems, and practical applications of Shakti philosophy.",
     items: [

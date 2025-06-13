@@ -1,4 +1,4 @@
-/* MembershipProgram.css - Reusable Styles for All Membership Programs */
+/* MembershipProgram.css - Complete Reusable Styles for All Membership Programs */
 
 /* CSS Custom Properties for Theme Colors */
 .mp-container {
@@ -294,6 +294,7 @@
   flex-shrink: 0;
   transition: all 0.3s ease;
   background: white;
+  font-size: 2rem;
 }
 
 .mp-feature-item:hover .mp-feature-icon {
@@ -477,6 +478,18 @@
 .mp-practices-subtitle.mp-visible {
   opacity: 1;
   transform: translateY(0);
+}
+
+/* FIXED: Added missing practice card styles */
+.mp-practice-card {
+  position: relative;
+  height: 400px;
+  border-radius: 25px;
+  overflow: hidden;
+  transform: translateY(50px) scale(0.9);
+  opacity: 0;
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
 }
 
 .mp-practice-card.mp-visible {
