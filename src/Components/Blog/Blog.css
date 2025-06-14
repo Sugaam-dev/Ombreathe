@@ -289,7 +289,7 @@ body {
   }
   
   .card-image {
-    height: 250px;
+    height: auto;
   }
   
   .card-content-overlay {

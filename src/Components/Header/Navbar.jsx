@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import logo from '../../images/logo4.png'
+import './Navbar.css'
 const Navbar = () => {
   const [isNavCollapsed, setIsNavCollapsed] = useState(true);
   const [activeLink, setActiveLink] = useState('');
