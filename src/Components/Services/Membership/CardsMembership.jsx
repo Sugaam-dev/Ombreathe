@@ -1,6 +1,6 @@
 import React, { useState, useCallback, useRef, useMemo, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-// import '../Styles/Services.css';
+import '../Styles/Services.css';
 
 // Import all images at the top
 import teachertraining from '../../../images/services/Teachers_training.jpg'
