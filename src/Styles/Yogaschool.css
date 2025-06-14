@@ -226,6 +226,11 @@
 
 /* Tablet Portrait - 481px to 768px */
 @media (min-width: 481px) and (max-width: 768px) {
+     .yogaa .heading h1 {
+    
+    margin-top: 70px;
+  
+}
     .yogaa {
         width: 95%;
         margin-left: 2.5%;
@@ -266,6 +271,11 @@
 
 /* Mobile - max-width: 480px */
 @media (max-width: 480px) {
+    .yogaa .heading h1 {
+    
+    margin-top: 70px;
+  
+}
     .yogaa {
         width: 95%;
         margin-left: 2.5%;

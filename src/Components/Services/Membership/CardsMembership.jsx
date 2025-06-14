@@ -5,7 +5,7 @@ import '../Styles/Services.css';
 // Import all images at the top
 import teachertraining from '../../../images/services/Teachers_training.jpg'
 import online from '../../../images/services/Online Courses.webp'
-import temple from '../../../images/services/temple yoga intro.webp'
+import temple from '../../../images/services/temple_yoga.webp'
 import merchandise from '../../../images/services/Merchandise.jpg'
 import lg from '../../../images/lg.png'
 

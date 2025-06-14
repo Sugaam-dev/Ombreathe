@@ -5,7 +5,7 @@ import nitin from '../../images/Teachers/nitin.webp'
 import pulkit from '../../images/Teachers/pulkit.webp'
 import abhishekh from '../../images/Teachers/abhishekh.webp'
 import savitri from '../../images/Teachers/savitri.webp'
-import ranjan from '../../images/Teachers/ranjan.jpeg'
+import ranjan from '../../images/Teachers/yogiji.jpeg'
 import ishani from '../../images/Teachers/Ishani.jpeg'
 import lg from '../../images/lg.png'
 

@@ -148,7 +148,7 @@ const BlogCard = memo(({ card, index, showAll, onImageLoad }) => {
   
   return (
     <div className={`card ${showAll && index >= 3 ? 'fade-in' : ''}`}>
-      <div className="card-image">
+      <div className="card-image-blog">
         <OptimizedImage
           imageKey={card.imageKey}
           alt={card.title}
