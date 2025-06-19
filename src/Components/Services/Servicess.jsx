@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import './Styles/Services.css';
 
 // Import all images at the top but don't use them immediately
-import teachertraining from '../../images/services/Teachers_training.jpg'
 import online from '../../images/services/Online Courses.webp'
 import temple from '../../images/services/temple_yoga.webp'
 import merchandise from '../../images/services/Merchandise.jpg'
@@ -11,7 +10,9 @@ import community from '../../images/services/Community service.webp'
 import Retreats from '../../images/services/Retreats.jpg'
 import events from '../../images/services/Events.webp'
 import a from '../../images/Gallery/8.jpg'
-
+import Yogalyaa_100_Hour_TTC from '../../images/services/Yogalyaa_100_Hour_TTC.jpg'
+import Yogalyaa_200_Hour_TTC from '../../images/services/Yogalyaa_200_Hour_TTC.jpg'
+import Yogalyaa_300_Hour_TTC from '../../images/services/Yogalyaa_300_Hour_TTC.jpg'
 const Servicess = () => {
   const [showAll, setShowAll] = useState(false);
   const [imageLoadStates, setImageLoadStates] = useState({});
@@ -20,13 +21,16 @@ const Servicess = () => {
 
   // Image mapping for easier management
   const imageMap = useMemo(() => ({
-    teachertraining,
+  
     online,
     temple,
     merchandise,
     community,
     Retreats,
     events,
+    Yogalyaa_100_Hour_TTC,
+    Yogalyaa_200_Hour_TTC,
+    Yogalyaa_300_Hour_TTC,
     gallery8: a
   }), []);
 
@@ -34,7 +38,7 @@ const Servicess = () => {
   const yogaPrograms = useMemo(() => [
     {
       id: 1,
-      imageKey: 'teachertraining',
+      imageKey: 'Yogalyaa_200_Hour_TTC',
       title: "Teachers Training Programs 200 Hours",
       route: "/services/teacher-training-200",
       features: [
@@ -47,7 +51,7 @@ const Servicess = () => {
     },
     {
       id: 9,
-      imageKey: 'teachertraining',
+      imageKey: 'Yogalyaa_300_Hour_TTC',
       title: "Teachers Training Programs 300 Hours",
       route: "/services/teacher-training-300",
       features: [
@@ -86,7 +90,7 @@ const Servicess = () => {
     },
     {
       id: 2,
-      imageKey: 'teachertraining',
+      imageKey: 'Yogalyaa_100_Hour_TTC',
       title: "Teachers Training Programs 100 Hours",
       route: "/services/teacher-training-100",
       features: [

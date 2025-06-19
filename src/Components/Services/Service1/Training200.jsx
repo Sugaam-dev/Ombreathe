@@ -22,7 +22,7 @@ const Training200 = () => {
     const loadImages = async () => {
       try {
         const [mainImg, cert200Img, yogaImg, yacepImg] = await Promise.all([
-          import('../../../images/services/200.webp'),
+          import('../../../images/services/Yogalyaa_200_Hour_TTC_1st image.jpg'),
           import('../../../images/cirtificats/200.png'),
           import('../../../images/cirtificats/yoga.png'),
           import('../../../images/cirtificats/YACEP.png')
@@ -164,7 +164,7 @@ const Training200 = () => {
                     style={{ 
                       maxWidth: '900px',
                       width: '100%',
-                      height: '400px',
+                      height: 'auto',
                       borderRadius: '25px',
                       objectFit: 'cover'
                     }}

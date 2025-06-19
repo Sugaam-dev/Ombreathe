@@ -5,59 +5,97 @@ import Ratings from "./Ratings";
 import { IoLogoWhatsapp } from "react-icons/io";
 import { MdEmail } from "react-icons/md";
 
+
 function Cont() {
   return (
-    <div>
-      <div
-        className="cont"
+    <div style={{ padding: "40px 20px", fontFamily: "Caudex, serif" }}>
+      <h1
         style={{
+          fontSize: "48px",
           textAlign: "center",
-          display: "flex",
-          flexDirection: "column",
+          marginBottom: "40px",
         }}
       >
-        <h1 style={{ fontSize: "50px", fontFamily: "Caudex, serif" }}>
-          Contact
-        </h1>
-        <div className="contwt">
-          <a
-            href=""
-            style={{
-              display: "flex",
-              alignItems: "center",
-              textAlign: "center",
-              textDecoration: "none",
-              fontSize: "20px",
-            }}
-          >
-            <span style={{ fontSize: "30px", marginRight: "10px" }}>
-              {" "}
-              <IoLogoWhatsapp style={{ color: "green" }} />
-            </span>{" "}
-            +91-7483987568 /
-            +91-78299 97007
-          </a>
-        </div>
-        <div className="contwt">
-          <a
-                href="mailto:yogalayaaofficial@gmail.com" 
-            style={{
-              display: "flex",
-              alignItems: "center",
-              textAlign: "center",
-              textDecoration: "none",
-              fontSize: "20px",
-            }}
-          >
-            <span style={{ fontSize: "30px", marginRight: "10px" }}>
-              <MdEmail />{" "}
-            </span>
-           yogalayaaofficial@gmail.com
-          </a>
-        </div>
+        Contact
+      </h1>
+
+      {/* Contact Info Container */}
+      <div
+        style={{
+          maxWidth: "600px",
+          margin: "0 auto",
+          display: "flex",
+          flexDirection: "column",
+          gap: "20px",
+        }}
+      >
+        {/* WhatsApp - 1 */}
+        <a
+          href="https://wa.me/917483987568"
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{
+            display: "flex",
+            alignItems: "center",
+            textDecoration: "none",
+            fontSize: "20px",
+            backgroundColor: "#f2f2f2",
+            padding: "15px 20px",
+            borderRadius: "10px",
+            color: "#000",
+            boxShadow: "0 2px 8px rgba(0, 0, 0, 0.1)",
+          }}
+        >
+          <IoLogoWhatsapp style={{ fontSize: "28px", color: "green", marginRight: "12px" }} />
+          +91-7483987568
+        </a>
+
+        {/* WhatsApp - 2 */}
+        <a
+          href="#"
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{
+            display: "flex",
+            alignItems: "center",
+            textDecoration: "none",
+            fontSize: "20px",
+            backgroundColor: "#f2f2f2",
+            padding: "15px 20px",
+            borderRadius: "10px",
+            color: "#000",
+            boxShadow: "0 2px 8px rgba(0, 0, 0, 0.1)",
+          }}
+        >
+          <IoLogoWhatsapp style={{ fontSize: "28px", color: "green", marginRight: "12px" }} />
+          +91-78299 97007
+        </a>
+
+        {/* Email */}
+        <a
+          href="mailto:info@yogalayaa.com"
+          style={{
+            display: "flex",
+            alignItems: "center",
+            textDecoration: "none",
+            fontSize: "20px",
+            backgroundColor: "#f2f2f2",
+            padding: "15px 20px",
+            borderRadius: "10px",
+            color: "#000",
+            boxShadow: "0 2px 8px rgba(0, 0, 0, 0.1)",
+          }}
+        >
+          <MdEmail style={{ fontSize: "28px", color: "#d44638", marginRight: "12px" }} />
+          info@yogalayaa.com
+        </a>
       </div>
-      <Contact />
-      <Ratings />
+
+      {/* Subcomponents */}
+      <div style={{ marginTop: "60px" }}>
+        <Contact />
+        <Ratings />
+      </div>
     </div>
   );
 }

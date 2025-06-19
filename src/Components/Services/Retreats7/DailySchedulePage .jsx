@@ -1,9 +1,9 @@
 import React from 'react';
-import a from '../../../images/Gallery/16.jpg'
+
 const DailySchedulePage = ({ 
   title = "Sample Daily Schedule",
   description = "Experience the perfect blend of adventure and yoga in our 7-day retreat. Each day is thoughtfully designed to combine thrilling outdoor activities with peaceful yoga sessions, creating a transformative journey through Bali's stunning landscapes and rich culture.",
-  scheduleImage = a
+  scheduleImage = ''
 }) => {
   
   const morningSchedule = [
@@ -50,7 +50,7 @@ const DailySchedulePage = ({
                 className="img-fluid rounded shadow-lg"
                 style={{ 
                   width: '100%',
-                  height: '400px',
+                  height: 'auto',
                   objectFit: 'cover'
                 }}
               />

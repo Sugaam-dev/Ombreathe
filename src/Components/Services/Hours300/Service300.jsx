@@ -43,7 +43,7 @@ function Service300() {
       try {
         const [bgImg, dailyImg] = await Promise.all([
           import('../../../images/services/200.webp'),
-          import('../../../images/Gallery/16.jpg')
+          import('../../../images/Gallery/Daily_Schedule_100_200_300.jpg')
         ])
         setBackgroundImage(bgImg.default)
         setDailyImage(dailyImg.default)

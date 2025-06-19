@@ -7,21 +7,21 @@ import Yogaschool from "./Yogaschool"
 
 // Keep all original imports that aren't used (commented out code)
 import Ayurveda from "./Ayurveda"
-import Welcome from "./Welcome"
+
 import Offering from "./Offering"
 import Carousal from "./Carousal"
 import Contact from "./Contact"
 import Utube from "./Utube"
 import Ratings from "./Ratings"
-import Questions from "./Questions"
+
 import Accordion from "./Accordion"
-import Ourservice from "./Ourservice"
+
 import Package1 from "./Package1"
 import Package2 from "./Package2"
-import Kumbh from "./Kumbh"
-import KumbhAcomodation from "./kumbhAcomodation"
+
+
 import AyurvedCarousel from "./AyurvedCarousel"
-import Bath from "./Bath"
+
 import WhyChoose from "./HomeCredentials/WhyChoose"
 import YogaTeachers from "./Teachers/YogaTeachers"
 import Servicess from "./Services/Servicess"

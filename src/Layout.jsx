@@ -1,12 +1,13 @@
 // Components/Layout.js
 import { Outlet } from 'react-router-dom';
-import ScrollToTop from './Components/ScrollToTop';
+
 import Navbar from './Components/Header/Navbar';
 
 
-import Whatsapp from './Components/Whatsapp';
+
 import logo from './images/yogalayaaLogo.png'
 import Footer from './Components/Footer/Footer';
+import ScrollToTop from './Components/useFullComponent/ScrollToTop';
 
 function Layout() {
   const layoutStyle = {
@@ -36,8 +37,8 @@ function Layout() {
         alt="Yogalayaa Background Logo" 
         style={logoStyle}
       />
-      
-      <ScrollToTop />
+      <ScrollToTop/>
+ 
       <Navbar/>
       <main>
         <Outlet />

@@ -231,7 +231,7 @@ const YogaTrainingPromo = () => {
 
         .ytp-main-image {
           width: 100%;
-          height: 400px;
+          height: auto;
           border-radius: 20px;
           overflow: hidden;
           margin-bottom: 1rem;
@@ -247,7 +247,7 @@ const YogaTrainingPromo = () => {
 
         .ytp-main-image img {
           width: 100%;
-          height: 100%;
+          height: auto;
           object-fit: cover;
           transition: transform 0.5s ease;
         }
@@ -263,7 +263,7 @@ const YogaTrainingPromo = () => {
         }
 
         .ytp-secondary-image {
-          height: 200px;
+          height: auto;
           border-radius: 15px;
           overflow: hidden;
           transform: translateY(20px);
@@ -278,7 +278,7 @@ const YogaTrainingPromo = () => {
 
         .ytp-secondary-image img {
           width: 100%;
-          height: 100%;
+          height: auto;
           object-fit: cover;
           transition: transform 0.5s ease;
         }
@@ -293,7 +293,7 @@ const YogaTrainingPromo = () => {
           }
           
           .ytp-main-image {
-            height: 250px;
+            height: auto;
           }
           
           .ytp-secondary-images {
@@ -301,7 +301,7 @@ const YogaTrainingPromo = () => {
           }
           
           .ytp-secondary-image {
-            height: 180px;
+            height: auto;
           }
         }
       `}</style>

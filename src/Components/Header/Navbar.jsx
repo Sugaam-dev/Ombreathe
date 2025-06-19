@@ -1,31 +1,57 @@
 import React, { useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import logo from '../../images/logo4.png'
 import './Navbar.css'
+
 const Navbar = () => {
   const [isNavCollapsed, setIsNavCollapsed] = useState(true);
   const [activeLink, setActiveLink] = useState('');
   const [dropdownOpen, setDropdownOpen] = useState({});
+  const [navbarHeight, setNavbarHeight] = useState(80); // Default height
+  const location = useLocation();
+
+  // Calculate navbar height dynamically
+  useEffect(() => {
+    const updateNavbarHeight = () => {
+      const navbar = document.querySelector('.premium-navbar');
+      if (navbar) {
+        const height = navbar.offsetHeight;
+        setNavbarHeight(height);
+        // Apply padding to body
+        document.body.style.paddingTop = `${height}px`;
+      }
+    };
+
+    // Update height on mount and resize
+    updateNavbarHeight();
+    window.addEventListener('resize', updateNavbarHeight);
+
+    return () => {
+      window.removeEventListener('resize', updateNavbarHeight);
+      // Reset body padding when component unmounts
+      document.body.style.paddingTop = '0px';
+    };
+  }, []);
 
   // Set active link based on current URL on component mount
   useEffect(() => {
-    const currentPath = window.location.pathname;
-    if (currentPath === '/') {
+    // For HashRouter, use location.hash if available, otherwise use pathname
+    const hashPath = location.hash.replace('#', '');
+    const pathToCheck = hashPath || location.pathname;
+    
+    if (pathToCheck === '/' || pathToCheck === '') {
       setActiveLink('home');
-    } else if (currentPath === '/about') {
+    } else if (pathToCheck === '/about') {
       setActiveLink('about');
-    } else if (currentPath === '/contact') {
+    } else if (pathToCheck === '/contact') {
       setActiveLink('contact');
-    } else if (currentPath.includes('/web-development') || 
-               currentPath.includes('/mobile-development') || 
-               currentPath.includes('/data-science') || 
-               currentPath.includes('/cybersecurity') || 
-               currentPath.includes('/cloud-computing') || 
-               currentPath.includes('/all-programs')) {
+    } else if (pathToCheck.includes('/programs/') || 
+               pathToCheck.includes('/service')) {
       setActiveLink('programs');
     } else {
       setActiveLink('');
     }
-  }, []);
+  }, [location]);
 
   const handleNavCollapse = () => setIsNavCollapsed(!isNavCollapsed);
 
@@ -98,7 +124,7 @@ const Navbar = () => {
       <nav className="navbar navbar-expand-lg navbar-light premium-navbar shadow-lg fixed-top">
         <div className="container">
           {/* Logo */}
-          <a className="navbar-brand logo-brand" href="/" onClick={() => handleLinkClick('home')}>
+          <Link className="navbar-brand logo-brand" to="/" onClick={() => handleLinkClick('home')}>
             <div className="logo-container">
               <img 
                 src={logo}
@@ -106,7 +132,7 @@ const Navbar = () => {
                 className="logo-image"
               />
             </div>
-          </a>
+          </Link>
 
           {/* Mobile toggle button */}
           <button 
@@ -125,33 +151,33 @@ const Navbar = () => {
             <ul className="navbar-nav ms-auto">
               {/* Home */}
               <li className="nav-item">
-                <a 
+                <Link 
                   className={`nav-link premium-link ${activeLink === 'home' ? 'active' : ''}`} 
-                  href="/"
+                  to="/"
                   onClick={() => handleLinkClick('home')}
                 >
                   Home
                   <span className="link-underline"></span>
-                </a>
+                </Link>
               </li>
 
               {/* About */}
               <li className="nav-item">
-                <a 
+                <Link 
                   className={`nav-link premium-link ${activeLink === 'about' ? 'active' : ''}`} 
-                  href="/about"
+                  to="/about"
                   onClick={() => handleLinkClick('about')}
                 >
                   About
                   <span className="link-underline"></span>
-                </a>
+                </Link>
               </li>
 
               {/* Programs Dropdown */}
               <li className="nav-item dropdown dropdown-hover-container"
                   onMouseEnter={() => handleDropdownHover('programs', true)}
                   onMouseLeave={() => handleDropdownHover('programs', false)}>
-                <a 
+                <Link 
                   className={`nav-link premium-link dropdown-toggle-custom ${activeLink === 'programs' ? 'active' : ''}`}
                   href="#" 
                   role="button" 
@@ -160,42 +186,45 @@ const Navbar = () => {
                   Programs
                   <span className={`dropdown-arrow ${dropdownOpen.programs ? 'rotated' : ''}`}>▼</span>
                   <span className="link-underline"></span>
-                </a>
+                </Link>
                 
                 {/* Invisible bridge for smooth hover transition */}
                 <div className="dropdown-bridge"></div>
                 
                 {dropdownOpen.programs && (
                   <div className="dropdown-menu-custom premium-dropdown show">
-                    <a className="dropdown-item-custom premium-dropdown-item" href="/programs/Membership-Temple-Yoga-Program">
+                    <Link className="dropdown-item-custom premium-dropdown-item" to="/programs/Membership-Temple-Yoga-Program" 
+                    onClick={() => handleLinkClick('programs/Membership-Temple-Yoga-Program')}>
                       Membership Programs
-                    </a>
+                    </Link>
                    
                     <hr className="dropdown-divider-custom" />
-                    <a className="dropdown-item-custom premium-dropdown-item" href="/service">
+                    <Link className="dropdown-item-custom premium-dropdown-item" to="/service"
+                     onClick={() => handleLinkClick('service')}>
+                    
                       View All Programs
-                    </a>
+                    </Link>
                   </div>
                 )}
               </li>
 
               {/* Contact */}
               <li className="nav-item">
-                <a 
+                <Link 
                   className={`nav-link premium-link ${activeLink === 'contact' ? 'active' : ''}`} 
-                  href="/contact"
+                  to="/contact"
                   onClick={() => handleLinkClick('contact')}
                 >
                   Contact
                   <span className="link-underline"></span>
-                </a>
+                </Link>
               </li>
 
               {/* Book Appointment Button */}
               <li className="nav-item ms-3">
-                <a className="btn book-appointment-btn" href="/contact">
+                <Link className="btn book-appointment-btn" to="/contact">
                   Book Appointment
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
@@ -211,10 +240,10 @@ const Navbar = () => {
           transition: all 0.3s ease;
         }
 
-        /* Body padding to account for fixed navbar */
-        body {
+        /* Remove static body padding - now handled dynamically */
+        /* body {
           padding-top: 80px;
-        }
+        } */
 
         /* Logo Styles */
         .logo-brand {
@@ -452,9 +481,10 @@ const Navbar = () => {
 
         /* Mobile Responsive */
         @media (max-width: 991.98px) {
-          body {
+          /* Remove static mobile padding - now handled dynamically */
+          /* body {
             padding-top: 70px;
-          }
+          } */
 
           .navbar-nav .nav-item {
             text-align: center;
@@ -481,7 +511,7 @@ const Navbar = () => {
           /* Mobile Dropdown Styles */
           .dropdown-menu-custom {
             position: static !important;
-            background: rgba(0, 123, 255, 0.95);
+            
             border: none;
             border-radius: 0;
             box-shadow: none;
@@ -498,7 +528,7 @@ const Navbar = () => {
           }
 
           .dropdown-item-custom {
-            color: white;
+            color: #000;
             margin: 0;
             border-radius: 0;
             padding: 0.75rem 2rem;

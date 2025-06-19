@@ -39,7 +39,7 @@ const LazyGoogleMap = lazy(() =>
 const ContactInfo = memo(() => {
   const contactData = useMemo(() => ({
     phone: ['+91 7483987568', '+91 7829997007'],
-    email: 'yogalayaaofficial@gmail.com',
+    email: 'info@yogalayaa.com',
     address: '1972, 22nd Main Rd, Vanganahalli, 1st Sector, HSR Layout, Bengaluru, Karnataka 560102',
     socialLinks: [
       { icon: FaFacebookF, href: 'https://www.facebook.com/profile.php?id=100090950655442', label: 'Facebook' },
@@ -198,10 +198,10 @@ const ContactForm = memo(() => {
       <h1>Send a Message</h1>
       <form ref={formRef} onSubmit={handleSubmit}>
         {/* Web3Forms required fields */}
-        <input type="hidden" name="access_key" value="2e13458e-fb95-446d-9a33-62f7beb7e793" />
+        <input type="hidden" name="access_key" value="2a332155-4ec2-4a38-8ee8-f7b4c227c50f" />
         <input type="hidden" name="subject" value="New Enquiry from Yogalayaa Website" />
         <input type="hidden" name="from_name" value="Yogalayaa Website" />
-        
+        {/* 2a332155-4ec2-4a38-8ee8-f7b4c227c50f */}
         {formFields.map((field) => (
           <div key={field.name}>
             <input

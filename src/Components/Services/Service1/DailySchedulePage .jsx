@@ -138,7 +138,7 @@ import React from 'react';
 const DailySchedulePage = ({ 
   title = "Daily Schedule - 200 Hours YTTC",
   description = "Yogalayaa's 200-hour yoga teacher training program is designed to equip aspiring yoga teachers with the knowledge and skills needed to teach and guide students in a safe and effective manner. The program is structured to allow participants to immerse themselves fully in the practice, with a daily schedule that includes yoga classes, meditation sessions, lectures, and workshops.",
-  scheduleImage = "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
+  scheduleImage =''
 }) => {
   
   const morningSchedule = [
@@ -189,7 +189,7 @@ const DailySchedulePage = ({
                 className="img-fluid rounded shadow-lg"
                 style={{ 
                   width: '100%',
-                  height: '400px',
+                  height: 'auto',
                   objectFit: 'cover'
                 }}
               />

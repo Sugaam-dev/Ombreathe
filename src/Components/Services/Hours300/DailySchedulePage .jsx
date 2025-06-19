@@ -3,7 +3,7 @@ import React from 'react';
 const DailySchedulePage = ({ 
   title = "Daily Schedule - 300 Hours YTTC",
   description = "Yogalayaa's 300-hour advanced yoga teacher training program is designed for experienced practitioners seeking deeper knowledge and advanced teaching skills. This comprehensive program builds upon foundational training, offering intensive study of advanced asanas, philosophy, and specialized teaching methodologies over an extended immersive experience.",
-  scheduleImage = "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
+  scheduleImage = ""
 }) => {
   
   const morningSchedule = [
@@ -54,7 +54,7 @@ const DailySchedulePage = ({
                 className="img-fluid rounded shadow-lg"
                 style={{ 
                   width: '100%',
-                  height: '400px',
+                  height: 'auto',
                   objectFit: 'cover'
                 }}
               />

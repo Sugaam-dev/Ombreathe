@@ -162,7 +162,7 @@ const Training200 = () => {
                     style={{
                       maxWidth: "900px",
                       width: "100%",
-                      height: "400px",
+                      height: "auto",
                       borderRadius: "25px",
                       objectFit: "cover",
                     }}
@@ -174,7 +174,7 @@ const Training200 = () => {
                     style={{
                       maxWidth: "900px",
                       width: "100%",
-                      height: "400px",
+                      height: "auto",
                       borderRadius: "25px",
                     }}
                   >

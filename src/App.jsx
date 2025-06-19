@@ -1,8 +1,8 @@
 import './App.css';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 
 import Home from './Components/Home';
-import About from './Components/About';
+
 import Cont from './Components/Cont';
 import Servicess from './Components/Services/Servicess';
 import Package1 from './Components/Package1';
@@ -24,28 +24,13 @@ import shivShaktiSadhanaData from './Components/Services/Membership/data/shivSha
 import saptaRishiSadhanaData from './Components/Services/Membership/data/saptaRishiSadhanaData';
 import pashuPatayaaData from './Components/Services/Membership/data/pashuPatayaaData';
 
-
-
-
-// Import individual service components (you'll need to create these)
-// import TeacherTraining from './Components/Services/TeacherTraining/TeacherTraining';
-// import OnlineCourses from './Components/Services/OnlineCourses/OnlineCourses';
-// import CommunityServices from './Components/Services/CommunityServices/CommunityServices';
-// import TempleYoga from './Components/Services/TempleYoga/TempleYoga';
-// import Merchandise from './Components/Services/Merchandise/Merchandise';
-// import Retreats from './Components/Services/Retreats/Retreats';
-// import Events from './Components/Services/Events/Events';
-// import AdvancedOnlineCourses from './Components/Services/AdvancedOnlineCourses/AdvancedOnlineCourses';
-
 function App() {
   return (
-    <BrowserRouter>
+    <Router>
       <Routes>
         <Route path="/" element={<Layout/>}>
           <Route index element={<Home />} />
-          {/* <Route path="about" element={<About />} /> */}
-            <Route path="about" element={<AboutUs_page/>} />
-
+          <Route path="about" element={<AboutUs_page/>} />
           <Route path="contact" element={<Cont />} />
           <Route path="services" element={<Servicess />} />
           <Route path="package1" element={<Package1 />} />
@@ -58,9 +43,9 @@ function App() {
           <Route path="services/teacher-training-200" element={<Service1/>} />
           <Route path="services/teacher-training-500" element={<Service2/>} />
           <Route path="services/teacher-training-300" element={<Service300/>} />
-                <Route path="services/teacher-training-100" element={<Service100/>} />
-                <Route path="services/retreat-7-adventure" element={<Retreats7/>} />
-                <Route path="services/retreat-7-meditation" element={<Retreats7Medi/>} />
+          <Route path="services/teacher-training-100" element={<Service100/>} />
+          <Route path="services/retreat-7-adventure" element={<Retreats7/>} />
+          <Route path="services/retreat-7-meditation" element={<Retreats7Medi/>} />
           <Route path="services/community-services" element={<Service1 />} />
           <Route path="services/temple-yoga" element={<Service1 />} />
           <Route path="services/merchandise" element={<Service1 />} />
@@ -68,16 +53,14 @@ function App() {
           <Route path="services/events" element={<Service1 />} />
           <Route path="services/advanced-online-courses" element={<Service1 />} />
              
-             <Route path="programs/Membership-Temple-Yoga-Program" element={<CardsMembership/>} />
-        
-       <Route path="programs/shakti-sadhana" element={<MembershipProgram data={shaktiSadhanaData}/>} />
-       <Route path="programs/shiv-shakti-sadhana" element={<MembershipProgram data={shivShaktiSadhanaData}/>} />
-       <Route path="programs/sapta-rishi-sadhana" element={<MembershipProgram data={saptaRishiSadhanaData}/>} />
-       <Route path="programs/pashu-patayaa-sadhana" element={<MembershipProgram data={pashuPatayaaData}/>} />
-         
+          <Route path="programs/Membership-Temple-Yoga-Program" element={<CardsMembership/>} />
+          <Route path="programs/shakti-sadhana" element={<MembershipProgram data={shaktiSadhanaData}/>} />
+          <Route path="programs/shiv-shakti-sadhana" element={<MembershipProgram data={shivShaktiSadhanaData}/>} />
+          <Route path="programs/sapta-rishi-sadhana" element={<MembershipProgram data={saptaRishiSadhanaData}/>} />
+          <Route path="programs/pashu-patayaa-sadhana" element={<MembershipProgram data={pashuPatayaaData}/>} />
         </Route>
       </Routes>
-    </BrowserRouter>
+    </Router>
   );
 }
 

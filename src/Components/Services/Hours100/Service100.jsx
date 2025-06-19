@@ -1,8 +1,9 @@
 import React, { Suspense, lazy } from 'react'
 import Training200 from './Training200'
 import HouseOfYoga from './HouseOfYoga'
+// import a from '../../../images/services/Yogalyaa_Yoga_with_Excursion_100hrs.jpg'
 import a from '../../../images/services/200.webp'
-import daily from '../../../images/Gallery/16.jpg'
+import daily from '../../../images/Gallery/Daily_Schedule_100_200_300.jpg'
 
 // Lazy load everything except critical components
 const RestOfPage = lazy(() => Promise.all([

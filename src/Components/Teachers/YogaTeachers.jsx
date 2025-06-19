@@ -30,7 +30,7 @@ const YogaTeachers = () => {
       id: 10,
       name: "YOGI RANJAN",
       imageKey: 'ranjan',
-      title: "Yoga Instructor",
+      title: "Yoga Guru",
       description: "Practicing yogi for over 10 years, specializing in Vedic Meditation and Kundalini Yoga. Brings ancient wisdom to modern practice.",
       experience: "10+ Years",
       priority: 1,

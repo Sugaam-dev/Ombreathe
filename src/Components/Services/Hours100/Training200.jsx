@@ -5,23 +5,26 @@ const Training200 = () => {
   const [images, setImages] = useState({
     mainImage: null,
     yogaCert: null,
-    yacepCert: null
+    yacepCert: null,
+    yoga100:null
   });
 
   // Load images dynamically for better performance
   useEffect(() => {
     const loadImages = async () => {
       try {
-        const [mainImg, yogaImg, yacepImg] = await Promise.all([
-          import('../../../images/services/200.webp'),
+        const [mainImg, yogaImg, yacepImg,yoga100] = await Promise.all([
+          import('../../../images/services/Yogalyaa_100_Hour_TTC_1st image.jpg'),
           import('../../../images/cirtificats/yoga.png'),
-          import('../../../images/cirtificats/YACEP.png')
+          import('../../../images/cirtificats/YACEP.png'),
+           import('../../../images/cirtificats/100logo.png')
         ]);
         
         setImages({
           mainImage: mainImg.default,
           yogaCert: yogaImg.default,
-          yacepCert: yacepImg.default
+          yacepCert: yacepImg.default,
+          yoga100: yoga100.default
         });
       } catch (error) {
         console.error('Error loading images:', error);
@@ -145,7 +148,7 @@ const Training200 = () => {
                     style={{ 
                       maxWidth: '900px',
                       width: '100%',
-                      height: '400px',
+                      height: 'auto',
                       borderRadius: '25px',
                       objectFit: 'cover'
                     }}
@@ -199,6 +202,27 @@ const Training200 = () => {
                   <div className="col-12 col-lg-6">
                     {/* Certification badges */}
                     <div className="d-flex gap-3 mb-3 justify-content-start justify-content-lg-end">
+                        <div className="rounded-circle d-flex align-items-center justify-content-center"
+                           style={{
+                             width: '100px',
+                             height: '100px',
+                             color: '#2E3A87'
+                           }}>
+                        {images.yoga100 ? (
+                          <img 
+                            src={images.yoga100} 
+                            alt="YACEP Certification" 
+                            style={{
+                              width: '70px',
+                              height: '70px',
+                              objectFit: 'contain'
+                            }}
+                            loading="lazy"
+                          />
+                        ) : (
+                          <div className="bg-light rounded-circle" style={{ width: '70px', height: '70px' }}></div>
+                        )}
+                      </div>
                       <div className="rounded-circle d-flex align-items-center justify-content-center"
                            style={{
                              width: '100px',

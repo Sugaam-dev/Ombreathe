@@ -337,6 +337,6 @@
   }
   
   .card-image-container {
-    height: 190px;
+    height: auto;
   }
 }

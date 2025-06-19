@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import a from '../../../images/Gallery/20.jpg'
-import b from '../../../images/Gallery/22.jpg'
-import c from '../../../images/Gallery/5.jpeg'
+import a from '../../../images/services/Yogalayaa_Excursion_300hrs.jpg'
+import b from '../../../images/services/Yogalayaa_Meals_300hrs.jpg'
+import c from '../../../images/services/Yogalayaa_Accomodation_300hrs.jpg'
 
 const YogaTrainingPromo = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -231,7 +231,7 @@ const YogaTrainingPromo = () => {
 
         .ytp-main-image {
           width: 100%;
-          height: 400px;
+          height: auto;
           border-radius: 20px;
           overflow: hidden;
           margin-bottom: 1rem;
@@ -247,7 +247,7 @@ const YogaTrainingPromo = () => {
 
         .ytp-main-image img {
           width: 100%;
-          height: 100%;
+          height: auto;
           object-fit: cover;
           transition: transform 0.5s ease;
         }
@@ -263,7 +263,7 @@ const YogaTrainingPromo = () => {
         }
 
         .ytp-secondary-image {
-          height: 200px;
+          height: auto;
           border-radius: 15px;
           overflow: hidden;
           transform: translateY(20px);
@@ -278,7 +278,7 @@ const YogaTrainingPromo = () => {
 
         .ytp-secondary-image img {
           width: 100%;
-          height: 100%;
+          height: auto;
           object-fit: cover;
           transition: transform 0.5s ease;
         }
@@ -293,7 +293,7 @@ const YogaTrainingPromo = () => {
           }
           
           .ytp-main-image {
-            height: 350px;
+            height: auto;
           }
           
           .ytp-secondary-images {
@@ -301,7 +301,7 @@ const YogaTrainingPromo = () => {
           }
           
           .ytp-secondary-image {
-            height: 180px;
+            height: auto;
           }
         }
       `}</style>
