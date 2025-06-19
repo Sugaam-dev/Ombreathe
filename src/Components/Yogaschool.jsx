@@ -3,7 +3,10 @@ import { lazy, Suspense } from "react";
 import "../Styles/Yogaschool.css";
 import "aos/dist/aos.css";
 import Aos from "aos";
-
+import school from '../images/logo/1.png'
+import Teachings from '../images/logo/2.png'
+import Wisdom from '../images/logo/3.png'
+import Methodology from '../images/logo/4.png'
 // Lazy load Slider component
 const Slider = lazy(() => import("react-slick"));
 
@@ -51,25 +54,25 @@ const Yogaschool = () => {
   // Memoized features data
   const features = useMemo(() => [
     {
-      icon: "https://livingyogaschool.com/images/about-icon1.svg",
+      icon: school,
       title: "No. 1 Yoga School",
       description: "Best Yoga School in Bali and Rishikesh, India",
       delay: 0
     },
     {
-      icon: "https://livingyogaschool.com/images/about-icon3.svg",
+      icon:  Teachings,
       title: "Intense Yoga Teachings",
       description: "Comprehensive & immersive yoga courses",
       delay: 100
     },
     {
-      icon: "https://livingyogaschool.com/images/about-icon4.svg",
+      icon: Wisdom ,
       title: "Ancient Wisdom",
       description: "Yoga is the journey into the self",
       delay: 200
     },
     {
-      icon: "https://livingyogaschool.com/images/about-icon2.svg",
+      icon: Methodology ,
       title: "Traditional Methodology",
       description: "Natural Healing for body & mind",
       delay: 300

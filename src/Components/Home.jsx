@@ -16,11 +16,9 @@ import Ratings from "./Ratings"
 
 import Accordion from "./Accordion"
 
-import Package1 from "./Package1"
-import Package2 from "./Package2"
 
 
-import AyurvedCarousel from "./AyurvedCarousel"
+
 
 import WhyChoose from "./HomeCredentials/WhyChoose"
 import YogaTeachers from "./Teachers/YogaTeachers"
