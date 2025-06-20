@@ -48,7 +48,7 @@ const YogaTrainingPromo = () => {
           </svg>
         </div>
       ),
-      title: "24 nights accommodation in modern",
+      title: "34 nights accommodation in modern",
       subtitle: "Balinese-style resort in Ubud"
     },
     {
