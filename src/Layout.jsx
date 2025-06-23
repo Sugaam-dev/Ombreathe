@@ -1,20 +1,24 @@
 // Components/Layout.js
 import { Outlet } from 'react-router-dom';
-
+import { useState, useEffect } from 'react';
 import Navbar from './Components/Header/Navbar';
-
-
-
 import logo from './images/yogalayaaLogo.png'
 import Footer from './Components/Footer/Footer';
 import ScrollToTop from './Components/useFullComponent/ScrollToTop';
 
 function Layout() {
-  const layoutStyle = {
-    minHeight: '100vh',
-    position: 'relative'
-   
-  };
+  const [isDesktop, setIsDesktop] = useState(window.innerWidth >= 992);
+
+  // Handle screen size changes
+  useEffect(() => {
+    const handleResize = () => {
+      const desktop = window.innerWidth >= 992;
+      setIsDesktop(desktop);
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   const logoStyle = {
     position: 'fixed',
@@ -29,8 +33,13 @@ function Layout() {
     height: 'auto'
   };
 
+  // Dynamic padding based on screen size and navbar height
+  const mainStyle = {
+    paddingTop: isDesktop ? '100px' : '0', // Adjust 100px based on your navbar height
+  };
+
   return (
-    <div style={layoutStyle}>
+    <div>
       {/* Background Logo */}
       <img 
         src={logo} 
@@ -38,17 +47,13 @@ function Layout() {
         style={logoStyle}
       />
       <ScrollToTop/>
- 
       <Navbar/>
-      <main>
+      <main style={mainStyle}>
         <Outlet />
       </main>
-     
-     
       <Footer/>
     </div>
   );
 }
-
 
 export default Layout;

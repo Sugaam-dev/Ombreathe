@@ -1,12 +1,12 @@
 import React, { useState, useRef, useMemo, useCallback, useEffect } from 'react';
 import './YogaTeachers.css';
 import { FaInstagram, FaFacebook, FaTwitter, FaYoutube, FaLinkedin } from 'react-icons/fa';
-import nitin from '../../images/Teachers/nitin.webp'
+import nitin from '../../images/Teachers/Nitin_Dobriyal.jpg'
 import pulkit from '../../images/Teachers/pulkit.webp'
 import abhishekh from '../../images/Teachers/abhishekh.webp'
 import savitri from '../../images/Teachers/savitri.webp'
 import ranjan from '../../images/Teachers/yogiji.jpeg'
-import ishani from '../../images/Teachers/Ishani.jpeg'
+import ishani from '../../images/Teachers/Ishani_Ghate.jpg'
 import lg from '../../images/lg.png'
 
 const YogaTeachers = () => {

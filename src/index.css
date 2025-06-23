@@ -1,29 +1,3 @@
-
-
-/* Your existing CSS styles go below */
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  /* background: #F6F9F6; */
-
-
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}
-nav a.active::after{
-  content: '';
-  width: 100%;
-  height: 3px;
-  background: #0721cc;
-  position: absolute;
-  left: 0;
-  bottom: -6px;
-  transition: 0.5s;
+element.style {
+    padding-top: 0px;
 }

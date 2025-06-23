@@ -8,7 +8,7 @@ const ImageSliderBanner = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
   const [imagesLoaded, setImagesLoaded] = useState({});
-  const [imageTypes, setImageTypes] = useState({});
+  const [imageDimensions, setImageDimensions] = useState({});
   const [isLoading, setIsLoading] = useState(true);
   const [screenSize, setScreenSize] = useState(window.innerWidth);
   const [screenHeight, setScreenHeight] = useState(window.innerHeight);
@@ -43,9 +43,9 @@ const ImageSliderBanner = () => {
       return [
         import('../../images/mobile/1. Connecting Jeevatmaaa to Shivatmaa.jpg'),
         import('../../images/mobile/2. Join Our TTC.jpg'),
-          import('../../images/mobile/3. Temple Yoga.jpg'),
+        import('../../images/mobile/3. Temple Yoga.jpg'),
         import('../../images/mobile/4. Experience.jpg'),
-          import('../../images/mobile/5. Certification.jpg'),
+        import('../../images/mobile/5. Certification.jpg'),
         import('../../images/mobile/6. safe pass.jpg'),
         // Add more mobile images as needed
       ];
@@ -61,55 +61,53 @@ const ImageSliderBanner = () => {
     }
   }, [isMobile]);
 
-  // Determine image orientation for smart positioning
-  const determineImageType = useCallback((img) => {
+  // Get image dimensions and aspect ratio
+  const getImageDimensions = useCallback((img) => {
     return new Promise((resolve) => {
       const image = new Image();
       image.onload = () => {
         const aspectRatio = image.width / image.height;
-        let type = 'landscape';
-        
-        if (aspectRatio > 1.3) {
-          type = 'landscape';
-        } else if (aspectRatio < 0.8) {
-          type = 'portrait';
-        } else {
-          type = 'square';
-        }
-        
-        resolve(type);
+        resolve({
+          width: image.width,
+          height: image.height,
+          aspectRatio: aspectRatio
+        });
       };
       image.onerror = () => {
-        resolve('landscape'); // Default fallback
+        resolve({
+          width: 1920,
+          height: 1080,
+          aspectRatio: 16/9
+        }); // Default fallback
       };
       image.src = img;
     });
   }, []);
 
-  // Load images and determine their types for smart positioning
+  // Load images and get their dimensions
   useEffect(() => {
-    const loadImagesWithTypes = async () => {
+    const loadImagesWithDimensions = async () => {
       try {
         setIsLoading(true);
         const loadedImageSources = await Promise.all(images);
         const imageMap = {};
-        const typeMap = {};
+        const dimensionsMap = {};
         
         // Load images
         loadedImageSources.forEach((img, index) => {
           imageMap[index] = img.default;
         });
         
-        // Determine image types for smart positioning
-        const typePromises = Object.values(imageMap).map(async (imageSrc, index) => {
-          const type = await determineImageType(imageSrc);
-          typeMap[index] = type;
+        // Get image dimensions
+        const dimensionPromises = Object.values(imageMap).map(async (imageSrc, index) => {
+          const dimensions = await getImageDimensions(imageSrc);
+          dimensionsMap[index] = dimensions;
         });
         
-        await Promise.all(typePromises);
+        await Promise.all(dimensionPromises);
         
         setImagesLoaded(imageMap);
-        setImageTypes(typeMap);
+        setImageDimensions(dimensionsMap);
         setCurrentIndex(0);
         setIsLoading(false);
       } catch (error) {
@@ -118,20 +116,32 @@ const ImageSliderBanner = () => {
       }
     };
 
-    loadImagesWithTypes();
-  }, [images, determineImageType]);
+    loadImagesWithDimensions();
+  }, [images, getImageDimensions]);
 
   // Memoized image sources array
   const imageSources = useMemo(() => 
     Object.values(imagesLoaded), [imagesLoaded]
   );
 
-  // Get current image CSS class for smart positioning
-  const getCurrentImageClass = useCallback((index) => {
-    const type = imageTypes[index];
-    if (!type) return '';
-    return `slider-image ${type}`;
-  }, [imageTypes]);
+  // Calculate container height based on current image aspect ratio and screen width
+  const getContainerHeight = useCallback(() => {
+    if (!imageDimensions[currentIndex]) return '100vh';
+    
+    const currentImageDimensions = imageDimensions[currentIndex];
+    const aspectRatio = currentImageDimensions.aspectRatio;
+    
+    // Calculate height based on screen width and image aspect ratio
+    const calculatedHeight = screenSize / aspectRatio;
+    
+    // Ensure minimum height for very wide images
+    const minHeight = Math.min(screenHeight * 0.6, 400);
+    const maxHeight = screenHeight;
+    
+    const finalHeight = Math.max(minHeight, Math.min(calculatedHeight, maxHeight));
+    
+    return `${finalHeight}px`;
+  }, [currentIndex, imageDimensions, screenSize, screenHeight]);
 
   // Responsive texts for AutoTyping based on screen size
   const texts = useMemo(() => {
@@ -238,7 +248,7 @@ const ImageSliderBanner = () => {
           }}>
           </div>
           <p style={{ color: '#fff', fontSize: '1.2rem', fontWeight: '500' }}>
-            Loading your perfect yoga experience...
+           Connecting Jeevatmaa To Shivatmaa
           </p>
         </div>
       </div>
@@ -278,8 +288,11 @@ const ImageSliderBanner = () => {
   }
 
   return (
-    <div className="slider-container">
-      {/* Full Coverage Images with Smart Positioning */}
+    <div 
+      className="slider-container"
+      style={{ height: getContainerHeight() }}
+    >
+      {/* Images with proper aspect ratio */}
       {imageSources.map((image, index) => (
         <div
           key={index}
@@ -291,11 +304,11 @@ const ImageSliderBanner = () => {
           <img
             src={image}
             alt={`Yoga training experience ${index + 1}`}
-            className={getCurrentImageClass(index)}
+            className="slider-image"
             loading={index === 0 ? "eager" : "lazy"}
             draggable={false}
             onLoad={() => {
-              console.log(`Image ${index + 1} loaded with perfect coverage - ${imageTypes[index]} positioning`);
+              console.log(`Image ${index + 1} loaded with proper aspect ratio`);
             }}
             onError={(e) => {
               console.error(`Failed to load image ${index + 1}:`, e);
@@ -328,9 +341,7 @@ const ImageSliderBanner = () => {
             type="button"
             aria-label="Navigate to Teacher Training Program in Bali"
           >
-            {screenSize <= 480 ? 'Teacher Training' : 
-             screenSize <= 768 ? 'Teacher Training Program' : 
-             'Teacher Training Program in Bali'}
+            <span className="button-text">Teacher Training Program in Bali</span>
           </button>
           
           <button 
@@ -339,9 +350,7 @@ const ImageSliderBanner = () => {
             type="button"
             aria-label="Navigate to Retreat Program in Bali"
           >
-            {screenSize <= 480 ? 'Retreat Program' : 
-             screenSize <= 768 ? 'Retreat Program' : 
-             'Retreat Program in Bali'}
+            <span className="button-text">Retreat Program in Bali</span>
           </button>
         </div>
       </div>

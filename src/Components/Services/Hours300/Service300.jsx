@@ -42,7 +42,7 @@ function Service300() {
     const loadImages = async () => {
       try {
         const [bgImg, dailyImg] = await Promise.all([
-          import('../../../images/services/200.webp'),
+          import('../../../images/Background.jpg'),
           import('../../../images/Gallery/Daily_Schedule_100_200_300.jpg')
         ])
         setBackgroundImage(bgImg.default)
@@ -50,8 +50,8 @@ function Service300() {
       } catch (error) {
         console.error('Error loading images:', error)
         // Fallback to direct imports if dynamic loading fails
-        import('../../../images/services/200.webp').then(img => setBackgroundImage(img.default))
-        import('../../../images/Gallery/16.jpg').then(img => setDailyImage(img.default))
+        import('../../../images/Background.jpg').then(img => setBackgroundImage(img.default))
+        import('../../../images/Gallery/Daily_Schedule_100_200_300.jpg').then(img => setDailyImage(img.default))
       }
     }
 

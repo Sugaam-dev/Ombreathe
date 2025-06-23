@@ -7,30 +7,18 @@ const Navbar = () => {
   const [isNavCollapsed, setIsNavCollapsed] = useState(true);
   const [activeLink, setActiveLink] = useState('');
   const [dropdownOpen, setDropdownOpen] = useState({});
-  const [navbarHeight, setNavbarHeight] = useState(80); // Default height
+  const [isDesktop, setIsDesktop] = useState(window.innerWidth >= 992);
   const location = useLocation();
 
-  // Calculate navbar height dynamically
+  // Handle screen size changes
   useEffect(() => {
-    const updateNavbarHeight = () => {
-      const navbar = document.querySelector('.premium-navbar');
-      if (navbar) {
-        const height = navbar.offsetHeight;
-        setNavbarHeight(height);
-        // Apply padding to body
-        document.body.style.paddingTop = `${height}px`;
-      }
+    const handleResize = () => {
+      const desktop = window.innerWidth >= 992;
+      setIsDesktop(desktop);
     };
 
-    // Update height on mount and resize
-    updateNavbarHeight();
-    window.addEventListener('resize', updateNavbarHeight);
-
-    return () => {
-      window.removeEventListener('resize', updateNavbarHeight);
-      // Reset body padding when component unmounts
-      document.body.style.paddingTop = '0px';
-    };
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
   }, []);
 
   // Set active link based on current URL on component mount
@@ -115,13 +103,9 @@ const Navbar = () => {
 
   return (
     <>
-      {/* Bootstrap CSS */}
-      <link 
-        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" 
-        rel="stylesheet" 
-      />
+     
       
-      <nav className="navbar navbar-expand-lg navbar-light premium-navbar shadow-lg fixed-top">
+      <nav className={`navbar navbar-expand-lg navbar-light premium-navbar shadow-lg ${isDesktop ? 'fixed-top' : ''}`}>
         <div className="container">
           {/* Logo */}
           <Link className="navbar-brand logo-brand" to="/" onClick={() => handleLinkClick('home')}>
@@ -239,11 +223,6 @@ const Navbar = () => {
           border-bottom: 1px solid rgba(0, 0, 0, 0.1);
           transition: all 0.3s ease;
         }
-
-        /* Remove static body padding - now handled dynamically */
-        /* body {
-          padding-top: 80px;
-        } */
 
         /* Logo Styles */
         .logo-brand {
@@ -481,11 +460,6 @@ const Navbar = () => {
 
         /* Mobile Responsive */
         @media (max-width: 991.98px) {
-          /* Remove static mobile padding - now handled dynamically */
-          /* body {
-            padding-top: 70px;
-          } */
-
           .navbar-nav .nav-item {
             text-align: center;
             margin: 0.25rem 0;
@@ -511,7 +485,6 @@ const Navbar = () => {
           /* Mobile Dropdown Styles */
           .dropdown-menu-custom {
             position: static !important;
-            
             border: none;
             border-radius: 0;
             box-shadow: none;
