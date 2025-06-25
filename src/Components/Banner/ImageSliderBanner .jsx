@@ -41,12 +41,12 @@ const ImageSliderBanner = () => {
     if (isMobile) {
       // Mobile images - cropped/optimized for mobile viewing
       return [
-        import('../../images/mobile/1. Connecting Jeevatmaaa to Shivatmaa.jpg'),
-        import('../../images/mobile/2. Join Our TTC.jpg'),
-        import('../../images/mobile/3. Temple Yoga.jpg'),
-        import('../../images/mobile/4. Experience.jpg'),
-        import('../../images/mobile/5. Certification.jpg'),
-        import('../../images/mobile/6. safe pass.jpg'),
+        import('../../images/mobile/Connecting Jeevatmaaa to Shivatmaa.jpg'),
+        import('../../images/mobile/TTC.jpg'),
+        import('../../images/mobile/temple yoga.jpg'),
+        import('../../images/mobile/Experience.jpg'),
+        import('../../images/mobile/Certification.jpg'),
+        import('../../images/mobile/safe pass.jpg'),
         // Add more mobile images as needed
       ];
     } else {
@@ -355,24 +355,28 @@ const ImageSliderBanner = () => {
         </div>
       </div>
 
-      {/* Navigation Arrows */}
-      <button
-        className="nav-button prev"
-        onClick={goToPrevious}
-        aria-label="Previous image"
-        type="button"
-      >
-        <IoChevronBack size={screenSize <= 480 ? 22 : screenSize <= 768 ? 26 : 30} />
-      </button>
-      
-      <button
-        className="nav-button next"
-        onClick={goToNext}
-        aria-label="Next image"
-        type="button"
-      >
-        <IoChevronForward size={screenSize <= 480 ? 22 : screenSize <= 768 ? 26 : 30} />
-      </button>
+      {/* Navigation Arrows - Hidden on mobile screens */}
+      {!isMobile && (
+        <>
+          <button
+            className="nav-button prev"
+            onClick={goToPrevious}
+            aria-label="Previous image"
+            type="button"
+          >
+            <IoChevronBack size={30} />
+          </button>
+          
+          <button
+            className="nav-button next"
+            onClick={goToNext}
+            aria-label="Next image"
+            type="button"
+          >
+            <IoChevronForward size={30} />
+          </button>
+        </>
+      )}
 
       {/* Dot Indicators */}
       <div className="dots-container">

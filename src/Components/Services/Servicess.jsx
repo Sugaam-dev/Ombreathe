@@ -40,7 +40,7 @@ const Servicess = () => {
       id: 1,
       imageKey: 'Yogalyaa_200_Hour_TTC',
       title: "Teachers Training Programs 200 Hours",
-      route: "/services/teacher-training-200",
+      route: "/programs/teacher-training-200",
       features: [
         "Comprehensive 200-hour certification program",
         "Expert guidance from experienced instructors",
@@ -53,7 +53,7 @@ const Servicess = () => {
       id: 9,
       imageKey: 'Yogalyaa_300_Hour_TTC',
       title: "Teachers Training Programs 300 Hours",
-      route: "/services/teacher-training-300",
+      route: "/programs/teacher-training-300",
       features: [
         "Comprehensive 300-hour certification program",
         "Expert guidance from experienced instructors",
@@ -66,7 +66,7 @@ const Servicess = () => {
       id: 10,
       imageKey: 'Retreats',
       title: "OUR RETREATS",
-      route: "/services/retreat-7-adventure",
+      route: "/programs/retreat-7-adventure",
       features: [
         "7 days Adventure and immersive spiritual experience",
         "Beautiful natural locations",
@@ -79,7 +79,7 @@ const Servicess = () => {
       id: 11,
       imageKey: 'gallery8',
       title: "OUR RETREATS",
-      route: "/services/retreat-7-meditation",
+      route: "/programs/retreat-7-meditation",
       features: [
         "7 days Meditation, Yoga and immersive spiritual experience",
         "Beautiful natural locations",
@@ -92,7 +92,7 @@ const Servicess = () => {
       id: 2,
       imageKey: 'Yogalyaa_100_Hour_TTC',
       title: "Teachers Training Programs 100 Hours",
-      route: "/services/teacher-training-100",
+      route: "/programs/teacher-training-100",
       features: [
         "Comprehensive 100-hour certification program",
         "Expert guidance from experienced instructors",
@@ -104,8 +104,8 @@ const Servicess = () => {
     {
       id: 4,
       imageKey: 'community',
-      title: "Community Services",
-      route: "/services/community-services",
+      title: "Community programs",
+      route: "/programs/community-services",
       features: [
         "Free yoga sessions for underprivileged communities",
         "Corporate wellness programs",
@@ -131,7 +131,7 @@ const Servicess = () => {
       id: 6,
       imageKey: 'merchandise',
       title: "Merchandise",
-      route: "/services/merchandise",
+      route: "/programs/merchandise",
       features: [
         "Premium quality yoga mats and props",
         "Eco-friendly and sustainable materials",
@@ -140,24 +140,12 @@ const Servicess = () => {
       price: "$25-$150",
       priority: 10
     },
-    {
-      id: 7,
-      imageKey: 'Retreats',
-      title: "OUR RETREATS",
-      route: "/services/retreats",
-      features: [
-        "7-14 days immersive spiritual experience",
-        "Beautiful natural locations",
-        "All meals and accommodation included"
-      ],
-      price: "$2500",
-      priority: 5
-    },
+ 
     {
       id: 8,
       imageKey: 'events',
       title: "Events",
-      route: "/services/events",
+      route: "/programs/events",
       features: [
         "Special workshops and masterclasses",
         "Guest teachers and spiritual leaders",
@@ -170,7 +158,7 @@ const Servicess = () => {
       id: 12,
       imageKey: 'online',
       title: "Advanced Online Courses",
-      route: "/services/advanced-online-courses",
+      route: "/programs/advanced-online-courses",
       features: [
         "Specialized advanced yoga techniques",
         "One-on-one mentorship sessions",

@@ -15,10 +15,10 @@ import './Blog.css';
 // Lazy load images with dynamic imports for code splitting
 const loadImage = (imageName) => {
   const imageModules = {
-    rectangle: () => import('../../images/Blog/Rectangle_1.webp'),
+    rectangle: () => import('../../images/Blog/Most_Challenging_Yoga_Pose.jpg'),
     health: () => import('../../images/Blog/health.webp'),
-    living: () => import('../../images/Blog/living.webp'),
-    food: () => import('../../images/Blog/food.webp')
+    living: () => import('../../images/Blog/From_Exercise.jpg'),
+    food: () => import('../../images/Blog/Yogic_Food.jpg')
   };
   return imageModules[imageName]?.() || Promise.reject('Image not found');
 };

@@ -1,6 +1,6 @@
 import React from 'react';
 import './Styles/AboutHeader.css';
-import hero_img from '../../images/Gallery/15.jpg';
+import hero_img from '../../images/Background.jpg';
 
 const About_Header = () => {
   return (

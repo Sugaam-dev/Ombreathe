@@ -5,6 +5,7 @@ import Navbar from './Components/Header/Navbar';
 import logo from './images/yogalayaaLogo.png'
 import Footer from './Components/Footer/Footer';
 import ScrollToTop from './Components/useFullComponent/ScrollToTop';
+import FloatingDonateButton from './Components/useFullComponent/FloatingDonateButton';
 
 function Layout() {
   const [isDesktop, setIsDesktop] = useState(window.innerWidth >= 992);
@@ -51,6 +52,8 @@ function Layout() {
       <main style={mainStyle}>
         <Outlet />
       </main>
+<FloatingDonateButton/>
+
       <Footer/>
     </div>
   );

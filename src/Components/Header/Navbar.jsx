@@ -34,7 +34,7 @@ const Navbar = () => {
     } else if (pathToCheck === '/contact') {
       setActiveLink('contact');
     } else if (pathToCheck.includes('/programs/') || 
-               pathToCheck.includes('/service')) {
+               pathToCheck.includes('/programs')) {
       setActiveLink('programs');
     } else {
       setActiveLink('');
@@ -183,8 +183,8 @@ const Navbar = () => {
                     </Link>
                    
                     <hr className="dropdown-divider-custom" />
-                    <Link className="dropdown-item-custom premium-dropdown-item" to="/service"
-                     onClick={() => handleLinkClick('service')}>
+                    <Link className="dropdown-item-custom premium-dropdown-item" to="/programs"
+                     onClick={() => handleLinkClick('programs')}>
                     
                       View All Programs
                     </Link>
@@ -210,6 +210,7 @@ const Navbar = () => {
                   Book Appointment
                 </Link>
               </li>
+              
             </ul>
           </div>
         </div>

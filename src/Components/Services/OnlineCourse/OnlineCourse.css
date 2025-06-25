@@ -1,0 +1,1517 @@
+/* OnlineCourse.css - Complete Styles for Online Course Page */
+
+/* CSS Custom Properties for Theme Colors */
+.oc-container {
+  --primary-color: #2E3A87;
+  --accent-color: #d4af37;
+  --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --gradient-accent: linear-gradient(135deg, #d4af37 0%, #f4e76e 100%);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+}
+
+/* Reset only within the container to avoid conflicts */
+.oc-container * {
+  box-sizing: border-box;
+}
+
+.oc-container {
+  color: #333;
+  overflow-x: hidden;
+}
+
+/* Hero Section Styles */
+.oc-container .oc-hero-section {
+  min-height: 100vh;
+  /* background: var(--gradient-primary); */
+  display: flex;
+  align-items: center;
+  color: white;
+  position: relative;
+  overflow: hidden;
+  padding: 50px 0px;
+}
+
+.oc-container .oc-hero-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url('https://images.unsplash.com/photo-1588286840104-8957b019727f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80');
+  background-size: cover;
+  background-position: center;
+  opacity: 0.3;
+}
+
+.oc-container .oc-hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  text-align: center;
+}
+
+.oc-container .oc-hero-subtitle {
+  color: var(--accent-color);
+  font-weight: 600;
+  letter-spacing: 2px;
+  font-size: clamp(0.8rem, 2vw, 1rem);
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+}
+
+.oc-container .oc-hero-title {
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  font-weight: 300;
+  line-height: 1.2;
+  margin-bottom: 2rem;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+.oc-container .oc-hero-description {
+  font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+  font-weight: 300;
+  margin-bottom: 3rem;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.oc-container .oc-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 2rem;
+  margin-bottom: 3rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.oc-container .oc-stat-item {
+  text-align: center;
+}
+
+.oc-container .oc-stat-number {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: var(--accent-color);
+  display: block;
+}
+
+.oc-container .oc-stat-label {
+  font-size: 0.9rem;
+  opacity: 0.9;
+}
+
+.oc-container .oc-hero-cta {
+  background: var(--accent-color);
+  border: none;
+  border-radius: 50px;
+  color: white;
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: clamp(0.9rem, 2vw, 1.1rem);
+  letter-spacing: 1px;
+  padding: 18px 45px;
+  box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.oc-container .oc-hero-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 35px rgba(212, 175, 55, 0.6);
+}
+
+/* Section Base Styles */
+.oc-container .oc-section {
+  padding: 5rem 2rem;
+}
+
+
+
+.oc-container .oc-container-width {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.oc-container .oc-section-header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.oc-container .oc-section-title {
+  font-size: clamp(2rem, 4vw, 3rem);
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+  font-weight: 300;
+}
+
+.oc-container .oc-section-subtitle {
+  font-size: 1.2rem;
+  color: #666;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Pricing Section Styles */
+.oc-container .oc-pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.oc-container .oc-pricing-card {
+  background: white;
+  border-radius: 20px;
+  padding: 2.5rem;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+  border: 3px solid transparent;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.oc-container .oc-pricing-card.featured {
+  border-color: var(--accent-color);
+  transform: scale(1.05);
+}
+
+.oc-container .oc-pricing-badge {
+  position: absolute;
+  top: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--accent-color);
+  color: white;
+  padding: 0.5rem 2rem;
+  border-radius: 25px;
+  font-size: 0.9rem;
+  font-weight: bold;
+}
+
+.oc-container .oc-pricing-title {
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+}
+
+.oc-container .oc-pricing-amount {
+  font-size: 3rem;
+  font-weight: bold;
+  color: var(--primary-color);
+}
+
+.oc-container .oc-pricing-original {
+  text-decoration: line-through;
+  color: #999;
+  margin-left: 1rem;
+  font-size: 1.5rem;
+}
+
+.oc-container .oc-pricing-savings {
+  color: var(--accent-color);
+  font-weight: bold;
+  margin: 1rem 0 1.5rem;
+}
+
+.oc-container .oc-pricing-features {
+  list-style: none;
+  padding: 0;
+  text-align: left;
+}
+
+.oc-container .oc-pricing-features li {
+  margin-bottom: 0.5rem;
+  padding-left: 1.5rem;
+  position: relative;
+  color: #666;
+}
+
+.oc-container .oc-pricing-features li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: var(--accent-color);
+  font-weight: bold;
+}
+
+.oc-container .oc-pricing-note {
+  color: #666;
+  font-size: 0.9rem;
+  text-align: center;
+  margin-top: 2rem;
+}
+
+/* Features Grid */
+.oc-container .oc-features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.oc-container .oc-feature-card {
+  background: white;
+  border-radius: 15px;
+  padding: 2rem;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.oc-container .oc-feature-card.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.oc-container .oc-feature-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+}
+
+.oc-container .oc-feature-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.oc-container .oc-feature-title {
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+.oc-container .oc-feature-description {
+  color: #666;
+  line-height: 1.6;
+}
+
+/* Curriculum Section */
+.oc-container .oc-curriculum-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
+}
+
+.oc-container .oc-module-card {
+  background: white;
+  border-radius: 20px;
+  padding: 2rem;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border: 3px solid transparent;
+}
+
+.oc-container .oc-module-card:hover {
+  transform: translateY(-5px);
+}
+
+.oc-container .oc-module-card.active {
+  border-color: var(--accent-color);
+}
+
+.oc-container .oc-module-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.oc-container .oc-module-icon {
+  font-size: 2.5rem;
+  margin-right: 1rem;
+}
+
+.oc-container .oc-module-info h4 {
+  color: var(--primary-color);
+  margin-bottom: 0.5rem;
+  font-size: 1.3rem;
+}
+
+.oc-container .oc-module-meta {
+  display: flex;
+  gap: 1rem;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.oc-container .oc-module-description {
+  color: #666;
+  margin-bottom: 1rem;
+  font-style: italic;
+}
+
+.oc-container .oc-module-content {
+  border-top: 1px solid #eee;
+  padding-top: 1rem;
+  animation: fadeIn 0.3s ease;
+}
+
+.oc-container .oc-module-content h5 {
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+}
+
+.oc-container .oc-module-list {
+  list-style: none;
+  padding: 0;
+}
+
+.oc-container .oc-module-list li {
+  margin-bottom: 0.5rem;
+  padding-left: 1.5rem;
+  position: relative;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.oc-container .oc-module-list li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: var(--accent-color);
+  font-weight: bold;
+}
+
+/* Schedule Section */
+.oc-container .oc-schedule-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+.oc-container .oc-schedule-card {
+  background: var(--gradient-primary);
+  border-radius: 15px;
+  padding: 2rem;
+  color: white;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.oc-container .oc-schedule-card:hover {
+  transform: translateY(-5px);
+}
+
+.oc-container .oc-schedule-type {
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.oc-container .oc-schedule-frequency {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.oc-container .oc-schedule-duration {
+  margin-bottom: 0.5rem;
+  opacity: 0.9;
+}
+
+.oc-container .oc-schedule-time {
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+.oc-container .oc-schedule-highlight {
+  text-align: center;
+  background: var(--accent-color);
+  color: white;
+  padding: 2rem;
+  border-radius: 15px;
+}
+
+.oc-container .oc-schedule-highlight h3 {
+  margin-bottom: 1rem;
+}
+
+.oc-container .oc-schedule-highlight p {
+  font-size: 1.2rem;
+  margin: 0;
+}
+
+/* Scoped section styles for component integration */
+.oc-container .oc-section:has(.yoga-teachers-wrapper) {
+  padding: 2rem 0;
+}
+
+.oc-container .oc-section:has(.ratings-container) {
+  padding: 2rem 0;
+}
+
+/* FAQ Section */
+.oc-container .oc-faq-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.oc-container .oc-faq-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.oc-container .oc-faq-item {
+  background: white;
+  border-radius: 15px;
+  padding: 1.5rem;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+  transition: all 0.3s ease;
+}
+
+.oc-container .oc-faq-item:hover {
+  box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+}
+
+.oc-container .oc-faq-question {
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.oc-container .oc-faq-answer {
+  color: #666;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Final CTA Section */
+.oc-container .oc-final-cta {
+  padding: 5rem 2rem;
+  background: var(--gradient-primary);
+  color: white;
+  text-align: center;
+}
+
+.oc-container .oc-final-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.oc-container .oc-final-title {
+  font-size: clamp(2rem, 4vw, 3rem);
+  margin-bottom: 1.5rem;
+  font-weight: 300;
+}
+
+.oc-container .oc-final-description {
+  font-size: 1.3rem;
+  margin-bottom: 2rem;
+  opacity: 0.9;
+  line-height: 1.6;
+}
+
+.oc-container .oc-final-offer {
+  background: rgba(255,255,255,0.1);
+  border-radius: 15px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  backdrop-filter: blur(10px);
+}
+
+.oc-container .oc-final-offer h3 {
+  margin-bottom: 1rem;
+}
+
+.oc-container .oc-final-offer p {
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+}
+
+.oc-container .oc-final-urgency {
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+.oc-container .oc-final-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+}
+
+.oc-container .oc-btn-primary {
+  background: var(--accent-color);
+  border: none;
+  border-radius: 50px;
+  color: white;
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 1.1rem;
+  letter-spacing: 1px;
+  padding: 18px 45px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.oc-container .oc-btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 35px rgba(0,0,0,0.4);
+}
+
+.oc-container .oc-btn-secondary {
+  background: transparent;
+  border: 2px solid white;
+  border-radius: 50px;
+  color: white;
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 1rem;
+  letter-spacing: 1px;
+  padding: 16px 35px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.oc-container .oc-btn-secondary:hover {
+  background: white;
+  color: var(--primary-color);
+}
+
+.oc-container .oc-final-guarantee {
+  margin-top: 2rem;
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.oc-container .oc-fade-in {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s ease-out;
+}
+
+.oc-container .oc-fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .oc-container .oc-section {
+    padding: 3rem 1rem;
+  }
+  
+  .oc-container .oc-hero-content {
+    padding: 0 1rem;
+  }
+  
+  .oc-container .oc-stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .oc-container .oc-pricing-card.featured {
+    transform: none;
+  }
+  
+  .oc-container .oc-final-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .oc-container .oc-btn-primary,
+  .oc-container .oc-btn-secondary {
+    width: 100%;
+    max-width: 300px;
+  }
+}
+
+@media (max-width: 576px) {
+  .oc-container .oc-hero-title {
+    font-size: 2rem;
+  }
+  
+  .oc-container .oc-section-title {
+    font-size: 1.8rem;
+  }
+  
+  .oc-container .oc-pricing-grid,
+  .oc-container .oc-features-grid,
+  .oc-container .oc-curriculum-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .oc-container .oc-schedule-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .oc-container .oc-module-header {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .oc-container .oc-module-icon {
+    margin-right: 0;
+    margin-bottom: 1rem;
+  }
+}
+
+/* Print Styles */
+@media print {
+  .oc-container .oc-hero-section,
+  .oc-container .oc-final-cta {
+    background: white !important;
+    color: black !important;
+  }
+  
+  .oc-container .oc-hero-cta,
+  .oc-container .oc-btn-primary,
+  .oc-container .oc-btn-secondary {
+    display: none;
+  }
+}
+
+/* High Contrast Mode */
+@media (prefers-contrast: high) {
+  .oc-container {
+    --accent-color: #ff6600;
+  }
+  
+  .oc-container .oc-feature-card,
+  .oc-container .oc-pricing-card,
+  .oc-container .oc-module-card,
+  .oc-container .oc-faq-item {
+    border: 2px solid #333;
+  }
+}
+
+/* Focus States for Accessibility */
+.oc-container .oc-hero-cta:focus,
+.oc-container .oc-btn-primary:focus,
+.oc-container .oc-btn-secondary:focus {
+  outline: 3px solid var(--accent-color);
+  outline-offset: 2px;
+}
+
+.oc-container .oc-module-card:focus {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .oc-container * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Hero Section Styles */
+.oc-hero-section {
+  min-height: 100vh;
+  background: var(--gradient-primary);
+  display: flex;
+  align-items: center;
+  color: white;
+  position: relative;
+  overflow: hidden;
+}
+
+.oc-hero-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url('https://images.unsplash.com/photo-1588286840104-8957b019727f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80');
+  background-size: cover;
+  background-position: center;
+  opacity: 0.3;
+}
+
+.oc-hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  text-align: center;
+}
+
+.oc-hero-subtitle {
+  color: var(--accent-color);
+  font-weight: 600;
+  letter-spacing: 2px;
+  font-size: clamp(0.8rem, 2vw, 1rem);
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+}
+
+.oc-hero-title {
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  font-weight: 300;
+  line-height: 1.2;
+  margin-bottom: 2rem;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+.oc-hero-description {
+  font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+  font-weight: 300;
+  margin-bottom: 3rem;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.oc-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 2rem;
+  margin-bottom: 3rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.oc-stat-item {
+  text-align: center;
+}
+
+.oc-stat-number {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: var(--accent-color);
+  display: block;
+}
+
+.oc-stat-label {
+  font-size: 0.9rem;
+  opacity: 0.9;
+}
+
+.oc-hero-cta {
+  background: var(--accent-color);
+  border: none;
+  border-radius: 50px;
+  color: white;
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: clamp(0.9rem, 2vw, 1.1rem);
+  letter-spacing: 1px;
+  padding: 18px 45px;
+  box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.oc-hero-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 35px rgba(212, 175, 55, 0.6);
+}
+
+/* Section Base Styles */
+.oc-section {
+  padding: 5rem 2rem;
+}
+
+
+
+.oc-container-width {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.oc-section-header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.oc-section-title {
+  font-size: clamp(2rem, 4vw, 3rem);
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+  font-weight: 300;
+}
+
+.oc-section-subtitle {
+  font-size: 1.2rem;
+  color: #666;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Pricing Section Styles */
+.oc-pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.oc-pricing-card {
+  background: white;
+  border-radius: 20px;
+  padding: 2.5rem;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+  border: 3px solid transparent;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.oc-pricing-card.featured {
+  border-color: var(--accent-color);
+  transform: scale(1.05);
+}
+
+.oc-pricing-badge {
+  position: absolute;
+  top: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--accent-color);
+  color: white;
+  padding: 0.5rem 2rem;
+  border-radius: 25px;
+  font-size: 0.9rem;
+  font-weight: bold;
+}
+
+.oc-pricing-title {
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+}
+
+.oc-pricing-amount {
+  font-size: 3rem;
+  font-weight: bold;
+  color: var(--primary-color);
+}
+
+.oc-pricing-original {
+  text-decoration: line-through;
+  color: #999;
+  margin-left: 1rem;
+  font-size: 1.5rem;
+}
+
+.oc-pricing-savings {
+  color: var(--accent-color);
+  font-weight: bold;
+  margin: 1rem 0 1.5rem;
+}
+
+.oc-pricing-features {
+  list-style: none;
+  padding: 0;
+  text-align: left;
+}
+
+.oc-pricing-features li {
+  margin-bottom: 0.5rem;
+  padding-left: 1.5rem;
+  position: relative;
+  color: #666;
+}
+
+.oc-pricing-features li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: var(--accent-color);
+  font-weight: bold;
+}
+
+.oc-pricing-note {
+  color: #666;
+  font-size: 0.9rem;
+  text-align: center;
+  margin-top: 2rem;
+}
+
+/* Features Grid */
+.oc-features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.oc-feature-card {
+  background: white;
+  border-radius: 15px;
+  padding: 2rem;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.oc-feature-card.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.oc-feature-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+}
+
+.oc-feature-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.oc-feature-title {
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+.oc-feature-description {
+  color: #666;
+  line-height: 1.6;
+}
+
+/* Curriculum Section */
+.oc-curriculum-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
+}
+
+.oc-module-card {
+  background: white;
+  border-radius: 20px;
+  padding: 2rem;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border: 3px solid transparent;
+}
+
+.oc-module-card:hover {
+  transform: translateY(-5px);
+}
+
+.oc-module-card.active {
+  border-color: var(--accent-color);
+}
+
+.oc-module-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.oc-module-icon {
+  font-size: 2.5rem;
+  margin-right: 1rem;
+}
+
+.oc-module-info h4 {
+  color: var(--primary-color);
+  margin-bottom: 0.5rem;
+  font-size: 1.3rem;
+}
+
+.oc-module-meta {
+  display: flex;
+  gap: 1rem;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.oc-module-description {
+  color: #666;
+  margin-bottom: 1rem;
+  font-style: italic;
+}
+
+.oc-module-content {
+  border-top: 1px solid #eee;
+  padding-top: 1rem;
+  animation: fadeIn 0.3s ease;
+}
+
+.oc-module-content h5 {
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+}
+
+.oc-module-list {
+  list-style: none;
+  padding: 0;
+}
+
+.oc-module-list li {
+  margin-bottom: 0.5rem;
+  padding-left: 1.5rem;
+  position: relative;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.oc-module-list li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: var(--accent-color);
+  font-weight: bold;
+}
+
+/* Schedule Section */
+.oc-schedule-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+.oc-schedule-card {
+  background: var(--gradient-primary);
+  border-radius: 15px;
+  padding: 2rem;
+  color: white;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.oc-schedule-card:hover {
+  transform: translateY(-5px);
+}
+
+.oc-schedule-type {
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.oc-schedule-frequency {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.oc-schedule-duration {
+  margin-bottom: 0.5rem;
+  opacity: 0.9;
+}
+
+.oc-schedule-time {
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+.oc-schedule-highlight {
+  text-align: center;
+  background: var(--accent-color);
+  color: white;
+  padding: 2rem;
+  border-radius: 15px;
+}
+
+.oc-schedule-highlight h3 {
+  margin-bottom: 1rem;
+}
+
+.oc-schedule-highlight p {
+  font-size: 1.2rem;
+  margin: 0;
+}
+
+/* Instructors Section */
+.oc-instructors-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.oc-instructor-card {
+  background: white;
+  border-radius: 20px;
+  padding: 2rem;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
+}
+
+.oc-instructor-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+}
+
+.oc-instructor-avatar {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin: 0 auto 1.5rem;
+  border: 4px solid var(--accent-color);
+}
+
+.oc-instructor-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.oc-instructor-name {
+  color: var(--primary-color);
+  margin-bottom: 0.5rem;
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+.oc-instructor-credentials {
+  color: var(--accent-color);
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.oc-instructor-experience {
+  color: #666;
+  margin-bottom: 0.5rem;
+}
+
+.oc-instructor-specialties {
+  color: #666;
+  font-size: 0.9rem;
+}
+
+/* Testimonials Section */
+.oc-testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.oc-testimonial-card {
+  background: white;
+  border-radius: 20px;
+  padding: 2rem;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.oc-testimonial-card:hover {
+  transform: translateY(-5px);
+}
+
+.oc-testimonial-rating {
+  display: flex;
+  margin-bottom: 1rem;
+}
+
+.oc-testimonial-rating span {
+  color: var(--accent-color);
+  font-size: 1.2rem;
+}
+
+.oc-testimonial-text {
+  color: #666;
+  font-style: italic;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  font-size: 1.1rem;
+}
+
+.oc-testimonial-author {
+  color: var(--primary-color);
+  font-weight: bold;
+  margin-bottom: 0.25rem;
+}
+
+.oc-testimonial-location {
+  color: #666;
+  font-size: 0.9rem;
+}
+
+/* FAQ Section */
+.oc-faq-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.oc-faq-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.oc-faq-item {
+  background: white;
+  border-radius: 15px;
+  padding: 1.5rem;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+  transition: all 0.3s ease;
+}
+
+.oc-faq-item:hover {
+  box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+}
+
+.oc-faq-question {
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.oc-faq-answer {
+  color: #666;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Final CTA Section */
+.oc-final-cta {
+  padding: 5rem 2rem;
+  background: var(--gradient-primary);
+  color: white;
+  text-align: center;
+}
+
+.oc-final-content {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.oc-final-title {
+  font-size: clamp(2rem, 4vw, 3rem);
+  margin-bottom: 1.5rem;
+  font-weight: 300;
+}
+
+.oc-final-description {
+  font-size: 1.3rem;
+  margin-bottom: 2rem;
+  opacity: 0.9;
+  line-height: 1.6;
+}
+
+.oc-final-offer {
+  background: rgba(255,255,255,0.1);
+  border-radius: 15px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  backdrop-filter: blur(10px);
+}
+
+.oc-final-offer h3 {
+  margin-bottom: 1rem;
+}
+
+.oc-final-offer p {
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+}
+
+.oc-final-urgency {
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+.oc-final-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+}
+
+.oc-btn-primary {
+  background: var(--accent-color);
+  border: none;
+  border-radius: 50px;
+  color: white;
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 1.1rem;
+  letter-spacing: 1px;
+  padding: 18px 45px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.oc-btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 35px rgba(0,0,0,0.4);
+}
+
+.oc-btn-secondary {
+  background: transparent;
+  border: 2px solid white;
+  border-radius: 50px;
+  color: white;
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 1rem;
+  letter-spacing: 1px;
+  padding: 16px 35px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.oc-btn-secondary:hover {
+  background: white;
+  color: var(--primary-color);
+}
+
+.oc-final-guarantee {
+  margin-top: 2rem;
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.oc-fade-in {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s ease-out;
+}
+
+.oc-fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .oc-section {
+    padding: 3rem 1rem;
+  }
+  
+  .oc-hero-content {
+    padding: 0 1rem;
+  }
+  
+  .oc-stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .oc-pricing-card.featured {
+    transform: none;
+  }
+  
+  .oc-final-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .oc-btn-primary,
+  .oc-btn-secondary {
+    width: 100%;
+    max-width: 300px;
+  }
+}
+
+@media (max-width: 576px) {
+  .oc-hero-title {
+    font-size: 2rem;
+  }
+  
+  .oc-section-title {
+    font-size: 1.8rem;
+  }
+  
+  .oc-pricing-grid,
+  .oc-features-grid,
+  .oc-curriculum-grid,
+  .oc-instructors-grid,
+  .oc-testimonials-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .oc-schedule-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .oc-module-header {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .oc-module-icon {
+    margin-right: 0;
+    margin-bottom: 1rem;
+  }
+}
+
+/* Print Styles */
+@media print {
+  .oc-hero-section,
+  .oc-final-cta {
+    background: white !important;
+    color: black !important;
+  }
+  
+  .oc-hero-cta,
+  .oc-btn-primary,
+  .oc-btn-secondary {
+    display: none;
+  }
+}
+
+/* High Contrast Mode */
+@media (prefers-contrast: high) {
+  .oc-container {
+    --accent-color: #ff6600;
+  }
+  
+  .oc-feature-card,
+  .oc-pricing-card,
+  .oc-module-card,
+  .oc-instructor-card,
+  .oc-testimonial-card,
+  .oc-faq-item {
+    border: 2px solid #333;
+  }
+}
+
+/* Focus States for Accessibility */
+.oc-hero-cta:focus,
+.oc-btn-primary:focus,
+.oc-btn-secondary:focus {
+  outline: 3px solid var(--accent-color);
+  outline-offset: 2px;
+}
+
+.oc-module-card:focus {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

@@ -152,7 +152,7 @@ const QuickLinks = memo(() => {
   const links = useMemo(() => [
     { to: "/", label: "Home" },
     { to: "/about", label: "About Us" },
-    { to: "/services", label: "Programs" },
+    { to: "/programs", label: "Programs" },
     { to: "/contact", label: "Contact" }
   ], []);
 
@@ -179,7 +179,7 @@ const ContactInfo = memo(() => {
       { number: "+917483987568", display: "+91-7483987568" },
       { number: "+917829997007", display: "+91-7829997007" }
     ],
-    email: "yogalayaaofficial@gmail.com",
+    email: "info@yogalayaa.com",
     address: "1972, 22nd Main Rd, Vanganahalli, 1st Sector, HSR Layout, Bengaluru, Karnataka 560102",
     hours: "Mon - Sat, 6:00 AM - 8:00 PM"
   }), []);

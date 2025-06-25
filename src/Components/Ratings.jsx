@@ -2,7 +2,7 @@ import React from "react";
 import { FaFacebook, FaInstagram, FaYoutube } from "react-icons/fa";
 import { IoStar, IoStarHalf } from "react-icons/io5";
 import "../Styles/ratings.css";
-
+import lg from '../images/lg.png'
 function Ratings() {
   const data = [
     {
@@ -36,7 +36,7 @@ function Ratings() {
     <div className="ratings-container">
       <div className="heading">
         <h1>What our students say about their yoga teacher training by Yogalayaa</h1>
-        <img src="./images/lg.png" alt="Yogalayaa Logo" />
+        <img src={lg} alt="Yogalayaa Logo" />
       </div>
 
       <div className="main-content">
