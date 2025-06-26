@@ -321,11 +321,7 @@ const Gallery = ({
         <div className="gallery-header">
           <h2 className="gallery-title">Yoga Gallery</h2>
           <p className="gallery-subtitle">
-<<<<<<< HEAD
           Take a glimpse into our yoga journey through these beautiful moments.
-=======
-       Take a glimpse into our yoga journey through these beautiful moments.
->>>>>>> af995228e503abc893868678a32eecd1a509682a
           </p>
         </div>
 
