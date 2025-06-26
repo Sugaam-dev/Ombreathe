@@ -321,7 +321,7 @@ const Gallery = ({
         <div className="gallery-header">
           <h2 className="gallery-title">Yoga Gallery</h2>
           <p className="gallery-subtitle">
-            Experience our yoga journey through {images.length} beautiful moments
+          Take a glimpse into our yoga journey through these beautiful moments.
           </p>
         </div>
 

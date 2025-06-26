@@ -168,7 +168,10 @@ const ImageSliderBanner = () => {
 
   // Memoized navigation function
   const teacher = useCallback(() => {
-    navigate('/service');
+    navigate('/programs');
+  }, [navigate]);
+   const retreats = useCallback(() => {
+    navigate('/programs/retreat-7-adventure');
   }, [navigate]);
 
   // Auto-play functionality with cleanup
@@ -346,7 +349,7 @@ const ImageSliderBanner = () => {
           
           <button 
             className="slider-button retreat-program-btn" 
-            onClick={teacher}
+            onClick={retreats}
             type="button"
             aria-label="Navigate to Retreat Program in Bali"
           >

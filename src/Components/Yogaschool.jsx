@@ -7,6 +7,8 @@ import school from '../images/logo/1.png'
 import Teachings from '../images/logo/2.png'
 import Wisdom from '../images/logo/3.png'
 import Methodology from '../images/logo/4.png'
+import logo from '../images/lg.png'
+import firstimage from '../images/Websitefirstimage.jpg'
 // Lazy load Slider component
 const Slider = lazy(() => import("react-slick"));
 
@@ -85,8 +87,8 @@ const Yogaschool = () => {
       try {
         // Use actual image imports or URLs as needed
         setImages({
-          logo: "./images/lg.png",
-          yogaSchool: "./images/yoga-school.webp"
+          logo: logo,
+          yogaSchool: firstimage
         });
       } catch (error) {
         console.error("Error loading images:", error);

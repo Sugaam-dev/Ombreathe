@@ -173,7 +173,7 @@ body {
   }
   
   .card-image-blog {
-    height: 300px;
+    height: auto;
   }
   
   .card-content-overlay {
@@ -252,7 +252,7 @@ body {
   }
   
   .card-image-blog {
-    height: 280px;
+    height: auto;
   }
   
   .card-content-overlay {
@@ -289,7 +289,7 @@ body {
   }
   
   .card-image-blog {
-    height: 250px;
+    height: auto;
   }
   
   .card-content-overlay {
