@@ -222,7 +222,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { Link } from "react-router-dom";
 import "../Styles/ayurveda.css"; // Import the separate CSS file
-
+import ayurveda from '../images/ayurveda.webp'
 const EnhancedAyurveda = () => {
   const [imageLoaded, setImageLoaded] = useState(false);
   const [contentVisible, setContentVisible] = useState(false);
@@ -385,7 +385,7 @@ const EnhancedAyurveda = () => {
       {/* Left Image Section */}
       <div className={`wellness-left-image-section ${imageLoaded ? 'wellness-slide-in-left' : ''}`}>
         <img 
-          src="https://myayushgoa.com/wp-content/uploads/2022/10/ayurvedic-treatment.jpg" 
+          src={ayurveda} 
           alt="Ayurveda healing and wellness" 
           className="wellness-left-image"
           onLoad={() => setImageLoaded(true)}
