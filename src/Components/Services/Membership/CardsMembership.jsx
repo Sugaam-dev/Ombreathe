@@ -3,10 +3,10 @@ import { useNavigate } from 'react-router-dom';
 import '../Styles/Services.css';
 
 // Import all images at the top
-import teachertraining from '../../../images/services/Teachers_training.jpg'
-import online from '../../../images/services/Online Courses.webp'
-import temple from '../../../images/services/temple_yoga.webp'
-import merchandise from '../../../images/services/Merchandise.jpg'
+import teachertraining from '../../../images/Membership/SHIV SHAKTI SADHANA MEMBERSHIP PROGRAM.jpg'
+import online from '../../../images/Membership/SAPTA RISHI SADHANA MEMBERSHIP PROGRAM.jpg'
+import temple from '../../../images/Membership/SHAKTI SADHANA MEMBERSHIP PROGRAM.jpg'
+import merchandise from '../../../images/Membership/PASHU-PATAYAA SADHANA MEMBERSHIP PROGRAM.jpg'
 import lg from '../../../images/lg.png'
 
 const Servicess = () => {

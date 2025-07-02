@@ -1,5 +1,10 @@
 // data/saptaRishiSadhanaData.js - Complete Data for Third Membership Program
-
+import saptaRishiSadhana from '../../../../images/Membership/SAPTA RISHI SADHANA PAGE FRONT.jpg'
+import a from '../../../../images/Membership/excursion_3.jpg'
+import b from '../../../../images/Membership/Accomodation_3.jpg'
+import c from '../../../../images/Membership/yogic_food.jpg'
+import time from '../../../../images/Gallery/Daily_Schedule_100_200_300.jpg'
+import background from '../../../../images/Background.jpg'
 const saptaRishiSadhanaData = {
   // Theme colors specific to Sapta Rishi program
   theme: {
@@ -15,7 +20,8 @@ const saptaRishiSadhanaData = {
     400 Hours Certification with Yogalayaa`,
     title: "Connect with Seven Great Sages Through Sacred Ashram Visits and Ancient Practices",
     description: "Experience profound wisdom transformation visiting ancient Rishi ashrams and learning timeless Vedic knowledge from authentic lineage holders",
-    ctaText: "Begin Your Wisdom Journey"
+    ctaText: "Begin Your Wisdom Journey",
+    url:"/contact"
   },
 
   // Pricing information
@@ -33,21 +39,21 @@ const saptaRishiSadhanaData = {
 
   // All images used in the component
   images: {
-    main: "https://images.unsplash.com/photo-1524863479829-916d8e77f114?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+    main: saptaRishiSadhana,
     mainAlt: "Ancient sage in meditation at ashram",
-    aboutMain: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+    aboutMain: a,
     aboutMainAlt: "Sacred Vedic fire ceremony",
     gallery: [
       {
-        src: "https://images.unsplash.com/photo-1606166894937-8ea762d2c4db?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        src: b,
         alt: "Traditional ashram sattvic food"
       },
       {
-        src: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        src: c,
         alt: "Mountain ashram accommodation"
       }
     ],
-    transformationBg: "https://images.unsplash.com/photo-1578662996442-48f60103fc96?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"
+    transformationBg: background
   },
 
   // Completion/Benefits section
@@ -406,7 +412,7 @@ const saptaRishiSadhanaData = {
     title: "Daily Schedule - Sapta Rishi Sadhana",
     description: "Our traditional ashram schedule follows ancient rhythms of spiritual life, balancing meditation, study, service, and contemplation. Each day deepens your connection with Rishi wisdom while maintaining sustainable spiritual growth.",
     note: "*Schedule follows traditional ashram timing and may vary based on location and season",
-    image: "https://images.unsplash.com/photo-1524863479829-916d8e77f114?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
+    image: time,
     imageAlt: "Dawn meditation at mountain ashram",
     morning: {
       title: "Dawn Practices",

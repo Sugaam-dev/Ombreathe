@@ -1,5 +1,10 @@
 // data/shivShaktiSadhanaData.js - Complete Data for Second Membership Program
-
+import shivShaktiSadhana from '../../../../images/Membership/SHIV SHAKTI SADHANA PAGE FRONT.jpg'
+import a from '../../../../images/Membership/Excursion_1.jpg'
+import b from '../../../../images/Membership/Accomodation.jpg'
+import c from '../../../../images/Membership/yogic_food.jpg'
+import time from '../../../../images/Gallery/Daily_Schedule_100_200_300.jpg'
+import background from '../../../../images/Background.jpg'
 const shivShaktiSadhanaData = {
   // Theme colors specific to Shiv Shakti program
   theme: {
@@ -15,7 +20,8 @@ const shivShaktiSadhanaData = {
     300 Hours Certification with Yogalayaa`,
     title: "Unite Shiva and Shakti Energies Through Sacred 12 Jyotirlinga Journey",
     description: "Experience the perfect union of divine masculine and feminine energies visiting Jyotirlingas and Shakti Peeths",
-    ctaText: "Begin Your Unity Journey"
+    ctaText: "Begin Your Unity Journey",
+    url:"/contact"
   },
 
   // Pricing information
@@ -33,21 +39,21 @@ const shivShaktiSadhanaData = {
 
   // All images used in the component
   images: {
-    main: "https://images.unsplash.com/photo-1582582621959-48d27397dc69?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+    main: shivShaktiSadhana,
     mainAlt: "Shiva Shakti union temple imagery",
-    aboutMain: "https://images.unsplash.com/photo-1583470274350-4d0b4f8c41dc?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+    aboutMain: a,
     aboutMainAlt: "Sacred Jyotirlinga temple",
     gallery: [
       {
-        src: "https://images.unsplash.com/photo-1591696331096-d3ef564b68e8?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        src: b,
         alt: "Traditional temple food"
       },
       {
-        src: "https://images.unsplash.com/photo-1570366583862-f91883984fde?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        src: c,
         alt: "Mountain temple accommodation"
       }
     ],
-    transformationBg: "https://images.unsplash.com/photo-1583470274350-4d0b4f8c41dc?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"
+    transformationBg: background
   },
 
   // Completion/Benefits section
@@ -346,7 +352,7 @@ const shivShaktiSadhanaData = {
     title: "Daily Schedule - Shiv Shakti Sadhana",
     description: "Our intensive daily schedule balances temple visits, advanced practices, and integration time. The extended program allows deep absorption of each Jyotirlinga's unique energy while maintaining sustainable spiritual growth.",
     note: "*Extended program with rest days between major temple visits for proper integration",
-    image: "https://images.unsplash.com/photo-1583470274350-4d0b4f8c41dc?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
+    image: time,
     imageAlt: "Sacred Jyotirlinga temple during ceremony",
     morning: {
       title: "Morning Practices",

@@ -1,10 +1,16 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import './MembershipProgram.css';
+import { useNavigate } from 'react-router-dom';
 
 const MembershipProgram = ({ data }) => {
   const [isVisible, setIsVisible] = useState(false);
   const [animatedItems, setAnimatedItems] = useState({});
   const [imagesVisible, setImagesVisible] = useState({});
+
+   const navigate =useNavigate()
+    const url=()=>{
+      navigate(data.hero.url)
+    }
 
   useEffect(() => {
     setIsVisible(true);
@@ -27,6 +33,9 @@ const MembershipProgram = ({ data }) => {
         }, 500 + index * 300)
       );
     });
+
+
+ 
 
     return () => timeouts.forEach(clearTimeout);
   }, [data.features]);
@@ -94,6 +103,7 @@ const MembershipProgram = ({ data }) => {
                       style={{backgroundColor: data.theme.primary}}
                       onMouseEnter={handleMouseEnter}
                       onMouseLeave={handleMouseLeave}
+                      onClick={url}
                     >
                       {data.hero.ctaText}
                     </button>

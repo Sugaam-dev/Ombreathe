@@ -1,5 +1,10 @@
 // data/pashuPatayaaData.js - Complete Data for Fourth Membership Program
-
+import pashuPatayaa from '../../../../images/Membership/PASHU-PATAYAA SADHANA PAGE FRONT.jpg'
+import a from '../../../../images/Membership/excursion_4.jpg'
+import b from '../../../../images/Membership/Accomodation_2.jpg'
+import c from '../../../../images/Membership/Excursion_1.jpg'
+import time from '../../../../images/Gallery/Daily_Schedule_100_200_300.jpg'
+import background from '../../../../images/Background.jpg'
 const pashuPatayaaData = {
   // Theme colors specific to Pashu-Patayaa program
   theme: {
@@ -15,7 +20,8 @@ const pashuPatayaaData = {
     250 Hours Certification with Yogalayaa`,
     title: "Connect with Shiva as Pashupati - Lord of All Creatures Through Sacred Forest Retreats",
     description: "Experience profound unity with nature and all living beings through wildlife sanctuaries, forest ashrams, and animal consciousness practices",
-    ctaText: "Begin Your Nature Journey"
+    ctaText: "Begin Your Nature Journey",
+    url:"/contact"
   },
 
   // Pricing information
@@ -33,21 +39,21 @@ const pashuPatayaaData = {
 
   // All images used in the component
   images: {
-    main: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+    main: pashuPatayaa,
     mainAlt: "Serene forest path with wildlife",
-    aboutMain: "https://images.unsplash.com/photo-1574263867128-a3d5c1b1deec?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+    aboutMain: a,
     aboutMainAlt: "Elephants in their natural habitat",
     gallery: [
       {
-        src: "https://images.unsplash.com/photo-1464822759844-d150baec0094?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        src: b,
         alt: "Organic forest meals"
       },
       {
-        src: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        src: c,
         alt: "Eco-lodge accommodation in nature"
       }
     ],
-    transformationBg: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"
+    transformationBg: background
   },
 
   // Completion/Benefits section
@@ -346,7 +352,7 @@ Nature Journey to Sacred
     title: "Daily Schedule - Pashu-Patayaa Sadhana",
     description: "Our nature-based schedule follows the natural rhythms of wildlife and forest life, balancing observation, practice, learning, and conservation action. Each day deepens your connection with the natural world while honoring all life forms.",
     note: "*Schedule adapted to wildlife activity patterns and seasonal changes",
-    image: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
+    image: time,
     imageAlt: "Dawn wildlife observation in forest",
     morning: {
       title: "Dawn Nature Practices",

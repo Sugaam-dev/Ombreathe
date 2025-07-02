@@ -1,7 +1,12 @@
 // data/shaktiSadhanaData.js - Complete Data Configuration
 
 import React from 'react';
-
+import shaktiSadhana from '../../../../images/Membership/SHAKTI SADHANA PAGE FRONT.jpg'
+import a from '../../../../images/Membership/excursion_2.jpg'
+import b from '../../../../images/Membership/Accomodation_2.jpg'
+import c from '../../../../images/Membership/yogic_food.jpg'
+import time from '../../../../images/Gallery/Daily_Schedule_100_200_300.jpg'
+import background from '../../../../images/Background.jpg'
 const shaktiSadhanaData = {
   // Theme colors specific to this program
   theme: {
@@ -17,7 +22,8 @@ const shaktiSadhanaData = {
     200 Hours Certification with Yogalayaa`,
     title: "Connect Your Jeevatma to Deviaatma Through Sacred Shakti Peeths Journey",
     description: "Experience transformative spiritual pilgrimage visiting 12 sacred temples during Navratri with ancient practices",
-    ctaText: "Begin Your Sacred Journey"
+    ctaText: "Begin Your Sacred Journey",
+    url:"/contact"
   },
 
   // Pricing information
@@ -35,21 +41,21 @@ const shaktiSadhanaData = {
 
   // All images used in the component
   images: {
-    main: "https://images.unsplash.com/photo-1596450514811-22e0d4bf4d3f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+    main: shaktiSadhana,
     mainAlt: "Sacred Goddess temple with devotees",
-    aboutMain: "https://images.unsplash.com/photo-1603201667230-bd5430e84a40?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80",
+    aboutMain: a,
     aboutMainAlt: "Devotees at sacred Shakti temple",
     gallery: [
       {
-        src: "https://images.unsplash.com/photo-1574936913940-5b9f6b30b4c3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        src: b,
         alt: "Traditional saatvik meal"
       },
       {
-        src: "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        src: c,
         alt: "Sacred temple accommodation"
       }
     ],
-    transformationBg: "https://images.unsplash.com/photo-1603201667230-bd5430e84a40?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"
+    transformationBg: background
   },
 
   // Completion/Benefits section
@@ -467,7 +473,7 @@ const shaktiSadhanaData = {
     title: "Daily Schedule - Shakti Sadhana",
     description: "Our daily schedule is designed to provide a perfect balance of spiritual practices, temple visits, sacred ceremonies, and deep contemplation. Each day brings new opportunities for divine connection and personal transformation guided by experienced spiritual teachers.",
     note: "*Please note: The timing and sequence may vary depending on temple schedules and seasonal factors.",
-    image: "https://images.unsplash.com/photo-1604013924300-d1b5c4e5eba1?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
+    image: time,
     imageAlt: "Sacred temple during Navratri celebration",
     morning: {
       title: "Morning Session",
