@@ -17,7 +17,7 @@ const pashuPatayaaData = {
   hero: {
     subtitle: `PASHU-PATAYAA SADHANA MEMBERSHIP PROGRAM
     Lord of Animals - Nature Connection Yoga
-    250 Hours Certification with Yogalayaa`,
+    250 Hours Certification with Ombreathe`,
     title: "Connect with Shiva as Pashupati - Lord of All Creatures Through Sacred Forest Retreats",
     description: "Experience profound unity with nature and all living beings through wildlife sanctuaries, forest ashrams, and animal consciousness practices",
     ctaText: "Begin Your Nature Journey",
@@ -87,7 +87,7 @@ const pashuPatayaaData = {
     },
     {
       image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&fit=crop&crop=face",
-      alt: "Yogalayaa Nature Wisdom Certification"
+      alt: "Ombreathe Nature Wisdom Certification"
     }
   ],
 
@@ -136,7 +136,7 @@ Nature Journey to Sacred
   // Transformation section
   transformation: {
     mainText: `Embarking on a Pashu-Patayaa Sadhana awakens your innate connection with all life, experiencing Shiva as the divine consciousness present in every creature and plant`,
-    subtitle: "At Yogalayaa, our nature-immersion program reconnects you with your wild essence through sacred wilderness experiences, animal consciousness practices, and ecological wisdom teachings"
+    subtitle: "At Ombreathe, our nature-immersion program reconnects you with your wild essence through sacred wilderness experiences, animal consciousness practices, and ecological wisdom teachings"
   },
 
   // Practices section
@@ -406,7 +406,7 @@ Nature Journey to Sacred
   // Final section
   final: {
     title: "Transform Through Nature's Wisdom",
-    description: "At Yogalayaa Academy, we offer the most authentic nature-based spiritual training available. Our Pashu-Patayaa Sadhana connects you with the divine consciousness present in all life while developing practical skills for environmental healing and wildlife conservation.",
+    description: "At Ombreathe Academy, we offer the most authentic nature-based spiritual training available. Our Pashu-Patayaa Sadhana connects you with the divine consciousness present in all life while developing practical skills for environmental healing and wildlife conservation.",
     benefits: [
       {
         title: "Universal Connection",

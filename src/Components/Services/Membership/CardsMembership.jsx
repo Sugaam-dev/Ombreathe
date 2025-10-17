@@ -34,13 +34,13 @@ const Servicess = () => {
       features: [
         "300 Hours comprehensive certification program",
         "Temple Yoga with Unified Divine Energy practices",
-        "Yogalayaa certified training program",
+        "Ombreathe certified training program",
         "Integration of Shiva and Shakti principles",
         "Advanced meditation and spiritual practices"
       ],
       price: "$2,800",
       hours: "300 Hours",
-      certification: "Yogalayaa",
+      certification: "Ombreathe",
       priority: 1
     },
     {
@@ -52,13 +52,13 @@ const Servicess = () => {
       features: [
         "200 Hours certification program",
         "Divine Feminine Energy cultivation",
-        "Yogalayaa certified training",
+        "Ombreathe certified training",
         "Sacred feminine practices and rituals",
         "Goddess-centered yoga methodology"
       ],
       price: "$1899",
       hours: "200 Hours",
-      certification: "Yogalayaa",
+      certification: "Ombreathe",
       priority: 2
     },
     {
@@ -70,13 +70,13 @@ const Servicess = () => {
       features: [
         "400 Hours advanced certification program",
         "Vedic Wisdom and Ancient Knowledge studies",
-        "Yogalayaa certified comprehensive training",
+        "Ombreathe certified comprehensive training",
         "Seven Sages (Sapta Rishi) teachings",
         "Deep dive into Vedic scriptures and practices"
       ],
       price: "$2999",
       hours: "400 Hours",
-      certification: "Yogalayaa",
+      certification: "Ombreathe",
       priority: 3
     },
     {
@@ -88,13 +88,13 @@ const Servicess = () => {
       features: [
         "250 Hours specialized certification program",
         "Lord of Animals (Pashupati) connection practices",
-        "Yogalayaa certified nature-based training",
+        "Ombreathe certified nature-based training",
         "Animal spirit yoga and nature connection",
         "Ecological awareness and earth-based practices"
       ],
       price: "$2199",
       hours: "250 Hours",
-      certification: "Yogalayaa",
+      certification: "Ombreathe",
       priority: 4
     }
   ], []);
@@ -163,7 +163,7 @@ const Servicess = () => {
                 <h1>Membership Temple Yoga Program</h1>
                 <img 
                   src={lg}
-                  alt="Yogalayaa Logo" 
+                  alt="Ombreathe Logo" 
                   loading="eager"
                   style={{ maxWidth: '100%', height: 'auto' }}
                   onError={(e) => console.error('Logo failed to load:', e.target.src)}

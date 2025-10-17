@@ -53,7 +53,7 @@ const Training200 = () => {
                       <br />
                       In Magical Bali, Indonesia
                       <br />
-                      With Yogalayaa
+                      With Ombreathe
                     </h6>
                   </div>
 

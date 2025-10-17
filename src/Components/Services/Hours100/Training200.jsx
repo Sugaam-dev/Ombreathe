@@ -55,7 +55,7 @@ const Training200 = () => {
                         }}>
                       100-Hour Foundation<br />
                       Yoga Teacher Training<br />
-                      In Ubud, Bali with Yogalayaa
+                      In Ubud, Bali with Ombreathe
                     </h6>
                   </div>
 

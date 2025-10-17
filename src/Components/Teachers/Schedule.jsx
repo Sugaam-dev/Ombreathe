@@ -200,7 +200,7 @@ const Schedule = () => {
             <h1>{headerContent.title}</h1>
             <img 
               src={headerContent.logo} 
-              alt="Yogalayaa Logo"
+              alt="Ombreathe Logo"
               loading="eager"
               style={{ maxWidth: '100%', height: 'auto' }}
             />

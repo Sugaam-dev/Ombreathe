@@ -423,7 +423,7 @@ const Footer = () => {
           <div className="row align-items-center">
             <div className="col-md-6">
               <p className="mb-0 copyright-text-white">
-                © {currentYear} Yogalayaa. All Rights Reserved.
+                © {currentYear} Ombreathe. All Rights Reserved.
               </p>
             </div>
             <div className="col-md-6 text-md-end">

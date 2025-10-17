@@ -235,7 +235,7 @@ const YogaTeachers = () => {
               <h1>Our Yoga Teachers</h1>
               <img 
                 src={lg} 
-                alt="Yogalayaa Logo" 
+                alt="Ombreathe Logo" 
                 loading="eager"
                 style={{ maxWidth: '100%', height: 'auto' }}
               />

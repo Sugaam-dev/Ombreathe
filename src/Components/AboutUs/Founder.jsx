@@ -26,7 +26,7 @@ const Founder = () => {
               {/* First Paragraph */}
               <div className="founder-philosopher-text-block">
                 <p className="founder-philosopher-intro">
-                  <span className="founder-philosopher-brand">YOGALAYAA</span> - Founder 
+                  <span className="founder-philosopher-brand">Ombreathe</span> - Founder 
                   <span className="founder-philosopher-name"> Yogi Ranjan</span>
                 </p>
                 <p className="founder-philosopher-description">

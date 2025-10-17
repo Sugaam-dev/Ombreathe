@@ -17,7 +17,7 @@ const saptaRishiSadhanaData = {
   hero: {
     subtitle: `SAPTA RISHI SADHANA MEMBERSHIP PROGRAM
     Vedic Wisdom and Ancient Knowledge
-    400 Hours Certification with Yogalayaa`,
+    400 Hours Certification with Ombreathe`,
     title: "Connect with Seven Great Sages Through Sacred Ashram Visits and Ancient Practices",
     description: "Experience profound wisdom transformation visiting ancient Rishi ashrams and learning timeless Vedic knowledge from authentic lineage holders",
     ctaText: "Begin Your Wisdom Journey",
@@ -87,7 +87,7 @@ const saptaRishiSadhanaData = {
     },
     {
       image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&fit=crop&crop=face",
-      alt: "Yogalayaa Advanced Wisdom Certification"
+      alt: "Ombreathe Advanced Wisdom Certification"
     }
   ],
 
@@ -136,7 +136,7 @@ const saptaRishiSadhanaData = {
   // Transformation section
   transformation: {
     mainText: `Embarking on a Sapta Rishi Sadhana connects you with the timeless wisdom of the seven great sages who preserve universal knowledge for humanity`,
-    subtitle: "At Yogalayaa, our advanced program transmits authentic Vedic wisdom through direct experience at sacred ashrams, ancient practices, and guidance from traditional lineage holders"
+    subtitle: "At Ombreathe, our advanced program transmits authentic Vedic wisdom through direct experience at sacred ashrams, ancient practices, and guidance from traditional lineage holders"
   },
 
   // Practices section
@@ -466,7 +466,7 @@ const saptaRishiSadhanaData = {
   // Final section
   final: {
     title: "Transform Through Ancient Wisdom",
-    description: "At Yogalayaa Academy, we offer the most authentic and comprehensive Vedic wisdom training available. Our program connects you directly with the living lineages of the great Rishis while providing practical tools for applying ancient knowledge in contemporary life.",
+    description: "At Ombreathe Academy, we offer the most authentic and comprehensive Vedic wisdom training available. Our program connects you directly with the living lineages of the great Rishis while providing practical tools for applying ancient knowledge in contemporary life.",
     benefits: [
       {
         title: "Timeless Wisdom",

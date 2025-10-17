@@ -170,7 +170,7 @@ const Yogaschool = () => {
             {images.logo && (
               <img 
                 src={images.logo} 
-                alt="Yogalayaa Logo" 
+                alt="Ombreathe Logo" 
                 loading="lazy"
                 style={{ maxWidth: '100%', height: 'auto' }}
               />
@@ -220,22 +220,22 @@ const Yogaschool = () => {
               data-aos-duration="600"
             >
               <p>
-                At Yogalayaa, all courses are led by skilled and certified yoga
+                At Ombreathe, all courses are led by skilled and certified yoga
                 teachers dedicated to delivering authentic, immersive, and Yoga
                 Alliance-accredited programs. Whether you're beginning your
                 journey or aiming to become a certified instructor, our
                 comprehensive training helps you build a strong, mindful
                 foundation in yoga. <br/> <br/> With serene campuses in both Bali and
                 Rishikesh, we offer an inspiring environment that nurtures
-                self-growth, discipline, and spiritual connection. At Yogalayaa,
+                self-growth, discipline, and spiritual connection. At Ombreathe,
                 we guide you to develop your own teaching style, deepen your
                 practice, and embrace a holistic yogic lifestyle. <br/> <br/> Our courses
                 are designed to transform habits, enhance awareness, and lead
                 you toward a life of balance, clarity, and inner peace.<br/> <br/> From
                 in-person teacher training and retreats to online programs,
-                Yogalayaa offers a global platform to learn, grow, and share
+                Ombreathe offers a global platform to learn, grow, and share
                 yoga with the world — all rooted in the spiritual essence of
-                traditional Indian yoga. <br/> <br/> Join us at Yogalayaa and step into your
+                traditional Indian yoga. <br/> <br/> Join us at Ombreathe and step into your
                 fullest potential as a student, seeker, or teacher of yoga.
               </p>
               <div className="boxcontent">
