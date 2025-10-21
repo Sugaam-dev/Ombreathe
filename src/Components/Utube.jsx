@@ -176,7 +176,7 @@ const OptimizedYouTubePlayer = memo(() => {
         }>
           <LazyYouTubeEmbed
             videoId="_xLrirWP-S0"
-            title="Yoga School By Ombreathe"
+            title="Yoga School By Ombreath"
             onLoad={handlePlayerLoad}
           />
         </Suspense>
@@ -203,13 +203,13 @@ const OptimizedYouTubePlayer = memo(() => {
 function Utube() {
   // Memoized content data
   const content = {
-    title: "Yoga School By Ombreathe",
-    subtitle: "Awaken Your Inner Yogi and Embrace the Magic of Rishikesh, Bali, and McLeod Ganj with Ombreathe Yoga Ashram",
-    description: `Welcome to Ombreathe Yoga Ashram, a leading yoga school with centers in Rishikesh, Bali, and McLeod Ganj. Our Yoga Teacher Training courses are Yoga Alliance accredited and offer a comprehensive, immersive learning experience for practitioners of all levels.
+    title: "Yoga School By Ombreath",
+    subtitle: "Awaken Your Inner Yogi and Embrace the Magic of Rishikesh, Bali, and McLeod Ganj with Ombreath Yoga Ashram",
+    description: `Welcome to Ombreath Yoga Ashram, a leading yoga school with centers in Rishikesh, Bali, and McLeod Ganj. Our Yoga Teacher Training courses are Yoga Alliance accredited and offer a comprehensive, immersive learning experience for practitioners of all levels.
 
 Guided by experienced and certified teachers, we provide personalized attention to help you build a strong foundation in yoga practice. Nestled in serene and spiritual locations, our schools create the perfect environment for growth, healing, and transformation.
 
-Whether you want to deepen your practice or become a certified yoga teacher, Ombreathe's TTC programs in Rishikesh, Bali, and McLeod Ganj will empower you to reach your goals.`
+Whether you want to deepen your practice or become a certified yoga teacher, Ombreath's TTC programs in Rishikesh, Bali, and McLeod Ganj will empower you to reach your goals.`
   };
 
   return (
@@ -233,7 +233,7 @@ Whether you want to deepen your practice or become a certified yoga teacher, Omb
         <h1>{content.title}</h1>
         <img 
           src="./images/lg.png" 
-          alt="Ombreathe Logo" 
+          alt="Ombreath Logo" 
           loading="eager"
           style={{ maxWidth: '100%', height: 'auto' }}
         />

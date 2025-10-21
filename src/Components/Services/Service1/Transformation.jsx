@@ -59,7 +59,7 @@ const Transformation = ({ backgroundImage }) => {
             Embarking on a <span className="highlight-text">200-hour yoga teacher training in Bali</span> is a transformative yet challenging journey
           </p>
           <p style={{ fontSize: '1.5rem', fontWeight: '300', maxWidth: '80%', margin: '0 auto', opacity: '0.9' }}>
-            At Ombreathe, our exclusive program is designed to completely change your life through self-discovery, 
+            At Ombreath, our exclusive program is designed to completely change your life through self-discovery, 
             guided by Bali's timeless spirituality and our team of highly qualified teachers
           </p>
         </div>

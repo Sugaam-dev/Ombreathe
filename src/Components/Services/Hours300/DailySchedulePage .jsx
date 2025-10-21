@@ -2,7 +2,7 @@ import React from 'react';
 
 const DailySchedulePage = ({ 
   title = "Daily Schedule - 300 Hours YTTC",
-  description = "Ombreathe's 300-hour advanced yoga teacher training program is designed for experienced practitioners seeking deeper knowledge and advanced teaching skills. This comprehensive program builds upon foundational training, offering intensive study of advanced asanas, philosophy, and specialized teaching methodologies over an extended immersive experience.",
+  description = "Ombreath's 300-hour advanced yoga teacher training program is designed for experienced practitioners seeking deeper knowledge and advanced teaching skills. This comprehensive program builds upon foundational training, offering intensive study of advanced asanas, philosophy, and specialized teaching methodologies over an extended immersive experience.",
   scheduleImage = ""
 }) => {
   
@@ -50,7 +50,7 @@ const DailySchedulePage = ({
             <div className="position-relative">
               <img 
                 src={scheduleImage}
-                alt="Yoga class session at Ombreathe"
+                alt="Yoga class session at Ombreath"
                 className="img-fluid rounded shadow-lg"
                 style={{ 
                   width: '100%',

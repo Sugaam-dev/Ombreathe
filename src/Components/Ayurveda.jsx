@@ -179,7 +179,7 @@ const EnhancedAyurveda = () => {
       
       {/* Right Content Section */}
       <div className={`wellness-right-content-section ${contentVisible ? 'wellness-slide-in-bottom' : ''}`}>
-        <h2 className="wellness-sub-heading">Welcome to Ombreathe</h2>
+        <h2 className="wellness-sub-heading">Welcome to Ombreath</h2>
         <h1 className="wellness-main-heading">Discover the Power of Ayurveda with Our Trusted Experts</h1>
         <p className="wellness-content-text">
           In our fast-paced world, finding balance and wellness can be challenging. 
@@ -187,7 +187,7 @@ const EnhancedAyurveda = () => {
           and spirit. It's not just a way to treat illness; it's a way to live well, every day.
         </p>
         <p className="wellness-content-text">
-          Ombreathe is dedicated to giving Ayurveda the platform it deserves. We connect 
+          Ombreath is dedicated to giving Ayurveda the platform it deserves. We connect 
           you with authentic Ayurvedic wisdom, practices, and remedies designed to nourish 
           your life.
         </p>

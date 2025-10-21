@@ -324,7 +324,7 @@ const ImageSliderBanner = () => {
       {/* Content Overlay */}
       <div className="slider-content">
         <h1 className="slider-title">
-          Welcome To The Ombreathe For 
+          Welcome To The Ombreath For 
         </h1>
         <div className="type">
           <span>

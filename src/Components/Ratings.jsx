@@ -35,8 +35,8 @@ function Ratings() {
   return (
     <div className="ratings-container">
       <div className="heading">
-        <h1>What our students say about their yoga teacher training by Ombreathe</h1>
-        <img src={lg} alt="Ombreathe Logo" />
+        <h1>What our students say about their yoga teacher training by Ombreath</h1>
+        <img src={lg} alt="Ombreath Logo" />
       </div>
 
       <div className="main-content">

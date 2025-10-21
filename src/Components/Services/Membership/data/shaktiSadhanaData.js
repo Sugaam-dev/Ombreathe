@@ -19,7 +19,7 @@ const shaktiSadhanaData = {
   hero: {
     subtitle: `SHAKTI SADHANA MEMBERSHIP PROGRAM
     Temple Yoga with Divine Feminine Energy
-    200 Hours Certification with Ombreathe`,
+    200 Hours Certification with Ombreath`,
     title: "Connect Your Jeevatma to Deviaatma Through Sacred Shakti Peeths Journey",
     description: "Experience transformative spiritual pilgrimage visiting 12 sacred temples during Navratri with ancient practices",
     ctaText: "Begin Your Sacred Journey",
@@ -89,7 +89,7 @@ const shaktiSadhanaData = {
     },
     {
       image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&fit=crop&crop=face",
-      alt: "Ombreathe Academy Certification"
+      alt: "Ombreath Academy Certification"
     }
   ],
 
@@ -256,7 +256,7 @@ const shaktiSadhanaData = {
   // Transformation section
   transformation: {
     mainText: `Embarking on a Shakti Sadhana pilgrimage is a transformative journey connecting you with the divine feminine energy across India's most powerful temples`,
-    subtitle: "At Ombreathe, our sacred program is designed to awaken your inner goddess through temple visits, ancient practices, and spiritual communion with the Divine Mother"
+    subtitle: "At Ombreath, our sacred program is designed to awaken your inner goddess through temple visits, ancient practices, and spiritual communion with the Divine Mother"
   },
 
   // Practices section
@@ -579,7 +579,7 @@ const shaktiSadhanaData = {
   // Final section
   final: {
     title: "Transform Your Spiritual Journey",
-    description: "At Ombreathe Academy, we prioritize your spiritual growth, safety, and transformative experience. Join the Shakti Sadhana program and connect with the divine feminine energy while taking your spiritual journey to the next level.",
+    description: "At Ombreath Academy, we prioritize your spiritual growth, safety, and transformative experience. Join the Shakti Sadhana program and connect with the divine feminine energy while taking your spiritual journey to the next level.",
     benefits: [
       {
         title: "Divine Connection",

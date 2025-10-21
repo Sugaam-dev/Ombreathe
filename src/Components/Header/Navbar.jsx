@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import logo from '../../images/logo4.png'
+import logo from '../../images/ombreathLogo.png'
 import './Navbar.css'
 
 const Navbar = () => {
@@ -49,7 +49,6 @@ const Navbar = () => {
     if (window.innerWidth < 992) {
       setIsNavCollapsed(true); // Close mobile menu for regular links
     }
-    // Let the browser handle navigation naturally - don't prevent default
   };
 
   const toggleDropdown = (dropdownName, event) => {
@@ -85,7 +84,7 @@ const Navbar = () => {
             ...prev,
             [dropdownName]: false
           }));
-        }, 300); // Increased delay for better UX
+        }, 300);
       }
     }
   };
@@ -103,9 +102,7 @@ const Navbar = () => {
 
   return (
     <>
-     
-      
-      <nav className={`navbar navbar-expand-lg navbar-light premium-navbar shadow-lg ${isDesktop ? 'fixed-top' : ''}`}>
+      <nav className={`navbar navbar-expand-lg navbar-light premium-navbar shadow-lg ${isDesktop ? 'sticky-top' : ''}`}>
         <div className="container">
           {/* Logo */}
           <Link className="navbar-brand logo-brand" to="/" onClick={() => handleLinkClick('home')}>
@@ -132,7 +129,7 @@ const Navbar = () => {
 
           {/* Navigation menu */}
           <div className={`${isNavCollapsed ? 'collapse' : ''} navbar-collapse`} id="navbarNav">
-            <ul className="navbar-nav ms-auto">
+            <ul className="navbar-nav ms-auto align-items-center">
               {/* Home */}
               <li className="nav-item">
                 <Link 
@@ -141,7 +138,6 @@ const Navbar = () => {
                   onClick={() => handleLinkClick('home')}
                 >
                   Home
-                  <span className="link-underline"></span>
                 </Link>
               </li>
 
@@ -153,7 +149,6 @@ const Navbar = () => {
                   onClick={() => handleLinkClick('about')}
                 >
                   About
-                  <span className="link-underline"></span>
                 </Link>
               </li>
 
@@ -169,7 +164,6 @@ const Navbar = () => {
                 >
                   Programs
                   <span className={`dropdown-arrow ${dropdownOpen.programs ? 'rotated' : ''}`}>▼</span>
-                  <span className="link-underline"></span>
                 </Link>
                 
                 {/* Invisible bridge for smooth hover transition */}
@@ -185,7 +179,6 @@ const Navbar = () => {
                     <hr className="dropdown-divider-custom" />
                     <Link className="dropdown-item-custom premium-dropdown-item" to="/programs"
                      onClick={() => handleLinkClick('programs')}>
-                    
                       View All Programs
                     </Link>
                   </div>
@@ -200,99 +193,111 @@ const Navbar = () => {
                   onClick={() => handleLinkClick('contact')}
                 >
                   Contact
-                  <span className="link-underline"></span>
                 </Link>
               </li>
 
               {/* Book Appointment Button */}
-              <li className="nav-item ms-3">
+              <li className="nav-item">
                 <Link className="btn book-appointment-btn" to="/contact">
                   Book Appointment
                 </Link>
               </li>
-              
             </ul>
           </div>
         </div>
       </nav>
 
       <style jsx>{`
-        /* Premium Navbar Styles */
+        /* Premium Navbar Styles - Reduced Height */
         .premium-navbar {
           background: white !important;
           backdrop-filter: blur(20px);
-          border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+          border-bottom: 1px solid rgba(0, 0, 0, 0.08);
           transition: all 0.3s ease;
+          padding: 0.25rem 0 !important;
         }
 
-        /* Logo Styles */
+        .premium-navbar .container {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+        }
+
+        /* Logo Styles - Bigger Logo */
         .logo-brand {
           text-decoration: none !important;
           transition: all 0.3s ease;
+          display: flex;
+          align-items: center;
+          padding: 0 !important;
+          margin: 0 !important;
         }
 
         .logo-container {
           display: flex;
           align-items: center;
-          gap: 10px;
+          height: 100%;
         }
 
         .logo-image {
-          height: 75px;
+          height: 90px;
           width: auto;
           transition: all 0.3s ease;
+          object-fit: contain;
         }
 
         .logo-brand:hover .logo-image {
           transform: scale(1.05);
-          filter: brightness(1.1);
         }
 
-        /* Premium Navigation Links */
+        /* Align navbar items properly */
+        .navbar-nav {
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+        }
+
+        /* Premium Navigation Links - Reduced Padding */
         .premium-link {
           position: relative;
-          padding: 0.8rem 1.2rem !important;
-          color: #000 !important;
+          padding: 0.4rem 0.9rem !important;
+          color: #2c3e50 !important;
           font-weight: 500;
           transition: all 0.3s ease;
-          overflow: hidden;
           text-decoration: none;
-          font-size:18px;
+          font-size: 16px;
+          display: inline-block;
+        }
+
+        /* Modern Hover Effect - Simple Color Change with Bottom Border */
+        .premium-link::after {
+          content: '';
+          position: absolute;
+          bottom: 0;
+          left: 50%;
+          transform: translateX(-50%);
+          width: 0%;
+          height: 2px;
+          background: #007bff;
+          transition: width 0.3s ease;
         }
 
         .premium-link:hover {
           color: #007bff !important;
-          transform: translateY(-2px);
-          text-shadow: 0 0 10px rgba(0, 123, 255, 0.5);
-          filter: drop-shadow(0 0 5px rgba(0, 123, 255, 0.3));
         }
 
-        /* Active Link State */
+        .premium-link:hover::after {
+          width: 80%;
+        }
+
+        /* Active Link State - Clean Design */
         .premium-link.active {
           color: #007bff !important;
-          text-shadow: 0 0 10px rgba(0, 123, 255, 0.5);
-          filter: drop-shadow(0 0 5px rgba(0, 123, 255, 0.3));
+          font-weight: 600;
         }
 
-        .premium-link.active .link-underline {
-          width: 100%;
-        }
-
-        /* Animated Underline Effect */
-        .link-underline {
-          position: absolute;
-          bottom: 0;
-          left: 0;
-          width: 0;
-          height: 3px;
-          background: linear-gradient(90deg, #007bff, #0056b3);
-          transition: width 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-          border-radius: 2px;
-          box-shadow: 0 0 8px rgba(0, 123, 255, 0.4);
-        }
-
-        .premium-link:hover .link-underline {
-          width: 100%;
+        .premium-link.active::after {
+          width: 80%;
         }
 
         /* Dropdown Positioning and Hover Container */
@@ -318,20 +323,18 @@ const Navbar = () => {
         /* Dropdown Arrow Animation */
         .dropdown-arrow {
           transition: transform 0.3s ease;
-          font-size: 0.8rem;
-          margin-left: 0.5rem;
+          font-size: 0.7rem;
+          margin-left: 0.4rem;
           display: inline-block;
-          color: #000;
+          color: #2c3e50;
         }
 
         .premium-link:hover .dropdown-arrow {
           color: #007bff;
-          text-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
         }
 
         .premium-link.active .dropdown-arrow {
           color: #007bff;
-          text-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
         }
 
         .dropdown-arrow.rotated {
@@ -341,23 +344,22 @@ const Navbar = () => {
         /* Custom Dropdown Menu */
         .dropdown-menu-custom {
           position: absolute;
-          top: calc(100% + 10px); /* Account for bridge height */
+          top: calc(100% + 10px);
           left: 0;
-          background: rgba(255, 255, 255, 0.95);
-          backdrop-filter: blur(20px);
-          border: 1px solid rgba(255, 255, 255, 0.2);
-          border-radius: 12px;
-          box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+          background: white;
+          border: 1px solid rgba(0, 0, 0, 0.08);
+          border-radius: 8px;
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
           padding: 0.5rem 0;
           min-width: 220px;
           z-index: 1000;
-          animation: dropdownFadeIn 0.3s ease;
+          animation: dropdownFadeIn 0.2s ease;
         }
 
         @keyframes dropdownFadeIn {
           from {
             opacity: 0;
-            transform: translateY(-10px);
+            transform: translateY(-8px);
           }
           to {
             opacity: 1;
@@ -365,117 +367,118 @@ const Navbar = () => {
           }
         }
 
-        /* Custom Dropdown Items - Removed hover background */
+        /* Custom Dropdown Items - Clean Hover */
         .dropdown-item-custom {
           display: block;
-          padding: 0.75rem 1.5rem;
-          color: #333;
+          padding: 0.7rem 1.5rem;
+          color: #2c3e50;
           font-weight: 500;
           text-decoration: none;
-          transition: all 0.3s ease;
-          border-radius: 8px;
-          margin: 0 0.5rem;
+          transition: all 0.2s ease;
           position: relative;
-          overflow: hidden;
         }
 
         .dropdown-item-custom:hover {
-          color: #007bff; /* Only change color, no background */
-          transform: translateX(5px);
+          color: #007bff;
+          background: rgba(0, 123, 255, 0.05);
+          padding-left: 1.8rem;
           text-decoration: none;
-          text-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
-        }
-
-        .dropdown-item-custom::before {
-          content: '';
-          position: absolute;
-          left: 0;
-          top: 0;
-          width: 0;
-          height: 100%;
-          background: linear-gradient(90deg, #007bff, #0056b3);
-          transition: width 0.3s ease;
-          z-index: -1;
-          box-shadow: 0 0 10px rgba(0, 123, 255, 0.4);
-        }
-
-        .dropdown-item-custom:hover::before {
-          width: 4px;
         }
 
         /* Custom Dropdown Divider */
         .dropdown-divider-custom {
           height: 1px;
           margin: 0.5rem 1rem;
-          background: rgba(0, 0, 0, 0.1);
+          background: rgba(0, 0, 0, 0.08);
           border: 0;
         }
 
-        /* Book Appointment Button */
+        /* Book Appointment Button - Reduced Size */
         .book-appointment-btn {
           background: linear-gradient(135deg, #ff6b6b, #ff8e8e) !important;
           color: white !important;
           border: none !important;
-          padding: 0.6rem 1.5rem !important;
-          border-radius: 25px !important;
+          padding: 0.45rem 1.2rem !important;
+          border-radius: 20px !important;
           font-weight: 600;
+          font-size: 14px;
           transition: all 0.3s ease;
-          box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+          box-shadow: 0 2px 8px rgba(255, 107, 107, 0.3);
           text-decoration: none;
-          animation: blinkButton 2s infinite;
+          white-space: nowrap;
+          margin-left: 0.5rem;
         }
 
         .book-appointment-btn:hover {
           background: linear-gradient(135deg, #ff5252, #ff6b6b) !important;
           color: white !important;
-          transform: translateY(-3px);
-          box-shadow: 0 8px 25px rgba(255, 107, 107, 0.5);
+          transform: translateY(-2px);
+          box-shadow: 0 4px 12px rgba(255, 107, 107, 0.4);
           text-decoration: none;
-          animation: none; /* Stop blinking on hover */
-        }
-
-        @keyframes blinkButton {
-          0%, 50% {
-            opacity: 1;
-          }
-          25%, 75% {
-            opacity: 0.7;
-          }
         }
 
         .custom-toggler {
-          border: 2px solid rgba(255, 255, 255, 0.3);
-          border-radius: 8px;
-          padding: 0.5rem;
+          border: 2px solid rgba(0, 0, 0, 0.1);
+          border-radius: 6px;
+          padding: 0.4rem 0.6rem;
           transition: all 0.3s ease;
         }
 
         .custom-toggler:hover {
-          border-color: #ffd700;
-          background: rgba(255, 215, 0, 0.1);
+          border-color: #007bff;
+          background: rgba(0, 123, 255, 0.05);
         }
 
         .custom-toggler:focus {
-          box-shadow: 0 0 0 0.2rem rgba(255, 215, 0, 0.25);
+          box-shadow: 0 0 0 0.15rem rgba(0, 123, 255, 0.15);
         }
 
-        /* Mobile Responsive */
+        /* Ensure navbar appears above other content */
+        .navbar {
+          z-index: 1030;
+        }
+
+        .dropdown-menu-custom {
+          z-index: 1031;
+        }
+
+        /* Tablet and smaller devices */
         @media (max-width: 991.98px) {
+          .logo-image {
+            height: 70px;
+          }
+
+          .navbar-nav {
+            gap: 0;
+            align-items: stretch;
+          }
+
           .navbar-nav .nav-item {
             text-align: center;
-            margin: 0.25rem 0;
+            margin: 0;
           }
           
           .premium-link {
-            padding: 1rem !important;
-            border-radius: 8px;
-            margin: 0.25rem 0;
+            padding: 0.8rem 1rem !important;
+            border-radius: 6px;
+            margin: 0.2rem 0;
+          }
+
+          .premium-link::after {
+            display: none;
+          }
+
+          .premium-link:hover {
+            background: rgba(0, 123, 255, 0.05);
+          }
+
+          .premium-link.active {
+            background: rgba(0, 123, 255, 0.08);
           }
 
           .book-appointment-btn {
-            margin-top: 1rem;
-            margin-bottom: 0.5rem;
-            width: auto;
+            margin: 0.8rem auto 0.5rem;
+            display: inline-block;
           }
 
           /* Hide bridge on mobile */
@@ -489,48 +492,58 @@ const Navbar = () => {
             border: none;
             border-radius: 0;
             box-shadow: none;
-            margin: 0.5rem 0;
-            padding: 0.5rem 0;
+            margin: 0.3rem 0;
+            padding: 0.3rem 0;
             width: 100%;
             animation: none;
             top: auto !important;
+            background: rgba(0, 123, 255, 0.03);
           }
 
-          /* Ensure dropdown shows when open on mobile */
           .dropdown-menu-custom.show {
             display: block !important;
           }
 
           .dropdown-item-custom {
-            color: #000;
+            color: #2c3e50;
             margin: 0;
             border-radius: 0;
-            padding: 0.75rem 2rem;
+            padding: 0.7rem 2rem;
           }
 
           .dropdown-item-custom:hover {
-            background: rgba(255, 255, 255, 0.1);
-            transform: none;
-            color: white;
-            text-shadow: none;
-          }
-
-          .dropdown-item-custom::before {
-            display: none;
-          }
-
-          .link-underline {
-            display: none;
+            background: rgba(0, 123, 255, 0.08);
+            padding-left: 2.3rem;
+            color: #007bff;
           }
         }
 
-        /* Ensure dropdown appears above other content */
-        .navbar {
-          z-index: 1030;
+        /* Mobile phones */
+        @media (max-width: 576px) {
+          .logo-image {
+            height: 60px;
+          }
+
+          .premium-link {
+            font-size: 15px;
+          }
+
+          .book-appointment-btn {
+            font-size: 13px;
+            padding: 0.4rem 1rem !important;
+          }
         }
 
-        .dropdown-menu-custom {
-          z-index: 1031;
+        /* Extra small devices */
+        @media (max-width: 375px) {
+          .logo-image {
+            height: 55px;
+          }
+
+          .premium-link {
+            font-size: 14px;
+            padding: 0.7rem 0.9rem !important;
+          }
         }
       `}</style>
     </>

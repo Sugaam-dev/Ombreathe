@@ -36,7 +36,7 @@ function Layout() {
 
   // Dynamic padding based on screen size and navbar height
   const mainStyle = {
-    paddingTop: isDesktop ? '100px' : '0', // Adjust 100px based on your navbar height
+   
   };
 
   return (

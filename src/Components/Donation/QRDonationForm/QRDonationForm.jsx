@@ -16,14 +16,14 @@ const QRDonationForm = () => {
   };
 
   const bankDetails = {
-    accountName: "Ombreathe Foundation",
+    accountName: "Ombreath Foundation",
     accountNumber: "1234567890123456",
     ifscCode: "SBIN0001234",
     bankName: "State Bank of India",
     branch: "Main Branch"
   };
 
-  const upiId = "Ombreathe@paytm";
+  const upiId = "Ombreath@paytm";
 
   // Custom SVG Icons
   const HeartIcon = ({ size = 24, color = "#current" }) => (
@@ -117,7 +117,7 @@ const QRDonationForm = () => {
                 alt="Yogalayaa Logo" 
                 className="logo"
               />
-              <h1 className="main-title">Ombreathe</h1>
+              <h1 className="main-title">Ombreath</h1>
             </div>
             
             <p className="hero-subtitle">
@@ -142,7 +142,7 @@ const QRDonationForm = () => {
             <div className="mission-section">
               <h2 className="section-title">Support Our Mission of Wellness</h2>
               <p className="mission-text">
-                At Ombreathe, we believe that wellness should be accessible to everyone. Our foundation has been dedicated to spreading the transformative power of yoga, meditation, and holistic wellness practices across communities for over five years.
+                At Ombreath, we believe that wellness should be accessible to everyone. Our foundation has been dedicated to spreading the transformative power of yoga, meditation, and holistic wellness practices across communities for over five years.
               </p>
               <p className="mission-subtext">
                 Your generous contribution helps us continue offering free and subsidized classes, teacher training programs, and wellness workshops to those who need them most.

@@ -50,7 +50,7 @@ const Training200 = () => {
                         }}>
                       7 Day Adventure and Yoga Retreat<br />
                       In Lovely Ubud, Bali, Indonesia<br />
-                      With Ombreathe
+                      With Ombreath
                     </h6>
                   </div>
 

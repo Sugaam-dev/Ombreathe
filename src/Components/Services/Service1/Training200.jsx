@@ -74,7 +74,7 @@ const Training200 = () => {
                         }}>
                       200-Hour Yoga Alliance Accredited<br />
                       Ashtanga Vinyasa Yoga Teacher Training<br />
-                      In Ubud, Bali with Ombreathe
+                      In Ubud, Bali with Ombreath
                     </h6>
                   </div>
 

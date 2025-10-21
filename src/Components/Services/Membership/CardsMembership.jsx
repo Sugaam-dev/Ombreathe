@@ -34,13 +34,13 @@ const Servicess = () => {
       features: [
         "300 Hours comprehensive certification program",
         "Temple Yoga with Unified Divine Energy practices",
-        "Ombreathe certified training program",
+        "Ombreath certified training program",
         "Integration of Shiva and Shakti principles",
         "Advanced meditation and spiritual practices"
       ],
       price: "$2,800",
       hours: "300 Hours",
-      certification: "Ombreathe",
+      certification: "Ombreath",
       priority: 1
     },
     {
@@ -52,13 +52,13 @@ const Servicess = () => {
       features: [
         "200 Hours certification program",
         "Divine Feminine Energy cultivation",
-        "Ombreathe certified training",
+        "Ombreath certified training",
         "Sacred feminine practices and rituals",
         "Goddess-centered yoga methodology"
       ],
       price: "$1899",
       hours: "200 Hours",
-      certification: "Ombreathe",
+      certification: "Ombreath",
       priority: 2
     },
     {
@@ -70,13 +70,13 @@ const Servicess = () => {
       features: [
         "400 Hours advanced certification program",
         "Vedic Wisdom and Ancient Knowledge studies",
-        "Ombreathe certified comprehensive training",
+        "Ombreath certified comprehensive training",
         "Seven Sages (Sapta Rishi) teachings",
         "Deep dive into Vedic scriptures and practices"
       ],
       price: "$2999",
       hours: "400 Hours",
-      certification: "Ombreathe",
+      certification: "Ombreath",
       priority: 3
     },
     {
@@ -88,13 +88,13 @@ const Servicess = () => {
       features: [
         "250 Hours specialized certification program",
         "Lord of Animals (Pashupati) connection practices",
-        "Ombreathe certified nature-based training",
+        "Ombreath certified nature-based training",
         "Animal spirit yoga and nature connection",
         "Ecological awareness and earth-based practices"
       ],
       price: "$2199",
       hours: "250 Hours",
-      certification: "Ombreathe",
+      certification: "Ombreath",
       priority: 4
     }
   ], []);
@@ -163,7 +163,7 @@ const Servicess = () => {
                 <h1>Membership Temple Yoga Program</h1>
                 <img 
                   src={lg}
-                  alt="Ombreathe Logo" 
+                  alt="Ombreath Logo" 
                   loading="eager"
                   style={{ maxWidth: '100%', height: 'auto' }}
                   onError={(e) => console.error('Logo failed to load:', e.target.src)}
