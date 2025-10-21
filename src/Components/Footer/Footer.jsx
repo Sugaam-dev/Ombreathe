@@ -20,7 +20,7 @@ import { FaFacebookF, FaInstagram, FaYoutube, FaWhatsapp } from "react-icons/fa6
 // Lazy load images for better performance
 const lazyLoadImage = (imageName) => {
   const imageModules = {
-    logo: () => import('../../images/logo4.png'),
+    logo: () => import('../../images/ombreathLogo.png'),
     yoga: () => import('../../images/cirtificats/yoga.png'),
     two: () => import('../../images/cirtificats/200.png'),
     l500: () => import('../../images/cirtificats/500.webp'),
