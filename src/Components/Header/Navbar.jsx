@@ -293,7 +293,7 @@ const Navbar = () => {
         /* Active Link State - Clean Design */
         .premium-link.active {
           color: #007bff !important;
-          font-weight: 600;
+        
         }
 
         .premium-link.active::after {
