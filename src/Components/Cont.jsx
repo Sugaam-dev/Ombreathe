@@ -8,7 +8,7 @@ import { MdEmail } from "react-icons/md";
 
 function Cont() {
   return (
-    <div style={{ padding: "40px 20px", fontFamily: "Caudex, serif" }}>
+    <div style={{fontFamily: "Caudex, serif" }}>
       <h1
         style={{
           fontSize: "48px",
@@ -93,8 +93,9 @@ function Cont() {
 
       {/* Subcomponents */}
       <div style={{ marginTop: "60px" }}>
-        <Contact />
+        
         <Ratings />
+        <Contact />
       </div>
     </div>
   );
