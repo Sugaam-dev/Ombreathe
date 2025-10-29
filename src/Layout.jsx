@@ -1,8 +1,7 @@
-// Components/Layout.js
 import { Outlet } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import Navbar from './Components/Header/Navbar';
-import logo from './images/yogalayaaLogo.png'
+import logo from './images/yogalayaaLogo.png';
 import Footer from './Components/Footer/Footer';
 import ScrollToTop from './Components/useFullComponent/ScrollToTop';
 import FloatingDonateButton from './Components/useFullComponent/FloatingDonateButton';
@@ -10,13 +9,10 @@ import FloatingDonateButton from './Components/useFullComponent/FloatingDonateBu
 function Layout() {
   const [isDesktop, setIsDesktop] = useState(window.innerWidth >= 992);
 
-  // Handle screen size changes
   useEffect(() => {
     const handleResize = () => {
-      const desktop = window.innerWidth >= 992;
-      setIsDesktop(desktop);
+      setIsDesktop(window.innerWidth >= 992);
     };
-
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
@@ -34,10 +30,10 @@ function Layout() {
     height: 'auto'
   };
 
-  // Dynamic padding based on screen size and navbar height
-  const mainStyle = {
-   
-  };
+  // Add padding-top for desktop screens so content is not hidden by navbar
+  const mainStyle = isDesktop
+    ? { paddingTop: '96px' } // Match your desktop navbar height
+    : {};
 
   return (
     <div>
@@ -47,14 +43,13 @@ function Layout() {
         alt="Yogalayaa Background Logo" 
         style={logoStyle}
       />
-      <ScrollToTop/>
-      <Navbar/>
+      <ScrollToTop />
+      <Navbar />
       <main style={mainStyle}>
         <Outlet />
       </main>
-<FloatingDonateButton/>
-
-      <Footer/>
+      <FloatingDonateButton />
+      <Footer />
     </div>
   );
 }

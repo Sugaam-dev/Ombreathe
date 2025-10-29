@@ -313,7 +313,7 @@ const YogaTrainingPromo = () => {
               <div className="col-lg-6">
                 <div className="ytp-diamond-logo"></div>
                 
-                <h6 className="ytp-section-title">Ombreath SILENT RETREAT</h6>
+                <h6 className="ytp-section-title">Ombreathe SILENT RETREAT</h6>
                 
                 <h1 className="ytp-main-heading">
                   Join us for a transformative<br />

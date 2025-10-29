@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import logo from '../../images/ombreathLogo.png'
+import logo from '../../images/omBreatheLogo.png'
 import './Navbar.css'
 
 const Navbar = () => {
@@ -102,7 +102,8 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className={`navbar navbar-expand-lg navbar-light premium-navbar shadow-lg ${isDesktop ? 'sticky-top' : ''}`}>
+   <nav className={`navbar navbar-expand-lg navbar-light premium-navbar shadow-lg ${isDesktop ? 'fixed-top' : ''}`}>
+
         <div className="container">
           {/* Logo */}
           <Link className="navbar-brand logo-brand" to="/" onClick={() => handleLinkClick('home')}>

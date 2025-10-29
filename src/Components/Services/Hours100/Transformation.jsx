@@ -57,7 +57,7 @@ const Transformation = ({ backgroundImage }) => {
             Embarking on a <span className="highlight-text">100-hour foundation yoga training in Bali</span> is the perfect beginning for your yoga journey
           </p>
           <p style={{ fontSize: '1.5rem', fontWeight: '300', maxWidth: '80%', margin: '0 auto', opacity: '0.9' }}>
-            At Ombreath, our foundation program is designed for beginners seeking to discover the beautiful world of yoga, 
+            At Ombreathe, our foundation program is designed for beginners seeking to discover the beautiful world of yoga, 
             guided by Bali's peaceful energy and our team of nurturing, experienced teachers
           </p>
         </div>

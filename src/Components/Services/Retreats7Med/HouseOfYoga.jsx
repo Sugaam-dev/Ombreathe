@@ -26,7 +26,7 @@ const HouseOfYoga = ({ backgroundImage }) => {
     <div style={backgroundStyle}>
       <div style={overlayStyle}>
         <div className="container text-center py-5">
-          <h5 className="fw-bold">Ombreath</h5>
+          <h5 className="fw-bold">Ombreathe</h5>
           <h1 className="display-5 fw-bold">
             Step into a world of serene silence and inner reflection in magical Bali
           </h1>

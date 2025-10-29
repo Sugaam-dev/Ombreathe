@@ -29,7 +29,7 @@ const HouseOfYoga = ({ backgroundImage }) => {
     <div style={backgroundStyle}>
       <div style={overlayStyle}>
         <div className="container text-center py-5">
-          <h5 className="fw-bold">Ombreath</h5>
+          <h5 className="fw-bold">Ombreathe</h5>
           <h1 className="display-5 fw-bold">
             Join our transformative community at the premier yoga school in Bali and India
           </h1>
@@ -64,9 +64,9 @@ const HouseOfYoga = ({ backgroundImage }) => {
         <div className="container py-5">
           <div className="row">
             <div className="col-lg-8 mx-auto">
-              <h2 className="mb-4">Welcome to Ombreath</h2>
+              <h2 className="mb-4">Welcome to Ombreathe</h2>
               <p className="mb-4">
-                Welcome to Ombreath, a premier yoga school dedicated to providing high-quality yoga classes and courses 
+                Welcome to Ombreathe, a premier yoga school dedicated to providing high-quality yoga classes and courses 
                 for people of all ages and skill levels. With a team of experienced and certified yoga trainers, 
                 we offer a wide range of programs that are designed to help you achieve your wellness goals and transform your life.
               </p>
@@ -76,7 +76,7 @@ const HouseOfYoga = ({ backgroundImage }) => {
                 We also provide trial classes to help you get a taste of what we offer before committing to a full course.
               </p>
               <p className="mb-0">
-                At Ombreath, we believe that yoga is more than just a form of exercise, it's a way of life. 
+                At Ombreathe, we believe that yoga is more than just a form of exercise, it's a way of life. 
                 So come and join us on this journey of self-discovery, healing, and transformation.
               </p>
             </div>

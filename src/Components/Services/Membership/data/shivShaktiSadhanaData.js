@@ -17,7 +17,7 @@ const shivShaktiSadhanaData = {
   hero: {
     subtitle: `SHIV SHAKTI SADHANA MEMBERSHIP PROGRAM
     Temple Yoga with Unified Divine Energy
-    300 Hours Certification with Ombreath`,
+    300 Hours Certification with Ombreathe`,
     title: "Unite Shiva and Shakti Energies Through Sacred 12 Jyotirlinga Journey",
     description: "Experience the perfect union of divine masculine and feminine energies visiting Jyotirlingas and Shakti Peeths",
     ctaText: "Begin Your Unity Journey",
@@ -87,7 +87,7 @@ const shivShaktiSadhanaData = {
     },
     {
       image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&fit=crop&crop=face",
-      alt: "Ombreath Advanced Certification"
+      alt: "Ombreathe Advanced Certification"
     }
   ],
 
@@ -136,7 +136,7 @@ const shivShaktiSadhanaData = {
   // Transformation section
   transformation: {
     mainText: `Embarking on a Shiv Shakti Sadhana creates perfect balance within, uniting the divine masculine and feminine energies that exist in every soul`,
-    subtitle: "At Ombreath, our advanced program harmonizes opposing forces through sacred site visits, tantric practices, and deep meditation at India's most powerful Jyotirlingas"
+    subtitle: "At Ombreathe, our advanced program harmonizes opposing forces through sacred site visits, tantric practices, and deep meditation at India's most powerful Jyotirlingas"
   },
 
   // Practices section
@@ -410,7 +410,7 @@ const shivShaktiSadhanaData = {
   // Final section
   final: {
     title: "Transform Through Divine Union",
-    description: "At Ombreath Academy, we provide the most authentic and advanced Shiv Shakti Sadhana experience. Our master teachers guide you through the sacred art of balancing divine energies while ensuring your safety and spiritual growth throughout the transformative journey.",
+    description: "At Ombreathe Academy, we provide the most authentic and advanced Shiv Shakti Sadhana experience. Our master teachers guide you through the sacred art of balancing divine energies while ensuring your safety and spiritual growth throughout the transformative journey.",
     benefits: [
       {
         title: "Perfect Balance",

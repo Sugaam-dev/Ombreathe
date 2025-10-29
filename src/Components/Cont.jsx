@@ -14,6 +14,7 @@ function Cont() {
           fontSize: "48px",
           textAlign: "center",
           marginBottom: "40px",
+          marginTop:"40px",
         }}
       >
         Contact

@@ -57,7 +57,7 @@ const Transformation = ({ backgroundImage }) => {
             Embarking on a <span className="highlight-text">300-hour advanced yoga teacher training in Bali</span> is a profound transformative journey for dedicated practitioners
           </p>
           <p style={{ fontSize: '1.5rem', fontWeight: '300', maxWidth: '80%', margin: '0 auto', opacity: '0.9' }}>
-            At Ombreath, our intensive 300-hour program is designed for experienced practitioners seeking to deepen their mastery, 
+            At Ombreathe, our intensive 300-hour program is designed for experienced practitioners seeking to deepen their mastery, 
             guided by ancient wisdom and our team of master teachers with decades of traditional knowledge
           </p>
         </div>

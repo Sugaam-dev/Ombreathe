@@ -26,7 +26,7 @@ const HouseOfYoga = ({ backgroundImage }) => {
     <div style={backgroundStyle}>
       <div style={overlayStyle}>
         <div className="container text-center py-5">
-          <h5 className="fw-bold">Ombreath</h5>
+          <h5 className="fw-bold">Ombreathe</h5>
           <h1 className="display-5 fw-bold">
             Join our transformative community at the premier yoga school in Bali and India
           </h1>
@@ -61,9 +61,9 @@ const HouseOfYoga = ({ backgroundImage }) => {
         <div className="container py-5">
           <div className="row">
             <div className="col-lg-8 mx-auto">
-              <h2 className="mb-4">Welcome to Ombreath</h2>
+              <h2 className="mb-4">Welcome to Ombreathe</h2>
               <p className="mb-4">
-                Welcome to Ombreath's 300-Hour Advanced Yoga Teacher Training - a premier program for experienced practitioners 
+                Welcome to Ombreathe's 300-Hour Advanced Yoga Teacher Training - a premier program for experienced practitioners 
                 seeking to deepen their practice and teaching skills. With our team of master teachers and traditional approach, 
                 we offer an intensive journey designed to transform dedicated yoga practitioners into advanced certified instructors.
               </p>
@@ -73,7 +73,7 @@ const HouseOfYoga = ({ backgroundImage }) => {
                 who already hold a 300-hour certification and wish to expand their expertise significantly.
               </p>
               <p className="mb-0">
-                At Ombreath, we believe that advanced yoga practice is a lifelong journey of self-discovery and service to others. 
+                At Ombreathe, we believe that advanced yoga practice is a lifelong journey of self-discovery and service to others. 
                 Join us in this transformative experience that will elevate your understanding and teaching of this ancient practice.
               </p>
             </div>

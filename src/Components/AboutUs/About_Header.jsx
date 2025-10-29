@@ -27,7 +27,7 @@ const About_Header = () => {
             {/* Subtitle */}
             <div className="text-center mb-5">
               <p className="about-header-description">
-                Ombreath - Yoga Alliance Accredited School
+                Ombreathe - Yoga Alliance Accredited School
               </p>
             </div>
 

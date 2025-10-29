@@ -31,7 +31,7 @@ const AboutUs_section = () => {
             <div className="col-lg-10 col-md-11 col-12">
               <div className="aboutus-description-content">
                 <p className="aboutus-description-text">
-                  <span className="aboutus-highlight-text">Ombreath</span> - We offer more than just the physical aspect of 
+                  <span className="aboutus-highlight-text">Ombreathe</span> - We offer more than just the physical aspect of 
                   Yoga. Our community members develop the connection 
                   between the mind and body, build discipline and inner 
                   strength, get inspired and inspire others

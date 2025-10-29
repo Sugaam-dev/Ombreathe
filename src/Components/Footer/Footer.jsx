@@ -20,7 +20,7 @@ import { FaFacebookF, FaInstagram, FaYoutube, FaWhatsapp } from "react-icons/fa6
 // Lazy load images for better performance
 const lazyLoadImage = (imageName) => {
   const imageModules = {
-    logo: () => import('../../images/ombreathLogo.png'),
+    logo: () => import('../../images/omBreatheLogo.png'),
     yoga: () => import('../../images/cirtificats/yoga.png'),
     two: () => import('../../images/cirtificats/200.png'),
     l500: () => import('../../images/cirtificats/500.webp'),
@@ -423,7 +423,7 @@ const Footer = () => {
           <div className="row align-items-center">
             <div className="col-md-6">
               <p className="mb-0 copyright-text-white">
-                © {currentYear} Ombreath. All Rights Reserved.
+                © {currentYear} Ombreathe. All Rights Reserved.
               </p>
             </div>
             <div className="col-md-6 text-md-end">

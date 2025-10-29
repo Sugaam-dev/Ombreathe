@@ -257,7 +257,7 @@ const Servicess = () => {
                 <h1>Programs</h1>
                 <img 
                   src="./images/lg.png" 
-                  alt="Ombreath Logo" 
+                  alt="Ombreathe Logo" 
                   loading="eager"
                   style={{ maxWidth: '100%', height: 'auto' }}
                 />

@@ -26,7 +26,7 @@ const HouseOfYoga = ({ backgroundImage }) => {
     <div style={backgroundStyle}>
       <div style={overlayStyle}>
         <div className="container text-center py-5">
-          <h5 className="fw-bold">Ombreath</h5>
+          <h5 className="fw-bold">Ombreathe</h5>
           <h1 className="display-5 fw-bold">
             Join our transformative community at the premier yoga school in Bali and India
           </h1>
@@ -61,9 +61,9 @@ const HouseOfYoga = ({ backgroundImage }) => {
         <div className="container py-5">
           <div className="row">
             <div className="col-lg-8 mx-auto">
-              <h2 className="mb-4">Welcome to Ombreath</h2>
+              <h2 className="mb-4">Welcome to Ombreathe</h2>
               <p className="mb-4">
-                Welcome to Ombreath's 100-Hour Foundation Yoga Teacher Training - a perfect introduction for beginners 
+                Welcome to Ombreathe's 100-Hour Foundation Yoga Teacher Training - a perfect introduction for beginners 
                 and those seeking to establish a solid foundation in yoga practice and teaching. With our experienced teachers 
                 and supportive approach, we offer a gentle yet comprehensive journey designed to introduce newcomers to the beautiful world of yoga.
               </p>
@@ -73,7 +73,7 @@ const HouseOfYoga = ({ backgroundImage }) => {
                 their personal practice before committing to longer teacher training programs.
               </p>
               <p className="mb-0">
-                At Ombreath, we believe that every yoga journey begins with strong foundations. Join us in this nurturing 
+                At Ombreathe, we believe that every yoga journey begins with strong foundations. Join us in this nurturing 
                 experience that will introduce you to the fundamentals of this ancient practice in a safe, supportive environment.
               </p>
             </div>
