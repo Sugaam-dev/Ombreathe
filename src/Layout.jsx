@@ -24,8 +24,8 @@ function Layout() {
     transform: 'translate(-50%, -50%)',
     zIndex: -1,
     opacity: 0.15,
-    maxWidth: '50vw',
-    maxHeight: '50vh',
+    maxWidth: '60vw',
+    maxHeight: '60vh',
     width: 'auto',
     height: 'auto'
   };
