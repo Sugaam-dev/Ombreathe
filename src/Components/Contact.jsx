@@ -269,7 +269,7 @@ const MapLoader = memo(() => (
 function Contact() {
   // Memoized header content
   const headerContent = useMemo(() => ({
-    title: "Get In Touch With Yogalayaa",
+    title: "Get In Touch With Ombreathe",
     logo: "./images/lg.png"
   }), []);
 

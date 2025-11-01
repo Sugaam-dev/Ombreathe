@@ -1,7 +1,7 @@
 import { Outlet } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import Navbar from './Components/Header/Navbar';
-import logo from './images/yogalayaaLogo.png';
+import logo from './images/omBreatheLogo.png';
 import Footer from './Components/Footer/Footer';
 import ScrollToTop from './Components/useFullComponent/ScrollToTop';
 import FloatingDonateButton from './Components/useFullComponent/FloatingDonateButton';
@@ -24,8 +24,8 @@ function Layout() {
     transform: 'translate(-50%, -50%)',
     zIndex: -1,
     opacity: 0.15,
-    maxWidth: '40vw',
-    maxHeight: '40vh',
+    maxWidth: '50vw',
+    maxHeight: '50vh',
     width: 'auto',
     height: 'auto'
   };
