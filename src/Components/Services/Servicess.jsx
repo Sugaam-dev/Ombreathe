@@ -3,12 +3,12 @@ import { useNavigate } from 'react-router-dom';
 import './Styles/Services.css';
 
 // Import all images at the top but don't use them immediately
-import online from '../../images/services/Online Courses.webp'
-import temple from '../../images/services/temple_yoga.webp'
+import online from '../../images/services/Online Courses.jpg'
+import temple from '../../images/services/temple_yoga.jpg'
 import merchandise from '../../images/services/Merchandise.jpg'
-import community from '../../images/services/Community service.webp'
+import community from '../../images/services/Community service.jpg'
 import Retreats from '../../images/services/Retreats.jpg'
-import events from '../../images/services/Events.webp'
+import events from '../../images/services/Events.jpg'
 import a from '../../images/Gallery/8.jpg'
 import Yogalyaa_100_Hour_TTC from '../../images/services/Yogalyaa_100_Hour_TTC.jpg'
 import Yogalyaa_200_Hour_TTC from '../../images/services/Yogalyaa_200_Hour_TTC.jpg'

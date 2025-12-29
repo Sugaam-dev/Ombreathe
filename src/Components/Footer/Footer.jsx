@@ -15,7 +15,7 @@ import {
   faLocationDot,
   faChevronUp
 } from "@fortawesome/free-solid-svg-icons";
-import { FaFacebookF, FaInstagram, FaYoutube, FaWhatsapp } from "react-icons/fa6";
+import { FaFacebookF, FaInstagram, FaYoutube } from "react-icons/fa6";
 
 // Lazy load images for better performance
 const lazyLoadImage = (imageName) => {
@@ -187,7 +187,7 @@ const ContactInfo = memo(() => {
   return (
     <div className="ps-lg-4">
       <h6 className="text-uppercase fw-bold mb-3">Contact Info</h6>
-      <ul className="list-unstyled contact-info">
+      <ul className="list-unstyled ">
         <li className="mb-3 d-flex align-items-start">
           <FontAwesomeIcon 
             icon={faPhone} 
@@ -284,11 +284,10 @@ const Certifications = memo(() => {
   );
 });
 
-// Floating Action Buttons Component
-const FloatingButtons = memo(() => {
+// Scroll to Top Button Only (WhatsApp removed)
+const ScrollToTopButton = memo(() => {
   const [showScrollTop, setShowScrollTop] = useState(false);
 
-  // Optimized scroll listener
   useEffect(() => {
     let timeoutId;
     const handleScroll = () => {
@@ -312,65 +311,29 @@ const FloatingButtons = memo(() => {
     });
   }, []);
 
-  const openWhatsApp = useCallback(() => {
-    const phoneNumber = "917483987568";
-    const message = "Hello! I'm interested in learning more about your yoga programs.";
-    const encodedMessage = encodeURIComponent(message);
-    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
-    window.open(whatsappUrl, '_blank');
-  }, []);
-
-  return (
-    <>
-      {/* WhatsApp Floating Button */}
-      <button
-        onClick={openWhatsApp}
-        className="btn position-fixed whatsapp-btn rounded-circle shadow-lg"
-        style={{ 
-          width: '60px', 
-          height: '60px',
-          bottom: '20px',
-          left: '20px',
-          zIndex: 1000,
-          transition: 'all 0.3s ease',
-          backgroundColor: '#25D366',
-          borderColor: '#25D366',
-          color: 'white',
-          fontSize: '24px'
-        }}
-        aria-label="Contact us on WhatsApp"
-        title="Chat with us on WhatsApp"
-      >
-        <FaWhatsapp />
-      </button>
-
-      {/* Scroll to Top Button */}
-      {showScrollTop && (
-        <button
-          onClick={scrollToTop}
-          className="btn position-fixed scroll-top-btn rounded-circle shadow-lg"
-          style={{ 
-            width: '50px', 
-            height: '50px',
-            bottom: '20px',
-            right: '20px',
-            zIndex: 1000,
-            transition: 'all 0.3s ease',
-            backgroundColor: '#42A5F6',
-            borderColor: '#42A5F6',
-            color: 'white'
-          }}
-          aria-label="Scroll to top"
-        >
-          <FontAwesomeIcon icon={faChevronUp} />
-        </button>
-      )}
-    </>
-  );
+  return showScrollTop ? (
+    <button
+      onClick={scrollToTop}
+      className="btn position-fixed scroll-top-btn rounded-circle shadow-lg"
+      style={{ 
+        width: '50px', 
+        height: '50px',
+        bottom: '20px',
+        right: '20px',
+        zIndex: 1000,
+        transition: 'all 0.3s ease',
+        backgroundColor: '#42A5F6',
+        borderColor: '#42A5F6',
+        color: 'white'
+      }}
+      aria-label="Scroll to top"
+    >
+      <FontAwesomeIcon icon={faChevronUp} />
+    </button>
+  ) : null;
 });
 
 const Footer = () => {
-  // Memoized current year
   const currentYear = useMemo(() => new Date().getFullYear(), []);
 
   return (
@@ -435,25 +398,20 @@ const Footer = () => {
         </div>
       </div>
 
-      <FloatingButtons />
+      <ScrollToTopButton />
 
-      {/* Custom Styles */}
+      {/* Custom Styles (WhatsApp styles completely removed) */}
       <style jsx>{`
+        .social-links h6,
+        .px-lg-3 h6,
+        .ps-lg-4 h6,
+        .certifications h6 {
+          color: #FF9933 !important;
+        }
 
-
-
-
-  .social-links h6,
-  .px-lg-3 h6,
-  .ps-lg-4 h6,
-  .certifications h6 {
-    color: #FF9933 !important;
-  }
-
-  /* Optional: Ensure icons in ContactInfo use white instead of blue */
-  .contact-info svg {
-    color: #FF9933 !important;
-  }
+        .contact-info svg {
+          color: #FF9933 !important;
+        }
 
         .footer-description {
           color: #000 !important;
@@ -556,63 +514,6 @@ const Footer = () => {
           box-shadow: 0 10px 30px rgba(66, 165, 246, 0.4) !important;
         }
         
-        .whatsapp-btn:hover {
-          transform: translateY(-5px) scale(1.1);
-          background-color: #128C7E !important;
-          border-color: #128C7E !important;
-          box-shadow: 0 10px 30px rgba(37, 211, 102, 0.6) !important;
-          animation: whatsapp-hover 0.6s ease-in-out infinite alternate;
-        }
-        
-        @keyframes whatsapp-hover {
-          0% {
-            transform: translateY(-5px) scale(1.1) rotate(-2deg);
-          }
-          100% {
-            transform: translateY(-5px) scale(1.1) rotate(2deg);
-          }
-        }
-        
-        .whatsapp-btn {
-          animation: whatsapp-blink 1.5s infinite ease-in-out, pulse 3s infinite;
-          position: relative;
-          overflow: hidden;
-        }
-        
-        .whatsapp-btn::before {
-          content: '';
-          position: absolute;
-          top: 0;
-          left: -100%;
-          width: 100%;
-          height: 100%;
-          background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-          animation: shimmer 2s infinite;
-        }
-        
-        @keyframes whatsapp-blink {
-          0%, 50% { 
-            opacity: 1; 
-            transform: scale(1);
-          }
-          25% { 
-            opacity: 0.7; 
-            transform: scale(1.05);
-          }
-        }
-        
-        @keyframes pulse {
-          0% {
-            box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
-          }
-          70% {
-            box-shadow: 0 0 0 15px rgba(37, 211, 102, 0);
-          }
-          100% {
-            box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
-          }
-        }
-        
         .cert-logo {
           transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
@@ -649,23 +550,9 @@ const Footer = () => {
             justify-content: center;
           }
           
-          .whatsapp-btn {
-            width: 50px !important;
-            height: 50px !important;
-            font-size: 20px !important;
-            bottom: 15px !important;
-            left: 15px !important;
-          }
-          
           .scroll-top-btn {
             bottom: 15px !important;
             right: 15px !important;
-          }
-        }
-        
-        @media (max-width: 480px) {
-          .whatsapp-btn {
-            bottom: 80px !important;
           }
         }
       `}</style>

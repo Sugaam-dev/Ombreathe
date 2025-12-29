@@ -5,6 +5,8 @@ import logo from './images/omBreatheLogo.png';
 import Footer from './Components/Footer/Footer';
 import ScrollToTop from './Components/useFullComponent/ScrollToTop';
 import FloatingDonateButton from './Components/useFullComponent/FloatingDonateButton';
+import WhatsAppButton from './Components/WhatsAppButton';
+
 
 function Layout() {
   const [isDesktop, setIsDesktop] = useState(window.innerWidth >= 992);
@@ -30,14 +32,10 @@ function Layout() {
     height: 'auto'
   };
 
-  // Add padding-top for desktop screens so content is not hidden by navbar
-  const mainStyle = isDesktop
-    ? { paddingTop: '96px' } // Match your desktop navbar height
-    : {};
+  const mainStyle = isDesktop ? { paddingTop: '96px' } : {};
 
   return (
     <div>
-      {/* Background Logo */}
       <img 
         src={logo} 
         alt="Yogalayaa Background Logo" 
@@ -48,8 +46,14 @@ function Layout() {
       <main style={mainStyle}>
         <Outlet />
       </main>
-      <FloatingDonateButton />
+      {/* <FloatingDonateButton /> */}
       <Footer />
+
+      {/* Global floating WhatsApp button */}
+      <WhatsAppButton
+        phone="917483987568"
+        message="Hello! I'd like to know more about your yoga programs."
+      />
     </div>
   );
 }

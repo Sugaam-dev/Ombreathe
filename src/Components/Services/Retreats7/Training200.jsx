@@ -8,7 +8,7 @@ const Training200 = () => {
   useEffect(() => {
     const loadImage = async () => {
       try {
-        const img = await import('../../../images/Gallery/Canyoneering-Bali.jpg');
+        const img = await import('../../../images/services/7-Day Adventure Retreat.jpg');
         setAdventureImage(img.default);
       } catch (error) {
         console.error('Error loading adventure image:', error);

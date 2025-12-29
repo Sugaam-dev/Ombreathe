@@ -46,13 +46,13 @@ const ImageSliderBanner = () => {
         import('../../images/mobile/temple yoga.jpg'),
         import('../../images/mobile/Experience.jpg'),
         import('../../images/mobile/Certification.jpg'),
-        import('../../images/mobile/safe pass.jpg'),
+        // import('../../images/mobile/safe pass.jpg'),
         // Add more mobile images as needed
       ];
     } else {
       // Desktop images - original images
       return [
-        import('../../images/1.webp'),
+        import('../../images/1.jpg'),
         import('../../images/2.jpg'),
         import('../../images/3.jpg'),
         import('../../images/4.jpg'),

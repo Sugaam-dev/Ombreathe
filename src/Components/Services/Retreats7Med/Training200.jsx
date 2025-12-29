@@ -8,7 +8,7 @@ const Training200 = () => {
   useEffect(() => {
     const loadImage = async () => {
       try {
-        const img = await import("../../../images/Gallery/20.jpg");
+        const img = await import("../../../images/services/7-Day Meditation Retreat.jpg");
         setMeditationImage(img.default);
       } catch (error) {
         console.error("Error loading meditation image:", error);

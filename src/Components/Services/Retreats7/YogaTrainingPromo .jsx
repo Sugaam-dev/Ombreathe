@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import a from '../../../images/Gallery/Canyoneering-Bali.jpg'
+import a from '../../../images/services/7-Day Adventure Retreat.jpg'
 import b from '../../../images/Gallery/baliadventure.jpg'
 import c from '../../../images/Gallery/Bali-Activities.jpg'
 
