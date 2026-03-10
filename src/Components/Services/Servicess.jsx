@@ -72,7 +72,7 @@ const Servicess = () => {
         "Beautiful natural locations",
         "All meals and accommodation included"
       ],
-      price: "$1099",
+      price: "$1399",
       priority: 3
     },
     {
@@ -85,7 +85,7 @@ const Servicess = () => {
         "Beautiful natural locations",
         "All meals and accommodation included"
       ],
-      price: "$1099",
+      price: "$1199",
       priority: 7
     },
     {

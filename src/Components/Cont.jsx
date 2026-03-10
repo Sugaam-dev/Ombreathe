@@ -74,7 +74,7 @@ function Cont() {
 
         {/* Email */}
         <a
-          href="mailto:info@yogalayaa.com"
+          href="mailto:info@ombreathe.in"
           style={{
             display: "flex",
             alignItems: "center",
@@ -88,7 +88,7 @@ function Cont() {
           }}
         >
           <MdEmail style={{ fontSize: "28px", color: "#d44638", marginRight: "12px" }} />
-          info@yogalayaa.com
+          info@ombreathe.in
         </a>
       </div>
 

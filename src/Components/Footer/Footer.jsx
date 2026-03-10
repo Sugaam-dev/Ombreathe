@@ -179,7 +179,7 @@ const ContactInfo = memo(() => {
       { number: "+917483987568", display: "+91-7483987568" },
       { number: "+917829997007", display: "+91-7829997007" }
     ],
-    email: "info@yogalayaa.com",
+    email: "info@ombreathe.in",
     address: "1972, 22nd Main Rd, Vanganahalli, 1st Sector, HSR Layout, Bengaluru, Karnataka 560102",
     hours: "Mon - Sat, 6:00 AM - 8:00 PM"
   }), []);
