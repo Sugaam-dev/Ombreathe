@@ -90,6 +90,23 @@ function Cont() {
           <MdEmail style={{ fontSize: "28px", color: "#d44638", marginRight: "12px" }} />
           info@ombreathe.in
         </a>
+        <a
+          href="mailto:ombreathein@gmail.com"
+          style={{
+            display: "flex",
+            alignItems: "center",
+            textDecoration: "none",
+            fontSize: "20px",
+            backgroundColor: "#f2f2f2",
+            padding: "15px 20px",
+            borderRadius: "10px",
+            color: "#000",
+            boxShadow: "0 2px 8px rgba(0, 0, 0, 0.1)",
+          }}
+        >
+          <MdEmail style={{ fontSize: "28px", color: "#d44638", marginRight: "12px" }} />
+          ombreathein@gmail.com
+        </a>
       </div>
 
       {/* Subcomponents */}

@@ -39,7 +39,7 @@ const LazyGoogleMap = lazy(() =>
 const ContactInfo = memo(() => {
   const contactData = useMemo(() => ({
     phone: ['+91 7483987568', '+91 7829997007'],
-    email: 'info@ombreathe.in',
+    email: ['info@ombreathe.in', 'ombreathein@gmail.com'],
     address: '1972, 22nd Main Rd, Vanganahalli, 1st Sector, HSR Layout, Bengaluru, Karnataka 560102',
     socialLinks: [
       { icon: FaFacebookF, href: 'https://www.facebook.com/profile.php?id=100090950655442', label: 'Facebook' },
@@ -62,7 +62,9 @@ const ContactInfo = memo(() => {
       <h2>
         <MdEmail /> Email
       </h2>
-      <p>{contactData.email}</p>
+      {contactData.email.map((mail, index) => (
+        <p key={index}>{mail}</p>
+      ))}
       
       <h2>
         <CiLocationOn /> Address

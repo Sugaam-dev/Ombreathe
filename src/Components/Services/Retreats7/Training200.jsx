@@ -85,7 +85,7 @@ const Training200 = () => {
                               fontWeight: '600',
                               fontSize: 'clamp(2rem, 5vw, 3rem)'
                             }}>
-                        $1099 USD
+                        $1399 USD
                       </span>
                     </div>
                     

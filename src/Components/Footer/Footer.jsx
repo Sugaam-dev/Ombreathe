@@ -179,7 +179,10 @@ const ContactInfo = memo(() => {
       { number: "+917483987568", display: "+91-7483987568" },
       { number: "+917829997007", display: "+91-7829997007" }
     ],
-    email: "info@ombreathe.in",
+    email: [
+      { address: "info@ombreathe.in", display: "info@ombreathe.in" },
+      { address: "ombreathein@gmail.com", display: "ombreathein@gmail.com" }
+    ],
     address: "1972, 22nd Main Rd, Vanganahalli, 1st Sector, HSR Layout, Bengaluru, Karnataka 560102",
     hours: "Mon - Sat, 6:00 AM - 8:00 PM"
   }), []);
@@ -212,9 +215,14 @@ const ContactInfo = memo(() => {
             style={{ color: '#42A5F6' }} 
           />
           <div>
-            <a href={`mailto:${contactData.email}`} className="footer-link">
-              {contactData.email}
-            </a>
+            {contactData.email.map(({ address, display }) => (
+              <p key={address} className="mb-1">
+                <a href={`mailto:${address}`} className="footer-link">
+                  {display}
+                </a>
+              </p>
+            ))}
+            <small className="contact-hours">{contactData.hours}</small>
           </div>
         </li>
         <li className="mb-3 d-flex align-items-start">

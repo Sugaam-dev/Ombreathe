@@ -239,7 +239,7 @@ const YogaCoursesPage = ({ heading = "7-Day Adventure & Yoga Retreat", subheadin
           <div className="col-12">
             <div className="card border-0" style={{ backgroundColor: '#fff3e0' }}>
               <div className="card-body text-center p-5">
-                <h3 style={{ color: '#f57c00' }}>All-Inclusive Package: $1099 USD</h3>
+                <h3 style={{ color: '#f57c00' }}>All-Inclusive Package: $1399 USD</h3>
                 <p style={{ color: '#424242', fontSize: '1.1rem', margin: '20px 0' }}>
                   Everything included: accommodation, meals, activities, yoga sessions, airport transfer, and more!
                 </p>
