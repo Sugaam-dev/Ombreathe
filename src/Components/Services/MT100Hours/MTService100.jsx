@@ -34,7 +34,7 @@ const RestOfPage = lazy(() => Promise.all([
   )
 })))
 
-function Service100() {
+function MTService100() {
   return (
     <>
       <Training200/>
@@ -46,4 +46,4 @@ function Service100() {
   )
 }
 
-export default Service100
+export default MTService100
