@@ -122,7 +122,7 @@
                 |-- DailySchedulePage .jsx
                 |-- HouseOfYoga.jsx
                 |-- MTService100.jsx
-                |-- Training200.jsx
+                |-- MTTraining100.jsx
                 |-- Transformation.jsx
                 |-- TransTeach.jsx
                 |-- YogaCoursesPage .jsx

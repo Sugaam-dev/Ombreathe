@@ -1,9 +1,9 @@
 import React, { Suspense, lazy } from 'react'
-import Training200 from './Training200'
 import HouseOfYoga from './HouseOfYoga'
 // import a from '../../../images/services/Yogalyaa_Yoga_with_Excursion_100hrs.jpg'
 import a from '../../../images/Background.jpg'
 import daily from '../../../images/Gallery/Daily_Schedule_100_200_300.jpg'
+import MTTraining100 from './MTTraining100'
 
 // Lazy load everything except critical components
 const RestOfPage = lazy(() => Promise.all([
@@ -37,7 +37,7 @@ const RestOfPage = lazy(() => Promise.all([
 function MTService100() {
   return (
     <>
-      <Training200/>
+      <MTTraining100/>
       <HouseOfYoga backgroundImage={a}/>
       <Suspense fallback={<div>Loading...</div>}>
         <RestOfPage />

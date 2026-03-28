@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-const Training200 = () => {
+const MTTraining100 = () => {
   // State for dynamic image loading
   const [images, setImages] = useState({
     mainImage: null,
@@ -54,7 +54,7 @@ const Training200 = () => {
                           fontSize: 'clamp(0.8rem, 2vw, 1rem)'
                         }}>
                       100-Hour Foundation<br />
-                      Yoga Teacher Training<br />
+                      Multi-Style Yoga Teacher Training<br />
                       In Ubud, Bali with Ombreathe
                     </h6>
                   </div>
@@ -77,7 +77,7 @@ const Training200 = () => {
                          fontSize: 'clamp(1rem, 2.5vw, 1.5rem)',
                          fontWeight: '300'
                        }}>
-                      12 Days foundational training in the spiritual heart of Bali - beginning your Jeevatmaa to Shivatmaa journey
+                      10 Days foundational training in the spiritual heart of Bali - beginning your Jeevatmaa to Shivatmaa journey
                     </p>
                   </div>
 
@@ -90,7 +90,7 @@ const Training200 = () => {
                               fontWeight: '600',
                               fontSize: 'clamp(2rem, 5vw, 3rem)'
                             }}>
-                        $1399
+                        $999
                       </span>
                     </div>
                     
@@ -305,4 +305,4 @@ const Training200 = () => {
   );
 };
 
-export default React.memo(Training200);
+export default React.memo(MTTraining100);

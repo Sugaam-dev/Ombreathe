@@ -3,7 +3,7 @@ import React from 'react';
 const YogaCoursesPage = ({ heading = "100-hour Foundation Yoga Teacher Training", subheading = "Essential Foundation Curriculum" }) => {
   const courses = [
     {
-      title: "Basic Asana Practice",
+      title: "Hatha Yoga",
       icon: "🧘‍♀️",
       content: [
         "Fundamental standing postures",
@@ -18,7 +18,7 @@ const YogaCoursesPage = ({ heading = "100-hour Foundation Yoga Teacher Training"
       ]
     },
     {
-      title: "Basic Pranayama & Breathing",
+      title: "Ashtanga Yoga",
       icon: "🌬️",
       content: [
         "Introduction to yogic breathing",
@@ -33,7 +33,7 @@ const YogaCoursesPage = ({ heading = "100-hour Foundation Yoga Teacher Training"
       ]
     },
     {
-      title: "Yoga Philosophy Introduction",
+      title: "Pranayama (Breathing Practices)",
       icon: "📚",
       content: [
         "What is Yoga? - Definition and purpose",
@@ -48,7 +48,7 @@ const YogaCoursesPage = ({ heading = "100-hour Foundation Yoga Teacher Training"
       ]
     },
     {
-      title: "Basic Teaching Skills",
+      title: "Meditation (Dhyana)",
       icon: "👩‍🏫",
       content: [
         "How to demonstrate basic poses",
@@ -63,7 +63,7 @@ const YogaCoursesPage = ({ heading = "100-hour Foundation Yoga Teacher Training"
       ]
     },
     {
-      title: "Essential Anatomy",
+      title: "Adjustment",
       icon: "🦴",
       content: [
         "Basic body awareness",
@@ -78,7 +78,7 @@ const YogaCoursesPage = ({ heading = "100-hour Foundation Yoga Teacher Training"
       ]
     },
     {
-      title: "Meditation & Relaxation",
+      title: "Yoga Nidra (Psychic Sleep)",
       icon: "🧘‍♀️",
       content: [
         "Introduction to meditation",
@@ -93,7 +93,7 @@ const YogaCoursesPage = ({ heading = "100-hour Foundation Yoga Teacher Training"
       ]
     },
     {
-      title: "Class Sequencing Basics",
+      title: "Yoga Philosophy (Yoga Darshana)",
       icon: "📝",
       content: [
         "Simple warm-up sequences",
@@ -108,7 +108,7 @@ const YogaCoursesPage = ({ heading = "100-hour Foundation Yoga Teacher Training"
       ]
     },
     {
-      title: "Personal Practice Development",
+      title: "Ayurveda",
       icon: "🌱",
       content: [
         "Establishing daily practice routine",

@@ -7,21 +7,21 @@ const DailySchedulePage = ({
 }) => {
   
   const morningSchedule = [
-    { time: "06:00 AM", activity: "Morning Meditation & Breathing" },
-    { time: "06:30 AM", activity: "Basic Pranayama Practice" },
-    { time: "07:30 AM", activity: "Foundational Hatha Yoga" },
+    { time: "05:30 AM", activity: "Self Practice & Self Awareness" },
+    { time: "06:15 AM", activity: "Pranayama and Shatkarma" },
+    { time: "07:30 AM", activity: "Hatha Yoga" },
     { time: "09:00 AM", activity: "Breakfast" },
-    { time: "10:30 AM", activity: "Basic Yoga Anatomy" },
-    { time: "11:45 AM", activity: "Teaching Fundamentals & Alignment Basics" }
+    { time: "10:45 AM", activity: "Yoga Anatomy" },
+    { time: "12:00 AM", activity: "Yoga Alignment & Adjustment/ Teaching Methodology" }
   ];
 
   const afternoonSchedule = [
-    { time: "01:00 PM", activity: "Lunch" },
-    { time: "02:30 PM", activity: "Self-Study & Practice" },
-    { time: "03:30 PM", activity: "Yoga Philosophy Introduction" },
-    { time: "04:45 PM", activity: "Gentle Vinyasa Flow" },
-    { time: "06:30 PM", activity: "Dinner" },
-    { time: "08:00 PM", activity: "Relaxation & Yoga Nidra" }
+    { time: "01:15 PM", activity: "Lunch" },
+    { time: "02:30 PM", activity: "Self Study" },
+    { time: "03:45 PM", activity: "Yoga Philosophy" },
+    { time: "05:00 PM", activity: "Ashtanga Yoga" },
+    { time: "07:00 PM", activity: "Dinner" },
+    { time: "09:00 PM", activity: "Self Reflection and Meditation" }
   ];
 
   return (
