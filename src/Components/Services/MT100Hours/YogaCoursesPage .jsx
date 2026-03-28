@@ -6,15 +6,15 @@ const YogaCoursesPage = ({ heading = "100-hour Foundation Yoga Teacher Training"
       title: "Hatha Yoga",
       icon: "🧘‍♀️",
       content: [
-        "Fundamental standing postures",
-        "Basic seated positions and forward folds",
-        "Gentle backbends and twists",
-        "Introduction to Sun Salutations",
-        "Basic balancing poses",
-        "Simple inversions (legs up wall)",
-        "Relaxation poses and savasana",
-        "Proper alignment principles",
-        "Safe entry and exit from poses"
+        "Pavan Muktasana series 1",
+        "Pavan Muktasana series – 2",
+        "Pavan muktasana series - 3",
+        "Centering postures series",
+        "Surya Namaskar",
+        "Standing postures series",
+        "Kneeling postures series",
+        "Sitting Postures series",
+        "Forward bending postures series"
       ]
     },
     {
