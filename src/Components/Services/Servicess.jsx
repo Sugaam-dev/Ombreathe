@@ -197,7 +197,7 @@ const Servicess = () => {
       id: 15,
       imageKey: 'Yogalyaa_100_Hour_TTC',
       title: " 100 Hours Multistyle Teacher Training Courses",
-      route: "/programs/teacher-training-100",
+      route: "/programs/100-hours-milti-style-teacher-training-course",
       features: [
         "Comprehensive 100-hour certification program",
         "Expert guidance from experienced instructors",
