@@ -1,12 +1,13 @@
-import React, { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
-import logo from '../../images/omBreatheLogo.png'
-import './Navbar.css'
+import React, { useState, useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
+import logo from "../../images/omBreatheLogo.png";
+import "./Navbar.css";
 
 const Navbar = () => {
   const [isNavCollapsed, setIsNavCollapsed] = useState(true);
-  const [activeLink, setActiveLink] = useState('');
+  const [activeLink, setActiveLink] = useState("");
   const [dropdownOpen, setDropdownOpen] = useState({});
+  const [shortRetreatsOpen, setShortRetreatsOpen] = useState(false);
   const [isDesktop, setIsDesktop] = useState(window.innerWidth >= 992);
   const location = useLocation();
 
@@ -17,27 +18,28 @@ const Navbar = () => {
       setIsDesktop(desktop);
     };
 
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   // Set active link based on current URL on component mount
   useEffect(() => {
-    // For HashRouter, use location.hash if available, otherwise use pathname
-    const hashPath = location.hash.replace('#', '');
+    const hashPath = location.hash.replace("#", "");
     const pathToCheck = hashPath || location.pathname;
-    
-    if (pathToCheck === '/' || pathToCheck === '') {
-      setActiveLink('home');
-    } else if (pathToCheck === '/about') {
-      setActiveLink('about');
-    } else if (pathToCheck === '/contact') {
-      setActiveLink('contact');
-    } else if (pathToCheck.includes('/programs/') || 
-               pathToCheck.includes('/programs')) {
-      setActiveLink('programs');
+
+    if (pathToCheck === "/" || pathToCheck === "") {
+      setActiveLink("home");
+    } else if (pathToCheck === "/about") {
+      setActiveLink("about");
+    } else if (pathToCheck === "/contact") {
+      setActiveLink("contact");
+    } else if (
+      pathToCheck.includes("/programs/") ||
+      pathToCheck.includes("/programs")
+    ) {
+      setActiveLink("programs");
     } else {
-      setActiveLink('');
+      setActiveLink("");
     }
   }, [location]);
 
@@ -45,83 +47,108 @@ const Navbar = () => {
 
   const handleLinkClick = (linkName) => {
     setActiveLink(linkName);
-    setDropdownOpen({}); // Close all dropdowns when clicking regular links
+    setDropdownOpen({});
+    setShortRetreatsOpen(false);
     if (window.innerWidth < 992) {
-      setIsNavCollapsed(true); // Close mobile menu for regular links
+      setIsNavCollapsed(true);
     }
   };
 
   const toggleDropdown = (dropdownName, event) => {
     event.preventDefault();
     event.stopPropagation();
-    
-    setDropdownOpen(prev => {
+
+    setDropdownOpen((prev) => {
       const newState = {};
-      // Close all other dropdowns
-      Object.keys(prev).forEach(key => {
+      Object.keys(prev).forEach((key) => {
         newState[key] = false;
       });
-      // Toggle the clicked dropdown
       newState[dropdownName] = !prev[dropdownName];
       return newState;
     });
-    
+
+    // Close short retreats if closing programs
+    if (dropdownOpen["programs"]) {
+      setShortRetreatsOpen(false);
+    }
+
     setActiveLink(dropdownName);
   };
 
   const handleDropdownHover = (dropdownName, isHovering) => {
-    // Only handle hover on larger screens
     if (window.innerWidth >= 992) {
       if (isHovering) {
-        setDropdownOpen(prev => ({
+        setDropdownOpen((prev) => ({
           ...prev,
-          [dropdownName]: true
+          [dropdownName]: true,
         }));
       } else {
-        // Small delay before closing to allow moving to dropdown
         setTimeout(() => {
-          setDropdownOpen(prev => ({
+          setDropdownOpen((prev) => ({
             ...prev,
-            [dropdownName]: false
+            [dropdownName]: false,
           }));
+          setShortRetreatsOpen(false);
         }, 300);
       }
+    }
+  };
+
+  const handleShortRetreatsHover = (isHovering) => {
+    if (window.innerWidth >= 992) {
+      if (isHovering) {
+        setShortRetreatsOpen(true);
+      } else {
+        setTimeout(() => {
+          setShortRetreatsOpen(false);
+        }, 300);
+      }
+    }
+  };
+
+  const toggleShortRetreats = (event) => {
+    event.preventDefault();
+    event.stopPropagation();
+    if (window.innerWidth < 992) {
+      setShortRetreatsOpen((prev) => !prev);
     }
   };
 
   // Close dropdowns when clicking outside
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (!event.target.closest('.dropdown')) {
+      if (!event.target.closest(".dropdown")) {
         setDropdownOpen({});
+        setShortRetreatsOpen(false);
       }
     };
-    document.addEventListener('click', handleClickOutside);
-    return () => document.removeEventListener('click', handleClickOutside);
+    document.addEventListener("click", handleClickOutside);
+    return () => document.removeEventListener("click", handleClickOutside);
   }, []);
 
   return (
     <>
-   <nav className={`navbar navbar-expand-lg navbar-light premium-navbar shadow-lg ${isDesktop ? 'fixed-top' : ''}`}>
-
+      <nav
+        className={`navbar navbar-expand-lg navbar-light premium-navbar shadow-lg ${isDesktop ? "fixed-top" : ""}`}
+      >
         <div className="container">
           {/* Logo */}
-          <Link className="navbar-brand logo-brand" to="/" onClick={() => handleLinkClick('home')}>
+          <Link
+            className="navbar-brand logo-brand"
+            to="/"
+            onClick={() => handleLinkClick("home")}
+          >
             <div className="logo-container">
-              <img 
-                src={logo}
-                alt="Logo" 
-                className="logo-image"
-              />
+              <img src={logo} alt="Logo" className="logo-image" />
             </div>
           </Link>
 
           {/* Mobile toggle button */}
-          <button 
-            className="navbar-toggler custom-toggler" 
-            type="button" 
+          <button
+            className="navbar-toggler custom-toggler"
+            type="button"
             onClick={handleNavCollapse}
-            aria-controls="navbarNav" 
+            aria-controls="navbarNav"
             aria-expanded={!isNavCollapsed}
             aria-label="Toggle navigation"
           >
@@ -129,14 +156,17 @@ const Navbar = () => {
           </button>
 
           {/* Navigation menu */}
-          <div className={`${isNavCollapsed ? 'collapse' : ''} navbar-collapse`} id="navbarNav">
+          <div
+            className={`${isNavCollapsed ? "collapse" : ""} navbar-collapse`}
+            id="navbarNav"
+          >
             <ul className="navbar-nav ms-auto align-items-center">
               {/* Home */}
               <li className="nav-item">
-                <Link 
-                  className={`nav-link premium-link ${activeLink === 'home' ? 'active' : ''}`} 
+                <Link
+                  className={`nav-link premium-link ${activeLink === "home" ? "active" : ""}`}
                   to="/"
-                  onClick={() => handleLinkClick('home')}
+                  onClick={() => handleLinkClick("home")}
                 >
                   Home
                 </Link>
@@ -144,42 +174,115 @@ const Navbar = () => {
 
               {/* About */}
               <li className="nav-item">
-                <Link 
-                  className={`nav-link premium-link ${activeLink === 'about' ? 'active' : ''}`} 
+                <Link
+                  className={`nav-link premium-link ${activeLink === "about" ? "active" : ""}`}
                   to="/about"
-                  onClick={() => handleLinkClick('about')}
+                  onClick={() => handleLinkClick("about")}
                 >
                   About
                 </Link>
               </li>
 
               {/* Programs Dropdown */}
-              <li className="nav-item dropdown dropdown-hover-container"
-                  onMouseEnter={() => handleDropdownHover('programs', true)}
-                  onMouseLeave={() => handleDropdownHover('programs', false)}>
-                <Link 
-                  className={`nav-link premium-link dropdown-toggle-custom ${activeLink === 'programs' ? 'active' : ''}`}
-                  href="#" 
-                  role="button" 
-                  onClick={(e) => toggleDropdown('programs', e)}
+              <li
+                className="nav-item dropdown dropdown-hover-container"
+                onMouseEnter={() => handleDropdownHover("programs", true)}
+                onMouseLeave={() => handleDropdownHover("programs", false)}
+              >
+                <Link
+                  className={`nav-link premium-link dropdown-toggle-custom ${activeLink === "programs" ? "active" : ""}`}
+                  href="#"
+                  role="button"
+                  onClick={(e) => toggleDropdown("programs", e)}
                 >
                   Programs
-                  <span className={`dropdown-arrow ${dropdownOpen.programs ? 'rotated' : ''}`}>▼</span>
+                  <span
+                    className={`dropdown-arrow ${dropdownOpen.programs ? "rotated" : ""}`}
+                  >
+                    ▼
+                  </span>
                 </Link>
-                
+
                 {/* Invisible bridge for smooth hover transition */}
                 <div className="dropdown-bridge"></div>
-                
+
                 {dropdownOpen.programs && (
                   <div className="dropdown-menu-custom premium-dropdown show">
-                    <Link className="dropdown-item-custom premium-dropdown-item" to="/programs/Membership-Temple-Yoga-Program" 
-                    onClick={() => handleLinkClick('programs/Membership-Temple-Yoga-Program')}>
+                    <Link
+                      className="dropdown-item-custom premium-dropdown-item"
+                      to="/programs/Membership-Temple-Yoga-Program"
+                      onClick={() =>
+                        handleLinkClick(
+                          "programs/Membership-Temple-Yoga-Program",
+                        )
+                      }
+                    >
                       Membership Programs
                     </Link>
-                   
+
+                    {/* Short Retreats - nested submenu */}
+                    <div
+                      className={`dropdown-item-custom premium-dropdown-item short-retreats-container ${shortRetreatsOpen ? "active-sub" : ""}`}
+                      onMouseEnter={() => handleShortRetreatsHover(true)}
+                      onMouseLeave={() => handleShortRetreatsHover(false)}
+                    >
+                      {/* Trigger row */}
+                      <div
+                        className="short-retreats-trigger"
+                        onClick={toggleShortRetreats}
+                      >
+                        <span>Short Retreats</span>
+                        <span
+                          className={`dropdown-arrow sub-arrow ${shortRetreatsOpen ? "rotated" : ""}`}
+                        >
+                          {isDesktop ? "▶" : "▼"}
+                        </span>
+                      </div>
+
+                      {/* Sub-menu: right on desktop, down on mobile */}
+                      {shortRetreatsOpen && (
+                        <div
+                          className={`sub-dropdown-menu ${isDesktop ? "sub-dropdown-right" : "sub-dropdown-down"}`}
+                        >
+                          <Link
+                            className="dropdown-item-custom premium-dropdown-item"
+                            to="/programs/short-retreats/mysuru"
+                            onClick={() =>
+                              handleLinkClick("programs/short-retreats/mysuru")
+                            }
+                          >
+                            Mysuru
+                          </Link>
+                          <Link
+                            className="dropdown-item-custom premium-dropdown-item"
+                            to="/programs/short-retreats/bali"
+                            onClick={() =>
+                              handleLinkClick("programs/short-retreats/bali")
+                            }
+                          >
+                            Bali
+                          </Link>
+                          <Link
+                            className="dropdown-item-custom premium-dropdown-item"
+                            to="/programs/short-retreats/rishikesh"
+                            onClick={() =>
+                              handleLinkClick(
+                                "programs/short-retreats/rishikesh",
+                              )
+                            }
+                          >
+                            Rishikesh
+                          </Link>
+                        </div>
+                      )}
+                    </div>
+
                     <hr className="dropdown-divider-custom" />
-                    <Link className="dropdown-item-custom premium-dropdown-item" to="/programs"
-                     onClick={() => handleLinkClick('programs')}>
+                    <Link
+                      className="dropdown-item-custom premium-dropdown-item"
+                      to="/programs"
+                      onClick={() => handleLinkClick("programs")}
+                    >
                       View All Programs
                     </Link>
                   </div>
@@ -188,10 +291,10 @@ const Navbar = () => {
 
               {/* Contact */}
               <li className="nav-item">
-                <Link 
-                  className={`nav-link premium-link ${activeLink === 'contact' ? 'active' : ''}`} 
+                <Link
+                  className={`nav-link premium-link ${activeLink === "contact" ? "active" : ""}`}
                   to="/contact"
-                  onClick={() => handleLinkClick('contact')}
+                  onClick={() => handleLinkClick("contact")}
                 >
                   Contact
                 </Link>
@@ -272,7 +375,7 @@ const Navbar = () => {
 
         /* Modern Hover Effect - Simple Color Change with Bottom Border */
         .premium-link::after {
-          content: '';
+          content: "";
           position: absolute;
           bottom: 0;
           left: 50%;
@@ -294,7 +397,6 @@ const Navbar = () => {
         /* Active Link State - Clean Design */
         .premium-link.active {
           color: #007bff !important;
-        
         }
 
         .premium-link.active::after {
@@ -394,6 +496,57 @@ const Navbar = () => {
           border: 0;
         }
 
+        /* ✅ Put these OUTSIDE any media query */
+        .short-retreats-container {
+          position: relative;
+          cursor: pointer;
+          padding: 0 !important;
+        }
+
+        .short-retreats-trigger {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: 8px 16px;
+          width: 100%;
+        }
+
+        .short-retreats-trigger:hover {
+          background-color: rgba(0, 0, 0, 0.05);
+        }
+
+        .sub-arrow {
+          font-size: 10px;
+          margin-left: 8px;
+          transition: transform 0.2s ease;
+        }
+
+        .sub-dropdown-right {
+          position: absolute;
+          top: -8px;
+          left: 100%;
+          margin-left: 0;
+          background: white;
+          border-radius: 8px;
+          box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+          min-width: 160px;
+          z-index: 9999;
+          padding: 8px 0;
+        }
+
+        .sub-dropdown-down {
+          position: static;
+          background: rgba(0, 0, 0, 0.03);
+          border-left: 2px solid rgba(0, 0, 0, 0.1);
+          margin-left: 16px;
+          border-radius: 0 0 4px 4px;
+          padding: 4px 0;
+        }
+
+        .active-sub > .short-retreats-trigger {
+          font-weight: 600;
+        }
+
         /* Book Appointment Button - Reduced Size */
         .book-appointment-btn {
           background: linear-gradient(135deg, #ff6b6b, #ff8e8e) !important;
@@ -458,7 +611,7 @@ const Navbar = () => {
             text-align: center;
             margin: 0;
           }
-          
+
           .premium-link {
             padding: 0.8rem 1rem !important;
             border-radius: 6px;
