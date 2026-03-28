@@ -23,6 +23,8 @@ import OnlineYogaTeacherTraining from './Components/Services/OnlineCourse/Online
 import QRDonationForm from './Components/Donation/QRDonationForm/QRDonationForm';
 import UseGTMPageView from './Components/useFullComponent/UseGTMPageView ';
 import MTService100 from './Components/Services/MT100Hours/MTService100';
+import MTService300 from './Components/Services/MT300Hours/MTService300';
+import MTService200 from './Components/Services/MT200Hours/MTService200';
 
 
 function AppRoutes() {
@@ -55,6 +57,8 @@ function AppRoutes() {
         <Route path="programs/pashu-patayaa-sadhana" element={<MembershipProgram data={pashuPatayaaData} />} />
         <Route path="donation" element={<QRDonationForm />} />
         <Route path="programs/100-hours-milti-style-teacher-training-course" element={<MTService100 />} />
+        <Route path="programs/300-hours-milti-style-teacher-training-course" element={<MTService300 />} />
+        <Route path="programs/200-hours-milti-style-teacher-training-course" element={<MTService200 />} />
       </Route>
     </Routes>
   );

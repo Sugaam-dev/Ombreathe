@@ -171,7 +171,7 @@ const Servicess = () => {
       id: 13,
       imageKey: 'Yogalyaa_200_Hour_TTC',
       title: " 200 Hours Multi Style Teacher Training Courses",
-      route: "/programs/teacher-training-200",
+      route: "/programs/200-hours-milti-style-teacher-training-course",
       features: [
         "Comprehensive 200-hour certification program",
         "Expert guidance from experienced instructors",
@@ -184,7 +184,7 @@ const Servicess = () => {
       id: 14,
       imageKey: 'Yogalyaa_300_Hour_TTC',
       title: " 300 Hours Multistyle Teacher Training Courses",
-      route: "/programs/teacher-training-300",
+      route: "/programs/300-hours-milti-style-teacher-training-course",
       features: [
         "Comprehensive 300-hour certification program",
         "Expert guidance from experienced instructors",

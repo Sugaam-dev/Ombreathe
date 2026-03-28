@@ -130,7 +130,7 @@
             |-- MT200Hours
                 |-- DailySchedulePage .jsx
                 |-- HouseOfYoga.jsx
-                |-- Service1.jsx
+                |-- MTService200.jsx
                 |-- Training200.jsx
                 |-- Transformation.jsx
                 |-- TransTeach.jsx
@@ -139,7 +139,7 @@
             |-- MT300Hours
                 |-- DailySchedulePage .jsx
                 |-- HouseOfYoga.jsx
-                |-- Service300.jsx
+                |-- MTService300.jsx
                 |-- Training200.jsx
                 |-- Transformation.jsx
                 |-- TransTeach.jsx

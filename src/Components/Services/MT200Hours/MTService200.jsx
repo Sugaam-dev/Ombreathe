@@ -16,7 +16,7 @@ const Gallery = lazy(() => import('../../HomeCredentials/Gallery'))
 const YogaTeachers = lazy(() => import('../../Teachers/YogaTeachers'))
 const Ratings = lazy(() => import('../../Ratings'))
 
-function Service1() {
+function MTService200() {
   return (
     <>
       <Training200/>
@@ -38,4 +38,4 @@ function Service1() {
   )
 }
 
-export default Service1
+export default MTService200

@@ -32,7 +32,7 @@ const LazySection = ({ children, fallback = <LoadingSpinner /> }) => (
   </Suspense>
 )
 
-function Service300() {
+function MTService300() {
   // State for dynamic image loading
   const [backgroundImage, setBackgroundImage] = useState(null)
   const [dailyImage, setDailyImage] = useState(null)
@@ -112,4 +112,4 @@ function Service300() {
   )
 }
 
-export default React.memo(Service300)
+export default React.memo(MTService300)
