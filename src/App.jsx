@@ -25,6 +25,25 @@ import UseGTMPageView from './Components/useFullComponent/UseGTMPageView ';
 import MTService100 from './Components/Services/MT100Hours/MTService100';
 import MTService300 from './Components/Services/MT300Hours/MTService300';
 import MTService200 from './Components/Services/MT200Hours/MTService200';
+import RetreatCards from './Components/Services/ShortRetreats/RetreatCards'
+import mysuruCards from './Components/Services/ShortRetreats/data/mysuru/mysuruCards'
+import baliCards from './Components/Services/ShortRetreats/data/bali/baliCards'
+import rishikeshCards from './Components/Services/ShortRetreats/data/rishikesh/rishikeshCards'
+import RetreatPage from './Components/Services/ShortRetreats/RetreatPage';
+import singingBowlData from './Components/Services/ShortRetreats/data/mysuru/singingBowlData';
+import wheelYogaData from './Components/Services/ShortRetreats/data/mysuru/wheelYogaData';
+import yinYoga50hrData from './Components/Services/ShortRetreats/data/mysuru/yinYoga50hrMysuruData';
+import aerialYoga50hrData from './Components/Services/ShortRetreats/data/mysuru/aerialYoga50hrMysuruData';
+import baliYinYogaData from './Components/Services/ShortRetreats/data/bali/baliYinYogaData';
+import baliAerialYogaData from './Components/Services/ShortRetreats/data/bali/baliAerialYogaData';
+import acroYogaData from './Components/Services/ShortRetreats/data/bali/baliAcroYogaData';
+import baliPrenatalData from './Components/Services/ShortRetreats/data/bali/baliPrenatalYogaData';
+import rishikeshYinYogaData from './Components/Services/ShortRetreats/data/rishikesh/rishikeshYinYogaData';
+import rishikeshAerialYogaData from './Components/Services/ShortRetreats/data/rishikesh/rishikeshAerialYogaData';
+import rishikeshPrenatalData from './Components/Services/ShortRetreats/data/rishikesh/rishikeshPrenatalYogaData';
+
+
+
 
 
 function AppRoutes() {
@@ -59,6 +78,27 @@ function AppRoutes() {
         <Route path="programs/100-hours-milti-style-teacher-training-course" element={<MTService100 />} />
         <Route path="programs/300-hours-milti-style-teacher-training-course" element={<MTService300 />} />
         <Route path="programs/200-hours-milti-style-teacher-training-course" element={<MTService200 />} />
+        <Route path="programs/short-retreats/mysuru" element={<RetreatCards programs={mysuruCards} locationTitle="Mysuru Retreats" />} />
+        <Route path="programs/short-retreats/bali" element={<RetreatCards programs={baliCards} locationTitle="Bali Retreats" />} />
+        <Route path="programs/short-retreats/rishikesh" element={<RetreatCards programs={rishikeshCards} locationTitle="Rishikesh Retreats" />} />
+        {/* Mysuru */}
+        <Route path="programs/short-retreats/mysuru/singing-bowl-and-sound-healing-course" element={<RetreatPage data={singingBowlData} />} />
+        <Route path="programs/short-retreats/mysuru/7-day-wheel-yoga-teacher-training-course" element={<RetreatPage data={wheelYogaData} />} />
+        <Route path="programs/short-retreats/mysuru/50-hour-yin-yoga-teacher-training-course-mysore" element={<RetreatPage data={yinYoga50hrData} />} />
+        <Route path="programs/short-retreats/mysuru/50-hour-aerial-yoga-teacher-training-mysore" element={<RetreatPage data={aerialYoga50hrData} />} />
+
+        {/* Bali */}
+        <Route path="programs/short-retreats/bali/yin-yoga-teacher-training" element={<RetreatPage data={baliYinYogaData} />} />
+        <Route path="programs/short-retreats/bali/aerial-yoga-teacher-training" element={<RetreatPage data={baliAerialYogaData} />} />
+        <Route path="programs/short-retreats/bali/acro-yoga-teacher-training" element={<RetreatPage data={acroYogaData} />} />
+        <Route path="programs/short-retreats/bali/prenatal-yoga-teacher-training" element={<RetreatPage data={baliPrenatalData} />} />
+        {/* <Route path="programs/short-retreats/bali/7-day-adventure-retreat" element={<RetreatPage data={adventure7DayData} />} />
+        <Route path="programs/short-retreats/bali/7-day-meditation-retreat" element={<RetreatPage data={meditation7DayData} />} /> */}
+
+        {/* Rishikesh */}
+        <Route path="programs/short-retreats/rishikesh/yin-yoga-teacher-training" element={<RetreatPage data={rishikeshYinYogaData} />} />
+        <Route path="programs/short-retreats/rishikesh/aerial-yoga-teacher-training" element={<RetreatPage data={rishikeshAerialYogaData} />} />
+        <Route path="programs/short-retreats/rishikesh/prenatal-yoga-teacher-training" element={<RetreatPage data={rishikeshPrenatalData} />} />
       </Route>
     </Routes>
   );
