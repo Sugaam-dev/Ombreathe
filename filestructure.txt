@@ -176,6 +176,27 @@
                 |-- YogaCoursesPage.jsx
                 |-- YogaTrainingPromo .jsx
             |-- Servicess.jsx
+            |-- ShortRetreats
+                |-- data
+                    |-- bali
+                        |-- baliAcroYogaData.js
+                        |-- baliAerialYogaData.js
+                        |-- baliCards.js
+                        |-- baliPrenatalYogaData.js
+                        |-- baliYinYogaData.js
+                    |-- mysuru
+                        |-- aerialYoga50hrMysuruData.js
+                        |-- mysuruCards.js
+                        |-- singingBowlData.js
+                        |-- wheelYogaData.js
+                        |-- yinYoga50hrMysuruData.js
+                    |-- rishikesh
+                        |-- rishikeshAerialYogaData.js
+                        |-- rishikeshCards.js
+                        |-- rishikeshPrenatalYogaData.js
+                        |-- rishikeshYinYogaData.js
+                |-- RetreatCards.jsx
+                |-- RetreatPage.jsx
             |-- Styles
                 |-- Services.css
         |-- Teachers
