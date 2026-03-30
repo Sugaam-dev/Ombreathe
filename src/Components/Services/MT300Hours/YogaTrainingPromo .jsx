@@ -48,7 +48,7 @@ const YogaTrainingPromo = () => {
           </svg>
         </div>
       ),
-      title: "34 nights accommodation in modern",
+      title: "25 nights accommodation in modern",
       subtitle: "Balinese-style resort in Ubud"
     },
     {
@@ -317,7 +317,7 @@ const YogaTrainingPromo = () => {
                 
                 <h1 className="ytp-main-heading">
                   Join us for an immersive<br />
-                  <span className="ytp-highlight">35 days 300-hour</span> Ashtanga Vinyasa<br />
+                  <span className="ytp-highlight">26 days 300-hour</span> Ashtanga Vinyasa<br />
                   Yoga Teacher Training in Ubud
                 </h1>
 

@@ -504,10 +504,9 @@ const Navbar = () => {
         }
 
         .short-retreats-trigger {
-          display: flex;
-          justify-content: space-between;
+          position: relative;
           align-items: center;
-          padding: 8px 16px;
+          padding: 0.7rem 1.5rem;
           width: 100%;
         }
 

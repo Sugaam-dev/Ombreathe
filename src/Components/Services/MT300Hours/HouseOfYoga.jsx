@@ -44,7 +44,7 @@ const HouseOfYoga = ({ backgroundImage }) => {
               <p>Advanced Yoga Alliance Certification</p>
             </div>
             <div className="col-md-2">
-              <div style={statStyle}>35 Days</div>
+              <div style={statStyle}>26 Days</div>
               <p>Intensive Advanced Training</p>
             </div>
             <div className="col-md-2">

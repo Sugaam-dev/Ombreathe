@@ -177,7 +177,7 @@ const Servicess = () => {
         "Expert guidance from experienced instructors",
         "Yoga Alliance registered certificate"
       ],
-      price: "$1899",
+      price: "$1399",
       priority: 2
     },
     {
@@ -190,7 +190,7 @@ const Servicess = () => {
         "Expert guidance from experienced instructors",
         "Yoga Alliance registered certificate"
       ],
-      price: "$1899",
+      price: "$2099",
       priority: 1
     },
     {
@@ -203,7 +203,7 @@ const Servicess = () => {
         "Expert guidance from experienced instructors",
         "Yoga Alliance registered certificate"
       ],
-      price: "$1899",
+      price: "$999",
       priority: 2
     }
   ], []);

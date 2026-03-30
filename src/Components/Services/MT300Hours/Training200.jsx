@@ -96,7 +96,7 @@ const Training200 = () => {
                          fontSize: 'clamp(1rem, 2.5vw, 1.5rem)',
                          fontWeight: '300'
                        }}>
-                      35 Days intensive advanced training in the spiritual heart of Bali - deepening Jeevatmaa to Shivatmaa connection
+                      26 Days intensive advanced training in the spiritual heart of Bali - deepening Jeevatmaa to Shivatmaa connection
                     </p>
                   </div>
 
@@ -109,7 +109,7 @@ const Training200 = () => {
                               fontWeight: '600',
                               fontSize: 'clamp(2rem, 5vw, 3rem)'
                             }}>
-                        $1999
+                        $2099
                       </span>
                     </div>
                     

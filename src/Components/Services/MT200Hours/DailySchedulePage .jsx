@@ -10,21 +10,23 @@ const DailySchedulePage = ({
 }) => {
   
   const morningSchedule = [
-    { time: "05:30 AM", activity: "Self-Practice & Self-Awareness" },
-    { time: "06:15 AM", activity: "Pranayama and Shatkarma" },
-    { time: "07:30 AM", activity: "Hatha Yoga" },
-    { time: "09:00 AM", activity: "Breakfast" },
-    { time: "10:45 AM", activity: "Yoga Anatomy" },
-    { time: "12:00 PM", activity: "Yoga Alignment & Adjustment / Teaching Methodology" }
+    { time: "05:45 AM - 07:00 AM", activity: "Ashtanga(Bablu)" },
+    { time: "07:00 AM - 07:30 AM", activity: "Ashtanga Mastry(Self Mastery)" },
+    { time: "07:30 AM - 08:45 AM", activity: "Pranayama & meditation(Hari Dharma)" },
+    { time: "08:45 AM - 09:15 AM", activity: "Fruits & Tea" },
+    { time: "09:30 AM - 10:45 AM", activity: "Anatomy & Alignment(Hannah)" },
+    { time: "10:45 AM - 12:00 PM", activity: "Brunch" }
   ];
 
   const afternoonSchedule = [
-    { time: "01:15 PM", activity: "Lunch" },
-    { time: "02:30 PM", activity: "Self-Study" },
-    { time: "03:45 PM", activity: "Yoga Philosophy" },
-    { time: "05:00 PM", activity: "Ashtanga Yoga" },
-    { time: "07:00 PM", activity: "Dinner" },
-    { time: "09:00 PM", activity: "Self-Reflection and Meditation" }
+    { time: "12:00 PM - 13:00 PM", activity: "Self-Study" },
+    { time: "13:00 PM - 14:15 PM", activity: "Teaching Methodology (mon, wed and Fri)(Ankit)" },
+    { time: "14:30 PM - 15:45 PM", activity: "Philosophy(Hari dharma)" },
+    { time: "16:00 PM - 17:15 PM", activity: "Hatha yoga" },
+    { time: "17:15 PM - 17:45 PM", activity: "Hatha Mastery(Self Practice)" },
+    { time: "17:45 PM - 18:30 PM", activity: "Yoga Sadhna (Mon-Wed)(Maa Haripriya)" },
+    { time: "18:00 PM - 19:00 PM", activity: "Dinner (Thur, sat)" },
+    { time: "18:30 PM - 19:30 PM", activity: "Dinner (Mon - Wed)" }
   ];
 
   return (

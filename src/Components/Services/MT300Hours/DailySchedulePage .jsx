@@ -7,21 +7,22 @@ const DailySchedulePage = ({
 }) => {
   
   const morningSchedule = [
-    { time: "05:00 AM", activity: "Advanced Self-Practice & Meditation" },
-    { time: "06:00 AM", activity: "Advanced Pranayama & Energy Work" },
-    { time: "07:30 AM", activity: "Advanced Hatha & Ashtanga Practice" },
-    { time: "09:30 AM", activity: "Breakfast" },
-    { time: "10:45 AM", activity: "Advanced Anatomy & Therapeutic Applications" },
-    { time: "12:00 PM", activity: "Advanced Teaching Methodology & Sequencing" }
+    { time: "05:45 AM - 07:00 AM", activity: "Ashtanga (Akshat)" },
+    { time: "07:00 AM - 07:30 AM", activity: "Ashtanga Mastry (Self Mastery)" },
+    { time: "07:30 AM - 08:45 AM", activity: "Pranayama & meditation (Maa Haripriya)" },
+    { time: "08:45 AM - 09:15 AM", activity: "Fruits & Tea" },
+    { time: "09:30 AM - 10:45 AM", activity: "Philosophy (Hari Dharma)" },
+    { time: "10:45 AM - 12:00 PM", activity: "Brunch" }
   ];
 
   const afternoonSchedule = [
-    { time: "01:30 PM", activity: "Lunch" },
-    { time: "02:45 PM", activity: "Sanskrit Studies & Chanting" },
-    { time: "04:00 PM", activity: "Advanced Philosophy & Vedantic Studies" },
-    { time: "05:30 PM", activity: "Advanced Vinyasa & Inversions" },
-    { time: "07:00 PM", activity: "Dinner" },
-    { time: "08:30 PM", activity: "Yoga Nidra & Advanced Meditation" }
+    { time: "12:00 PM - 13:00 PM", activity: "Self Study" },
+    { time: "13:00 PM - 14:15 PM", activity: "Teaching Methodology (Tues, Thurs, Sat) (Ankit)" },
+    { time: "14:30 PM - 16:00 PM", activity: "Alignment & Anatomy (Ankit)" },
+    { time: "16:15 PM - 17:45 PM", activity: "Hatha Yoga (Ankit)" },
+    { time: "17:45 PM - 18:30 PM", activity: "Yoga Sadhna (Mon-Wed) (Maa Haripriya)" },
+    { time: "18:00 PM - 19:00 PM", activity: "Dinner (Thur, sat)" },
+    { time: "18:30 PM - 19:30 PM", activity: "Dinner (Mon - Wed)" }
   ];
 
   return (

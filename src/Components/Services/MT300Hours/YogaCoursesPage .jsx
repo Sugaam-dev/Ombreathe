@@ -3,124 +3,108 @@ import React from 'react';
 const YogaCoursesPage = ({ heading = "300-hour Advanced Yoga Teacher Training", subheading = "Comprehensive Advanced Curriculum" }) => {
   const courses = [
     {
-      title: "Advanced Asana Practice",
+      title: "Bandha (Energy Lock)",
       icon: "🧘‍♀️",
       content: [
-        "Advanced Ashtanga Primary & Intermediate Series",
-        "Complex arm balances and inversions",
-        "Advanced backbends and deep hip work",
-        "Therapeutic modifications and variations",
-        "Advanced sequencing principles",
-        "Peak pose development",
-        "Advanced alignment and energetics",
-        "Challenging transitions and flows",
-        "Advanced breathing integration"
+        "Energy Lock and kundalini awakening",
+        "How Bandha practice assists in terminating the tension on the prana Shakti",
+        "Unblock your system allowing graceful flow of energy through Bandha",
+        "Unlocking the 3 knots, Brahma, Vishnu and Shiva",
+        "Outcome of the practice",
+        "Precautions",
+        "Health and spiritual benefits",
+        "Advance level agnisar kriya",
+        "Advancing the power of internal retention"
       ]
     },
     {
-      title: "Yoga Therapy & Therapeutics",
+      title: "Classical Dance",
       icon: "🏥",
-      content: [
-        "Principles of Yoga Therapy",
-        "Assessment and treatment planning",
-        "Working with injuries and limitations",
-        "Chronic pain management through yoga",
-        "Mental health applications",
-        "Stress and trauma-informed approaches",
-        "Special populations (seniors, pregnancy)",
-        "Therapeutic use of props and modifications",
-        "Ethics in therapeutic settings"
+     content: [
+        "Proper Concentration",
+        "Mudra",
+        "Conscious Movement",
+        "Awareness Of Emotions",
+        "Eye Movements",
+        "Mantra",
+        "Music"
       ]
     },
     {
-      title: "Advanced Anatomy & Physiology",
+      title: "Sadhna",
       icon: "🧠",
       content: [
-        "Advanced musculoskeletal system",
-        "Nervous system and yoga",
-        "Endocrine system and hormonal balance",
-        "Biomechanics of complex poses",
-        "Fascial system and myofascial release",
-        "Breathwork and respiratory system",
-        "Advanced injury prevention",
-        "Kinesiology applications",
-        "Research in yoga and health"
+        "Importance",
+        "Why",
+        "How"
+       
       ]
     },
     {
-      title: "Advanced Pranayama & Energy Work",
+      title: "Hatha Yoga",
       icon: "⚡",
       content: [
-        "Advanced pranayama techniques",
-        "Chakra system and energy anatomy",
-        "Bandhas and advanced energy locks",
-        "Kundalini and energy awakening",
-        "Advanced meditation practices",
-        "Mantra and sound healing",
-        "Mudras and hasta mudras",
-        "Energy healing modalities",
-        "Subtle body practices"
-      ]
+          "Joints and glands exercises foundation practices",
+          "Joints and glands exercises advance practices",
+          "Centering postures series",
+          "Sun Salutation",
+          "Chakra awareness and flow yoga",
+          "Moon Salutation",
+          "Standing intermediate and advance postures series",
+          "Relaxing Posture series",
+          "Meditative asana series"
+        ]
     },
     {
-      title: "Sanskrit & Classical Texts",
+      title: "Philosophy Of Hatha Yoga",
       icon: "📚",
       content: [
-        "Advanced Sanskrit pronunciation",
-        "Yoga Sutras of Patanjali (complete study)",
-        "Bhagavad Gita philosophical analysis",
-        "Hatha Yoga Pradipika",
-        "Upanishads and Vedantic texts",
-        "Chanting and mantra practice",
-        "Traditional yoga poetry",
-        "Classical commentaries",
-        "Sanskrit etymology in yoga"
-      ]
-    },
+          "Philosophy of Sun salutation",
+          "Philosophy behind each Yoga asana",
+          "Hatha Yoga and Kundalini awakening",
+          "Asana and Yoga sadhana",
+          "Benefit of asana practices",
+          "Rules and regulations",
+          "Advancing your Yoga poses"
+        ]
+            },
     {
-      title: "Advanced Teaching Methodology",
+      title: "Chakras",
       icon: "👨‍🏫",
       content: [
-        "Advanced class sequencing",
-        "Workshop and retreat design",
-        "Mentoring and teacher development",
-        "Advanced adjustment techniques",
-        "Teaching therapeutic applications",
-        "Business and marketing for teachers",
-        "Online teaching methodologies",
-        "Creating specialized programs",
-        "Leadership in yoga communities"
+        "Sound",
+        "Location",
+        "Colours",
+        "Vibrations"
       ]
     },
     {
-      title: "Philosophy & Ethics",
+      title: "Pranayama (Breathing Practices)",
       icon: "🕉️",
       content: [
-        "Advanced Vedantic philosophy",
-        "Ethics for advanced practitioners",
-        "Teacher-student relationship dynamics",
-        "Cultural appropriation awareness",
-        "Traditional lineages and sampradayas",
-        "Modern applications of ancient wisdom",
-        "Social responsibility in yoga",
-        "Philosophy in practice integration",
-        "Dharma and life purpose exploration"
-      ]
+          "Moving towards advancement of your pranayama practices",
+          "Variations and experiment",
+          "Breathing for awakening nadis and chakras",
+          "Teaching practices and mastery on breathing",
+          "Pranayama- link of happiness",
+          "Physiology of prana",
+          "How prana flows in the body",
+          "Relationship between prana & consciousness"
+        ]
     },
     {
-      title: "Specialized Practices",
+      title: "Yoga Nidra (Psychic Sleep)",
       icon: "🌟",
-      content: [
-        "Yin Yoga and passive practices",
-        "Restorative yoga techniques",
-        "Yoga Nidra facilitation",
-        "Advanced meditation instruction",
-        "Kirtan and devotional practices",
-        "Ayurvedic principles in yoga",
-        "Seasonal and lunar practices",
-        "Advanced shatkarma practices",
-        "Integration of traditional and modern"
-      ]
+     content: [
+          "Antar Mauna Yoga Nidra (Inner Silence)",
+          "61 Point Blue Star Yoga Nidra",
+          "Subtle body Yoga Nidra",
+          "Chakra awareness Yoga Nidra",
+          "Sleep awareness",
+          "Awareness of subtle body",
+          "A journey from conscious to superconscious",
+          "Yoga Nidra Therapy"
+        ]
     }
   ];
 
@@ -201,12 +185,12 @@ const YogaCoursesPage = ({ heading = "300-hour Advanced Yoga Teacher Training", 
         {/* Weekly Breakdown Section */}
         <div className="row mt-5">
           <div className="col-12">
-            <h3 className="text-center mb-4" style={{ color: '#4a4a8b' }}>35-Day Advanced Training Structure</h3>
+            <h3 className="text-center mb-4" style={{ color: '#4a4a8b' }}>26-Day Advanced Training Structure</h3>
             <div className="row g-4">
               <div className="col-md-6 col-lg-3">
                 <div className="card border-0" style={{ backgroundColor: '#e3f2fd' }}>
                   <div className="card-body text-center p-4">
-                    <h5 style={{ color: '#1976d2' }}>Week 1-2</h5>
+                    <h5 style={{ color: '#1976d2' }}>Week 1</h5>
                     <p style={{ color: '#424242', fontSize: '0.9rem' }}>
                       Advanced asana practice, therapeutic foundations, advanced anatomy and injury assessment
                     </p>
@@ -216,7 +200,7 @@ const YogaCoursesPage = ({ heading = "300-hour Advanced Yoga Teacher Training", 
               <div className="col-md-6 col-lg-3">
                 <div className="card border-0" style={{ backgroundColor: '#f3e5f5' }}>
                   <div className="card-body text-center p-4">
-                    <h5 style={{ color: '#7b1fa2' }}>Week 3-4</h5>
+                    <h5 style={{ color: '#7b1fa2' }}>Week 2</h5>
                     <p style={{ color: '#424242', fontSize: '0.9rem' }}>
                       Yoga therapy applications, advanced pranayama, Sanskrit studies and classical texts
                     </p>
@@ -226,7 +210,7 @@ const YogaCoursesPage = ({ heading = "300-hour Advanced Yoga Teacher Training", 
               <div className="col-md-6 col-lg-3">
                 <div className="card border-0" style={{ backgroundColor: '#e8f5e8' }}>
                   <div className="card-body text-center p-4">
-                    <h5 style={{ color: '#388e3c' }}>Week 4-5</h5>
+                    <h5 style={{ color: '#388e3c' }}>Week 3</h5>
                     <p style={{ color: '#424242', fontSize: '0.9rem' }}>
                       Advanced teaching methodology, workshop design, specialized populations and ethics
                     </p>
