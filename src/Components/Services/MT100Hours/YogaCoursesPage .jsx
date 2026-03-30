@@ -19,107 +19,107 @@ const YogaCoursesPage = ({ heading = "100-hour Foundation Yoga Teacher Training"
     },
     {
       title: "Ashtanga Yoga",
-      icon: "🌬️",
+      icon: "🧘",
       content: [
-        "Introduction to yogic breathing",
-        "Diaphragmatic breathing technique",
-        "Three-part breath (Dirga Pranayama)",
-        "Basic Ujjayi breathing",
-        "Simple breath awareness practices",
-        "Breath counting techniques",
-        "Benefits of conscious breathing",
-        "Breathing for relaxation",
-        "Integration with movement"
+        "Introduction to Ashtanga Yoga",
+        "History of Ashtanga Yoga",
+        "Awakening the Fire Within",
+        "The Breath of Life",
+        "Prana",
+        "A Chakra Contemplation",
+        "Eight Limbs of Yoga and the Practice of K.Pattabhi Jois",
+        "How to Do Bandha in Ashtanga",
+        "Drishti- Focusing the Attention During Movements"
       ]
     },
     {
       title: "Pranayama (Breathing Practices)",
-      icon: "📚",
+      icon: "🌬️",
       content: [
-        "What is Yoga? - Definition and purpose",
-        "Brief history of yoga",
-        "Introduction to yoga lifestyle",
-        "Basic ethical principles (Yamas & Niyamas)",
-        "Understanding yoga beyond physical practice",
-        "Meditation and mindfulness basics",
-        "Yoga and daily life integration",
-        "Respect for tradition and teachers",
-        "Personal practice development"
-      ]
+          "What is Prana",
+          "What is Pranayama",
+          "Understanding breath and its connection with Prana",
+          "Importance and benefits of Pranayama",
+          "How to prepare for Pranayama practice",
+          "Aspects of breathing",
+          "Secrets of Pranayama",
+          "Breath flow in five elements",
+          "Function of Prana"
+        ]
     },
     {
       title: "Meditation (Dhyana)",
-      icon: "👩‍🏫",
+      icon: "🧘",
       content: [
-        "How to demonstrate basic poses",
-        "Clear and simple verbal instructions",
-        "Creating a safe practice environment",
-        "Basic class structure and timing",
-        "Observing students safely",
-        "Offering simple modifications",
-        "Voice projection and communication",
-        "Building confidence as a teacher",
-        "Student-teacher boundaries"
-      ]
+          "Introduction to Meditation",
+          "History of Meditation",
+          "Preparation for Meditation",
+          "What is meditation and what it is not",
+          "Aim and objectives of meditation",
+          "Meditation traditions and scriptures",
+          "Sitting positions and how to sit correctly",
+          "Mindfulness and breath awareness (Anapana)",
+          "Mantra and Om meditation practices"
+        ]
     },
     {
       title: "Adjustment",
-      icon: "🦴",
+      icon: "🤲",
       content: [
-        "Basic body awareness",
-        "Major muscle groups and bones",
-        "Spine health and safety",
-        "Joint mobility and protection",
-        "Common areas of tension",
-        "Breathing muscles and mechanics",
-        "Warning signs and contraindications",
-        "Injury prevention basics",
-        "Body alignment fundamentals"
-      ]
+          "What is the sense of yoga adjustment",
+          "What is the level of yoga adjustment",
+          "Why adjustment is needed in yoga asana",
+          "Role of adjustments in yoga asana class",
+          "The right technique of perfect adjustment",
+          "How to apply a bandha and when",
+          "Exploring the dynamics of each asana",
+          "How to adjust self in a posture",
+          "How to adjust others during the class"
+        ]
     },
     {
       title: "Yoga Nidra (Psychic Sleep)",
       icon: "🧘‍♀️",
       content: [
-        "Introduction to meditation",
-        "Basic seated meditation postures",
-        "Guided relaxation techniques",
-        "Body scan meditation",
-        "Mindfulness practices",
-        "Stress reduction through yoga",
-        "Creating personal meditation practice",
-        "Yoga Nidra introduction",
-        "Daily mindfulness integration"
-      ]
+          "Meaning and purpose of Yoga Nidra",
+          "Different schools and traditions of Yoga Nidra",
+          "Lifestyle and rules for Yoga Nidra practitioners",
+          "Benefits and risks of Yoga Nidra",
+          "Difference between Yoga Nidra and meditation",
+          "Yoga Nidra experience and practice",
+          "Yoga Nidra and healing",
+          "Basic relaxation practices",
+          "Visualisation techniques in Yoga Nidra"
+        ]
     },
     {
       title: "Yoga Philosophy (Yoga Darshana)",
       icon: "📝",
       content: [
-        "Simple warm-up sequences",
-        "Basic class structure",
-        "Cool-down and relaxation",
-        "Beginner-friendly flows",
-        "Modification and adaptation",
-        "Time management in classes",
-        "Creating balanced practice",
-        "Student safety priorities",
-        "Building confidence in sequencing"
-      ]
+          "Introduction to Indian culture and spirituality",
+          "Ancient scriptures of yoga and spirituality",
+          "Meaning and purpose of Indian philosophy",
+          "Introduction to nine major Indian philosophies",
+          "History of yoga",
+          "Types of yoga",
+          "Patanjali and his work",
+          "Eight limbs of yoga (Ashtanga Yoga)",
+          "Yamas and Niyamas"
+        ]
     },
     {
       title: "Ayurveda",
-      icon: "🌱",
+      icon: "🌿",
       content: [
-        "Establishing daily practice routine",
-        "Home practice guidelines",
-        "Self-study and reflection",
-        "Setting realistic goals",
-        "Tracking progress safely",
-        "Listening to your body",
-        "Building consistency over intensity",
-        "Journaling and self-reflection",
-        "Connecting with yoga community"
+        "Introduction to Ayurveda",
+        "Fundamentals of Ayurveda",
+        "Panchamahabhuta (five elements)",
+        "Kapha - the principle of structure and lubrication",
+        "Vata - the energy of movement",
+        "Pitta - the energy of transformation and heat",
+        "Understanding Prakriti (your constitution)",
+        "Balance and imbalance of doshas",
+        "Ayurveda for daily lifestyle"
       ]
     }
   ];
