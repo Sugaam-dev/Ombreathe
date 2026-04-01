@@ -70,7 +70,7 @@ const baliCards = [
     imageKey: 'baliAdventure',
     image: require('../../../../../images/services/Retreats.jpg'),           // 🖼️ This was already used in Servicess - update route in App.jsx too
     title: "7-Day Adventure & Yoga Retreat",
-    route: "/programs/short-retreats/bali/7-day-adventure-retreat",
+    route: "/programs/retreat-7-adventure",
     features: [
       "7 days Adventure and immersive spiritual experience",
       "Beautiful natural locations in Bali",
@@ -85,7 +85,7 @@ const baliCards = [
     imageKey: 'baliMeditation',
     image: require('../../../../../images/Gallery/8.jpg'),         // 🖼️ This was already used in Servicess - update route in App.jsx too
     title: "7-Day Meditation & Yoga Retreat",
-    route: "/programs/short-retreats/bali/7-day-meditation-retreat",
+    route: "/programs/retreat-7-meditation",
     features: [
       "7 days Meditation, Yoga and immersive spiritual experience",
       "Beautiful natural locations in Bali",

@@ -1,25 +1,55 @@
 import React, { useState, useEffect, useCallback } from "react";
 
-const Training200 = ({ location }) => {
-  // State for dynamic image loading
-  const [adventureImage, setAdventureImage] = useState(null);
+const Training200 = ({
+  // ── All props have defaults = Retreats7 page stays exactly the same ──
+  location,
+  tagline = "7 Day Adventure and Yoga Retreat\nIn Lovely Ubud, Bali, Indonesia\nWith Ombreathe",
+  title = "Combine the thrill of adventure with the serenity of yoga",
+  subtitle = "7 days of transformative experiences in Bali's most spiritual destination",
+  price = "$1399 USD",
+  priceNote = "*All-inclusive: accommodation, meals, activities & yoga sessions",
+  buttonText = "Book Your Retreat",
+  heroImage = null,
+  includedTitle = "Your adventure includes:",
+  includedItems = [
+    "• 6 nights luxury accommodation with A/C & pool",
+    "• Free airport pickup from Ngurah Rai (DPS)",
+    "• Daily yoga sessions and meditation",
+    "• Adventure activities: rafting, trekking, temple visits",
+    "• Traditional Kecak dance performance",
+    "• Certificate of completion & yoga kit",
+  ],
+  ratings = [
+    { label: "FOOD", value: "4.75" },
+    { label: "TEACHERS", value: "4.5" },
+  ],
+  infoLines = [
+    "Highly rated retreat experience with excellent food and teachers.",
+    "Located 8 minutes from Ubud Palace and Market.",
+  ],
+  closingLine = "Transform your mind, body and spirit in Bali",
+}) => {
+  const [adventureImage, setAdventureImage] = useState(heroImage || null);
 
-  // Load image dynamically for better performance
+  // Only load default image if no heroImage prop passed (Retreats7 behaviour)
   useEffect(() => {
+    if (heroImage) {
+      setAdventureImage(heroImage);
+      return;
+    }
     const loadImage = async () => {
       try {
-        const img =
-          await import("../../../images/services/7-Day Adventure Retreat.jpg");
+        const img = await import(
+          "../../../images/services/7-Day Adventure Retreat.jpg"
+        );
         setAdventureImage(img.default);
       } catch (error) {
         console.error("Error loading adventure image:", error);
       }
     };
-
     loadImage();
-  }, []);
+  }, [heroImage]);
 
-  // Memoized button hover handlers
   const handleMouseEnter = useCallback((e) => {
     e.target.style.transform = "translateY(-2px)";
     e.target.style.boxShadow = "0 12px 35px rgba(46, 58, 135, 0.4)";
@@ -33,13 +63,14 @@ const Training200 = ({ location }) => {
   return (
     <>
       <div>
-        {/* First Section - Retreat Offer */}
+        {/* First Section - Hero */}
         <div className="min-vh-100 d-flex align-items-center justify-content-center">
           <div className="container">
             <div className="row justify-content-center">
               <div className="col-12 col-lg-10 col-xl-8">
                 <div className="text-center">
-                  {/* Header section */}
+
+                  {/* Tagline - supports \n line breaks */}
                   <div className="mb-4 mb-md-5">
                     <h6
                       className="text-uppercase mb-2 mb-md-3"
@@ -48,13 +79,10 @@ const Training200 = ({ location }) => {
                         fontWeight: "600",
                         letterSpacing: "2px",
                         fontSize: "clamp(0.8rem, 2vw, 1rem)",
+                        whiteSpace: "pre-line",
                       }}
                     >
-                      7 Day Adventure and Yoga Retreat
-                      <br />
-                      In Lovely Ubud, Bali, Indonesia
-                      <br />
-                      With Ombreathe
+                      {tagline}
                     </h6>
                   </div>
 
@@ -69,7 +97,7 @@ const Training200 = ({ location }) => {
                         fontSize: "clamp(2rem, 5vw, 3.5rem)",
                       }}
                     >
-                      Combine the thrill of adventure with the serenity of yoga
+                      {title}
                     </h1>
 
                     <p
@@ -80,12 +108,11 @@ const Training200 = ({ location }) => {
                         fontWeight: "300",
                       }}
                     >
-                      7 days of transformative experiences in Bali's most
-                      spiritual destination
+                      {subtitle}
                     </p>
                   </div>
 
-                  {/* Pricing section */}
+                  {/* Pricing */}
                   <div className="mb-4 mb-md-5">
                     <div className="d-flex align-items-center justify-content-center flex-wrap gap-3 mb-3">
                       <span
@@ -96,7 +123,7 @@ const Training200 = ({ location }) => {
                           fontSize: "clamp(2rem, 5vw, 3rem)",
                         }}
                       >
-                        $1399 USD
+                        {price}
                       </span>
                     </div>
 
@@ -108,8 +135,7 @@ const Training200 = ({ location }) => {
                         fontSize: "clamp(0.9rem, 2vw, 1.1rem)",
                       }}
                     >
-                      *All-inclusive: accommodation, meals, activities & yoga
-                      sessions
+                      {priceNote}
                     </p>
                   </div>
 
@@ -129,12 +155,11 @@ const Training200 = ({ location }) => {
                       onMouseEnter={handleMouseEnter}
                       onMouseLeave={handleMouseLeave}
                     >
-                      Book Your Retreat
+                      {buttonText}
                     </button>
                   </div>
-                  {/* CTA Button */}
 
-                  {/* ✅ ADD THIS BELOW THE BUTTON */}
+                  {/* Location - only shows if passed */}
                   {location && (
                     <div className="mt-2">
                       <p
@@ -149,6 +174,7 @@ const Training200 = ({ location }) => {
                       </p>
                     </div>
                   )}
+
                 </div>
               </div>
             </div>
@@ -159,12 +185,12 @@ const Training200 = ({ location }) => {
         <section className="py-5">
           <div className="container">
             <div className="row">
-              {/* Image Section - Lazy loaded with loading state */}
+              {/* Hero Image */}
               <div className="col-12 mb-4 d-flex justify-content-center">
                 {adventureImage ? (
                   <img
                     src={adventureImage}
-                    alt="Adventure and yoga in Bali"
+                    alt={title}
                     className="img-fluid"
                     style={{
                       maxWidth: "900px",
@@ -185,15 +211,16 @@ const Training200 = ({ location }) => {
                       borderRadius: "25px",
                     }}
                   >
-                    <div className="text-muted">Loading adventure image...</div>
+                    <div className="text-muted">Loading image...</div>
                   </div>
                 )}
               </div>
 
-              {/* Content Section Below Image */}
+              {/* Content Below Image */}
               <div className="col-12">
                 <div className="row align-items-start">
-                  {/* Left side - Title */}
+
+                  {/* Left - Included items */}
                   <div className="col-12 col-lg-6 mb-4 mb-lg-0">
                     <h2
                       className="mb-4"
@@ -211,130 +238,61 @@ const Training200 = ({ location }) => {
 
                     <div className="mb-3">
                       <h5 style={{ color: "#2E3A87", fontWeight: "500" }}>
-                        Your adventure includes:
+                        {includedTitle}
                       </h5>
-                      <ul
-                        className="list-unstyled"
-                        style={{ color: "#6B7280" }}
-                      >
-                        <li className="mb-2">
-                          • 6 nights luxury accommodation with A/C & pool
-                        </li>
-                        <li className="mb-2">
-                          • Free airport pickup from Ngurah Rai (DPS)
-                        </li>
-                        <li className="mb-2">
-                          • Daily yoga sessions and meditation
-                        </li>
-                        <li className="mb-2">
-                          • Adventure activities: rafting, trekking, temple
-                          visits
-                        </li>
-                        <li className="mb-2">
-                          • Traditional Kecak dance performance
-                        </li>
-                        <li className="mb-2">
-                          • Certificate of completion & yoga kit
-                        </li>
+                      <ul className="list-unstyled" style={{ color: "#6B7280" }}>
+                        {includedItems.map((item, i) => (
+                          <li key={i} className="mb-2">{item}</li>
+                        ))}
                       </ul>
                     </div>
                   </div>
 
-                  {/* Right side - Ratings and info */}
+                  {/* Right - Ratings + info */}
                   <div className="col-12 col-lg-6">
                     {/* Rating badges */}
                     <div className="d-flex gap-3 mb-3 justify-content-start justify-content-lg-end">
-                      <div
-                        className="rounded-circle d-flex align-items-center justify-content-center"
-                        style={{
-                          width: "80px",
-                          height: "80px",
-                          border: "3px solid #2E3A87",
-                          color: "#2E3A87",
-                        }}
-                      >
-                        <div className="text-center">
-                          <div
-                            style={{
-                              fontSize: "11px",
-                              fontWeight: "bold",
-                              lineHeight: "1",
-                            }}
-                          >
-                            FOOD
-                          </div>
-                          <div
-                            style={{
-                              fontSize: "20px",
-                              fontWeight: "bold",
-                              lineHeight: "1",
-                            }}
-                          >
-                            4.75
-                          </div>
-                          <div style={{ fontSize: "9px", lineHeight: "1" }}>
-                            RATING
+                      {ratings.map((r, i) => (
+                        <div
+                          key={i}
+                          className="rounded-circle d-flex align-items-center justify-content-center"
+                          style={{
+                            width: "80px",
+                            height: "80px",
+                            border: "3px solid #2E3A87",
+                            color: "#2E3A87",
+                          }}
+                        >
+                          <div className="text-center">
+                            <div style={{ fontSize: "9px", fontWeight: "bold", lineHeight: "1" }}>
+                              {r.label}
+                            </div>
+                            <div style={{ fontSize: "20px", fontWeight: "bold", lineHeight: "1" }}>
+                              {r.value}
+                            </div>
+                            <div style={{ fontSize: "9px", lineHeight: "1" }}>
+                              RATING
+                            </div>
                           </div>
                         </div>
-                      </div>
-                      <div
-                        className="rounded-circle d-flex align-items-center justify-content-center"
-                        style={{
-                          width: "80px",
-                          height: "80px",
-                          border: "3px solid #2E3A87",
-                          color: "#2E3A87",
-                        }}
-                      >
-                        <div className="text-center">
-                          <div
-                            style={{
-                              fontSize: "8px",
-                              fontWeight: "bold",
-                              lineHeight: "1",
-                            }}
-                          >
-                            TEACHERS
-                          </div>
-                          <div
-                            style={{
-                              fontSize: "20px",
-                              fontWeight: "bold",
-                              lineHeight: "1",
-                            }}
-                          >
-                            4.5
-                          </div>
-                          <div style={{ fontSize: "9px", lineHeight: "1" }}>
-                            RATING
-                          </div>
-                        </div>
-                      </div>
+                      ))}
                     </div>
 
-                    {/* Info text */}
+                    {/* Info lines */}
                     <div className="text-start text-lg-end">
-                      <p
-                        className="mb-1"
-                        style={{
-                          color: "#6B7280",
-                          fontSize: "clamp(1rem, 2.5vw, 1.2rem)",
-                          fontWeight: "400",
-                        }}
-                      >
-                        Highly rated retreat experience with excellent food and
-                        teachers.
-                      </p>
-                      <p
-                        className="mb-1"
-                        style={{
-                          color: "#6B7280",
-                          fontSize: "clamp(1rem, 2.5vw, 1.2rem)",
-                          fontWeight: "400",
-                        }}
-                      >
-                        Located 8 minutes from Ubud Palace and Market.
-                      </p>
+                      {infoLines.map((line, i) => (
+                        <p
+                          key={i}
+                          className="mb-1"
+                          style={{
+                            color: "#6B7280",
+                            fontSize: "clamp(1rem, 2.5vw, 1.2rem)",
+                            fontWeight: "400",
+                          }}
+                        >
+                          {line}
+                        </p>
+                      ))}
                       <p
                         className="mb-0"
                         style={{
@@ -343,10 +301,11 @@ const Training200 = ({ location }) => {
                           fontWeight: "500",
                         }}
                       >
-                        Transform your mind, body and spirit in Bali
+                        {closingLine}
                       </p>
                     </div>
                   </div>
+
                 </div>
               </div>
             </div>

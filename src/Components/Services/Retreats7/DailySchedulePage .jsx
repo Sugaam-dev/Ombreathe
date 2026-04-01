@@ -3,26 +3,30 @@ import React from 'react';
 const DailySchedulePage = ({ 
   title = "Sample Daily Schedule",
   description = "Experience the perfect blend of adventure and yoga in our 7-day retreat. Each day is thoughtfully designed to combine thrilling outdoor activities with peaceful yoga sessions, creating a transformative journey through Bali's stunning landscapes and rich culture.",
-  scheduleImage = ''
-}) => {
-  
-  const morningSchedule = [
+  scheduleImage = '',
+  morningSchedule = [
     { time: "07:00 - 09:00", activity: "APMB / Rice Field Walk" },
     { time: "09:30 - 10:30", activity: "Breakfast" },
     { time: "11:00 - 16:00", activity: "Adventure Excursion Activity" },
     { time: "16:30 - 17:00", activity: "Rest & Refreshment" }
-  ];
-
-  const eveningSchedule = [
+  ],
+  eveningSchedule = [
     { time: "17:00 - 18:30", activity: "Meditation / Yoga Session / Relaxation" },
     { time: "19:30 - 20:30", activity: "Dinner" },
     { time: "21:00 - 22:00", activity: "Self-study / Cultural Activities" },
     { time: "22:00", activity: "Lights out" }
-  ];
+  ],
+  additionalInfoTitle = "Adventure Activities Include",
+  additionalInfoLines = [
+    "Jungle trekking, white-water rafting, monkey forest visits, rice field walks, temple tours, waterfall excursions, Bali swings, and traditional Kecak dance performances.",
+    "Each day combines the thrill of adventure with the serenity of yoga, creating perfect balance for mind, body, and spirit."
+  ]
+}) => {
 
   return (
     <div className="container-fluid py-5" style={{ minHeight: '100vh' }}>
       <div className="container">
+
         {/* Header Section */}
         <div className="row align-items-center mb-5">
           <div className="col-lg-6 mb-4 mb-lg-0">
@@ -46,7 +50,7 @@ const DailySchedulePage = ({
             <div className="position-relative">
               <img 
                 src={scheduleImage}
-                alt="Adventure and yoga activities in Ubud"
+                alt={title}
                 className="img-fluid rounded shadow-lg"
                 style={{ 
                   width: '100%',
@@ -86,7 +90,6 @@ const DailySchedulePage = ({
                       color: '#4a4a8b',
                       fontSize: '1.1rem',
                       minWidth: '140px',
-                      
                     }}
                   >
                     {item.time}
@@ -137,19 +140,23 @@ const DailySchedulePage = ({
           <div className="col-12">
             <div className="card border-0" style={{ backgroundColor: '#f8f9fa' }}>
               <div className="card-body p-4">
-                <h4 className="mb-3" style={{ color: '#4a4a8b' }}>Adventure Activities Include</h4>
-                <p className="mb-2" style={{ color: '#6c757d' }}>
-                  Jungle trekking, white-water rafting, monkey forest visits, rice field walks, 
-                  temple tours, waterfall excursions, Bali swings, and traditional Kecak dance performances.
-                </p>
-                <p className="mb-0" style={{ color: '#6c757d' }}>
-                  Each day combines the thrill of adventure with the serenity of yoga, 
-                  creating perfect balance for mind, body, and spirit.
-                </p>
+                <h4 className="mb-3" style={{ color: '#4a4a8b' }}>
+                  {additionalInfoTitle}
+                </h4>
+                {additionalInfoLines.map((line, i) => (
+                  <p
+                    key={i}
+                    className={i === additionalInfoLines.length - 1 ? "mb-0" : "mb-2"}
+                    style={{ color: '#6c757d' }}
+                  >
+                    {line}
+                  </p>
+                ))}
               </div>
             </div>
           </div>
         </div>
+
       </div>
     </div>
   );

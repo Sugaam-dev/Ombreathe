@@ -8,7 +8,7 @@ const yinYoga50hrMysuruData = {
   tagline: "50-Hour Yin Yoga Teacher Training\nIn Mysuru, Karnataka, India\nWith Ombreathe",
   title: "Deepen your practice with a comprehensive 50-hour Yin Yoga certification",
   subtitle: "An immersive yin yoga teacher training in the yoga capital of India",
-  price: "$699 USD",                    // 💰
+  price: "$500 USD",                    // 💰
   priceNote: "*Includes accommodation, meals & all materials",
   buttonText: "Book Your Spot",
   location: "📍 Mysuru, Karnataka, India",
@@ -44,13 +44,14 @@ const yinYoga50hrMysuruData = {
     { value: "Daily", label: "Practice Sessions" },
     { value: "Mysuru", label: "Karnataka, India" },
     { value: "All Meals", label: "Healthy Organic Food" },
-    { value: "$699", label: "All-Inclusive Package" }
+    { value: "$500", label: "All-Inclusive Package" }
   ],
   welcomeTitle: "Welcome to Our 50-Hour Yin Yoga Teacher Training",
   welcomeLines: [
-    "Embark on a deep exploration of yin yoga, learning how to safely guide students through long-held passive poses that target the connective tissues, fascia and joints.",
-    "During the training, you will study meridian theory, Traditional Chinese Medicine principles, anatomy, sequencing and the art of holding space for deep stillness.",
-    "Graduate as a certified yin yoga teacher with the knowledge and confidence to offer transformative yin yoga classes."
+    "The 50hour Yin Yoga Teacher Training Course is an enriching experience for any yoga practitioner/teacher and for anyone who is willing to deepen their knowledge about the science of yoga. Students might experience personal transformation that can occur through the practice of Yin Yoga.",
+    "The syllabus for this Yoga Alliance Certified course includes",
+    "TTC course includes the practice of 60-70 yin poses, Pranayama or yogic breathing, Yin yoga anatomy, Meridian systems, Yin yoga philosophy, meditation, teaching methodology of Yin poses (including props)",   
+    "The training covers all aspects of Yin Yoga, including the philosophy, principles, techniques, and modifications, and provides ample opportunity for hands-on practice and feedback"
   ],
 
   promoSectionLabel: "OMBREATHE MYSURU",
@@ -156,9 +157,9 @@ const yinYoga50hrMysuruData = {
     }
   ],
   dayBreakdown: [
-    { days: "Days 1-3", color: "#e3f2fd", titleColor: "#1976d2", description: "Orientation, foundational yin asana, anatomy of fascia and connective tissue, introduction to meridian theory" },
-    { days: "Days 4-7", color: "#f3e5f5", titleColor: "#7b1fa2", description: "Advanced sequencing, TCM principles, teaching methodology, hands-on assists and supervised teaching practice" },
-    { days: "Days 8-10", color: "#e8f5e8", titleColor: "#388e3c", description: "Final assessments, teaching evaluations, certificate ceremony and closing celebration" }
+    { days: "Days 1-2", color: "#e3f2fd", titleColor: "#1976d2", description: "Orientation, foundational yin asana, anatomy of fascia and connective tissue, introduction to meridian theory" },
+    { days: "Days 3-5", color: "#f3e5f5", titleColor: "#7b1fa2", description: "Advanced sequencing, TCM principles, teaching methodology, hands-on assists and supervised teaching practice" },
+    { days: "Days 6-8", color: "#e8f5e8", titleColor: "#388e3c", description: "Final assessments, teaching evaluations, certificate ceremony and closing celebration" }
   ],
   packageIncludes: [
     "✓ Accommodation & meals",
@@ -171,16 +172,14 @@ const yinYoga50hrMysuruData = {
   scheduleImage: require('../../../../../images/Gallery/Daily_Schedule_100_200_300.jpg'), // 🖼️
 
   morningSchedule: [
-    { time: "07:00 - 08:00", activity: "Morning Yoga & Meditation" },
-    { time: "08:00 - 09:00", activity: "Breakfast" },
-    { time: "09:30 - 12:30", activity: "Yin Yoga Asana Practice" },
-    { time: "12:30 - 14:00", activity: "Lunch Break & Rest" }
+    { time: "06:00 - 07:00", activity: "Yin practice class" },
+    { time: "08:00 - 09:00", activity: "pranayama" },
+    { time: "10:00 - 11:00", activity: "Yin Anatomy" },
+    { time: "11:00 - 12:00", activity: "Philosophy" }
   ],
   eveningSchedule: [
-    { time: "14:00 - 16:00", activity: "Meridian Theory / Anatomy" },
-    { time: "16:00 - 17:30", activity: "Supervised Teaching Practice" },
-    { time: "17:30 - 18:30", activity: "Evening Yoga / Relaxation" },
-    { time: "19:00 - 20:00", activity: "Dinner" }
+    { time: "12:00 - 14:00", activity: "Yin Methodology" },   
+    { time: "19:00 - 20:00", activity: "Meditation" }
   ],
   additionalInfoTitle: "Training Includes",
   additionalInfoLines: [

@@ -1,6 +1,10 @@
 import React from 'react';
 
-const Transformation = ({ backgroundImage }) => {
+const Transformation = ({
+  backgroundImage,
+  transformationText = "Experience the perfect blend of adventure and yoga in the spiritual heart of Bali",
+  transformationSubtext = "Our 7-day retreat combines thrilling outdoor activities with peaceful yoga sessions, creating a transformative journey amidst Bali's stunning landscapes and rich culture"
+}) => {
   const backgroundStyle = {
     backgroundImage: `url(${backgroundImage})`,
     backgroundSize: 'cover',
@@ -54,11 +58,10 @@ const Transformation = ({ backgroundImage }) => {
       <div className="overlay">
         <div>
           <p className="transformation-text mb-4">
-            Experience the perfect <span className="highlight-text">blend of adventure and yoga</span> in the spiritual heart of Bali
+            {transformationText}
           </p>
           <p style={{ fontSize: '1.5rem', fontWeight: '300', maxWidth: '80%', margin: '0 auto', opacity: '0.9' }}>
-            Our 7-day retreat combines thrilling outdoor activities with peaceful yoga sessions, 
-            creating a transformative journey amidst Bali's stunning landscapes and rich culture
+            {transformationSubtext}
           </p>
         </div>
       </div>

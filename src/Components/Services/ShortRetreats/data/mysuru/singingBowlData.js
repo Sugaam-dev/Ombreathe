@@ -6,7 +6,7 @@ const singingBowlData = {
   tagline: "Singing Bowl & Sound Healing Course\nIn Mysuru, Karnataka, India\nWith Ombreathe",   // 📝
   title: "Discover the ancient art of sound healing with singing bowls",                          // 📝
   subtitle: "A transformative course in the heart of Mysuru",                                     // 📝
-  price: "$499 USD",                    // 💰
+  price: "$250 USD",                    // 💰
   priceNote: "*Includes all materials, accommodation & meals",                                    // 📝
   buttonText: "Book Your Spot",         // 📝
   location: "📍 Mysuru, Karnataka, India",                                                        // 📝
@@ -39,11 +39,11 @@ const singingBowlData = {
   houseTitle: "Experience the healing power of sound in the spiritual city of Mysuru", // 📝
   houseSubtitle: "Join our transformative singing bowl and sound healing certification course!", // 📝
   stats: [                              // 📝 Update all stats
-    { value: "7 Days", label: "Sound Healing Course" },
+    { value: "3 Days", label: "Sound Healing Course" },
     { value: "Daily", label: "Practice Sessions" },
     { value: "Mysuru", label: "Karnataka, India" },
     { value: "All Meals", label: "Healthy Organic Food" },
-    { value: "$499", label: "All-Inclusive Package" }
+    { value: "$250", label: "All-Inclusive Package" }
   ],
   welcomeTitle: "Welcome to Our Singing Bowl & Sound Healing Course",  // 📝
   welcomeLines: [
@@ -159,9 +159,9 @@ const singingBowlData = {
     }
   ],
   dayBreakdown: [                         // 📝 Update day breakdown
-    { days: "Days 1-2", color: "#e3f2fd", titleColor: "#1976d2", description: "Orientation, introduction to singing bowls, basic techniques and first practice sessions" },
-    { days: "Days 3-5", color: "#f3e5f5", titleColor: "#7b1fa2", description: "Advanced techniques, therapeutic applications, chakra balancing and group sound bath facilitation" },
-    { days: "Days 6-7", color: "#e8f5e8", titleColor: "#388e3c", description: "Final practice sessions, assessment, certificate ceremony and closing celebration" }
+    { days: "Days 1", color: "#e3f2fd", titleColor: "#1976d2", description: "Orientation, introduction to singing bowls, basic techniques and first practice sessions" },
+    { days: "Days 2", color: "#f3e5f5", titleColor: "#7b1fa2", description: "Advanced techniques, therapeutic applications, chakra balancing and group sound bath facilitation" },
+    { days: "Days 3", color: "#e8f5e8", titleColor: "#388e3c", description: "Final practice sessions, assessment, certificate ceremony and closing celebration" }
   ],
   packageIncludes: [                      // 📝
     "✓ Accommodation & meals",

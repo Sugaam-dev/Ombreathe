@@ -8,7 +8,7 @@ const wheelYogaData = {
   tagline: "7-Day Wheel Yoga Teacher Training\nIn Mysuru, Karnataka, India\nWith Ombreathe",   // 📝
   title: "Master the art of wheel yoga and become a certified teacher",                         // 📝
   subtitle: "A comprehensive 7-day wheel yoga teacher training in Mysuru",                      // 📝
-  price: "$799 USD",                    // 💰
+  price: "$500 USD",                    // 💰
   priceNote: "*Includes accommodation, meals & all materials",                                  // 📝
   buttonText: "Book Your Spot",
   location: "📍 Mysuru, Karnataka, India",
@@ -44,7 +44,7 @@ const wheelYogaData = {
     { value: "Daily", label: "Practice Sessions" },
     { value: "Mysuru", label: "Karnataka, India" },
     { value: "All Meals", label: "Healthy Organic Food" },
-    { value: "$799", label: "All-Inclusive Package" }
+    { value: "$500", label: "All-Inclusive Package" }
   ],
   welcomeTitle: "Welcome to Our 7-Day Wheel Yoga Teacher Training",
   welcomeLines: [
@@ -119,27 +119,21 @@ const wheelYogaData = {
       ]
     },
     {
-      title: "Teaching Methodology",
+      title: "Foundation & Innovation",
       icon: "👨‍🏫",
       content: [
-        "Effective cueing techniques",
-        "Hands-on assist methods",
-        "Class sequencing principles",
-        "Student assessment skills",
-        "Demo and teaching practice",
-        "Feedback and refinement"
+        "Master progressive sequences for balance poses, inversions, and strength building",
+        "Learn proper wheel positioning and techniques for maximum safety and effectiveness",
+        "Understand biomechanics and alignment principles specific to wheel-supported practice",
       ]
     },
     {
-      title: "Anatomy & Alignment",
+      title: "Teaching Mastery",
       icon: "🫀",
       content: [
-        "Spine anatomy for backbends",
-        "Safe alignment principles",
-        "Injury prevention strategies",
-        "Contraindications awareness",
-        "Therapeutic applications",
-        "Prop usage guidelines"
+        "Develop skills for spotting and assisting students in advanced wheel applications",
+        "Learn to create dynamic flows that integrate the wheel seamlessly into vinyasa practice",
+        "Acquire techniques for adapting wheel practices for different body types and abilities"
       ]
     },
     {
@@ -171,17 +165,14 @@ const wheelYogaData = {
   scheduleImage: require('../../../../../images/Gallery/Daily_Schedule_100_200_300.jpg'), // 🖼️
 
   morningSchedule: [
-    { time: "07:00 - 08:00", activity: "Morning Yoga & Meditation" },
-    { time: "08:00 - 09:00", activity: "Breakfast" },
-    { time: "09:30 - 12:30", activity: "Wheel Yoga Asana Practice" },
-    { time: "12:30 - 14:00", activity: "Lunch Break & Rest" }
+    { time: "07:00 - 08:30", activity: "Pranayama" },    
+    { time: "12:30 - 14:00", activity: "Wheel Yoga practice & Methodology" },
+   
   ],
   eveningSchedule: [
-    { time: "14:00 - 16:00", activity: "Anatomy / Teaching Methodology" },
-    { time: "16:00 - 17:30", activity: "Supervised Teaching Practice" },
-    { time: "17:30 - 18:30", activity: "Evening Yoga / Relaxation" },
-    { time: "19:00 - 20:00", activity: "Dinner" }
+   { time: "19:00 - 20:00", activity: "Meditation" }
   ],
+  
   additionalInfoTitle: "Training Includes",
   additionalInfoLines: [
     "Comprehensive wheel yoga asana training, anatomy, teaching methodology, hands-on assists and supervised teaching practice.",

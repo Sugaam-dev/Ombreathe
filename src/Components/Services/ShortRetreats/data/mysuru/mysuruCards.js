@@ -18,7 +18,7 @@ const mysuruCards = [
       "Hands-on singing bowl practice",
       "Certificate of completion included"
     ],
-    price: "$499",                 // 💰 Replace with actual price
+    price: "$250",                 // 💰 Replace with actual price
     priority: 1
   },
   {
@@ -32,7 +32,7 @@ const mysuruCards = [
       "Expert guidance from certified teachers",
       "Yoga Alliance registered certificate"
     ],
-    price: "$799",                 // 💰 Replace with actual price
+    price: "$300",                 // 💰 Replace with actual price
     priority: 2
   },
   {
@@ -46,7 +46,7 @@ const mysuruCards = [
       "Anatomy and meridian theory included",
       "Yoga Alliance registered certificate"
     ],
-    price: "$699",                 // 💰 Replace with actual price
+    price: "$300",                 // 💰 Replace with actual price
     priority: 3
   },
   {
@@ -60,7 +60,7 @@ const mysuruCards = [
       "Safety and rigging techniques covered",
       "Yoga Alliance registered certificate"
     ],
-    price: "$699",                 // 💰 Replace with actual price
+    price: "$300",                 // 💰 Replace with actual price
     priority: 4
   }
 ];
