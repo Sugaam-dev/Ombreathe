@@ -96,16 +96,16 @@ const baliAerialYogaData = {
   scheduleDescription: "Each day builds your aerial yoga skills combining asana, rigging, anatomy and Bali cultural experiences.",
   scheduleImage: require('../../../../../images/Gallery/Daily_Schedule_100_200_300.jpg'), // 🖼️
   morningSchedule: [
-    { time: "06:00 - 07:15", activity: "Hatha Flow (Yang)" },
-    { time: "07:30 - 08:45", activity: "Yin Pranayama & Meditation" },
-    { time: "08:45 - 09:30", activity: "Fruits and Tea" },
-    { time: "09:45 - 11:15", activity: "Aerial Anatomy & Sequencing" },
-    { time: "11:15 - 12:15", activity: "Lunch" }
+    { time: "06:00 AM - 07:15 AM", activity: "Hatha Flow (Yang)" },
+    { time: "07:30 AM - 08:45 AM", activity: "Yin Pranayama & Meditation" },
+    { time: "08:45 AM - 09:30 AM", activity: "Fruits and Tea" },
+    { time: "09:45 AM - 11:15 AM", activity: "Aerial Anatomy & Sequencing" },
+    { time: "11:15 AM - 12:15 PM", activity: "Lunch" }
   ],
   eveningSchedule: [
-    { time: "14:30 - 16:00", activity: "Teaching Methodology" },
-    { time: "16:15 - 17:45", activity: "Aerial Yoga" },
-    { time: "18:30 - 19:30", activity: "Dinner" },
+    { time: "02:30 PM - 04:00 PM", activity: "Teaching Methodology" },
+    { time: "04:15 PM - 05:45 PM", activity: "Aerial Yoga" },
+    { time: "06:30 PM - 07:30 PM", activity: "Dinner" },
    
   ],
   additionalInfoTitle: "Training Includes",

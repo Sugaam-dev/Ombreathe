@@ -81,11 +81,51 @@ const baliAcroYogaData = {
   coursesSubheading: "Complete Certification Program in Bali",
   courseDescription: ["Master acro yoga basing, flying and teaching methodology in beautiful Bali", "Graduate as a certified acro yoga teacher with confidence and community connection"],
   activities: [
-    { title: "Acro Yoga Foundations", icon: "🤸", content: ["Basing fundamentals", "Flying techniques", "Therapeutic flying", "Partner communication", "Group acro practices", "Creative sequences"] },
-    { title: "Safety & Spotting", icon: "🛡️", content: ["Trust exercises", "Spotting techniques", "Fall practice", "Communication protocols", "Student safety", "Emergency procedures"] },
-    { title: "Thai Massage Elements", icon: "💆", content: ["Partner bodywork basics", "Therapeutic touch", "Assisted stretching", "Energy line work", "Relaxation techniques", "Integration practices"] },
-    { title: "Accommodation & Meals", icon: "🏨", content: ["Luxury Ubud accommodation", "Daily healthy breakfast", "Nutritious organic lunch", "Wholesome dinners", "Vegetarian/vegan options", "Herbal teas"] }
-  ],
+   {
+  title: "Introduction to Acro Yoga Basics",
+  icon: "🤸",
+  content: [
+    "Welcome and orientation",
+    "History and philosophy of Acro Yoga",
+    "Safety guidelines and communication principles",
+    "Warm-up and conditioning exercises",
+    "Introduction to foundational poses: bird, throne, and folded leaf"
+  ]
+},
+
+{
+  title: "Progressing to Intermediate Poses",
+  icon: "🤸",
+  content: [
+    "Review of foundational poses",
+    "Introduction to intermediate poses, including star, high-flying whale, and ninja star",
+    "Sequencing and transitions",
+    "Teaching methodology for Acro Yoga classes",
+    "Practice teaching and giving/receiving feedback"
+  ]
+}, 
+ {
+  title: "Advanced Techniques and Creative Flows",
+  icon: "💆",
+  content: [
+    "Exploring advanced Acro Yoga poses and transitions",
+    "Creating and sequencing dynamic flows",
+    "Acro Yoga for therapeutics and healing",
+    "Inversions and partner inversions",
+    "Partner conditioning and strength-building exercises"
+  ]
+},
+{
+  title: "Teaching Practicum and Certification",
+  icon: "🎓",
+  content: [
+    "Practice teaching sessions with peers",
+    "Final teaching assessment",
+    "Written examination on Acro Yoga principles and safety",
+    "Graduation ceremony and certification as a 5-Day Acro Yoga Teacher"
+  ]
+}
+],
   dayBreakdown: [
     { days: "Days 1-2", color: "#e3f2fd", titleColor: "#1976d2", description: "Orientation, acro yoga foundations, trust exercises, basic basing and flying techniques" },
     { days: "Days 3-4", color: "#f3e5f5", titleColor: "#7b1fa2", description: "Advanced acro, Thai massage elements, teaching methodology and supervised practice" },
@@ -96,18 +136,18 @@ const baliAcroYogaData = {
   scheduleDescription: "Each day builds your acro yoga skills combining partner practice, safety training and Bali cultural experiences.",
   scheduleImage: require('../../../../../images/Gallery/Daily_Schedule_100_200_300.jpg'), // 🖼️
   morningSchedule: [
-    { time: "05:30 - 06:30", activity: "Morning Sadhana/Meditation" },
-    { time: "07:00 - 07:45", activity: "Warm Up and Breathwork" },
-    { time: "07:45 - 09:15", activity: "Acro Yoga Practice" },
-    { time: "09:30 - 10:30", activity: "Breakfast" },
-    { time: "10:30 - 11:30", activity: "Self-study/Practice" },
-    { time: "11:30 - 13:00", activity: "Acro Yoga Class" }
+    { time: "05:30 AM - 06:30 AM", activity: "Morning Sadhana/Meditation" },
+    { time: "07:00 AM - 07:45 AM", activity: "Warm Up and Breathwork" },
+    { time: "07:45 AM - 09:15 AM", activity: "Acro Yoga Practice" },
+    { time: "09:30 AM - 10:30 AM", activity: "Breakfast" },
+    { time: "10:30 AM - 11:30 AM", activity: "Self-study/Practice" },
+    { time: "11:30 AM - 01:00 PM", activity: "Acro Yoga Class" }
   ],
   eveningSchedule: [
-    { time: "13:00 - 14:00", activity: "Lunch" },
-    { time: "15:00 - 16:00", activity: "Theory" },
-    { time: "16:15 - 17:45", activity: "Acro Yoga Self Practice" },
-    { time: "18:00 - 19:00", activity: "Dinner" }
+    { time: "01:00 PM - 02:00 PM", activity: "Lunch" },
+    { time: "03:00 PM - 04:00 PM", activity: "Theory" },
+    { time: "04:15 PM - 05:45 PM", activity: "Acro Yoga Self Practice" },
+    { time: "06:00 PM - 07:00 PM", activity: "Dinner" }
   ],
   additionalInfoTitle: "Training Includes",
   additionalInfoLines: [

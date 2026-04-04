@@ -122,16 +122,16 @@ const baliYinYogaData = {
   scheduleImage: require('../../../../../images/Gallery/Daily_Schedule_100_200_300.jpg'), // 🖼️
 
   morningSchedule: [
-    { time: "06:30 - 07:30", activity: "Hatha Yoga" },
-    { time: "07:30 - 08:30", activity: "Pranayama and Meditation" },
-    { time: "08:45 - 09:30", activity: "Fruits and Tea" },
-    { time: "09:30 - 10:30", activity: "Yoga Nidra / Mantra / Mudra" },
-    { time: "10:45 - 11:45", activity: "Yin Anatomy"},
-    { time: "11:45 - 14:30", activity: "Brunch & Rest"}
+    { time: "06:30 AM - 07:30 AM", activity: "Hatha Yoga" },
+    { time: "07:30 AM - 08:30 AM", activity: "Pranayama and Meditation" },
+    { time: "08:45 AM - 09:30 AM", activity: "Fruits and Tea" },
+    { time: "09:30 AM - 10:30 AM", activity: "Yoga Nidra / Mantra / Mudra" },
+    { time: "10:45 AM - 11:45 AM", activity: "Yin Anatomy"},
+    { time: "11:45 AM - 02:30 PM", activity: "Brunch & Rest"}
   ],
   eveningSchedule: [
-    { time: "14:30 - 16:00", activity: "Meridians and Methodology" },
-    { time: "16:15 - 17:45", activity: "Yin Yoga and Sequencing" }
+    { time: "02:30 PM - 04:00 PM", activity: "Meridians and Methodology" },
+    { time: "04:15 PM - 05:45 PM", activity: "Yin Yoga and Sequencing" }
   ],
   additionalInfoTitle: "Training Includes",
   additionalInfoLines: [

@@ -81,11 +81,41 @@ const baliPrenatalYogaData = {
   coursesSubheading: "Complete Certification Program in Bali",
   courseDescription: ["Master prenatal yoga sequencing, anatomy and teaching methodology in beautiful Bali", "Graduate as a certified prenatal yoga teacher ready to support expecting mothers"],
   activities: [
-    { title: "Prenatal Asana", icon: "🤰", content: ["1st trimester sequences", "2nd trimester practices", "3rd trimester support", "Postnatal recovery yoga", "Safe modifications", "Prop-supported poses"] },
-    { title: "Anatomy & Physiology", icon: "🫀", content: ["Pregnancy physiology", "Trimester changes", "Contraindications", "Pelvic floor awareness", "Diastasis recti", "Safe alignment"] },
-    { title: "Breathwork & Birth", icon: "🌬️", content: ["Pranayama for pregnancy", "Labour breathing techniques", "Pain management tools", "Relaxation practices", "Visualisation methods", "Partner support"] },
-    { title: "Accommodation & Meals", icon: "🏨", content: ["Luxury Ubud accommodation", "Daily healthy breakfast", "Nutritious organic lunch", "Wholesome dinners", "Vegetarian/vegan options", "Herbal teas"] }
+    { title: "Books, Manuals & study materials", icon: "📚", content: [
+      "Pre-Natal Asana Manual",
+      "Post-Natal Asana Manual",
+      "Mantra Manual",
+      "Pre-natal Meditation Manual",
+      "Pre-Natal Pranayama Manual",
+      "Daily life of a yogi book (Yogi Vishnu)",
+      "Prenatal Yoga Anatomy and Therapy",
+      "Prenatal Yoga Nidra Manual",
+      "Teaching Methodology Manual",
+      "Assignments and Instructions"
+    ] },
+    { title: "Prenatal Yoga Therapy", icon: "☮️", content:  [
+      "for spine and back issue",
+      "For digestion",
+      "Sleeping issue",
+      "Stress and anxiety",
+      "Fear and anger",
+      "Breathing issue",
+      "Pelvic floor",
+      "Other problems"
+    ]},
+    { title: "Asana Practices", icon: "🧘", content: ["Early Pregnancy Yoga (1–3 Month)",
+      "Vajrasana (The Thunderbolt)",
+      "Trikonasana (Easy Triangle)",
+      "Sarvangasana (Shoulder stand)",
+      "Shoulder Stretches",
+      "Sitting Stretches",
+      "Breath and Awareness",
+      "Basic Pelvic Alignment",
+      "Spinal Rolls"] },
+    { title: "Caring New born baby", icon: "👶", content: ["Baby Massage.", "Feeding Milk.", "Food after 6 months.", "Mantra for Baby.", "Special Care."] }
   ],
+
+    
   dayBreakdown: [
     { days: "Days 1-2", color: "#e3f2fd", titleColor: "#1976d2", description: "Orientation, pregnancy anatomy, 1st and 2nd trimester sequencing and safe modifications" },
     { days: "Days 3-4", color: "#f3e5f5", titleColor: "#7b1fa2", description: "3rd trimester, postnatal yoga, breathwork for labour, teaching methodology and supervised practice" },
@@ -96,16 +126,16 @@ const baliPrenatalYogaData = {
   scheduleDescription: "Each day nurtures your prenatal yoga expertise combining asana, anatomy, breathwork and Bali cultural experiences.",
   scheduleImage: require('../../../../../images/Gallery/Daily_Schedule_100_200_300.jpg'), // 🖼️
   morningSchedule: [
-    { time: "06:00 - 07:00", activity: "Prenatal Vinyasa Flow" },
-    { time: "07:45 - 08:45", activity: "Pregrency Breathword" },
-    { time: "09:00 - 10:00", activity: "Breakfast" },
-    { time: "10:30 - 11:30", activity: "Prenatal Philosophy & Yoga Nidra" },
-    { time: "11:30 - 13:00", activity: "Pregnancy Anatomy & Alignment" }
+    { time: "06:00 AM", activity: "Prenatal Vinyasa Flow" },
+    { time: "07:45 AM", activity: "Pregrency Breathword" },
+    { time: "09:00 AM", activity: "Breakfast" },
+    { time: "10:30 AM", activity: "Prenatal Philosophy & Yoga Nidra" },
+    { time: "11:30 AM - 01:00 PM", activity: "Pregnancy Anatomy & Alignment" }
   ],
   eveningSchedule: [
-    { time: "13:00 - 14:00", activity: "Lunch" },
-    { time: "15:00 - 17:00", activity: "Pre Natal Asana & Sequencing" },
-    { time: "17:30 - 18:30", activity: "Meditation" }
+    { time: "01:00 PM", activity: "Lunch" },
+    { time: "03:00 PM - 05:00 PM", activity: "Pre Natal Asana & Sequencing" },
+    { time: "05:30 PM - 06:30 PM", activity: "Meditation" }
    
   ],
   additionalInfoTitle: "Training Includes",
