@@ -8,7 +8,7 @@ const baliAcroYogaData = {
   tagline: "Acro Yoga Teacher Training\nIn Ubud, Bali, Indonesia\nWith Ombreathe",
   title: "Master the art of acro yoga and partner acrobatics in beautiful Bali",
   subtitle: "A comprehensive acro yoga teacher training in the heart of Ubud",
-  price: "$799 USD",                    // 💰
+  price: "$899 USD",                    // 💰
   priceNote: "*Includes accommodation, meals & all materials",
   buttonText: "Book Your Spot",
   location: "📍 Ubud, Bali, Indonesia",
@@ -37,7 +37,7 @@ const baliAcroYogaData = {
     { value: "Daily", label: "Practice Sessions" },
     { value: "Ubud", label: "Bali, Indonesia" },
     { value: "All Meals", label: "Healthy Organic Food" },
-    { value: "$799", label: "All-Inclusive Package" }
+    { value: "$899", label: "All-Inclusive Package" }
   ],
   welcomeTitle: "Welcome to Our Acro Yoga Teacher Training in Bali",
   welcomeLines: [
@@ -87,25 +87,27 @@ const baliAcroYogaData = {
     { title: "Accommodation & Meals", icon: "🏨", content: ["Luxury Ubud accommodation", "Daily healthy breakfast", "Nutritious organic lunch", "Wholesome dinners", "Vegetarian/vegan options", "Herbal teas"] }
   ],
   dayBreakdown: [
-    { days: "Days 1-3", color: "#e3f2fd", titleColor: "#1976d2", description: "Orientation, acro yoga foundations, trust exercises, basic basing and flying techniques" },
-    { days: "Days 4-7", color: "#f3e5f5", titleColor: "#7b1fa2", description: "Advanced acro, Thai massage elements, teaching methodology and supervised practice" },
-    { days: "Days 8-10", color: "#e8f5e8", titleColor: "#388e3c", description: "Final assessments, certificate ceremony and Bali farewell jam" }
+    { days: "Days 1-2", color: "#e3f2fd", titleColor: "#1976d2", description: "Orientation, acro yoga foundations, trust exercises, basic basing and flying techniques" },
+    { days: "Days 3-4", color: "#f3e5f5", titleColor: "#7b1fa2", description: "Advanced acro, Thai massage elements, teaching methodology and supervised practice" },
+    { days: "Days 5-6", color: "#e8f5e8", titleColor: "#388e3c", description: "Final assessments, certificate ceremony and Bali farewell jam" }
   ],
   packageIncludes: ["✓ Accommodation & meals", "✓ Props & materials", "✓ Certificate of completion"],
   scheduleTitle: "Sample Daily Schedule",
   scheduleDescription: "Each day builds your acro yoga skills combining partner practice, safety training and Bali cultural experiences.",
   scheduleImage: require('../../../../../images/Gallery/Daily_Schedule_100_200_300.jpg'), // 🖼️
   morningSchedule: [
-    { time: "07:00 - 08:00", activity: "Morning Yoga & Meditation" },
-    { time: "08:00 - 09:00", activity: "Breakfast" },
-    { time: "09:30 - 12:30", activity: "Acro Yoga Practice" },
-    { time: "12:30 - 14:00", activity: "Lunch Break & Rest" }
+    { time: "05:30 - 06:30", activity: "Morning Sadhana/Meditation" },
+    { time: "07:00 - 07:45", activity: "Warm Up and Breathwork" },
+    { time: "07:45 - 09:15", activity: "Acro Yoga Practice" },
+    { time: "09:30 - 10:30", activity: "Breakfast" },
+    { time: "10:30 - 11:30", activity: "Self-study/Practice" },
+    { time: "11:30 - 13:00", activity: "Acro Yoga Class" }
   ],
   eveningSchedule: [
-    { time: "14:00 - 16:00", activity: "Thai Massage / Teaching Theory" },
-    { time: "16:00 - 17:30", activity: "Supervised Teaching Practice" },
-    { time: "17:30 - 18:30", activity: "Evening Yoga / Cultural Activity" },
-    { time: "19:00 - 20:00", activity: "Dinner" }
+    { time: "13:00 - 14:00", activity: "Lunch" },
+    { time: "15:00 - 16:00", activity: "Theory" },
+    { time: "16:15 - 17:45", activity: "Acro Yoga Self Practice" },
+    { time: "18:00 - 19:00", activity: "Dinner" }
   ],
   additionalInfoTitle: "Training Includes",
   additionalInfoLines: [

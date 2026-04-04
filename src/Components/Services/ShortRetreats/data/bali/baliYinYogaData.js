@@ -7,7 +7,7 @@ const baliYinYogaData = {
   tagline: "Yin Yoga Teacher Training\nIn Ubud, Bali, Indonesia\nWith Ombreathe",
   title: "Immerse yourself in a transformative yin yoga teacher training in Bali",
   subtitle: "A comprehensive yin yoga certification surrounded by Bali's natural beauty",
-  price: "$799 USD",                    // 💰
+  price: "$750 USD",                    // 💰
   priceNote: "*Includes accommodation, meals & all materials",
   buttonText: "Book Your Spot",
   location: "📍 Ubud, Bali, Indonesia",
@@ -43,7 +43,7 @@ const baliYinYogaData = {
     { value: "Daily", label: "Practice Sessions" },
     { value: "Ubud", label: "Bali, Indonesia" },
     { value: "All Meals", label: "Healthy Organic Food" },
-    { value: "$799", label: "All-Inclusive Package" }
+    { value: "$750", label: "All-Inclusive Package" }
   ],
   welcomeTitle: "Welcome to Our Yin Yoga Teacher Training in Bali",
   welcomeLines: [
@@ -111,9 +111,9 @@ const baliYinYogaData = {
     { title: "Accommodation & Meals", icon: "🏨", content: ["Luxury Ubud accommodation", "Daily healthy breakfast", "Nutritious organic lunch", "Wholesome dinner meals", "Vegetarian/vegan options", "Herbal teas and refreshments"] }
   ],
   dayBreakdown: [
-    { days: "Days 1-3", color: "#e3f2fd", titleColor: "#1976d2", description: "Orientation, foundational yin asana, introduction to meridian theory and Bali cultural immersion" },
-    { days: "Days 4-7", color: "#f3e5f5", titleColor: "#7b1fa2", description: "Advanced sequencing, TCM principles, teaching methodology and supervised teaching practice" },
-    { days: "Days 8-10", color: "#e8f5e8", titleColor: "#388e3c", description: "Final assessments, certificate ceremony and Bali farewell celebration" }
+    { days: "Days 1-2", color: "#e3f2fd", titleColor: "#1976d2", description: "Orientation, foundational yin asana, introduction to meridian theory and Bali cultural immersion" },
+    { days: "Days 3-4", color: "#f3e5f5", titleColor: "#7b1fa2", description: "Advanced sequencing, TCM principles, teaching methodology and supervised teaching practice" },
+    { days: "Days 5-6", color: "#e8f5e8", titleColor: "#388e3c", description: "Final assessments, certificate ceremony and Bali farewell celebration" }
   ],
   packageIncludes: ["✓ Accommodation & meals", "✓ Yoga props & materials", "✓ Certificate of completion"],
 
@@ -122,16 +122,16 @@ const baliYinYogaData = {
   scheduleImage: require('../../../../../images/Gallery/Daily_Schedule_100_200_300.jpg'), // 🖼️
 
   morningSchedule: [
-    { time: "07:00 - 08:00", activity: "Morning Yoga & Meditation" },
-    { time: "08:00 - 09:00", activity: "Breakfast" },
-    { time: "09:30 - 12:30", activity: "Yin Yoga Asana Practice" },
-    { time: "12:30 - 14:00", activity: "Lunch Break & Rest" }
+    { time: "06:30 - 07:30", activity: "Hatha Yoga" },
+    { time: "07:30 - 08:30", activity: "Pranayama and Meditation" },
+    { time: "08:45 - 09:30", activity: "Fruits and Tea" },
+    { time: "09:30 - 10:30", activity: "Yoga Nidra / Mantra / Mudra" },
+    { time: "10:45 - 11:45", activity: "Yin Anatomy"},
+    { time: "11:45 - 14:30", activity: "Brunch & Rest"}
   ],
   eveningSchedule: [
-    { time: "14:00 - 16:00", activity: "Meridian Theory / Teaching Methodology" },
-    { time: "16:00 - 17:30", activity: "Supervised Teaching Practice" },
-    { time: "17:30 - 18:30", activity: "Evening Yoga / Cultural Activity" },
-    { time: "19:00 - 20:00", activity: "Dinner" }
+    { time: "14:30 - 16:00", activity: "Meridians and Methodology" },
+    { time: "16:15 - 17:45", activity: "Yin Yoga and Sequencing" }
   ],
   additionalInfoTitle: "Training Includes",
   additionalInfoLines: [

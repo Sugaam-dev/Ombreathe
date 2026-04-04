@@ -19,7 +19,7 @@ const baliCards = [
       "Anatomy and meridian theory included",
       "Yoga Alliance registered certificate"
     ],
-    price: "$799",                 // 💰 Replace with actual price
+    price: "$499",                 // 💰 Replace with actual price
     priority: 1
   },
   {
@@ -33,7 +33,7 @@ const baliCards = [
       "Safety and rigging techniques covered",
       "Yoga Alliance registered certificate"
     ],
-    price: "$799",                 // 💰 Replace with actual price
+    price: "$399",                 // 💰 Replace with actual price
     priority: 2
   },
   {
@@ -47,7 +47,7 @@ const baliCards = [
       "Trust, balance and acrobatics combined",
       "Yoga Alliance registered certificate"
     ],
-    price: "$799",                 // 💰 Replace with actual price
+    price: "$599",                 // 💰 Replace with actual price
     priority: 3
   },
   {
@@ -61,7 +61,7 @@ const baliCards = [
       "Safe practices for pregnancy stages",
       "Yoga Alliance registered certificate"
     ],
-    price: "$799",                 // 💰 Replace with actual price
+    price: "$499",                 // 💰 Replace with actual price
     priority: 4
   },
   {

@@ -8,7 +8,7 @@ const baliAerialYogaData = {
   tagline: "Aerial Yoga Teacher Training\nIn Ubud, Bali, Indonesia\nWith Ombreathe",
   title: "Learn to fly and teach aerial yoga in the paradise of Bali",
   subtitle: "A comprehensive aerial yoga teacher training surrounded by Bali's natural beauty",
-  price: "$799 USD",                    // 💰
+  price: "$650 USD",                    // 💰
   priceNote: "*Includes accommodation, meals, hammock & all materials",
   buttonText: "Book Your Spot",
   location: "📍 Ubud, Bali, Indonesia",
@@ -37,7 +37,7 @@ const baliAerialYogaData = {
     { value: "Daily", label: "Practice Sessions" },
     { value: "Ubud", label: "Bali, Indonesia" },
     { value: "All Meals", label: "Healthy Organic Food" },
-    { value: "$799", label: "All-Inclusive Package" }
+    { value: "$650", label: "All-Inclusive Package" }
   ],
   welcomeTitle: "Welcome to Our Aerial Yoga Teacher Training in Bali",
   welcomeLines: [
@@ -87,25 +87,26 @@ const baliAerialYogaData = {
     { title: "Accommodation & Meals", icon: "🏨", content: ["Luxury Ubud accommodation", "Daily healthy breakfast", "Nutritious organic lunch", "Wholesome dinners", "Vegetarian/vegan options", "Herbal teas"] }
   ],
   dayBreakdown: [
-    { days: "Days 1-3", color: "#e3f2fd", titleColor: "#1976d2", description: "Orientation, hammock fundamentals, basic aerial asana, rigging and safety protocols" },
-    { days: "Days 4-7", color: "#f3e5f5", titleColor: "#7b1fa2", description: "Advanced aerial asana, teaching methodology, anatomy and supervised teaching practice" },
-    { days: "Days 8-10", color: "#e8f5e8", titleColor: "#388e3c", description: "Final assessments, certificate ceremony and Bali farewell celebration" }
+    { days: "Days 1-2", color: "#e3f2fd", titleColor: "#1976d2", description: "Orientation, hammock fundamentals, basic aerial asana, rigging and safety protocols" },
+    { days: "Days 3-4", color: "#f3e5f5", titleColor: "#7b1fa2", description: "Advanced aerial asana, teaching methodology, anatomy and supervised teaching practice" },
+    { days: "Days 5-6", color: "#e8f5e8", titleColor: "#388e3c", description: "Final assessments, certificate ceremony and Bali farewell celebration" }
   ],
   packageIncludes: ["✓ Accommodation & meals", "✓ Aerial hammock & materials", "✓ Certificate of completion"],
   scheduleTitle: "Sample Daily Schedule",
   scheduleDescription: "Each day builds your aerial yoga skills combining asana, rigging, anatomy and Bali cultural experiences.",
   scheduleImage: require('../../../../../images/Gallery/Daily_Schedule_100_200_300.jpg'), // 🖼️
   morningSchedule: [
-    { time: "07:00 - 08:00", activity: "Morning Yoga & Meditation" },
-    { time: "08:00 - 09:00", activity: "Breakfast" },
-    { time: "09:30 - 12:30", activity: "Aerial Yoga Asana Practice" },
-    { time: "12:30 - 14:00", activity: "Lunch Break & Rest" }
+    { time: "06:00 - 07:15", activity: "Hatha Flow (Yang)" },
+    { time: "07:30 - 08:45", activity: "Yin Pranayama & Meditation" },
+    { time: "08:45 - 09:30", activity: "Fruits and Tea" },
+    { time: "09:45 - 11:15", activity: "Aerial Anatomy & Sequencing" },
+    { time: "11:15 - 12:15", activity: "Lunch" }
   ],
   eveningSchedule: [
-    { time: "14:00 - 16:00", activity: "Rigging / Anatomy / Teaching Theory" },
-    { time: "16:00 - 17:30", activity: "Supervised Teaching Practice" },
-    { time: "17:30 - 18:30", activity: "Evening Yoga / Cultural Activity" },
-    { time: "19:00 - 20:00", activity: "Dinner" }
+    { time: "14:30 - 16:00", activity: "Teaching Methodology" },
+    { time: "16:15 - 17:45", activity: "Aerial Yoga" },
+    { time: "18:30 - 19:30", activity: "Dinner" },
+   
   ],
   additionalInfoTitle: "Training Includes",
   additionalInfoLines: [

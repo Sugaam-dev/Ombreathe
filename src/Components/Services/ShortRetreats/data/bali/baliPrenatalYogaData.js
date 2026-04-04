@@ -8,7 +8,7 @@ const baliPrenatalYogaData = {
   tagline: "Prenatal Yoga Teacher Training\nIn Ubud, Bali, Indonesia\nWith Ombreathe",
   title: "Specialise in prenatal yoga and support expecting mothers in beautiful Bali",
   subtitle: "A comprehensive prenatal yoga teacher training in the heart of Ubud",
-  price: "$799 USD",                    // 💰
+  price: "$750 USD",                    // 💰
   priceNote: "*Includes accommodation, meals & all materials",
   buttonText: "Book Your Spot",
   location: "📍 Ubud, Bali, Indonesia",
@@ -37,7 +37,7 @@ const baliPrenatalYogaData = {
     { value: "Daily", label: "Practice Sessions" },
     { value: "Ubud", label: "Bali, Indonesia" },
     { value: "All Meals", label: "Healthy Organic Food" },
-    { value: "$799", label: "All-Inclusive Package" }
+    { value: "$750", label: "All-Inclusive Package" }
   ],
   welcomeTitle: "Welcome to Our Prenatal Yoga Teacher Training in Bali",
   welcomeLines: [
@@ -87,25 +87,26 @@ const baliPrenatalYogaData = {
     { title: "Accommodation & Meals", icon: "🏨", content: ["Luxury Ubud accommodation", "Daily healthy breakfast", "Nutritious organic lunch", "Wholesome dinners", "Vegetarian/vegan options", "Herbal teas"] }
   ],
   dayBreakdown: [
-    { days: "Days 1-3", color: "#e3f2fd", titleColor: "#1976d2", description: "Orientation, pregnancy anatomy, 1st and 2nd trimester sequencing and safe modifications" },
-    { days: "Days 4-7", color: "#f3e5f5", titleColor: "#7b1fa2", description: "3rd trimester, postnatal yoga, breathwork for labour, teaching methodology and supervised practice" },
-    { days: "Days 8-10", color: "#e8f5e8", titleColor: "#388e3c", description: "Final assessments, certificate ceremony and Bali farewell celebration" }
+    { days: "Days 1-2", color: "#e3f2fd", titleColor: "#1976d2", description: "Orientation, pregnancy anatomy, 1st and 2nd trimester sequencing and safe modifications" },
+    { days: "Days 3-4", color: "#f3e5f5", titleColor: "#7b1fa2", description: "3rd trimester, postnatal yoga, breathwork for labour, teaching methodology and supervised practice" },
+    { days: "Days 5-6", color: "#e8f5e8", titleColor: "#388e3c", description: "Final assessments, certificate ceremony and Bali farewell celebration" }
   ],
   packageIncludes: ["✓ Accommodation & meals", "✓ Yoga props & materials", "✓ Certificate of completion"],
   scheduleTitle: "Sample Daily Schedule",
   scheduleDescription: "Each day nurtures your prenatal yoga expertise combining asana, anatomy, breathwork and Bali cultural experiences.",
   scheduleImage: require('../../../../../images/Gallery/Daily_Schedule_100_200_300.jpg'), // 🖼️
   morningSchedule: [
-    { time: "07:00 - 08:00", activity: "Morning Yoga & Meditation" },
-    { time: "08:00 - 09:00", activity: "Breakfast" },
-    { time: "09:30 - 12:30", activity: "Prenatal Yoga Practice" },
-    { time: "12:30 - 14:00", activity: "Lunch Break & Rest" }
+    { time: "06:00 - 07:00", activity: "Prenatal Vinyasa Flow" },
+    { time: "07:45 - 08:45", activity: "Pregrency Breathword" },
+    { time: "09:00 - 10:00", activity: "Breakfast" },
+    { time: "10:30 - 11:30", activity: "Prenatal Philosophy & Yoga Nidra" },
+    { time: "11:30 - 13:00", activity: "Pregnancy Anatomy & Alignment" }
   ],
   eveningSchedule: [
-    { time: "14:00 - 16:00", activity: "Anatomy / Breathwork / Teaching Theory" },
-    { time: "16:00 - 17:30", activity: "Supervised Teaching Practice" },
-    { time: "17:30 - 18:30", activity: "Evening Yoga / Cultural Activity" },
-    { time: "19:00 - 20:00", activity: "Dinner" }
+    { time: "13:00 - 14:00", activity: "Lunch" },
+    { time: "15:00 - 17:00", activity: "Pre Natal Asana & Sequencing" },
+    { time: "17:30 - 18:30", activity: "Meditation" }
+   
   ],
   additionalInfoTitle: "Training Includes",
   additionalInfoLines: [
