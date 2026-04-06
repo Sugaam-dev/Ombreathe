@@ -60,6 +60,7 @@
         |-- Carousal.jsx
         |-- Cont.jsx
         |-- Contact.jsx
+        |-- DiscountPopup.jsx
         |-- Donation
             |-- QRDonationForm
                 |-- QRDonationForm.css
