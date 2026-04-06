@@ -81,10 +81,45 @@ const baliAerialYogaData = {
   coursesSubheading: "Complete Certification Program in Bali",
   courseDescription: ["Master aerial yoga asana, rigging and teaching methodology in beautiful Bali", "Graduate as a certified aerial yoga teacher enriched by the Bali experience"],
   activities: [
-    { title: "Aerial Yoga Asana", icon: "🪁", content: ["Hammock fundamentals", "Inversions and decompression", "Aerial backbends and twists", "Creative sequencing", "Partner techniques", "Modifications for all levels"] },
-    { title: "Rigging & Safety", icon: "🔧", content: ["Rigging point assessment", "Hardware checks", "Weight load calculations", "Emergency procedures", "Studio safety setup", "Student safety protocols"] },
-    { title: "Bali Experiences", icon: "🌴", content: ["Temple visits and ceremonies", "Rice field walks", "Cultural orientation", "Balinese traditions", "Local market visits", "Spiritual site tours"] },
-    { title: "Accommodation & Meals", icon: "🏨", content: ["Luxury Ubud accommodation", "Daily healthy breakfast", "Nutritious organic lunch", "Wholesome dinners", "Vegetarian/vegan options", "Herbal teas"] }
+    { title: " Introduction to Aerial Yoga", 
+      icon: "🪁", 
+      content: [
+        "Overview of aerial yoga: history and benefits",
+        "Introduction to aerial equipment (hammock/silk)",
+        "Safety guidelines and equipment setup", 
+        "Basic aerial yoga poses and alignment principles", 
+        "Aerial yoga warm-up and cool-down sequences"
+      ]
+     },
+    { title: "Aerial Yoga Fundamentals", 
+      icon: "🔧", 
+      content: [
+        "Deeper exploration of aerial yoga poses", 
+        "Sequencing and creating a balanced class", 
+        "Teaching methodology for aerial yoga", 
+        "Hands-on practice and spotting techniques", 
+        "Introduction to basic inversions and flips"
+      ]
+     },
+    { title: "Anatomy and Physiology", 
+      icon: "🌴", 
+      content: [
+        "Understanding the body in aerial yoga", 
+        "Aerial yoga and the spine", 
+        "Muscles used in aerial yoga practice", 
+        "Common injuries and safety precautions", 
+        "Modifications and variations for different body types" 
+      ]
+     },
+    { title: "Certification and Final Assessment", 
+      icon: "🏨", 
+      content: [
+        "Final practical teaching exam", 
+        "Written assessment on aerial yoga principles and safety", 
+        "Review of course content and questions", 
+        "Graduation ceremony and certification as an Aerial Yoga Teacher", 
+      ]
+     }
   ],
   dayBreakdown: [
     { days: "Days 1-2", color: "#e3f2fd", titleColor: "#1976d2", description: "Orientation, hammock fundamentals, basic aerial asana, rigging and safety protocols" },

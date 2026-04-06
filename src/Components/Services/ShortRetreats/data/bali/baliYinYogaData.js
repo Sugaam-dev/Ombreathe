@@ -105,10 +105,50 @@ const baliYinYogaData = {
     "Graduate enriched by the spiritual energy and culture of Ubud"
   ],
   activities: [
-    { title: "Yin Yoga Asana", icon: "🧘", content: ["Long-held passive postures", "Meridian-targeted sequences", "Prop-supported variations", "Modifications for all levels", "Therapeutic applications", "Restorative integration"] },
-    { title: "Meridian Theory", icon: "⚡", content: ["12 main meridian channels", "TCM five element theory", "Seasonal yin sequencing", "Energy body awareness", "Organ health connection", "Practical meridian mapping"] },
-    { title: "Bali Experiences", icon: "🌴", content: ["Temple visits and ceremonies", "Rice field walks", "Cultural orientation", "Balinese cooking demo", "Local market visits", "Spiritual site tours"] },
-    { title: "Accommodation & Meals", icon: "🏨", content: ["Luxury Ubud accommodation", "Daily healthy breakfast", "Nutritious organic lunch", "Wholesome dinner meals", "Vegetarian/vegan options", "Herbal teas and refreshments"] }
+    { title: "Yin Philosophy", 
+      icon: "🧘", 
+      content: [
+        "Meaning and importance of yin yoga", 
+        "History and origin of yin yoga", 
+        "Understanding the concept of yin and yang", 
+        "Yin and yang organ", 
+        "Yin yoga in daily life", 
+        "Understanding yoga and yin"
+      ] 
+    },
+    { title: "Yin Pranayama", 
+      icon: "⚡", 
+      content: [
+        "What is prana and pranayama", 
+        "How to take yin breath", 
+        "Types of breathing ", 
+        "Healing pranayama", 
+        "Yang breath", 
+        "Cooling breath"
+      ] 
+    },
+    { title: "Yin Yoga Asana", 
+      icon: "🌴", 
+      content: [
+        "Camel Pose", 
+        "Caterpillar Pose", 
+        "Dangling Pose", 
+        "Dragon Pose", 
+        "Ankle Stretch Pose", 
+        "Happy Baby Pose"
+      ] 
+    },
+    { title: "Yoga Nidra", 
+      icon: "🏨", 
+      content: [
+        "Meaning and Purpose of Yoga Nidra", 
+        "Different Schools and Traditions of Yoga Nidra", 
+        "Tantric Origin of Yoga Nidra", 
+        "Lifestyle and Rules for Yoga Nidra Practitioners", 
+        "Benefits and Risks of Yoga Nidra", 
+        "Yoga Nidra Experience"
+      ] 
+    }
   ],
   dayBreakdown: [
     { days: "Days 1-2", color: "#e3f2fd", titleColor: "#1976d2", description: "Orientation, foundational yin asana, introduction to meridian theory and Bali cultural immersion" },

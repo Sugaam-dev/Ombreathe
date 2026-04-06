@@ -8,7 +8,7 @@ const rishikeshAerialYogaData = {
   tagline: "Aerial Yoga Teacher Training\nIn Rishikesh, Uttarakhand, India\nWith Ombreathe",
   title: "Learn to fly and teach aerial yoga in the yoga capital of the world",
   subtitle: "A comprehensive aerial yoga teacher training on the banks of the holy Ganges",
-  price: "$699 USD",                    // 💰
+  price: "$650 USD",                    // 💰
   priceNote: "*Includes accommodation, meals, hammock & all materials",
   buttonText: "Book Your Spot",
   location: "📍 Rishikesh, Uttarakhand, India",
@@ -37,7 +37,7 @@ const rishikeshAerialYogaData = {
     { value: "Daily", label: "Practice Sessions" },
     { value: "Rishikesh", label: "Uttarakhand, India" },
     { value: "All Meals", label: "Healthy Sattvic Food" },
-    { value: "$699", label: "All-Inclusive Package" }
+    { value: "$650", label: "All-Inclusive Package" }
   ],
   welcomeTitle: "Welcome to Our Aerial Yoga Teacher Training in Rishikesh",
   welcomeLines: [
@@ -81,31 +81,67 @@ const rishikeshAerialYogaData = {
   coursesSubheading: "Complete Certification Program in Rishikesh",
   courseDescription: ["Master aerial yoga asana, rigging and teaching methodology in sacred Rishikesh", "Graduate as a certified aerial yoga teacher enriched by Himalayan spiritual energy"],
   activities: [
-    { title: "Aerial Yoga Asana", icon: "🪁", content: ["Hammock fundamentals", "Inversions and decompression", "Aerial backbends and twists", "Creative sequencing", "Partner techniques", "Modifications for all levels"] },
-    { title: "Rigging & Safety", icon: "🔧", content: ["Rigging point assessment", "Hardware checks", "Weight load calculations", "Emergency procedures", "Studio safety setup", "Student safety protocols"] },
-    { title: "Rishikesh Experiences", icon: "🕉️", content: ["Ganga aarti ceremony", "Ashram visits", "Himalayan nature walks", "Yogic philosophy classes", "Sacred Ganges rituals", "Sattvic cooking insights"] },
-    { title: "Accommodation & Meals", icon: "🏨", content: ["Comfortable Rishikesh accommodation", "Daily sattvic breakfast", "Nutritious organic lunch", "Wholesome dinners", "Vegetarian options", "Herbal teas and chai"] }
+    { title: " Introduction to Aerial Yoga", 
+      icon: "🪁", 
+      content: [
+        "Overview of aerial yoga: history and benefits",
+        "Introduction to aerial equipment (hammock/silk)",
+        "Safety guidelines and equipment setup", 
+        "Basic aerial yoga poses and alignment principles", 
+        "Aerial yoga warm-up and cool-down sequences"
+      ]
+     },
+    { title: "Aerial Yoga Fundamentals", 
+      icon: "🔧", 
+      content: [
+        "Deeper exploration of aerial yoga poses", 
+        "Sequencing and creating a balanced class", 
+        "Teaching methodology for aerial yoga", 
+        "Hands-on practice and spotting techniques", 
+        "Introduction to basic inversions and flips"
+      ]
+     },
+    { title: "Anatomy and Physiology", 
+      icon: "🌴", 
+      content: [
+        "Understanding the body in aerial yoga", 
+        "Aerial yoga and the spine", 
+        "Muscles used in aerial yoga practice", 
+        "Common injuries and safety precautions", 
+        "Modifications and variations for different body types" 
+      ]
+     },
+    { title: "Certification and Final Assessment", 
+      icon: "🏨", 
+      content: [
+        "Final practical teaching exam", 
+        "Written assessment on aerial yoga principles and safety", 
+        "Review of course content and questions", 
+        "Graduation ceremony and certification as an Aerial Yoga Teacher", 
+      ]
+     }
   ],
   dayBreakdown: [
-    { days: "Days 1-3", color: "#e3f2fd", titleColor: "#1976d2", description: "Orientation, hammock fundamentals, basic aerial asana, rigging procedures and safety protocols" },
-    { days: "Days 4-7", color: "#f3e5f5", titleColor: "#7b1fa2", description: "Advanced aerial asana, teaching methodology, anatomy and supervised teaching practice" },
-    { days: "Days 8-10", color: "#e8f5e8", titleColor: "#388e3c", description: "Final assessments, certificate ceremony and Ganga farewell aarti" }
+    { days: "Days 1-2", color: "#e3f2fd", titleColor: "#1976d2", description: "Orientation, hammock fundamentals, basic aerial asana, rigging procedures and safety protocols" },
+    { days: "Days 3-4", color: "#f3e5f5", titleColor: "#7b1fa2", description: "Advanced aerial asana, teaching methodology, anatomy and supervised teaching practice" },
+    { days: "Days 5-6", color: "#e8f5e8", titleColor: "#388e3c", description: "Final assessments, certificate ceremony and Ganga farewell aarti" }
   ],
   packageIncludes: ["✓ Accommodation & meals", "✓ Aerial hammock & materials", "✓ Certificate of completion"],
   scheduleTitle: "Sample Daily Schedule",
   scheduleDescription: "Each day builds your aerial yoga skills combining asana, rigging, anatomy and the sacred cultural experiences of Rishikesh.",
   scheduleImage: require('../../../../../images/Gallery/Daily_Schedule_100_200_300.jpg'), // 🖼️
   morningSchedule: [
-    { time: "06:00 - 07:00", activity: "Morning Meditation / Ganga Walk" },
-    { time: "07:00 - 08:30", activity: "Morning Yoga Session" },
-    { time: "08:30 - 09:30", activity: "Breakfast" },
-    { time: "09:30 - 12:30", activity: "Aerial Yoga Asana Practice" }
+    { time: "06:00 AM - 07:15 AM", activity: "Hatha Flow (Yang)" },
+    { time: "07:30 AM - 08:45 AM", activity: "Yin Pranayama & Meditation" },
+    { time: "08:45 AM - 09:30 AM", activity: "Fruits and Tea" },
+    { time: "09:45 AM - 11:15 AM", activity: "Aerial Anatomy & Sequencing" },
+    { time: "11:15 AM - 12:15 PM", activity: "Lunch" }
   ],
   eveningSchedule: [
-    { time: "14:00 - 16:00", activity: "Rigging / Anatomy / Teaching Theory" },
-    { time: "16:00 - 17:30", activity: "Supervised Teaching Practice" },
-    { time: "18:00 - 19:00", activity: "Ganga Aarti Ceremony" },
-    { time: "19:30 - 20:30", activity: "Dinner" }
+    { time: "02:30 PM - 04:00 PM", activity: "Teaching Methodology" },
+    { time: "04:15 PM - 05:45 PM", activity: "Aerial Yoga" },
+    { time: "06:30 PM - 07:30 PM", activity: "Dinner" },
+   
   ],
   additionalInfoTitle: "Training Includes",
   additionalInfoLines: [

@@ -8,7 +8,7 @@ const rishikeshYinYogaData = {
   tagline: "Yin Yoga Teacher Training\nIn Rishikesh, Uttarakhand, India\nWith Ombreathe",
   title: "Deepen your yin yoga practice in the yoga capital of the world",
   subtitle: "A comprehensive yin yoga teacher training on the banks of the holy Ganges",
-  price: "$699 USD",                    // 💰
+  price: "$750 USD",                    // 💰
   priceNote: "*Includes accommodation, meals & all materials",
   buttonText: "Book Your Spot",
   location: "📍 Rishikesh, Uttarakhand, India",
@@ -37,7 +37,7 @@ const rishikeshYinYogaData = {
     { value: "Daily", label: "Practice Sessions" },
     { value: "Rishikesh", label: "Uttarakhand, India" },
     { value: "All Meals", label: "Healthy Organic Food" },
-    { value: "$699", label: "All-Inclusive Package" }
+    { value: "$750", label: "All-Inclusive Package" }
   ],
   welcomeTitle: "Welcome to Our Yin Yoga Teacher Training in Rishikesh",
   welcomeLines: [
@@ -80,32 +80,72 @@ const rishikeshYinYogaData = {
   coursesHeading: "Yin Yoga Teacher Training",
   coursesSubheading: "Complete Certification Program in Rishikesh",
   courseDescription: ["Master yin yoga asana, meridian theory and teaching methodology in sacred Rishikesh", "Graduate enriched by the ancient yogic wisdom and spiritual energy of the Himalayas"],
-  activities: [
-    { title: "Yin Yoga Asana", icon: "🧘", content: ["Long-held passive postures", "Meridian-targeted sequences", "Prop-supported variations", "Modifications for all levels", "Therapeutic applications", "Restorative integration"] },
-    { title: "Meridian Theory", icon: "⚡", content: ["12 main meridian channels", "TCM five element theory", "Seasonal yin sequencing", "Energy body awareness", "Organ health connection", "Practical meridian mapping"] },
-    { title: "Rishikesh Experiences", icon: "🕉️", content: ["Ganga aarti ceremony", "Ashram visits", "Himalayan nature walks", "Yogic philosophy classes", "Sattvic cooking insights", "Sacred Ganges rituals"] },
-    { title: "Accommodation & Meals", icon: "🏨", content: ["Comfortable Rishikesh accommodation", "Daily sattvic breakfast", "Nutritious organic lunch", "Wholesome dinner meals", "Vegetarian options", "Herbal teas and chai"] }
+ activities: [
+    { title: "Yin Philosophy", 
+      icon: "🧘", 
+      content: [
+        "Meaning and importance of yin yoga", 
+        "History and origin of yin yoga", 
+        "Understanding the concept of yin and yang", 
+        "Yin and yang organ", 
+        "Yin yoga in daily life", 
+        "Understanding yoga and yin"
+      ] 
+    },
+    { title: "Yin Pranayama", 
+      icon: "⚡", 
+      content: [
+        "What is prana and pranayama", 
+        "How to take yin breath", 
+        "Types of breathing ", 
+        "Healing pranayama", 
+        "Yang breath", 
+        "Cooling breath"
+      ] 
+    },
+    { title: "Yin Yoga Asana", 
+      icon: "🌴", 
+      content: [
+        "Camel Pose", 
+        "Caterpillar Pose", 
+        "Dangling Pose", 
+        "Dragon Pose", 
+        "Ankle Stretch Pose", 
+        "Happy Baby Pose"
+      ] 
+    },
+    { title: "Yoga Nidra", 
+      icon: "🏨", 
+      content: [
+        "Meaning and Purpose of Yoga Nidra", 
+        "Different Schools and Traditions of Yoga Nidra", 
+        "Tantric Origin of Yoga Nidra", 
+        "Lifestyle and Rules for Yoga Nidra Practitioners", 
+        "Benefits and Risks of Yoga Nidra", 
+        "Yoga Nidra Experience"
+      ] 
+    }
   ],
   dayBreakdown: [
-    { days: "Days 1-3", color: "#e3f2fd", titleColor: "#1976d2", description: "Orientation, foundational yin asana, introduction to meridian theory and Rishikesh cultural immersion" },
-    { days: "Days 4-7", color: "#f3e5f5", titleColor: "#7b1fa2", description: "Advanced sequencing, TCM principles, teaching methodology and supervised teaching practice" },
-    { days: "Days 8-10", color: "#e8f5e8", titleColor: "#388e3c", description: "Final assessments, certificate ceremony and Ganga farewell aarti" }
+    { days: "Days 1-2", color: "#e3f2fd", titleColor: "#1976d2", description: "Orientation, foundational yin asana, introduction to meridian theory and Rishikesh cultural immersion" },
+    { days: "Days 3-4", color: "#f3e5f5", titleColor: "#7b1fa2", description: "Advanced sequencing, TCM principles, teaching methodology and supervised teaching practice" },
+    { days: "Days 5-6", color: "#e8f5e8", titleColor: "#388e3c", description: "Final assessments, certificate ceremony and Ganga farewell aarti" }
   ],
   packageIncludes: ["✓ Accommodation & meals", "✓ Yoga props & materials", "✓ Certificate of completion"],
   scheduleTitle: "Sample Daily Schedule",
   scheduleDescription: "Each day combines yin yoga practice, meridian theory, anatomy and the sacred cultural experiences of Rishikesh.",
   scheduleImage: require('../../../../../images/Gallery/Daily_Schedule_100_200_300.jpg'), // 🖼️
-  morningSchedule: [
-    { time: "06:00 - 07:00", activity: "Morning Meditation / Ganga Walk" },
-    { time: "07:00 - 08:30", activity: "Morning Yoga Session" },
-    { time: "08:30 - 09:30", activity: "Breakfast" },
-    { time: "09:30 - 12:30", activity: "Yin Yoga Asana Practice" }
+ morningSchedule: [
+    { time: "06:30 AM - 07:30 AM", activity: "Hatha Yoga" },
+    { time: "07:30 AM - 08:30 AM", activity: "Pranayama and Meditation" },
+    { time: "08:45 AM - 09:30 AM", activity: "Fruits and Tea" },
+    { time: "09:30 AM - 10:30 AM", activity: "Yoga Nidra / Mantra / Mudra" },
+    { time: "10:45 AM - 11:45 AM", activity: "Yin Anatomy"},
+    { time: "11:45 AM - 02:30 PM", activity: "Brunch & Rest"}
   ],
   eveningSchedule: [
-    { time: "14:00 - 16:00", activity: "Meridian Theory / Anatomy" },
-    { time: "16:00 - 17:30", activity: "Supervised Teaching Practice" },
-    { time: "18:00 - 19:00", activity: "Ganga Aarti Ceremony" },
-    { time: "19:30 - 20:30", activity: "Dinner" }
+    { time: "02:30 PM - 04:00 PM", activity: "Meridians and Methodology" },
+    { time: "04:15 PM - 05:45 PM", activity: "Yin Yoga and Sequencing" }
   ],
   additionalInfoTitle: "Training Includes",
   additionalInfoLines: [

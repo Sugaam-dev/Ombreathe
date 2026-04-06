@@ -18,7 +18,7 @@ const rishikeshCards = [
       "Anatomy and meridian theory included",
       "Yoga Alliance registered certificate"
     ],
-    price: "$699",                 // 💰 Replace with actual price
+    price: "$499",                 // 💰 Replace with actual price
     priority: 1
   },
   {
@@ -32,7 +32,7 @@ const rishikeshCards = [
       "Safety and rigging techniques covered",
       "Yoga Alliance registered certificate"
     ],
-    price: "$699",                 // 💰 Replace with actual price
+    price: "$399",                 // 💰 Replace with actual price
     priority: 2
   },
   {
@@ -46,7 +46,7 @@ const rishikeshCards = [
       "Safe practices for all pregnancy stages",
       "Yoga Alliance registered certificate"
     ],
-    price: "$699",                 // 💰 Replace with actual price
+    price: "$499",                 // 💰 Replace with actual price
     priority: 3
   }
 ];

@@ -8,7 +8,7 @@ const rishikeshPrenatalYogaData = {
   tagline: "Prenatal Yoga Teacher Training\nIn Rishikesh, Uttarakhand, India\nWith Ombreathe",
   title: "Specialise in prenatal yoga in the sacred yoga capital of the world",
   subtitle: "A comprehensive prenatal yoga teacher training on the banks of the holy Ganges",
-  price: "$699 USD",                    // 💰
+  price: "$750 USD",                    // 💰
   priceNote: "*Includes accommodation, meals & all materials",
   buttonText: "Book Your Spot",
   location: "📍 Rishikesh, Uttarakhand, India",
@@ -37,7 +37,7 @@ const rishikeshPrenatalYogaData = {
     { value: "Daily", label: "Practice Sessions" },
     { value: "Rishikesh", label: "Uttarakhand, India" },
     { value: "All Meals", label: "Healthy Sattvic Food" },
-    { value: "$699", label: "All-Inclusive Package" }
+    { value: "$750", label: "All-Inclusive Package" }
   ],
   welcomeTitle: "Welcome to Our Prenatal Yoga Teacher Training in Rishikesh",
   welcomeLines: [
@@ -80,32 +80,61 @@ const rishikeshPrenatalYogaData = {
   coursesHeading: "Prenatal Yoga Teacher Training",
   coursesSubheading: "Complete Certification Program in Rishikesh",
   courseDescription: ["Master prenatal yoga sequencing, anatomy and teaching methodology in sacred Rishikesh", "Graduate enriched by the ancient yogic wisdom and Himalayan spiritual energy"],
-  activities: [
-    { title: "Prenatal Asana", icon: "🤰", content: ["1st trimester sequences", "2nd trimester practices", "3rd trimester support", "Postnatal recovery yoga", "Safe modifications", "Prop-supported poses"] },
-    { title: "Anatomy & Physiology", icon: "🫀", content: ["Pregnancy physiology", "Trimester changes", "Contraindications", "Pelvic floor awareness", "Diastasis recti", "Safe alignment"] },
-    { title: "Breathwork & Birth", icon: "🌬️", content: ["Pranayama for pregnancy", "Labour breathing techniques", "Pain management tools", "Visualisation practices", "Partner support", "Postpartum breath work"] },
-    { title: "Accommodation & Meals", icon: "🏨", content: ["Comfortable Rishikesh accommodation", "Daily sattvic breakfast", "Nutritious organic lunch", "Wholesome dinner meals", "Vegetarian options", "Herbal teas and chai"] }
+   activities: [
+    { title: "Books, Manuals & study materials", icon: "📚", content: [
+      "Pre-Natal Asana Manual",
+      "Post-Natal Asana Manual",
+      "Mantra Manual",
+      "Pre-natal Meditation Manual",
+      "Pre-Natal Pranayama Manual",
+      "Daily life of a yogi book (Yogi Vishnu)",
+      "Prenatal Yoga Anatomy and Therapy",
+      "Prenatal Yoga Nidra Manual",
+      "Teaching Methodology Manual",
+      "Assignments and Instructions"
+    ] },
+    { title: "Prenatal Yoga Therapy", icon: "☮️", content:  [
+      "for spine and back issue",
+      "For digestion",
+      "Sleeping issue",
+      "Stress and anxiety",
+      "Fear and anger",
+      "Breathing issue",
+      "Pelvic floor",
+      "Other problems"
+    ]},
+    { title: "Asana Practices", icon: "🧘", content: ["Early Pregnancy Yoga (1–3 Month)",
+      "Vajrasana (The Thunderbolt)",
+      "Trikonasana (Easy Triangle)",
+      "Sarvangasana (Shoulder stand)",
+      "Shoulder Stretches",
+      "Sitting Stretches",
+      "Breath and Awareness",
+      "Basic Pelvic Alignment",
+      "Spinal Rolls"] },
+    { title: "Caring New born baby", icon: "👶", content: ["Baby Massage.", "Feeding Milk.", "Food after 6 months.", "Mantra for Baby.", "Special Care."] }
   ],
   dayBreakdown: [
-    { days: "Days 1-3", color: "#e3f2fd", titleColor: "#1976d2", description: "Orientation, pregnancy anatomy, 1st and 2nd trimester sequencing and Rishikesh cultural immersion" },
-    { days: "Days 4-7", color: "#f3e5f5", titleColor: "#7b1fa2", description: "3rd trimester, postnatal yoga, breathwork for labour, teaching methodology and supervised practice" },
-    { days: "Days 8-10", color: "#e8f5e8", titleColor: "#388e3c", description: "Final assessments, certificate ceremony and Ganga farewell aarti celebration" }
+    { days: "Days 1-2", color: "#e3f2fd", titleColor: "#1976d2", description: "Orientation, pregnancy anatomy, 1st and 2nd trimester sequencing and Rishikesh cultural immersion" },
+    { days: "Days 3-4", color: "#f3e5f5", titleColor: "#7b1fa2", description: "3rd trimester, postnatal yoga, breathwork for labour, teaching methodology and supervised practice" },
+    { days: "Days 5-6", color: "#e8f5e8", titleColor: "#388e3c", description: "Final assessments, certificate ceremony and Ganga farewell aarti celebration" }
   ],
   packageIncludes: ["✓ Accommodation & meals", "✓ Yoga props & materials", "✓ Certificate of completion"],
   scheduleTitle: "Sample Daily Schedule",
   scheduleDescription: "Each day nurtures your prenatal yoga expertise combining asana, anatomy, breathwork and the sacred cultural experiences of Rishikesh.",
   scheduleImage: require('../../../../../images/Gallery/Daily_Schedule_100_200_300.jpg'), // 🖼️
-  morningSchedule: [
-    { time: "06:00 - 07:00", activity: "Morning Meditation / Ganga Walk" },
-    { time: "07:00 - 08:30", activity: "Morning Yoga Session" },
-    { time: "08:30 - 09:30", activity: "Breakfast" },
-    { time: "09:30 - 12:30", activity: "Prenatal Yoga Practice" }
+   morningSchedule: [
+    { time: "06:00 AM", activity: "Prenatal Vinyasa Flow" },
+    { time: "07:45 AM", activity: "Pregrency Breathword" },
+    { time: "09:00 AM", activity: "Breakfast" },
+    { time: "10:30 AM", activity: "Prenatal Philosophy & Yoga Nidra" },
+    { time: "11:30 AM - 01:00 PM", activity: "Pregnancy Anatomy & Alignment" }
   ],
   eveningSchedule: [
-    { time: "14:00 - 16:00", activity: "Anatomy / Breathwork / Teaching Theory" },
-    { time: "16:00 - 17:30", activity: "Supervised Teaching Practice" },
-    { time: "18:00 - 19:00", activity: "Ganga Aarti Ceremony" },
-    { time: "19:30 - 20:30", activity: "Dinner" }
+    { time: "01:00 PM", activity: "Lunch" },
+    { time: "03:00 PM - 05:00 PM", activity: "Pre Natal Asana & Sequencing" },
+    { time: "05:30 PM - 06:30 PM", activity: "Meditation" }
+   
   ],
   additionalInfoTitle: "Training Includes",
   additionalInfoLines: [
