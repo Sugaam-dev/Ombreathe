@@ -3,7 +3,7 @@ import React, {
   useCallback,
   useRef,
   useMemo,
-  useEffect,
+  
 } from "react";
 import { useNavigate } from "react-router-dom";
 import "../Styles/Services.css";
