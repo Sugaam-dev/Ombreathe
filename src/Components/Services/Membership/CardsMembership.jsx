@@ -15,9 +15,9 @@ const Servicess = () => {
   const navigate = useNavigate();
   const sectionRef = useRef(null);
 
-  // Image mapping - FIXED: Added actual image mappings
+  // Image mapping
   const imageMap = useMemo(() => ({
-    'shiv-shakti-sadhana': teachertraining, // Map to actual imported image
+    'shiv-shakti-sadhana': teachertraining,
     'shakti-sadhana': temple,
     'sapta-rishi-sadhana': online,
     'pashu-patayaa-sadhana': merchandise,
@@ -27,7 +27,7 @@ const Servicess = () => {
   const yogaPrograms = useMemo(() => [
     {
       id: 1,
-      imageKey: 'shiv-shakti-sadhana', // This now maps to teachertraining
+      imageKey: 'shiv-shakti-sadhana',
       title: "SHIV SHAKTI SADHANA MEMBERSHIP PROGRAM",
       subtitle: "Temple Yoga with Unified Divine Energy",
       route: "/programs/shiv-shakti-sadhana",
@@ -45,7 +45,7 @@ const Servicess = () => {
     },
     {
       id: 2,
-      imageKey: 'shakti-sadhana', // This now maps to temple
+      imageKey: 'shakti-sadhana',
       title: "SHAKTI SADHANA MEMBERSHIP PROGRAM",
       subtitle: "Temple Yoga with Divine Feminine Energy",
       route: "/programs/shakti-sadhana",
@@ -63,7 +63,7 @@ const Servicess = () => {
     },
     {
       id: 3,
-      imageKey: 'sapta-rishi-sadhana', // This now maps to online
+      imageKey: 'sapta-rishi-sadhana',
       title: "SAPTA RISHI SADHANA MEMBERSHIP PROGRAM",
       subtitle: "Vedic Wisdom and Ancient Knowledge",
       route: "/programs/sapta-rishi-sadhana",
@@ -81,7 +81,7 @@ const Servicess = () => {
     },
     {
       id: 4,
-      imageKey: 'pashu-patayaa-sadhana', // This now maps to merchandise
+      imageKey: 'pashu-patayaa-sadhana',
       title: "PASHU-PATAYAA SADHANA MEMBERSHIP PROGRAM",
       subtitle: "Lord of Animals - Nature Connection Yoga",
       route: "/programs/pashu-patayaa-sadhana",
@@ -114,14 +114,11 @@ const Servicess = () => {
     [showAll, yogaPrograms]
   );
 
-  // Memoized callback to prevent re-renders
   const handleImageError = useCallback((e) => {
     console.error('Image failed to load:', e.target.src);
-    // Set a fallback or placeholder
     e.target.style.display = 'none';
   }, []);
 
-  // Handle actual image load
   const handleImageLoad = useCallback((programId) => {
     setImageLoadStates(prev => ({
       ...prev,
@@ -129,18 +126,15 @@ const Servicess = () => {
     }));
   }, []);
 
-  // Updated callback for learn more button with navigation
   const handleLearnMore = useCallback((route, title) => {
     console.log(`Navigating to: ${route} for ${title}`);
     navigate(route);
   }, [navigate]);
 
-  // Memoized show more handler
   const handleShowMore = useCallback(() => {
     setShowAll(true);
   }, []);
 
-  // Memoized show less handler with scroll
   const handleShowLess = useCallback(() => {
     setShowAll(false);
     setTimeout(() => {
@@ -163,7 +157,7 @@ const Servicess = () => {
                 <h1>Membership Temple Yoga Program</h1>
                 <img 
                   src={lg}
-                  alt="Ombreathe Logo" 
+                  alt="Ombreathe" 
                   loading="eager"
                   style={{ maxWidth: '100%', height: 'auto' }}
                   onError={(e) => console.error('Logo failed to load:', e.target.src)}
@@ -175,13 +169,8 @@ const Servicess = () => {
 
         <div className="cards-grid">
           {displayedCards.map((program, index) => {
-            const imageLoadState = imageLoadStates[program.id] || 'loading';
+            // Removed the unused imageLoadState variable to fix build error
             const imageSrc = imageMap[program.imageKey];
-            
-            // Debug logging
-            if (!imageSrc) {
-              console.warn(`No image found for imageKey: ${program.imageKey}`);
-            }
             
             return (
               <div key={program.id} className={`yoga-card ${showAll && index >= 3 ? 'fade-in' : ''}`}>
@@ -209,13 +198,6 @@ const Servicess = () => {
                       onError={handleImageError}
                       onLoad={() => handleImageLoad(program.id)}
                       loading="lazy"
-                      // style={{
-                      //   opacity: imageLoadState === 'displayed' ? 1 : 0.8,
-                      //   transition: 'opacity 0.3s ease',
-                      //   width: '100%',
-                      //   height: '200px',
-                      //   objectFit: 'contain'
-                      // }}
                     />
                   )}
                   <div className="image-overlay"></div>
@@ -258,7 +240,6 @@ const Servicess = () => {
               onClick={handleShowMore}
               className="see-more-btn"
               type="button"
-              aria-label="Show more yoga programs"
             >
               See More Programs
             </button>
@@ -267,7 +248,6 @@ const Servicess = () => {
               onClick={handleShowLess}
               className="show-less-btn"
               type="button"
-              aria-label="Show fewer yoga programs"
             >
               Show Less
             </button>

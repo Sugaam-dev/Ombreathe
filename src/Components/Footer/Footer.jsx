@@ -1,6 +1,6 @@
 import React, { 
   useMemo, 
-  useCallback, 
+
   memo, 
   useState, 
   useEffect,
@@ -12,7 +12,7 @@ import {
   faPhone,
   faEnvelope,
   faLocationDot,
-  faChevronUp
+ 
 } from "@fortawesome/free-solid-svg-icons";
 import { FaFacebookF, FaInstagram, FaYoutube } from "react-icons/fa6";
 
