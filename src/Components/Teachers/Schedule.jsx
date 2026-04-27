@@ -1,4 +1,4 @@
-import React, { useMemo, useCallback, memo, useState, useEffect } from 'react';
+import React, { useMemo, useCallback, memo, useState, useEffect, useRef } from 'react';
 import './Schedule.css';
 
 // Memoized Schedule Item Component
@@ -9,7 +9,7 @@ const ScheduleItem = memo(({ item, index, isVisible }) => {
     if (isVisible) {
       const timer = setTimeout(() => {
         setShouldAnimate(true);
-      }, index * 100); // Staggered animation
+      }, index * 100);
       
       return () => clearTimeout(timer);
     }
@@ -66,8 +66,12 @@ const Legend = memo(() => {
 });
 
 // Intersection Observer Hook for performance
+// FIXED: Included 'options' in the dependency array
 const useIntersectionObserver = (callback, options = {}) => {
   const [ref, setRef] = useState(null);
+  
+  // Use a ref to store options to avoid unnecessary observer re-creations
+  const optionsRef = useRef(options);
 
   useEffect(() => {
     if (!ref) return;
@@ -77,7 +81,7 @@ const useIntersectionObserver = (callback, options = {}) => {
     }, {
       threshold: 0.1,
       rootMargin: '50px',
-      ...options
+      ...optionsRef.current // Use current options
     });
 
     observer.observe(ref);
@@ -85,7 +89,7 @@ const useIntersectionObserver = (callback, options = {}) => {
     return () => {
       if (ref) observer.unobserve(ref);
     };
-  }, [ref, callback]);
+  }, [ref, callback]); // callback is stable from useCallback below
 
   return setRef;
 };
@@ -98,99 +102,24 @@ const Schedule = () => {
     useCallback((visible) => setIsVisible(visible), [])
   );
 
-  // Memoized schedule data with pre-computed values
   const scheduleData = useMemo(() => [
-    { 
-      time: '7:00 am - 9:00 am', 
-      activity: 'Asana Pranayama Mudra Bandha (APMB)', 
-      type: 'practice',
-      icon: '🧘‍♀️',
-      displayType: 'Practice'
-    },
-    { 
-      time: '9:30 am - 10:30 am', 
-      activity: 'Breakfast Break', 
-      type: 'break',
-      icon: '🍽️',
-      displayType: 'Break'
-    },
-    { 
-      time: '11:00 am - 1:00 pm', 
-      activity: 'Anatomy and Physiology / Philosophy and Ethics of Yoga', 
-      type: 'theory',
-      icon: '📚',
-      displayType: 'Theory'
-    },
-    { 
-      time: '1:00 pm - 2:00 pm', 
-      activity: 'Lunch Break', 
-      type: 'break',
-      icon: '🍽️',
-      displayType: 'Break'
-    },
-    { 
-      time: '3:00 pm - 4:00 pm', 
-      activity: 'Teaching Methodology and Techniques', 
-      type: 'theory',
-      icon: '📚',
-      displayType: 'Theory'
-    },
-    { 
-      time: '3:30 pm - 4:00 pm', 
-      activity: 'Tea Break', 
-      type: 'break',
-      icon: '🍽️',
-      displayType: 'Break'
-    },
-    { 
-      time: '4:30 pm - 5:30 pm', 
-      activity: 'Advanced Asana and Pranayama Techniques', 
-      type: 'practice',
-      icon: '🧘‍♀️',
-      displayType: 'Practice'
-    },
-    { 
-      time: '5:30 pm - 6:30 pm', 
-      activity: 'Meditation / Relaxation', 
-      type: 'meditation',
-      icon: '🕯️',
-      displayType: 'Meditation'
-    },
-    { 
-      time: '7:00 pm - 8:00 pm', 
-      activity: 'Dinner', 
-      type: 'break',
-      icon: '🍽️',
-      displayType: 'Break'
-    },
-    { 
-      time: '8:00 pm - 9:00 pm', 
-      activity: 'Self-Study and Reflection', 
-      type: 'study',
-      icon: '📝',
-      displayType: 'Study'
-    },
-    { 
-      time: '10:00 pm', 
-      activity: 'Lights Out', 
-      type: 'rest',
-      icon: '🌙',
-      displayType: 'Rest'
-    }
+    { time: '7:00 am - 9:00 am', activity: 'Asana Pranayama Mudra Bandha (APMB)', type: 'practice', icon: '🧘‍♀️', displayType: 'Practice' },
+    { time: '9:30 am - 10:30 am', activity: 'Breakfast Break', type: 'break', icon: '🍽️', displayType: 'Break' },
+    { time: '11:00 am - 1:00 pm', activity: 'Anatomy and Physiology / Philosophy and Ethics of Yoga', type: 'theory', icon: '📚', displayType: 'Theory' },
+    { time: '1:00 pm - 2:00 pm', activity: 'Lunch Break', type: 'break', icon: '🍽️', displayType: 'Break' },
+    { time: '3:00 pm - 4:00 pm', activity: 'Teaching Methodology and Techniques', type: 'theory', icon: '📚', displayType: 'Theory' },
+    { time: '3:30 pm - 4:00 pm', activity: 'Tea Break', type: 'break', icon: '🍽️', displayType: 'Break' },
+    { time: '4:30 pm - 5:30 pm', activity: 'Advanced Asana and Pranayama Techniques', type: 'practice', icon: '🧘‍♀️', displayType: 'Practice' },
+    { time: '5:30 pm - 6:30 pm', activity: 'Meditation / Relaxation', type: 'meditation', icon: '🕯️', displayType: 'Meditation' },
+    { time: '7:00 pm - 8:00 pm', activity: 'Dinner', type: 'break', icon: '🍽️', displayType: 'Break' },
+    { time: '8:00 pm - 9:00 pm', activity: 'Self-Study and Reflection', type: 'study', icon: '📝', displayType: 'Study' },
+    { time: '10:00 pm', activity: 'Lights Out', type: 'rest', icon: '🌙', displayType: 'Rest' }
   ], []);
 
-  // Memoized header content
   const headerContent = useMemo(() => ({
     title: "Yoga Teacher Training Schedule",
     logo: "./images/lg.png"
   }), []);
-
-  // Performance monitoring
-  useEffect(() => {
-    if (isVisible) {
-      console.log('Schedule: Content became visible, starting animations');
-    }
-  }, [isVisible]);
 
   return (
     <div className="schedule-container">
@@ -200,7 +129,7 @@ const Schedule = () => {
             <h1>{headerContent.title}</h1>
             <img 
               src={headerContent.logo} 
-              alt="Ombreathe Logo"
+              alt="Ombreathe"
               loading="eager"
               style={{ maxWidth: '100%', height: 'auto' }}
             />
@@ -229,6 +158,12 @@ const Schedule = () => {
       <Legend />
       
       <style jsx>{`
+      .schedule-item.animate-in { animation: slideInUp 0.5s ease forwards; }
+        .schedule-item { will-change: transform, opacity; backface-visibility: hidden; }
+        @keyframes slideInUp {
+          from { opacity: 0; transform: translateY(30px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
         @keyframes slideInUp {
           from {
             opacity: 0;

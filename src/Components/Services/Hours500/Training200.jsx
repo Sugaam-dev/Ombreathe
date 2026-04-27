@@ -1,6 +1,6 @@
 import React from 'react';
 import a from '../../../images/services/200.webp'
-import HouseOfYoga from './HouseOfYoga';
+
 
 const Training200 = () => {
   return (

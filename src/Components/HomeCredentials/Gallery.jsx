@@ -1,7 +1,5 @@
 import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
-import './Styles/Gallery.css'; // Import the CSS file
 
-// Import all 46 yoga gallery images
 import img1 from '../../images/new Gallery/1.jpg';
 import img2 from '../../images/new Gallery/2.jpg';
 import img3 from '../../images/new Gallery/3.jpg';
@@ -49,361 +47,402 @@ import img44 from '../../images/new Gallery/44.jpg';
 import img45 from '../../images/new Gallery/45.jpg';
 import img46 from '../../images/new Gallery/46.jpg';
 
-const Gallery = ({ 
-  showThumbnails = true,
-  autoPlay = false,
-  interval = 4000
-}) => {
+const CSS = `
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;1,300&family=DM+Sans:wght@300;400&display=swap');
+
+  .gy-root * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  .gy-root {
+    font-family: 'DM Sans', sans-serif;
+    // background: #faf7f2;
+    padding: 3.5rem 1.5rem 4rem;
+  }
+
+  .gy-heading {
+    text-align: center;
+    margin-bottom: 2.5rem;
+  }
+  .gy-heading h2 {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: clamp(36px, 6vw, 60px);
+    font-weight: 300;
+    color: #1e1e1c;
+    line-height: 1.1;
+    margin-bottom: 0.5rem;
+  }
+  .gy-heading h2 em {
+    font-style: italic;
+    color: #4a7c68;
+  }
+  .gy-heading p {
+    font-size: 14px;
+    font-weight: 300;
+    color: #9a9188;
+    letter-spacing: 0.03em;
+  }
+  .gy-heading-line {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 1.2rem;
+  }
+  .gy-heading-line span {
+    display: block;
+    width: 50px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, #7aad97);
+  }
+  .gy-heading-line span:last-child {
+    background: linear-gradient(90deg, #7aad97, transparent);
+  }
+  .gy-heading-line i {
+    color: #7aad97;
+    font-style: normal;
+    font-size: 14px;
+  }
+
+  .gy-slide {
+    position: relative;
+    max-width: 820px;
+    margin: 0 auto;
+    border-radius: 18px;
+    overflow: hidden;
+    aspect-ratio: 16 / 9;
+    background: #e8f2ee;
+    cursor: grab;
+    box-shadow: 0 6px 32px rgba(45, 74, 62, 0.13);
+  }
+  .gy-slide:active { cursor: grabbing; }
+
+  .gy-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: opacity 0.35s ease, transform 0.4s ease;
+  }
+  .gy-slide img.gy-fade { opacity: 0; transform: scale(1.03); }
+  .gy-slide img.gy-show { opacity: 1; transform: scale(1); }
+
+  .gy-slide-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(20,20,18,0.35) 0%, transparent 55%);
+    pointer-events: none;
+  }
+
+  .gy-counter {
+    position: absolute;
+    bottom: 16px;
+    right: 18px;
+    color: rgba(255,255,255,0.85);
+    font-size: 12px;
+    letter-spacing: 0.08em;
+  }
+
+  .gy-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.4);
+    background: rgba(255,255,255,0.16);
+    backdrop-filter: blur(10px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 22px;
+    color: #fff;
+    transition: background 0.2s, transform 0.15s;
+    user-select: none;
+    z-index: 2;
+  }
+  .gy-nav:hover { background: rgba(255,255,255,0.32); transform: translateY(-50%) scale(1.07); }
+  .gy-nav:active { transform: translateY(-50%) scale(0.93); }
+  .gy-nav-prev { left: 14px; }
+  .gy-nav-next { right: 14px; }
+
+  .gy-progress {
+    max-width: 820px;
+    margin: 12px auto 0;
+    height: 2px;
+    background: #e0d8cf;
+    border-radius: 999px;
+    overflow: hidden;
+  }
+  .gy-progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #4a7c68, #7aad97);
+    border-radius: 999px;
+    transition: width 0.35s ease;
+  }
+
+  .gy-dots {
+    display: flex;
+    justify-content: center;
+    gap: 7px;
+    margin-top: 14px;
+    flex-wrap: wrap;
+  }
+  .gy-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #d8cfc6;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    transition: all 0.25s;
+  }
+  .gy-dot.active { background: #4a7c68; width: 20px; border-radius: 999px; }
+  .gy-dot:hover:not(.active) { background: #7aad97; }
+
+  .gy-thumbs {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
+    gap: 6px;
+    max-width: 820px;
+    margin: 16px auto 0;
+  }
+  .gy-thumb {
+    aspect-ratio: 1;
+    border-radius: 9px;
+    overflow: hidden;
+    cursor: pointer;
+    border: 2px solid transparent;
+    opacity: 0.7;
+    transition: opacity 0.2s, border-color 0.2s, transform 0.2s;
+    background: #e8f2ee;
+  }
+  .gy-thumb:hover { opacity: 1; transform: scale(1.05); }
+  .gy-thumb.active { border-color: #4a7c68; opacity: 1; transform: scale(1.05); }
+  .gy-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+  .gy-loading {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #e8f2ee;
+  }
+  .gy-spinner {
+    width: 30px;
+    height: 30px;
+    border: 2px solid #c9e8dc;
+    border-top-color: #4a7c68;
+    border-radius: 50%;
+    animation: gy-spin 0.75s linear infinite;
+  }
+  @keyframes gy-spin { to { transform: rotate(360deg); } }
+
+  @media (max-width: 600px) {
+    .gy-root { padding: 2.5rem 1rem 3rem; }
+    .gy-thumbs { grid-template-columns: repeat(auto-fill, minmax(56px, 1fr)); gap: 5px; }
+  }
+`;
+
+const Gallery = ({ showThumbnails = true, autoPlay = false, interval = 4000 }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [imagesLoaded, setImagesLoaded] = useState(new Set());
   const [isVisible, setIsVisible] = useState(false);
+  const [fading, setFading] = useState(false);
   const touchStartX = useRef(0);
   const touchEndX = useRef(0);
   const [isDragging, setIsDragging] = useState(false);
   const galleryRef = useRef(null);
   const imageCache = useRef(new Map());
 
-  // All 46 yoga images array
   const images = useMemo(() => [
-    { src: img1, id: 'img-0' },
-    { src: img2, id: 'img-1' },
-    { src: img3, id: 'img-2' },
-    { src: img4, id: 'img-3' },
-    { src: img5, id: 'img-4' },
-    { src: img6, id: 'img-5' },
-    { src: img7, id: 'img-6' },
-    { src: img8, id: 'img-7' },
-    { src: img9, id: 'img-8' },
-    { src: img10, id: 'img-9' },
-    { src: img11, id: 'img-10' },
-    { src: img12, id: 'img-11' },
-    { src: img13, id: 'img-12' },
-    { src: img14, id: 'img-13' },
-    { src: img15, id: 'img-14' },
-    { src: img16, id: 'img-15' },
-    { src: img17, id: 'img-16' },
-    { src: img18, id: 'img-17' },
-    { src: img19, id: 'img-18' },
-    { src: img20, id: 'img-19' },
-    { src: img21, id: 'img-20' },
-    { src: img22, id: 'img-21' },
-    { src: img23, id: 'img-22' },
-    { src: img24, id: 'img-23' },
-    { src: img25, id: 'img-24' },
-    { src: img26, id: 'img-25' },
-    { src: img27, id: 'img-26' },
-    { src: img28, id: 'img-27' },
-    { src: img29, id: 'img-28' },
-    { src: img30, id: 'img-29' },
-    { src: img31, id: 'img-30' },
-    { src: img32, id: 'img-31' },
-    { src: img33, id: 'img-32' },
-    { src: img34, id: 'img-33' },
-    { src: img35, id: 'img-34' },
-    { src: img36, id: 'img-35' },
-    { src: img37, id: 'img-36' },
-    { src: img38, id: 'img-37' },
-    { src: img39, id: 'img-38' },
-    { src: img40, id: 'img-39' },
-    { src: img41, id: 'img-40' },
-    { src: img42, id: 'img-41' },
-    { src: img43, id: 'img-42' },
-    { src: img44, id: 'img-43' },
-    { src: img45, id: 'img-44' },
-    { src: img46, id: 'img-45' }
-  ], []);
+    img1, img2, img3, img4, img5, img6, img7, img8, img9, img10,
+    img11, img12, img13, img14, img15, img16, img17, img18, img19, img20,
+    img21, img22, img23, img24, img25, img26, img27, img28, img29, img30,
+    img31, img32, img33, img34, img35, img36, img37, img38, img39, img40,
+    img41, img42, img43, img44, img45, img46,
+  ].map((src, i) => ({ src, id: `img-${i}` })), []);
 
-  // Intersection Observer for performance
   useEffect(() => {
     const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-        }
-      },
+      ([entry]) => { if (entry.isIntersecting) setIsVisible(true); },
       { threshold: 0.1 }
     );
-
-    if (galleryRef.current) {
-      observer.observe(galleryRef.current);
-    }
-
+    if (galleryRef.current) observer.observe(galleryRef.current);
     return () => observer.disconnect();
   }, []);
 
-  // Smart image preloading
   const preloadImage = useCallback((src, index, priority = 'low') => {
     if (imageCache.current.has(src)) {
       setImagesLoaded(prev => new Set([...prev, index]));
       return Promise.resolve();
     }
-
     return new Promise((resolve, reject) => {
       const img = new Image();
-      
-      if (priority === 'high') {
-        img.loading = 'eager';
-        img.fetchPriority = 'high';
-      } else {
-        img.loading = 'lazy';
-        img.fetchPriority = 'low';
-      }
-      
+      img.loading = priority === 'high' ? 'eager' : 'lazy';
       img.onload = () => {
         imageCache.current.set(src, img);
         setImagesLoaded(prev => new Set([...prev, index]));
         resolve();
       };
-      
       img.onerror = reject;
       img.src = src;
     });
   }, []);
 
-  // Progressive loading strategy
   useEffect(() => {
     if (!isVisible) return;
-
-    const loadImages = async () => {
-      // Priority 1: Current image
-      await preloadImage(images[currentIndex].src, currentIndex, 'high');
-      
-      // Priority 2: Next and previous images
-      const nextIndex = (currentIndex + 1) % images.length;
-      const prevIndex = (currentIndex - 1 + images.length) % images.length;
-      
-      Promise.all([
-        preloadImage(images[nextIndex].src, nextIndex, 'high'),
-        preloadImage(images[prevIndex].src, prevIndex, 'high')
-      ]);
-
-      // Priority 3: Batch load nearby images
-      if (window.requestIdleCallback) {
-        window.requestIdleCallback(() => {
-          const batchSize = 5;
-          const startIndex = Math.max(0, currentIndex - batchSize);
-          const endIndex = Math.min(images.length - 1, currentIndex + batchSize);
-          
-          for (let i = startIndex; i <= endIndex; i++) {
-            if (i !== currentIndex && i !== nextIndex && i !== prevIndex) {
-              preloadImage(images[i].src, i, 'low');
-            }
-          }
-        });
-      }
-    };
-
-    loadImages();
+    const next = (currentIndex + 1) % images.length;
+    const prev = (currentIndex - 1 + images.length) % images.length;
+    preloadImage(images[currentIndex].src, currentIndex, 'high');
+    preloadImage(images[next].src, next, 'high');
+    preloadImage(images[prev].src, prev, 'high');
   }, [currentIndex, images, isVisible, preloadImage]);
 
-  // Auto-play functionality
   useEffect(() => {
-    if (autoPlay && images.length > 1 && isVisible) {
-      const timer = setInterval(() => {
-        setCurrentIndex((prev) => (prev + 1) % images.length);
-      }, interval);
-      return () => clearInterval(timer);
+    if (autoPlay && isVisible) {
+      const t = setInterval(() => setCurrentIndex(p => (p + 1) % images.length), interval);
+      return () => clearInterval(t);
     }
   }, [autoPlay, interval, images.length, isVisible]);
 
-  // Navigation functions
-  const goToSlide = useCallback((index) => {
-    setCurrentIndex(index);
+  const goTo = useCallback((idx) => {
+    setFading(true);
+    setTimeout(() => { setCurrentIndex(idx); setFading(false); }, 220);
   }, []);
 
-  const goToPrevious = useCallback(() => {
-    setCurrentIndex((prev) => (prev - 1 + images.length) % images.length);
-  }, [images.length]);
+  const goToPrev = useCallback(() => goTo((currentIndex - 1 + images.length) % images.length), [currentIndex, images.length, goTo]);
+  const goToNext = useCallback(() => goTo((currentIndex + 1) % images.length), [currentIndex, images.length, goTo]);
 
-  const goToNext = useCallback(() => {
-    setCurrentIndex((prev) => (prev + 1) % images.length);
-  }, [images.length]);
-
-  // Touch/Mouse handlers
-  const handleTouchStart = useCallback((e) => {
-    touchStartX.current = e.touches[0].clientX;
-    setIsDragging(true);
-  }, []);
-
-  const handleTouchMove = useCallback((e) => {
-    if (!isDragging) return;
-    touchEndX.current = e.touches[0].clientX;
-    e.preventDefault();
-  }, [isDragging]);
-
-  const handleTouchEnd = useCallback(() => {
+  const handleTouchStart = useCallback(e => { touchStartX.current = e.touches[0].clientX; setIsDragging(true); }, []);
+  const handleTouchMove  = useCallback(e => { if (isDragging) touchEndX.current = e.touches[0].clientX; }, [isDragging]);
+  const handleTouchEnd   = useCallback(() => {
     if (!isDragging) return;
     setIsDragging(false);
-    
-    const swipeThreshold = 50;
-    const swipeDistance = touchStartX.current - touchEndX.current;
+    const d = touchStartX.current - touchEndX.current;
+    if (Math.abs(d) > 50) d > 0 ? goToNext() : goToPrev();
+  }, [isDragging, goToNext, goToPrev]);
 
-    if (Math.abs(swipeDistance) > swipeThreshold) {
-      if (swipeDistance > 0) {
-        goToNext();
-      } else {
-        goToPrevious();
-      }
-    }
-
-    touchStartX.current = 0;
-    touchEndX.current = 0;
-  }, [isDragging, goToNext, goToPrevious]);
-
-  const handleMouseDown = useCallback((e) => {
-    e.preventDefault();
-    touchStartX.current = e.clientX;
-    setIsDragging(true);
-  }, []);
-
-  const handleMouseMove = useCallback((e) => {
-    if (!isDragging) return;
-    touchEndX.current = e.clientX;
-  }, [isDragging]);
-
-  const handleMouseUp = useCallback(() => {
+  const handleMouseDown = useCallback(e => { e.preventDefault(); touchStartX.current = e.clientX; setIsDragging(true); }, []);
+  const handleMouseMove = useCallback(e => { if (isDragging) touchEndX.current = e.clientX; }, [isDragging]);
+  const handleMouseUp   = useCallback(() => {
     if (!isDragging) return;
     setIsDragging(false);
-    
-    const swipeThreshold = 50;
-    const swipeDistance = touchStartX.current - touchEndX.current;
-
-    if (Math.abs(swipeDistance) > swipeThreshold) {
-      if (swipeDistance > 0) {
-        goToNext();
-      } else {
-        goToPrevious();
-      }
-    }
-
-    touchStartX.current = 0;
-    touchEndX.current = 0;
-  }, [isDragging, goToNext, goToPrevious]);
-
-  // Keyboard navigation
-  const handleKeyDown = useCallback((e) => {
-    if (e.key === 'ArrowLeft') {
-      e.preventDefault();
-      goToPrevious();
-    } else if (e.key === 'ArrowRight') {
-      e.preventDefault();
-      goToNext();
-    }
-  }, [goToPrevious, goToNext]);
+    const d = touchStartX.current - touchEndX.current;
+    if (Math.abs(d) > 50) d > 0 ? goToNext() : goToPrev();
+  }, [isDragging, goToNext, goToPrev]);
 
   useEffect(() => {
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [handleKeyDown]);
+    const onKey = e => {
+      if (e.key === 'ArrowLeft') goToPrev();
+      if (e.key === 'ArrowRight') goToNext();
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [goToPrev, goToNext]);
 
-  // Optimized thumbnail rendering
-  const getVisibleThumbnails = useMemo(() => {
+  const visibleThumbs = useMemo(() => {
     if (!showThumbnails) return [];
-    
-    const thumbsToShow = 12;
-    const startIndex = Math.max(0, currentIndex - Math.floor(thumbsToShow / 2));
-    const endIndex = Math.min(images.length - 1, startIndex + thumbsToShow - 1);
-    
-    return images.slice(startIndex, endIndex + 1).map((img, idx) => ({
-      ...img,
-      originalIndex: startIndex + idx
-    }));
+    const count = 12;
+    const half = Math.floor(count / 2);
+    let start = Math.max(0, currentIndex - half);
+    const end = Math.min(images.length - 1, start + count - 1);
+    start = Math.max(0, end - count + 1);
+    return images.slice(start, end + 1).map((img, i) => ({ ...img, originalIndex: start + i }));
   }, [images, currentIndex, showThumbnails]);
 
-  if (!images || images.length === 0) {
-    return <div className="gallery-empty">No images to display</div>;
-  }
+  const DOT_COUNT = Math.min(images.length, 16);
+  const dots = useMemo(() =>
+    Array.from({ length: DOT_COUNT }, (_, i) =>
+      Math.round(i * (images.length - 1) / (DOT_COUNT - 1))
+    ),
+  [images.length, DOT_COUNT]);
 
   return (
-    <div className="gallery-container" ref={galleryRef}>
-      <div className="gallery-inner">
-        {/* Gallery Title */}
-        <div className="gallery-header">
-          <h2 className="gallery-title">Yoga Gallery</h2>
-          <p className="gallery-subtitle">
-          Take a glimpse into our yoga journey through these beautiful moments.
-          </p>
-        </div>
+    <>
+      <style>{CSS}</style>
+      <div className="gy-root" ref={galleryRef}>
 
-        {/* Main Gallery Container - Dynamic Size */}
-        <div className="gallery-main-wrapper">
-          <div className="gallery-main-container">
-            <div 
-              className={`gallery-viewport ${isDragging ? 'dragging' : ''}`}
-              onTouchStart={handleTouchStart}
-              onTouchMove={handleTouchMove}
-              onTouchEnd={handleTouchEnd}
-              onMouseDown={handleMouseDown}
-              onMouseMove={handleMouseMove}
-              onMouseUp={handleMouseUp}
-              onMouseLeave={handleMouseUp}
-            >
-              {/* Main Image Display */}
-              <div className="gallery-image-container">
-                {/* Loading State */}
-                {!imagesLoaded.has(currentIndex) && (
-                  <div className="gallery-loading">
-                    <div className="gallery-loading-content">
-                      <div className="gallery-spinner"></div>
-                    </div>
-                  </div>
-                )}
-                
-                {/* Main Image */}
-                <img
-                  src={images[currentIndex].src}
-                  alt={`Yoga Gallery Image ${currentIndex + 1}`}
-                  className={`gallery-main-image ${imagesLoaded.has(currentIndex) ? 'loaded' : ''}`}
-                  draggable={false}
-                  loading="eager"
-                  fetchpriority="high"
-                />
-              </div>
-
-              {/* Navigation Arrows */}
-              {images.length > 1 && (
-                <>
-                  <button
-                    className="gallery-nav-btn gallery-nav-prev"
-                    onClick={goToPrevious}
-                    aria-label="Previous image"
-                  >
-                    <span>‹</span>
-                  </button>
-                  
-                  <button
-                    className="gallery-nav-btn gallery-nav-next"
-                    onClick={goToNext}
-                    aria-label="Next image"
-                  >
-                    <span>›</span>
-                  </button>
-                </>
-              )}
-
-              {/* Dot Indicators */}
-              {images.length > 1 && (
-                <div className="gallery-dots">
-                  {Array.from({ length: Math.min(images.length, 15) }, (_, i) => {
-                    const actualIndex = Math.floor((i * images.length) / 15);
-                    const isActive = Math.abs(actualIndex - currentIndex) < 3;
-                    
-                    return (
-                      <button
-                        key={actualIndex}
-                        className={`gallery-dot ${actualIndex === currentIndex ? 'active' : ''} ${isActive ? 'visible' : ''}`}
-                        onClick={() => goToSlide(actualIndex)}
-                        aria-label={`Go to image ${actualIndex + 1}`}
-                      />
-                    );
-                  })}
-                </div>
-              )}
-            </div>
+        {/* Heading */}
+        <div className="gy-heading">
+          <h2>Yoga <em>Gallery</em></h2>
+          <p>A glimpse into our journey of practice, peace &amp; community</p>
+          <div className="gy-heading-line">
+            <span /><i>&#10022;</i><span />
           </div>
         </div>
+
+        {/* Main Slide */}
+        <div
+          className="gy-slide"
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
+          onMouseDown={handleMouseDown}
+          onMouseMove={handleMouseMove}
+          onMouseUp={handleMouseUp}
+          onMouseLeave={handleMouseUp}
+        >
+          {!imagesLoaded.has(currentIndex) ? (
+            <div className="gy-loading"><div className="gy-spinner" /></div>
+          ) : (
+            <img
+              src={images[currentIndex].src}
+              alt={`Yoga gallery ${currentIndex + 1}`}
+              className={fading ? 'gy-fade' : 'gy-show'}
+              draggable={false}
+              loading="eager"
+            />
+          )}
+          <div className="gy-slide-overlay" />
+          <div className="gy-counter">{currentIndex + 1} / {images.length}</div>
+          <button className="gy-nav gy-nav-prev" onClick={goToPrev} aria-label="Previous">&#8249;</button>
+          <button className="gy-nav gy-nav-next" onClick={goToNext} aria-label="Next">&#8250;</button>
+        </div>
+
+        {/* Progress bar */}
+        <div className="gy-progress">
+          <div
+            className="gy-progress-fill"
+            style={{ width: `${((currentIndex + 1) / images.length) * 100}%` }}
+          />
+        </div>
+
+        {/* Dots */}
+        <div className="gy-dots">
+          {dots.map(idx => (
+            <button
+              key={idx}
+              className={`gy-dot${idx === currentIndex ? ' active' : ''}`}
+              onClick={() => goTo(idx)}
+              aria-label={`Go to image ${idx + 1}`}
+            />
+          ))}
+        </div>
+
+        {/* Thumbnails */}
+        {showThumbnails && (
+          <div className="gy-thumbs">
+            {visibleThumbs.map(({ src, id, originalIndex }) => (
+              <div
+                key={id}
+                className={`gy-thumb${originalIndex === currentIndex ? ' active' : ''}`}
+                onClick={() => goTo(originalIndex)}
+                role="button"
+                tabIndex={0}
+                aria-label={`View image ${originalIndex + 1}`}
+                onKeyDown={e => e.key === 'Enter' && goTo(originalIndex)}
+              >
+                <img src={src} alt={`Thumbnail ${originalIndex + 1}`} loading="lazy" />
+              </div>
+            ))}
+          </div>
+        )}
+
       </div>
-    </div>
+    </>
   );
 };
 

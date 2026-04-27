@@ -8,7 +8,8 @@ const BannerImage = React.memo(() => {
         <source srcSet={guru} media="(min-width: 768px)" />
         <img
           src={guru}
-          alt="Banner image"
+          /* CHANGED: Removed the word "image" to satisfy accessibility rules */
+          alt="Yoga Guru Sadguru" 
           className="img-fluid w-100 banner-image"
         />
       </picture>
