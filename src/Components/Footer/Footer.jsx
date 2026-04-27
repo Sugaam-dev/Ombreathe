@@ -4,8 +4,7 @@ import React, {
   memo, 
   useState, 
   useEffect,
-  lazy,
-  Suspense
+  
 } from 'react';
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -293,53 +292,53 @@ const Certifications = memo(() => {
 });
 
 // Scroll to Top Button Only (WhatsApp removed)
-const ScrollToTopButton = memo(() => {
-  const [showScrollTop, setShowScrollTop] = useState(false);
+// const ScrollToTopButton = memo(() => {
+//   const [showScrollTop, setShowScrollTop] = useState(false);
 
-  useEffect(() => {
-    let timeoutId;
-    const handleScroll = () => {
-      clearTimeout(timeoutId);
-      timeoutId = setTimeout(() => {
-        setShowScrollTop(window.pageYOffset > 300);
-      }, 100);
-    };
+//   useEffect(() => {
+//     let timeoutId;
+//     const handleScroll = () => {
+//       clearTimeout(timeoutId);
+//       timeoutId = setTimeout(() => {
+//         setShowScrollTop(window.pageYOffset > 300);
+//       }, 100);
+//     };
 
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-      clearTimeout(timeoutId);
-    };
-  }, []);
+//     window.addEventListener('scroll', handleScroll, { passive: true });
+//     return () => {
+//       window.removeEventListener('scroll', handleScroll);
+//       clearTimeout(timeoutId);
+//     };
+//   }, []);
 
-  const scrollToTop = useCallback(() => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    });
-  }, []);
+//   const scrollToTop = useCallback(() => {
+//     window.scrollTo({
+//       top: 0,
+//       behavior: 'smooth'
+//     });
+//   }, []);
 
-  return showScrollTop ? (
-    <button
-      onClick={scrollToTop}
-      className="btn position-fixed scroll-top-btn rounded-circle shadow-lg"
-      style={{ 
-        width: '50px', 
-        height: '50px',
-        bottom: '20px',
-        right: '20px',
-        zIndex: 1000,
-        transition: 'all 0.3s ease',
-        backgroundColor: '#42A5F6',
-        borderColor: '#42A5F6',
-        color: 'white'
-      }}
-      aria-label="Scroll to top"
-    >
-      <FontAwesomeIcon icon={faChevronUp} />
-    </button>
-  ) : null;
-});
+//   return showScrollTop ? (
+//     <button
+//       onClick={scrollToTop}
+//       className="btn position-fixed scroll-top-btn rounded-circle shadow-lg"
+//       style={{ 
+//         width: '50px', 
+//         height: '50px',
+//         bottom: '20px',
+//         right: '20px',
+//         zIndex: 1000,
+//         transition: 'all 0.3s ease',
+//         backgroundColor: '#42A5F6',
+//         borderColor: '#42A5F6',
+//         color: 'white'
+//       }}
+//       aria-label="Scroll to top"
+//     >
+//       <FontAwesomeIcon icon={faChevronUp} />
+//     </button>
+//   ) : null;
+// });
 
 const Footer = () => {
   const currentYear = useMemo(() => new Date().getFullYear(), []);

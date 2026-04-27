@@ -2,8 +2,8 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 // Import optimized components
-import About_Header from './About_Header.jsx';
-import AboutUs_section from './AboutUs_section.jsx';
+import AboutHeader from './AboutHeader.jsx';
+import AboutUsSection from './AboutUsSection.jsx';
 import Community from './Community.jsx';
 import Founder from './Founder.jsx';
 import YogaTeachers from '../Teachers/YogaTeachers.jsx';
@@ -16,10 +16,10 @@ const AboutUsPage = () => {
   return (
     <main className="aboutus-main-page">
       {/* Hero Section - About Us Header */}
-      <About_Header />
+      <AboutHeader />
       
       {/* Reach Potential Section */}
-      <AboutUs_section />
+      <AboutUsSection />
 
       {/* School and Community Section */}
       <Community />

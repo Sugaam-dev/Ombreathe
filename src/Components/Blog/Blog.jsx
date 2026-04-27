@@ -4,7 +4,7 @@ import React, {
   useMemo, 
   useCallback, 
   useEffect, 
-  lazy, 
+  
   Suspense,
   startTransition,
   useDeferredValue,

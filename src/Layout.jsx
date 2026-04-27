@@ -4,7 +4,7 @@ import Navbar from './Components/Header/Navbar';
 import logo from './images/omBreatheLogo.png';
 import Footer from './Components/Footer/Footer';
 import ScrollToTop from './Components/useFullComponent/ScrollToTop';
-import FloatingDonateButton from './Components/useFullComponent/FloatingDonateButton';
+// import FloatingDonateButton from './Components/useFullComponent/FloatingDonateButton';
 import WhatsAppButton from './Components/WhatsAppButton';
 import DiscountPopup from './Components/DiscountPopup';
 

@@ -2,7 +2,7 @@ import React from 'react';
 import './Styles/AboutUsSection.css';
 import heroAboutImage from '../../images/Gallery/10.jpg';
 
-const AboutUs_section = () => {
+const AboutUsSection = () => {
   return (
     <section className="aboutus-reach-potential-section">
       {/* Hero Section with Parallax Background */}
@@ -45,4 +45,4 @@ const AboutUs_section = () => {
   );
 };
 
-export default AboutUs_section;
+export default AboutUsSection;

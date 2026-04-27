@@ -7,7 +7,7 @@ const DiscountPopup = () => {
   const animFrameRef = useRef(null);
   const particlesRef = useRef([]);
 
-  const WHATSAPP_NUMBER = "1234567890";
+  const WHATSAPP_NUMBER = "917483987568";
   const MESSAGE =
     "Hi! I'd like to claim the 20% discount for the Rishikesh 2026 retreat.";
 
@@ -71,7 +71,7 @@ const DiscountPopup = () => {
   };
 
   const handleClaimClick = () => {
-    const url = `https://wa.me/${917483987568}?text=${encodeURIComponent(MESSAGE)}`;
+    const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(MESSAGE)}`;
     window.open(url, "_blank");
   };
 

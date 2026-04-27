@@ -2,7 +2,7 @@ import React from 'react';
 import './Styles/AboutHeader.css';
 import hero_img from '../../images/Background.jpg';
 
-const About_Header = () => {
+const AboutHeader = () => {
   return (
     <section className="about-header-section">
       <div className="container-fluid about-header-main-content">
@@ -51,4 +51,4 @@ const About_Header = () => {
   );
 };
 
-export default About_Header;
+export default AboutHeader;
