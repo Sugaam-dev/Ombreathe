@@ -344,7 +344,7 @@ const ImageSliderBanner = () => {
             type="button"
             aria-label="Navigate to Teacher Training Program in Bali"
           >
-            <span className="button-text">Teacher Training Program in Bali</span>
+            <span className="button-text">Teacher Training Program</span>
           </button>
           
           <button 
@@ -353,7 +353,7 @@ const ImageSliderBanner = () => {
             type="button"
             aria-label="Navigate to Retreat Program in Bali"
           >
-            <span className="button-text">Retreat Program in Bali</span>
+            <span className="button-text">Retreat Program</span>
           </button>
         </div>
       </div>

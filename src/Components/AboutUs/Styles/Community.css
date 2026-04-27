@@ -2,7 +2,7 @@
 
 .community-school-section {
  
-  padding: 100px 0;
+  padding: 50px 0;
   position: relative;
   overflow: hidden;
 }
@@ -187,7 +187,7 @@
 
 @media (max-width: 992px) {
   .community-school-section {
-    padding: 80px 0;
+    padding: 50px 0;
   }
   
   .community-school-title {
@@ -202,7 +202,7 @@
 
 @media (max-width: 768px) {
   .community-school-section {
-    padding: 60px 0;
+    padding: 25px 0;
   }
   
   .community-school-title {

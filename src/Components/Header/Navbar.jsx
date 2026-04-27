@@ -1,167 +1,118 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
 import logo from "../../images/omBreatheLogo.png";
 import "./Navbar.css";
 
 const Navbar = () => {
-  const [isNavCollapsed, setIsNavCollapsed] = useState(true);
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [activeLink, setActiveLink] = useState("");
   const [dropdownOpen, setDropdownOpen] = useState({});
-  const [shortRetreatsOpen, setShortRetreatsOpen] = useState(false);
+  const [activeLocation, setActiveLocation] = useState(null);
+  const [activeMobileCategory, setActiveMobileCategory] = useState(null);
   const [isDesktop, setIsDesktop] = useState(window.innerWidth >= 992);
-  const location = useLocation();
 
-  // Handle screen size changes
+  const [ttcView, setTtcView] = useState("main");
+  const [selectedTtcLoc, setSelectedTtcLoc] = useState("");
+
+  const location = useLocation();
+  const timeoutRef = useRef(null);
+
+  // Helper to check if a specific sub-link is active
+  const isSubActive = (path) => location.pathname === path;
+
   useEffect(() => {
     const handleResize = () => {
       const desktop = window.innerWidth >= 992;
       setIsDesktop(desktop);
+      if (desktop) setIsDrawerOpen(false);
     };
-
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  // Set active link based on current URL on component mount
   useEffect(() => {
-    const hashPath = location.hash.replace("#", "");
-    const pathToCheck = hashPath || location.pathname;
-
-    if (pathToCheck === "/" || pathToCheck === "") {
-      setActiveLink("home");
-    } else if (pathToCheck === "/about") {
-      setActiveLink("about");
-    } else if (pathToCheck === "/contact") {
-      setActiveLink("contact");
-    } else if (
-      pathToCheck.includes("/programs/") ||
-      pathToCheck.includes("/programs")
-    ) {
+    const path = location.pathname;
+    if (path === "/" || path === "") setActiveLink("home");
+    else if (path === "/about") setActiveLink("about");
+    else if (path === "/contact") setActiveLink("contact");
+    else if (path.includes("/programs") || path.includes("/online"))
       setActiveLink("programs");
-    } else {
-      setActiveLink("");
-    }
   }, [location]);
 
-  const handleNavCollapse = () => setIsNavCollapsed(!isNavCollapsed);
+  const openProgramsMenu = () => {
+    if (isDesktop) {
+      if (timeoutRef.current) clearTimeout(timeoutRef.current);
+      setDropdownOpen({ programs: true });
+    }
+  };
+
+  const closeProgramsMenu = () => {
+    if (isDesktop) {
+      timeoutRef.current = setTimeout(() => {
+        // Only close the dropdown panel — do NOT reset activeLocation, ttcView,
+        // selectedTtcLoc, or activeMobileCategory so they are restored on next hover.
+        setDropdownOpen({ programs: false });
+      }, 300);
+    }
+  };
+
+  const handleToggleDrawer = () => setIsDrawerOpen(!isDrawerOpen);
 
   const handleLinkClick = (linkName) => {
     setActiveLink(linkName);
     setDropdownOpen({});
-    setShortRetreatsOpen(false);
-    if (window.innerWidth < 992) {
-      setIsNavCollapsed(true);
-    }
+    // Do NOT reset activeLocation, ttcView, or selectedTtcLoc here —
+    // we want Programs to reopen at the same sub-section the user was in.
+    setIsDrawerOpen(false);
   };
 
-  const toggleDropdown = (dropdownName, event) => {
-    event.preventDefault();
-    event.stopPropagation();
+  const toggleLocation = (e, loc) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setActiveLocation(activeLocation === loc ? null : loc);
+  };
 
-    setDropdownOpen((prev) => {
-      const newState = {};
-      Object.keys(prev).forEach((key) => {
-        newState[key] = false;
-      });
-      newState[dropdownName] = !prev[dropdownName];
-      return newState;
+  const toggleMobileCategory = (cat) => {
+    setActiveMobileCategory(activeMobileCategory === cat ? null : cat);
+  };
+
+  const handleTtcLocationSelection = (loc) => {
+    setSelectedTtcLoc(loc);
+    setTtcView("detail");
+  };
+
+  const renderRetreatLinks = (city) => {
+    return Array.from({ length: 3 }).map((_, i) => {
+      const path = `/programs/retreat-${city.toLowerCase()}-${i + 1}`;
+      return (
+        <Link
+          key={i}
+          to={path}
+          className={isSubActive(path) ? "sub-link-active" : ""}
+          onClick={() => handleLinkClick("programs")}
+        >
+          {city} Session {i + 1}
+        </Link>
+      );
     });
-
-    // Close short retreats if closing programs
-    if (dropdownOpen["programs"]) {
-      setShortRetreatsOpen(false);
-    }
-
-    setActiveLink(dropdownName);
   };
-
-  const handleDropdownHover = (dropdownName, isHovering) => {
-    if (window.innerWidth >= 992) {
-      if (isHovering) {
-        setDropdownOpen((prev) => ({
-          ...prev,
-          [dropdownName]: true,
-        }));
-      } else {
-        setTimeout(() => {
-          setDropdownOpen((prev) => ({
-            ...prev,
-            [dropdownName]: false,
-          }));
-          setShortRetreatsOpen(false);
-        }, 300);
-      }
-    }
-  };
-
-  const handleShortRetreatsHover = (isHovering) => {
-    if (window.innerWidth >= 992) {
-      if (isHovering) {
-        setShortRetreatsOpen(true);
-      } else {
-        setTimeout(() => {
-          setShortRetreatsOpen(false);
-        }, 300);
-      }
-    }
-  };
-
-  const toggleShortRetreats = (event) => {
-    event.preventDefault();
-    event.stopPropagation();
-    if (window.innerWidth < 992) {
-      setShortRetreatsOpen((prev) => !prev);
-    }
-  };
-
-  // Close dropdowns when clicking outside
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (!event.target.closest(".dropdown")) {
-        setDropdownOpen({});
-        setShortRetreatsOpen(false);
-      }
-    };
-    document.addEventListener("click", handleClickOutside);
-    return () => document.removeEventListener("click", handleClickOutside);
-  }, []);
 
   return (
     <>
       <nav
-        className={`navbar navbar-expand-lg navbar-light premium-navbar shadow-lg ${isDesktop ? "fixed-top" : ""}`}
+        className={`navbar premium-navbar ${isDesktop ? "fixed-top shadow-sm" : "sticky-top shadow-sm"}`}
       >
-        <div className="container">
-          {/* Logo */}
+        <div className="container-fluid px-lg-5 d-flex align-items-center justify-content-between">
           <Link
-            className="navbar-brand logo-brand"
+            className="navbar-brand logo-link"
             to="/"
             onClick={() => handleLinkClick("home")}
           >
-            <div className="logo-container">
-              <img src={logo} alt="Logo" className="logo-image" />
-            </div>
+            <img src={logo} alt="Logo" className="logo-image" />
           </Link>
 
-          {/* Mobile toggle button */}
-          <button
-            className="navbar-toggler custom-toggler"
-            type="button"
-            onClick={handleNavCollapse}
-            aria-controls="navbarNav"
-            aria-expanded={!isNavCollapsed}
-            aria-label="Toggle navigation"
-          >
-            <span className="navbar-toggler-icon"></span>
-          </button>
-
-          {/* Navigation menu */}
-          <div
-            className={`${isNavCollapsed ? "collapse" : ""} navbar-collapse`}
-            id="navbarNav"
-          >
-            <ul className="navbar-nav ms-auto align-items-center">
-              {/* Home */}
+          {isDesktop && (
+            <ul className="navbar-nav mx-auto d-flex flex-row align-items-center nav-spacing">
               <li className="nav-item">
                 <Link
                   className={`nav-link premium-link ${activeLink === "home" ? "active" : ""}`}
@@ -171,8 +122,6 @@ const Navbar = () => {
                   Home
                 </Link>
               </li>
-
-              {/* About */}
               <li className="nav-item">
                 <Link
                   className={`nav-link premium-link ${activeLink === "about" ? "active" : ""}`}
@@ -183,113 +132,310 @@ const Navbar = () => {
                 </Link>
               </li>
 
-              {/* Programs Dropdown */}
               <li
-                className="nav-item dropdown dropdown-hover-container"
-                onMouseEnter={() => handleDropdownHover("programs", true)}
-                onMouseLeave={() => handleDropdownHover("programs", false)}
+                className="nav-item mega-static"
+                onMouseEnter={openProgramsMenu}
+                onMouseLeave={closeProgramsMenu}
               >
                 <Link
-                  className={`nav-link premium-link dropdown-toggle-custom ${activeLink === "programs" ? "active" : ""}`}
-                  href="#"
-                  role="button"
-                  onClick={(e) => toggleDropdown("programs", e)}
+                  className={`nav-link premium-link ${activeLink === "programs" ? "active" : ""}`}
+                  to="#"
                 >
-                  Programs
+                  Programs{" "}
                   <span
-                    className={`dropdown-arrow ${dropdownOpen.programs ? "rotated" : ""}`}
+                    className={`arrow-icon ${dropdownOpen.programs ? "rotated" : ""}`}
                   >
                     ▼
                   </span>
                 </Link>
 
-                {/* Invisible bridge for smooth hover transition */}
-                <div className="dropdown-bridge"></div>
-
                 {dropdownOpen.programs && (
-                  <div className="dropdown-menu-custom premium-dropdown show">
-                    <Link
-                      className="dropdown-item-custom premium-dropdown-item"
-                      to="/programs/Membership-Temple-Yoga-Program"
-                      onClick={() =>
-                        handleLinkClick(
-                          "programs/Membership-Temple-Yoga-Program",
-                        )
-                      }
-                    >
-                      Membership Programs
-                    </Link>
+                  <div
+                    className="bridge-area"
+                    onMouseEnter={openProgramsMenu}
+                  ></div>
+                )}
 
-                    {/* Short Retreats - nested submenu */}
-                    <div
-                      className={`dropdown-item-custom premium-dropdown-item short-retreats-container ${shortRetreatsOpen ? "active-sub" : ""}`}
-                      onMouseEnter={() => handleShortRetreatsHover(true)}
-                      onMouseLeave={() => handleShortRetreatsHover(false)}
-                    >
-                      {/* Trigger row */}
-                      <div
-                        className="short-retreats-trigger"
-                        onClick={toggleShortRetreats}
-                      >
-                        <span>Short Retreats</span>
-                        <span
-                          className={`dropdown-arrow sub-arrow ${shortRetreatsOpen ? "rotated" : ""}`}
-                        >
-                          {isDesktop ? "▶" : "▼"}
-                        </span>
-                      </div>
-
-                      {/* Sub-menu: right on desktop, down on mobile */}
-                      {shortRetreatsOpen && (
-                        <div
-                          className={`sub-dropdown-menu ${isDesktop ? "sub-dropdown-right" : "sub-dropdown-down"}`}
-                        >
+                <div
+                  className={`mega-panel shadow-lg ${dropdownOpen.programs ? "show" : ""}`}
+                  onMouseEnter={openProgramsMenu}
+                  onMouseLeave={closeProgramsMenu}
+                >
+                  <div className="container-fluid px-lg-5">
+                    {ttcView === "main" ? (
+                      <div className="row py-4 fade-in">
+                        <div className="col-lg-3 mega-column">
+                          <h6 className="column-title">MEMBERSHIP PROGRAMS</h6>
                           <Link
-                            className="dropdown-item-custom premium-dropdown-item"
-                            to="/programs/short-retreats/mysuru"
-                            onClick={() =>
-                              handleLinkClick("programs/short-retreats/mysuru")
+                            className={
+                              isSubActive("/programs/shiv-shakti-sadhana")
+                                ? "sub-link-active"
+                                : ""
                             }
+                            to="/programs/shiv-shakti-sadhana"
+                            onClick={() => handleLinkClick("programs")}
                           >
-                            Mysuru
+                            Shiv Shakti Sadhana
                           </Link>
                           <Link
-                            className="dropdown-item-custom premium-dropdown-item"
-                            to="/programs/short-retreats/bali"
-                            onClick={() =>
-                              handleLinkClick("programs/short-retreats/bali")
+                            className={
+                              isSubActive("/programs/shakti-sadhana")
+                                ? "sub-link-active"
+                                : ""
                             }
+                            to="/programs/shakti-sadhana"
+                            onClick={() => handleLinkClick("programs")}
                           >
-                            Bali
+                            Shakti Sadhana
                           </Link>
                           <Link
-                            className="dropdown-item-custom premium-dropdown-item"
-                            to="/programs/short-retreats/rishikesh"
-                            onClick={() =>
-                              handleLinkClick(
-                                "programs/short-retreats/rishikesh",
-                              )
+                            className={
+                              isSubActive("/programs/sapta-rishi-sadhana")
+                                ? "sub-link-active"
+                                : ""
                             }
+                            to="/programs/sapta-rishi-sadhana"
+                            onClick={() => handleLinkClick("programs")}
                           >
-                            Rishikesh
+                            Sapta Rishi Sadhana
+                          </Link>
+                          <Link
+                            className={
+                              isSubActive("/programs/pashu-patayaa-sadhana")
+                                ? "sub-link-active"
+                                : ""
+                            }
+                            to="/programs/pashu-patayaa-sadhana"
+                            onClick={() => handleLinkClick("programs")}
+                          >
+                            Pashu-Patayaa Sadhana
                           </Link>
                         </div>
-                      )}
-                    </div>
 
-                    <hr className="dropdown-divider-custom" />
-                    <Link
-                      className="dropdown-item-custom premium-dropdown-item"
-                      to="/programs"
-                      onClick={() => handleLinkClick("programs")}
-                    >
-                      View All Programs
-                    </Link>
+                        <div className="col-lg-3 mega-column">
+                          <h6 className="column-title">ONLINE COURSES</h6>
+                          <Link
+                            className={
+                              isSubActive("/online/live")
+                                ? "sub-link-active"
+                                : ""
+                            }
+                            to="/online/live"
+                            onClick={() => handleLinkClick("programs")}
+                          >
+                            Live Sessions
+                          </Link>
+                          <Link
+                            className={
+                              isSubActive("/online/recorded")
+                                ? "sub-link-active"
+                                : ""
+                            }
+                            to="/online/recorded"
+                            onClick={() => handleLinkClick("programs")}
+                          >
+                            Recorded Classes
+                          </Link>
+                          <Link
+                            className={
+                              isSubActive("/online/workshops")
+                                ? "sub-link-active"
+                                : ""
+                            }
+                            to="/online/workshops"
+                            onClick={() => handleLinkClick("programs")}
+                          >
+                            Special Workshops
+                          </Link>
+                        </div>
+
+                        <div className="col-lg-3 mega-column">
+                          <h6 className="column-title">
+                            TTC (TEACHER TRAINING)
+                          </h6>
+                          {["Mysuru", "Bali", "Rishikesh", "Chiang Mai","Dharamshala"].map(
+                            (loc) => (
+                              <div
+                                key={loc}
+                                className={`loc-toggle ${location.pathname.toLowerCase().includes(loc.toLowerCase()) ? "active-loc-text" : ""}`}
+                                onClick={() => handleTtcLocationSelection(loc)}
+                              >
+                                <span>{loc} TTC</span>{" "}
+                                <span className="symbol">→</span>
+                              </div>
+                            ),
+                          )}
+                        </div>
+
+                        <div className="col-lg-3 mega-column no-border">
+                          <h6 className="column-title">RETREATS</h6>
+                          {["Mysuru", "Bali", "Rishikesh", "Chiang Mai","Dharamshala"].map(
+                            (loc) => (
+                              <div key={loc} className="mb-1">
+                                <div
+                                  className={`loc-toggle ${activeLocation === loc || location.pathname.includes(loc.toLowerCase()) ? "active-loc-text" : ""}`}
+                                  onClick={(e) => toggleLocation(e, loc)}
+                                >
+                                  <span>{loc} Retreat</span>{" "}
+                                  <span className="symbol">
+                                    {activeLocation === loc ? "−" : "+"}
+                                  </span>
+                                </div>
+                                <div
+                                  className={`loc-content scrollable-loc ${activeLocation === loc ? "open" : ""}`}
+                                >
+                                  {renderRetreatLinks(loc)}
+                                </div>
+                              </div>
+                            ),
+                          )}
+                        </div>
+                      </div>
+                    ) : (
+                      <div className="row py-4 fade-in">
+                        <div className="col-12 mb-3 d-flex align-items-center">
+                          <button
+                            className="back-btn"
+                            onClick={() => setTtcView("main")}
+                          >
+                            ← Back to Programs
+                          </button>
+                          <h5 className="ms-4 mb-0 ttc-selected-title">
+                            {selectedTtcLoc} Teacher Training
+                          </h5>
+                        </div>
+                        <div className="col-lg-3 mega-column">
+                          <h6 className="column-title">Multi-Style YTTC</h6>
+                             <Link
+                            className={
+                              isSubActive(`/programs/${selectedTtcLoc}/100hr`)
+                                ? "sub-link-active"
+                                : ""
+                            }
+                            to={`/programs/${selectedTtcLoc}/100hr`}
+                            onClick={() => handleLinkClick("programs")}
+                          >
+                            100 Hour Foundation
+                          </Link>
+                          <Link
+                            className={
+                              isSubActive(`/programs/${selectedTtcLoc}/200hr`)
+                                ? "sub-link-active"
+                                : ""
+                            }
+                            to={`/programs/${selectedTtcLoc}/200hr`}
+                            onClick={() => handleLinkClick("programs")}
+                          >
+                            200 Hour Foundation
+                          </Link>
+                          <Link
+                            className={
+                              isSubActive(`/programs/${selectedTtcLoc}/300hr`)
+                                ? "sub-link-active"
+                                : ""
+                            }
+                            to={`/programs/${selectedTtcLoc}/300hr`}
+                            onClick={() => handleLinkClick("programs")}
+                          >
+                            300 Hour Advanced
+                          </Link>
+                          <Link
+                            className={
+                              isSubActive(`/programs/${selectedTtcLoc}/500hr`)
+                                ? "sub-link-active"
+                                : ""
+                            }
+                            to={`/programs/${selectedTtcLoc}/500hr`}
+                            onClick={() => handleLinkClick("programs")}
+                          >
+                            500 Hour Master
+                          </Link>
+                        </div>
+                        <div className="col-lg-3 mega-column">
+                          <h6 className="column-title">Kundalini YTTC</h6>
+                          <Link
+                            className={
+                              isSubActive(`/programs/${selectedTtcLoc}/k1`)
+                                ? "sub-link-active"
+                                : ""
+                            }
+                            to={`/programs/${selectedTtcLoc}/k1`}
+                            onClick={() => handleLinkClick("programs")}
+                          >
+                            Level 1 Foundation
+                          </Link>
+                          <Link
+                            className={
+                              isSubActive(`/programs/${selectedTtcLoc}/k2`)
+                                ? "sub-link-active"
+                                : ""
+                            }
+                            to={`/programs/${selectedTtcLoc}/k2`}
+                            onClick={() => handleLinkClick("programs")}
+                          >
+                            Level 2 Advanced
+                          </Link>
+                        </div>
+                        <div className="col-lg-3 mega-column">
+                          <h6 className="column-title">Short Courses</h6>
+                          <Link
+                            className={
+                              isSubActive(`/programs/${selectedTtcLoc}/nidra`)
+                                ? "sub-link-active"
+                                : ""
+                            }
+                            to={`/programs/${selectedTtcLoc}/nidra`}
+                            onClick={() => handleLinkClick("programs")}
+                          >
+                            Yoga Nidra Course
+                          </Link>
+                          <Link
+                            className={
+                              isSubActive(
+                                `/programs/${selectedTtcLoc}/pranayama`,
+                              )
+                                ? "sub-link-active"
+                                : ""
+                            }
+                            to={`/programs/${selectedTtcLoc}/pranayama`}
+                            onClick={() => handleLinkClick("programs")}
+                          >
+                            Pranayama Intensive
+                          </Link>
+                        </div>
+                        <div className="col-lg-3 mega-column no-border">
+                          <h6 className="column-title">Specialization</h6>
+                          <Link
+                            className={
+                              isSubActive(
+                                `/programs/${selectedTtcLoc}/prenatal`,
+                              )
+                                ? "sub-link-active"
+                                : ""
+                            }
+                            to={`/programs/${selectedTtcLoc}/prenatal`}
+                            onClick={() => handleLinkClick("programs")}
+                          >
+                            Prenatal Specialist
+                          </Link>
+                          <Link
+                            className={
+                              isSubActive(`/programs/${selectedTtcLoc}/therapy`)
+                                ? "sub-link-active"
+                                : ""
+                            }
+                            to={`/programs/${selectedTtcLoc}/therapy`}
+                            onClick={() => handleLinkClick("programs")}
+                          >
+                            Yoga Therapy
+                          </Link>
+                        </div>
+                      </div>
+                    )}
                   </div>
-                )}
+                </div>
               </li>
 
-              {/* Contact */}
               <li className="nav-item">
                 <Link
                   className={`nav-link premium-link ${activeLink === "contact" ? "active" : ""}`}
@@ -299,403 +445,657 @@ const Navbar = () => {
                   Contact
                 </Link>
               </li>
-
-              {/* Book Appointment Button */}
-              <li className="nav-item">
-                <Link className="btn book-appointment-btn" to="/contact">
-                  Book Appointment
-                </Link>
-              </li>
             </ul>
+          )}
+
+          <div className="d-flex align-items-center">
+            {isDesktop && (
+              <Link className="btn book-blue-btn" to="/contact">
+                Book Appointment
+              </Link>
+            )}
+            {!isDesktop && (
+              <div
+                className={`mobile-toggle-btn ${isDrawerOpen ? "open" : ""}`}
+                onClick={handleToggleDrawer}
+              >
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+            )}
           </div>
         </div>
+
+        {/* MOBILE SIDE DRAWER */}
+        <div className={`mobile-side-drawer ${isDrawerOpen ? "open" : ""}`}>
+          <div className="drawer-header">
+            <img src={logo} alt="Logo" className="drawer-logo" />
+          </div>
+          <div className="drawer-body">
+            <Link
+              className={`drawer-link ${activeLink === "home" ? "mobile-active-text" : ""}`}
+              to="/"
+              onClick={() => handleLinkClick("home")}
+            >
+              Home
+            </Link>
+            <Link
+              className={`drawer-link ${activeLink === "about" ? "mobile-active-text" : ""}`}
+              to="/about"
+              onClick={() => handleLinkClick("about")}
+            >
+              About
+            </Link>
+
+            <div className="drawer-accordion">
+              <div
+                className={`drawer-link d-flex justify-content-between align-items-center ${activeLink === "programs" ? "mobile-active-text" : ""}`}
+                onClick={() =>
+                  setDropdownOpen({ programs: !dropdownOpen.programs })
+                }
+              >
+                Programs{" "}
+                <span
+                  className={`arrow-icon ${dropdownOpen.programs ? "rotated" : ""}`}
+                >
+                  ▼
+                </span>
+              </div>
+
+              {dropdownOpen.programs && (
+                <div className="drawer-sub-menu">
+                  <div className="drawer-loc-item">
+                    <div
+                      className="drawer-loc-header"
+                      onClick={() => toggleMobileCategory("MEMBERSHIP")}
+                    >
+                      MEMBERSHIP PROGRAMS{" "}
+                      <span>
+                        {activeMobileCategory === "MEMBERSHIP" ? "−" : "+"}
+                      </span>
+                    </div>
+                    <div
+                      className={`drawer-loc-body ${activeMobileCategory === "MEMBERSHIP" ? "open" : ""}`}
+                    >
+                      <Link
+                        className={
+                          isSubActive("/programs/shiv-shakti-sadhana")
+                            ? "m-sub-active-text"
+                            : ""
+                        }
+                        to="/programs/shiv-shakti-sadhana"
+                        onClick={() => handleLinkClick("programs")}
+                      >
+                        Shiv Shakti Sadhana
+                      </Link>
+                      <Link
+                        className={
+                          isSubActive("/programs/shakti-sadhana")
+                            ? "m-sub-active-text"
+                            : ""
+                        }
+                        to="/programs/shakti-sadhana"
+                        onClick={() => handleLinkClick("programs")}
+                      >
+                        Shakti Sadhana
+                      </Link>
+                      <Link
+                        className={
+                          isSubActive("/programs/sapta-rishi-sadhana")
+                            ? "m-sub-active-text"
+                            : ""
+                        }
+                        to="/programs/sapta-rishi-sadhana"
+                        onClick={() => handleLinkClick("programs")}
+                      >
+                        Sapta Rishi Sadhana
+                      </Link>
+                      <Link
+                        className={
+                          isSubActive("/programs/pashu-patayaa-sadhana")
+                            ? "m-sub-active-text"
+                            : ""
+                        }
+                        to="/programs/pashu-patayaa-sadhana"
+                        onClick={() => handleLinkClick("programs")}
+                      >
+                        Pashu-Patayaa Sadhana
+                      </Link>
+                    </div>
+                  </div>
+
+                  <div className="drawer-loc-item">
+                    <div
+                      className="drawer-loc-header"
+                      onClick={() => toggleMobileCategory("ONLINE")}
+                    >
+                      ONLINE COURSES{" "}
+                      <span>
+                        {activeMobileCategory === "ONLINE" ? "−" : "+"}
+                      </span>
+                    </div>
+                    <div
+                      className={`drawer-loc-body ${activeMobileCategory === "ONLINE" ? "open" : ""}`}
+                    >
+                      <Link
+                        className={
+                          isSubActive("/online/live") ? "m-sub-active-text" : ""
+                        }
+                        to="/online/live"
+                        onClick={() => handleLinkClick("programs")}
+                      >
+                        Live Sessions
+                      </Link>
+                      <Link
+                        className={
+                          isSubActive("/online/recorded")
+                            ? "m-sub-active-text"
+                            : ""
+                        }
+                        to="/online/recorded"
+                        onClick={() => handleLinkClick("programs")}
+                      >
+                        Recorded Classes
+                      </Link>
+                      <Link
+                        className={
+                          isSubActive("/online/workshops")
+                            ? "m-sub-active-text"
+                            : ""
+                        }
+                        to="/online/workshops"
+                        onClick={() => handleLinkClick("programs")}
+                      >
+                        Special Workshops
+                      </Link>
+                    </div>
+                  </div>
+
+                  <div className="drawer-loc-item">
+                    <div
+                      className="drawer-loc-header"
+                      onClick={() => toggleMobileCategory("TTC")}
+                    >
+                      TTC TRAINING{" "}
+                      <span>{activeMobileCategory === "TTC" ? "−" : "+"}</span>
+                    </div>
+                    <div
+                      className={`drawer-loc-body ${activeMobileCategory === "TTC" ? "open" : ""}`}
+                    >
+                      {["Mysuru", "Bali", "Rishikesh", "Gokarna"].map((loc) => (
+                        <div key={loc} className="drawer-nested-loc mb-2">
+                          <div
+                            className={`drawer-loc-header nested ${location.pathname.toLowerCase().includes(loc.toLowerCase()) ? "m-active-path-text" : ""}`}
+                            onClick={(e) => toggleLocation(e, `m-ttc-${loc}`)}
+                          >
+                            {loc} TTC{" "}
+                            <span>
+                              {activeLocation === `m-ttc-${loc}` ? "−" : "+"}
+                            </span>
+                          </div>
+                          <div
+                            className={`drawer-loc-body ${activeLocation === `m-ttc-${loc}` ? "open" : ""}`}
+                          >
+                             <Link
+                              className={
+                                isSubActive(
+                                  `/programs/${loc.toLowerCase()}/100hr`,
+                                )
+                                  ? "m-sub-active-text"
+                                  : ""
+                              }
+                              to={`/programs/${loc.toLowerCase()}/100hr`}
+                              onClick={() => handleLinkClick("programs")}
+                            >
+                              100 Hour Foundation
+                            </Link>
+                            <Link
+                              className={
+                                isSubActive(
+                                  `/programs/${loc.toLowerCase()}/200hr`,
+                                )
+                                  ? "m-sub-active-text"
+                                  : ""
+                              }
+                              to={`/programs/${loc.toLowerCase()}/200hr`}
+                              onClick={() => handleLinkClick("programs")}
+                            >
+                              200 Hour Foundation
+                            </Link>
+                            <Link
+                              className={
+                                isSubActive(
+                                  `/programs/${loc.toLowerCase()}/300hr`,
+                                )
+                                  ? "m-sub-active-text"
+                                  : ""
+                              }
+                              to={`/programs/${loc.toLowerCase()}/300hr`}
+                              onClick={() => handleLinkClick("programs")}
+                            >
+                              300 Hour Advanced
+                            </Link>
+                            <Link
+                              className={
+                                isSubActive(
+                                  `/programs/${loc.toLowerCase()}/500hr`,
+                                )
+                                  ? "m-sub-active-text"
+                                  : ""
+                              }
+                              to={`/programs/${loc.toLowerCase()}/500hr`}
+                              onClick={() => handleLinkClick("programs")}
+                            >
+                              500 Hour Master
+                            </Link>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="drawer-loc-item">
+                    <div
+                      className="drawer-loc-header"
+                      onClick={() => toggleMobileCategory("RETREATS")}
+                    >
+                      RETREATS{" "}
+                      <span>
+                        {activeMobileCategory === "RETREATS" ? "−" : "+"}
+                      </span>
+                    </div>
+                    <div
+                      className={`drawer-loc-body ${activeMobileCategory === "RETREATS" ? "open" : ""}`}
+                    >
+                      {["Mysuru", "Bali", "Rishikesh", "Gokarna"].map((loc) => (
+                        <div key={loc} className="drawer-nested-loc mb-2">
+                          <div
+                            className={`drawer-loc-header nested ${location.pathname.toLowerCase().includes(loc.toLowerCase()) ? "m-active-path-text" : ""}`}
+                            onClick={(e) => toggleLocation(e, `m-ret-${loc}`)}
+                          >
+                            {loc} Retreat{" "}
+                            <span>
+                              {activeLocation === `m-ret-${loc}` ? "−" : "+"}
+                            </span>
+                          </div>
+                          <div
+                            className={`drawer-loc-body ${activeLocation === `m-ret-${loc}` ? "open" : ""}`}
+                          >
+                            {renderRetreatLinks(loc)}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
+            <Link
+              className={`drawer-link ${activeLink === "contact" ? "mobile-active-text" : ""}`}
+              to="/contact"
+              onClick={() => handleLinkClick("contact")}
+            >
+              Contact
+            </Link>
+            <div className="mt-5 mb-4">
+              <Link
+                className="btn book-blue-btn w-100"
+                to="/contact"
+                onClick={() => handleLinkClick("contact")}
+              >
+                Book Appointment
+              </Link>
+            </div>
+          </div>
+        </div>
+        {isDrawerOpen && (
+          <div
+            className="drawer-overlay"
+            onClick={() => setIsDrawerOpen(false)}
+          ></div>
+        )}
       </nav>
 
       <style jsx>{`
-        /* Premium Navbar Styles - Reduced Height */
+        .premium-navbar,
+        .premium-link,
+        .column-title,
+        .book-blue-btn,
+        .drawer-link,
+        .loc-toggle,
+        .drawer-loc-header,
+        .back-btn,
+        .ttc-selected-title {
+          font-family: Caudex, serif !important;
+        }
         .premium-navbar {
-          background: white !important;
-          backdrop-filter: blur(20px);
-          border-bottom: 1px solid rgba(0, 0, 0, 0.08);
-          transition: all 0.3s ease;
-          padding: 0.25rem 0 !important;
+          background: #fff !important;
+          padding: 0.6rem 0 !important;
+          z-index: 2000;
         }
-
-        .premium-navbar .container {
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-        }
-
-        /* Logo Styles - Bigger Logo */
-        .logo-brand {
-          text-decoration: none !important;
-          transition: all 0.3s ease;
-          display: flex;
-          align-items: center;
-          padding: 0 !important;
-          margin: 0 !important;
-        }
-
-        .logo-container {
-          display: flex;
-          align-items: center;
-          height: 100%;
-        }
-
         .logo-image {
-          height: 90px;
-          width: auto;
-          transition: all 0.3s ease;
-          object-fit: contain;
+          height: 85px;
         }
 
-        .logo-brand:hover .logo-image {
-          transform: scale(1.05);
-        }
-
-        /* Align navbar items properly */
-        .navbar-nav {
-          display: flex;
-          align-items: center;
-          gap: 0.5rem;
-        }
-
-        /* Premium Navigation Links - Reduced Padding */
-        .premium-link {
-          position: relative;
-          padding: 0.4rem 0.9rem !important;
-          color: #2c3e50 !important;
-          font-weight: 500;
-          transition: all 0.3s ease;
-          text-decoration: none;
-          font-size: 16px;
-          display: inline-block;
-        }
-
-        /* Modern Hover Effect - Simple Color Change with Bottom Border */
-        .premium-link::after {
-          content: "";
-          position: absolute;
-          bottom: 0;
-          left: 50%;
-          transform: translateX(-50%);
-          width: 0%;
-          height: 2px;
-          background: #007bff;
-          transition: width 0.3s ease;
-        }
-
-        .premium-link:hover {
+        /* TEXT-ONLY ACTIVE STATES */
+        .sub-link-active {
           color: #007bff !important;
+          font-weight: 700 !important;
         }
-
-        .premium-link:hover::after {
-          width: 80%;
-        }
-
-        /* Active Link State - Clean Design */
-        .premium-link.active {
+        .active-loc-text {
           color: #007bff !important;
+          font-weight: 700 !important;
+        }
+        .mobile-active-text {
+          color: #007bff !important;
+          font-weight: 700 !important;
+        }
+        .m-sub-active-text {
+          color: #007bff !important;
+          font-weight: 700 !important;
+        }
+        .m-active-path-text {
+          color: #007bff !important;
+          font-weight: 700 !important;
         }
 
-        .premium-link.active::after {
-          width: 80%;
+        @media (min-width: 992px) {
+          .nav-spacing {
+            gap: 3.8rem;
+          }
+          .premium-link {
+            color: #444 !important;
+            font-weight: 500;
+            font-size: 17.5px;
+            position: relative;
+            padding: 12px 0;
+            transition: 0.3s;
+          }
+          .premium-link::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2.5px;
+            background: #007bff;
+            transition: 0.4s ease;
+          }
+          .premium-link:hover::after,
+          .premium-link.active::after {
+            width: 100%;
+            left: 0;
+          }
+          .premium-link:hover {
+            color: #007bff !important;
+          }
+          .mega-static {
+            position: static !important;
+          }
+          .mega-panel {
+            position: absolute;
+            top: calc(100% + 5px);
+            left: 0;
+            width: 100%;
+            background: #fff;
+            border-top: 1px solid #eee;
+            padding: 40px 80px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+            display: none;
+            z-index: 3000;
+            border-radius: 0 0 8px 8px;
+          }
+          .mega-panel.show {
+            display: block;
+            animation: slideUpFade 0.3s ease;
+          }
+          .mega-column {
+            border-right: 1px solid #f0f0f0;
+            padding: 0 30px;
+            min-height: 250px;
+          }
+          .mega-column.no-border {
+            border-right: none;
+          }
+          .column-title {
+            color: #007bff;
+            font-weight: 700;
+            font-size: 14px;
+            margin-bottom: 18px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+          }
+          .mega-column a,
+          .loc-toggle {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #555;
+            text-decoration: none;
+            padding: 8px 0;
+            font-size: 15px;
+            transition: 0.3s;
+            cursor: pointer;
+          }
+          .mega-column a:hover,
+          .loc-toggle:hover {
+            color: #007bff;
+          }
+          .back-btn {
+            background: #f8f9fa;
+            border: 1px solid #007bff;
+            color: #007bff;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 13px;
+            cursor: pointer;
+            transition: 0.3s;
+          }
+          .bridge-area {
+            position: absolute;
+            bottom: -15px;
+            left: 0;
+            width: 100%;
+            height: 25px;
+            background: transparent;
+            z-index: 10;
+          }
         }
 
-        /* Dropdown Positioning and Hover Container */
-        .dropdown {
-          position: relative;
+        .fade-in {
+          animation: fadeIn 0.4s ease;
         }
-
-        .dropdown-hover-container {
-          position: relative;
-        }
-
-        /* Invisible bridge between dropdown trigger and menu */
-        .dropdown-bridge {
-          position: absolute;
-          top: 100%;
-          left: 0;
-          right: 0;
-          height: 10px;
-          background: transparent;
-          z-index: 999;
-        }
-
-        /* Dropdown Arrow Animation */
-        .dropdown-arrow {
-          transition: transform 0.3s ease;
-          font-size: 0.7rem;
-          margin-left: 0.4rem;
-          display: inline-block;
-          color: #2c3e50;
-        }
-
-        .premium-link:hover .dropdown-arrow {
-          color: #007bff;
-        }
-
-        .premium-link.active .dropdown-arrow {
-          color: #007bff;
-        }
-
-        .dropdown-arrow.rotated {
-          transform: rotate(180deg);
-        }
-
-        /* Custom Dropdown Menu */
-        .dropdown-menu-custom {
-          position: absolute;
-          top: calc(100% + 10px);
-          left: 0;
-          background: white;
-          border: 1px solid rgba(0, 0, 0, 0.08);
-          border-radius: 8px;
-          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-          padding: 0.5rem 0;
-          min-width: 220px;
-          z-index: 1000;
-          animation: dropdownFadeIn 0.2s ease;
-        }
-
-        @keyframes dropdownFadeIn {
+        @keyframes fadeIn {
           from {
             opacity: 0;
-            transform: translateY(-8px);
+          }
+          to {
+            opacity: 1;
+          }
+        }
+        .arrow-icon {
+          display: inline-block;
+          transition: 0.3s;
+          font-size: 10px;
+          margin-left: 6px;
+        }
+        .rotated {
+          transform: rotate(180deg);
+        }
+        .scrollable-loc {
+          max-height: 0;
+          overflow: hidden;
+          transition: 0.4s ease;
+        }
+        .scrollable-loc.open {
+          max-height: 200px;
+          padding: 5px 15px;
+        }
+        .symbol {
+          font-size: 16px;
+          font-weight: 300;
+          opacity: 0.7;
+        }
+
+        .book-blue-btn {
+          background: linear-gradient(
+            135deg,
+            #ff9933 0%,
+            #000080 100%
+          ) !important;
+          color: #fff !important;
+          padding: 12px 32px !important;
+          border-radius: 50px !important;
+          font-weight: 600;
+          font-size: 15px;
+          animation: floatingGlow 3.5s infinite ease-in-out;
+          transition: 0.4s;
+          display: inline-block;
+          text-decoration: none;
+        }
+        .book-blue-btn:hover {
+          transform: translateY(-8px);
+          box-shadow: 0 12px 25px rgba(0, 0, 128, 0.5);
+        }
+        @keyframes floatingGlow {
+          0%,
+          100% {
+            transform: translateY(0);
+          }
+          50% {
+            transform: translateY(-6px);
+          }
+        }
+
+        .mobile-side-drawer {
+          position: fixed;
+          top: 0;
+          left: -100%;
+          width: 85%;
+          max-width: 320px;
+          height: 100vh;
+          background: #fff;
+          z-index: 4000;
+          transition: 0.4s cubic-bezier(0.7, 0, 0.3, 1);
+          overflow-y: auto;
+          display: flex;
+          flex-direction: column;
+        }
+        .mobile-side-drawer.open {
+          left: 0;
+          box-shadow: 10px 0 30px rgba(0, 0, 0, 0.1);
+        }
+        .drawer-header {
+          padding: 25px;
+          border-bottom: 1px solid #eee;
+          text-align: center;
+        }
+        .drawer-logo {
+          height: 60px;
+        }
+        .drawer-body {
+          padding: 20px;
+        }
+        .drawer-link {
+          display: block;
+          padding: 15px 0;
+          font-size: 18px;
+          color: #333;
+          text-decoration: none;
+          border-bottom: 1px solid #f9f9f9;
+        }
+        .drawer-loc-header {
+          display: flex;
+          justify-content: space-between;
+          padding: 15px 0;
+          border-bottom: 1px solid #f0f0f0;
+          cursor: pointer;
+          font-size: 13px;
+          font-weight: 700;
+          color: #007bff;
+          text-transform: uppercase;
+        }
+        .drawer-loc-header.nested {
+          color: #555;
+          font-weight: 500;
+          font-size: 14px;
+          text-transform: none;
+          border-bottom: 1px dashed #eee;
+        }
+        .drawer-loc-body {
+          max-height: 0;
+          overflow: hidden;
+          transition: 0.4s ease;
+          padding-left: 10px;
+          display: flex;
+          flex-direction: column;
+        }
+        .drawer-loc-body.open {
+          max-height: 1200px;
+          padding-top: 10px;
+        }
+        .drawer-loc-body a {
+          display: block;
+          padding: 8px 0;
+          color: #666;
+          font-size: 14.5px;
+          text-decoration: none;
+        }
+        .drawer-overlay {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100vw;
+          height: 100vh;
+          background: rgba(0, 0, 0, 0.5);
+          z-index: 3500;
+          backdrop-filter: blur(2px);
+        }
+        .mobile-toggle-btn {
+          width: 30px;
+          height: 20px;
+          position: relative;
+          cursor: pointer;
+          z-index: 5000;
+        }
+        .mobile-toggle-btn span {
+          display: block;
+          position: absolute;
+          height: 2.5px;
+          width: 100%;
+          background: #333;
+          border-radius: 2px;
+          transition: 0.25s;
+        }
+        .mobile-toggle-btn span:nth-child(1) {
+          top: 0;
+        }
+        .mobile-toggle-btn span:nth-child(2) {
+          top: 9px;
+        }
+        .mobile-toggle-btn span:nth-child(3) {
+          top: 18px;
+        }
+        .mobile-toggle-btn.open span:nth-child(1) {
+          transform: rotate(45deg);
+          top: 9px;
+        }
+        .mobile-toggle-btn.open span:nth-child(2) {
+          opacity: 0;
+        }
+        .mobile-toggle-btn.open span:nth-child(3) {
+          transform: rotate(-45deg);
+          top: 9px;
+        }
+        @keyframes slideUpFade {
+          from {
+            opacity: 0;
+            transform: translateY(15px);
           }
           to {
             opacity: 1;
             transform: translateY(0);
-          }
-        }
-
-        /* Custom Dropdown Items - Clean Hover */
-        .dropdown-item-custom {
-          display: block;
-          padding: 0.7rem 1.5rem;
-          color: #2c3e50;
-          font-weight: 500;
-          text-decoration: none;
-          transition: all 0.2s ease;
-          position: relative;
-        }
-
-        .dropdown-item-custom:hover {
-          color: #007bff;
-          background: rgba(0, 123, 255, 0.05);
-          padding-left: 1.8rem;
-          text-decoration: none;
-        }
-
-        /* Custom Dropdown Divider */
-        .dropdown-divider-custom {
-          height: 1px;
-          margin: 0.5rem 1rem;
-          background: rgba(0, 0, 0, 0.08);
-          border: 0;
-        }
-
-        /* ✅ Put these OUTSIDE any media query */
-        .short-retreats-container {
-          position: relative;
-          cursor: pointer;
-          padding: 0 !important;
-        }
-
-        .short-retreats-trigger {
-          position: relative;
-          align-items: center;
-          padding: 0.7rem 1.5rem;
-          width: 100%;
-        }
-
-        .short-retreats-trigger:hover {
-          background-color: rgba(0, 0, 0, 0.05);
-        }
-
-        .sub-arrow {
-          font-size: 10px;
-          margin-left: 8px;
-          transition: transform 0.2s ease;
-        }
-
-        .sub-dropdown-right {
-          position: absolute;
-          top: -8px;
-          left: 100%;
-          margin-left: 0;
-          background: white;
-          border-radius: 8px;
-          box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
-          min-width: 160px;
-          z-index: 9999;
-          padding: 8px 0;
-        }
-
-        .sub-dropdown-down {
-          position: static;
-          background: rgba(0, 0, 0, 0.03);
-          border-left: 2px solid rgba(0, 0, 0, 0.1);
-          margin-left: 16px;
-          border-radius: 0 0 4px 4px;
-          padding: 4px 0;
-        }
-
-        .active-sub > .short-retreats-trigger {
-          font-weight: 600;
-        }
-
-        /* Book Appointment Button - Reduced Size */
-        .book-appointment-btn {
-          background: linear-gradient(135deg, #ff6b6b, #ff8e8e) !important;
-          color: white !important;
-          border: none !important;
-          padding: 0.45rem 1.2rem !important;
-          border-radius: 20px !important;
-          font-weight: 600;
-          font-size: 14px;
-          transition: all 0.3s ease;
-          box-shadow: 0 2px 8px rgba(255, 107, 107, 0.3);
-          text-decoration: none;
-          white-space: nowrap;
-          margin-left: 0.5rem;
-        }
-
-        .book-appointment-btn:hover {
-          background: linear-gradient(135deg, #ff5252, #ff6b6b) !important;
-          color: white !important;
-          transform: translateY(-2px);
-          box-shadow: 0 4px 12px rgba(255, 107, 107, 0.4);
-          text-decoration: none;
-        }
-
-        .custom-toggler {
-          border: 2px solid rgba(0, 0, 0, 0.1);
-          border-radius: 6px;
-          padding: 0.4rem 0.6rem;
-          transition: all 0.3s ease;
-        }
-
-        .custom-toggler:hover {
-          border-color: #007bff;
-          background: rgba(0, 123, 255, 0.05);
-        }
-
-        .custom-toggler:focus {
-          box-shadow: 0 0 0 0.15rem rgba(0, 123, 255, 0.15);
-        }
-
-        /* Ensure navbar appears above other content */
-        .navbar {
-          z-index: 1030;
-        }
-
-        .dropdown-menu-custom {
-          z-index: 1031;
-        }
-
-        /* Tablet and smaller devices */
-        @media (max-width: 991.98px) {
-          .logo-image {
-            height: 70px;
-          }
-
-          .navbar-nav {
-            gap: 0;
-            align-items: stretch;
-          }
-
-          .navbar-nav .nav-item {
-            text-align: center;
-            margin: 0;
-          }
-
-          .premium-link {
-            padding: 0.8rem 1rem !important;
-            border-radius: 6px;
-            margin: 0.2rem 0;
-          }
-
-          .premium-link::after {
-            display: none;
-          }
-
-          .premium-link:hover {
-            background: rgba(0, 123, 255, 0.05);
-          }
-
-          .premium-link.active {
-            background: rgba(0, 123, 255, 0.08);
-          }
-
-          .book-appointment-btn {
-            margin: 0.8rem auto 0.5rem;
-            display: inline-block;
-          }
-
-          /* Hide bridge on mobile */
-          .dropdown-bridge {
-            display: none;
-          }
-
-          /* Mobile Dropdown Styles */
-          .dropdown-menu-custom {
-            position: static !important;
-            border: none;
-            border-radius: 0;
-            box-shadow: none;
-            margin: 0.3rem 0;
-            padding: 0.3rem 0;
-            width: 100%;
-            animation: none;
-            top: auto !important;
-            background: rgba(0, 123, 255, 0.03);
-          }
-
-          .dropdown-menu-custom.show {
-            display: block !important;
-          }
-
-          .dropdown-item-custom {
-            color: #2c3e50;
-            margin: 0;
-            border-radius: 0;
-            padding: 0.7rem 2rem;
-          }
-
-          .dropdown-item-custom:hover {
-            background: rgba(0, 123, 255, 0.08);
-            padding-left: 2.3rem;
-            color: #007bff;
-          }
-        }
-
-        /* Mobile phones */
-        @media (max-width: 576px) {
-          .logo-image {
-            height: 60px;
-          }
-
-          .premium-link {
-            font-size: 15px;
-          }
-
-          .book-appointment-btn {
-            font-size: 13px;
-            padding: 0.4rem 1rem !important;
-          }
-        }
-
-        /* Extra small devices */
-        @media (max-width: 375px) {
-          .logo-image {
-            height: 55px;
-          }
-
-          .premium-link {
-            font-size: 14px;
-            padding: 0.7rem 0.9rem !important;
           }
         }
       `}</style>

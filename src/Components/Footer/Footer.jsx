@@ -406,7 +406,7 @@ const Footer = () => {
         </div>
       </div>
 
-      <ScrollToTopButton />
+      {/* <ScrollToTopButton /> */}
 
       {/* Custom Styles (WhatsApp styles completely removed) */}
       <style jsx>{`

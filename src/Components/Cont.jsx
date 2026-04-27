@@ -52,10 +52,9 @@ function Cont() {
         </a>
 
         {/* WhatsApp - 2 */}
-        <a
-          href="#"
-          target="_blank"
-          rel="noopener noreferrer"
+        <p
+         
+          
           style={{
             display: "flex",
             alignItems: "center",
@@ -70,7 +69,7 @@ function Cont() {
         >
           <IoLogoWhatsapp style={{ fontSize: "28px", color: "green", marginRight: "12px" }} />
           +91-78299 97007
-        </a>
+        </p>
 
         {/* Email */}
         <a

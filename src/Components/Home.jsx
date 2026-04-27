@@ -1,25 +1,19 @@
 import React, { Suspense, lazy } from 'react'
 
-// Critical above-the-fold components - load immediately
+// 1. Keep these: They are used immediately (Above-the-fold)
 import ImageSliderBanner from "./Banner/ImageSliderBanner "
 import WelcomeToYogalayaa from "./HomeCredentials/WelcomeToYogalayaa"
 import Yogaschool from "./Yogaschool"
 
-// Keep all original imports that aren't used (commented out code)
-import Ayurveda from "./Ayurveda"
-
+// 2. REMOVE or COMMENT OUT these static imports. 
+// They are causing the "unused-vars" error because you are using the Lazy versions instead.
+/* import Ayurveda from "./Ayurveda"
 import Offering from "./Offering"
 import Carousal from "./Carousal"
 import Contact from "./Contact"
 import Utube from "./Utube"
 import Ratings from "./Ratings"
-
 import Accordion from "./Accordion"
-
-
-
-
-
 import WhyChoose from "./HomeCredentials/WhyChoose"
 import YogaTeachers from "./Teachers/YogaTeachers"
 import Servicess from "./Services/Servicess"
@@ -36,8 +30,9 @@ import TransTeach from "./Services/Service1/TransTeach"
 import Service1 from "./Services/Service1/Service1"
 import Gallery from "./HomeCredentials/Gallery"
 import Navbar from './Header/Navbar'
+*/
 
-// Lazy load only the components that are actually used
+// 3. Lazy load sections (Keep these)
 const WhyChooseLazy = lazy(() => import("./HomeCredentials/WhyChoose"))
 const AyurvedaLazy = lazy(() => import("./Ayurveda"))
 const OfferingLazy = lazy(() => import("./Offering"))
@@ -52,7 +47,6 @@ const AccordionLazy = lazy(() => import("./Accordion"))
 const RatingsLazy = lazy(() => import("./Ratings"))
 const ContactLazy = lazy(() => import("./Contact"))
 
-// Loading component for sections
 const SectionLoader = () => (
   <div className="flex justify-center items-center py-8">
     <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-orange-500"></div>
@@ -63,12 +57,10 @@ const SectionLoader = () => (
 const Home = () => {
   return ( 
     <>
-      {/* Critical above-the-fold content - loads immediately */}
       <ImageSliderBanner/>
       <WelcomeToYogalayaa/>
       <Yogaschool/>
 
-      {/* Lazy load sections as user scrolls */}
       <Suspense fallback={<SectionLoader />}>
         <WhyChooseLazy/>
         <AyurvedaLazy/>
@@ -84,31 +76,8 @@ const Home = () => {
         <RatingsLazy/>
         <ContactLazy/>
       </Suspense>
-
-      {/* All your commented code preserved for reference:
-      
-      <YogaTrainingSection/>
-      <Welcome/>
-      <YogaTrainingSection/>
-      <Package1/>
-      <Package2/>
-      <Service1/>
-      <Training200/>
-      <HouseOfYoga backgroundImage={a} />
-      <YogaTrainingPromo/>
-      <Transformation backgroundImage={a}/>
-      <TransTeach/>
-      <AyurvedCarousel/>
-      <Ourservice/>
-      <Kumbh/>
-      <Bath/>
-      <Carousal/>
-      <KumbhAcomodation/>
-      <Questions/>
-      
-      */}
     </>
   )
 }
- 
+
 export default Home

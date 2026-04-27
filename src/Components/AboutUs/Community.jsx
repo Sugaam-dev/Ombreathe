@@ -8,8 +8,9 @@ const Community = () => {
   return (
     <section className="community-school-section">
       <div className="container">
+
         {/* Section Header */}
-        <div className="row justify-content-center mb-5">
+        <div className="row justify-content-center">
           <div className="col-12">
             <h2 className="community-school-title">
               School and Community
@@ -19,33 +20,35 @@ const Community = () => {
 
         {/* Content Row */}
         <div className="row g-4">
+
           {/* First Column */}
           <div className="col-lg-4 col-md-6 col-12">
             <div className="community-school-card">
-              {/* Diamond bullet point and text */}
+
+              {/* Intro */}
               <div className="community-school-intro">
                 <div className="d-flex align-items-start">
                   <div className="community-school-bullet">
                     <span>◆</span>
                   </div>
                   <p className="community-school-description">
-                    The school was opened on the 6th of June 2016 and during this 
-                    time has successfully certified more than 1,700 students
+                    The school was opened on the 6th of June 2016 and has successfully 
+                    certified more than 1,700 students worldwide
                   </p>
                 </div>
               </div>
 
-              {/* First Image */}
+              {/* Image */}
               <div className="community-school-image-container">
                 <img 
                   src={embraceImage}
-                  alt="Two people embracing in a yoga studio setting"
+                  alt="Yoga community embracing"
                   className="community-school-image"
                   loading="lazy"
                 />
               </div>
 
-              {/* Community Description Below Image */}
+              {/* Info */}
               <div className="community-school-info">
                 <p className="community-school-subtitle">
                   A place of strength, growth and expansion.
@@ -54,44 +57,63 @@ const Community = () => {
                   <strong>We're a community, a family, a school and a charity center.</strong>
                 </p>
                 <p className="community-school-text">
-                  We are conducting seminars and events around the world and making Yoga 
-                  Teaching training more available and affordable
+                  We conduct seminars and events around the world, making yoga teaching 
+                  training more accessible and affordable for everyone
                 </p>
               </div>
+
             </div>
           </div>
 
           {/* Second Column */}
           <div className="col-lg-4 col-md-6 col-12">
             <div className="community-school-card">
-              {/* Second Image */}
+
+              {/* Intro */}
+              <div className="community-school-intro">
+                <div className="d-flex align-items-start">
+                  <div className="community-school-bullet">
+                    <span>◆</span>
+                  </div>
+                  <p className="community-school-description">
+                    People come to us from all over the world, bringing unique stories 
+                    and diverse cultural experiences into one shared journey
+                  </p>
+                </div>
+              </div>
+
+              {/* Image */}
               <div className="community-school-image-container">
                 <img 
                   src={communityGroupImage}
-                  alt="Three women in white clothing holding flowers, smiling together outdoors"
+                  alt="Global yoga community"
                   className="community-school-image"
                   loading="lazy"
                 />
               </div>
 
-              {/* Philosophy Text */}
-              <div className="community-school-philosophy">
-                <p className="community-school-philosophy-intro">
-                  <span className="community-school-highlight-blue">People come to us from all over the world.</span> Your 
-                  age, weight, or nationality are not important.
+              {/* Info */}
+              <div className="community-school-info">
+                <p className="community-school-subtitle">
+                  Unity in diversity and shared purpose.
                 </p>
-                <p className="community-school-quote">
-                  Our philosophy is <em>"You already have everything 
-                  you need to start"</em>
+                <p className="community-school-highlight">
+                  <strong>All backgrounds, all levels — everyone is welcome here.</strong>
+                </p>
+                <p className="community-school-text">
+                  Our philosophy is <em>"You already have everything you need to start"</em>. 
+                  No matter your age, weight, or nationality, your journey begins exactly where you are
                 </p>
               </div>
+
             </div>
           </div>
 
           {/* Third Column */}
           <div className="col-lg-4 col-md-6 col-12">
             <div className="community-school-card">
-              {/* Diamond bullet point and text */}
+
+              {/* Intro */}
               <div className="community-school-intro">
                 <div className="d-flex align-items-start">
                   <div className="community-school-bullet">
@@ -104,17 +126,17 @@ const Community = () => {
                 </div>
               </div>
 
-              {/* Third Image */}
+              {/* Image */}
               <div className="community-school-image-container">
                 <img 
                   src={community_img3}
-                  alt="Yoga community gathering in natural setting"
+                  alt="Yoga gathering"
                   className="community-school-image"
                   loading="lazy"
                 />
               </div>
 
-              {/* Community Description Below Image */}
+              {/* Info */}
               <div className="community-school-info">
                 <p className="community-school-subtitle">
                   Where every soul finds its home.
@@ -123,12 +145,14 @@ const Community = () => {
                   <strong>Creating lasting bonds that transcend borders and cultures.</strong>
                 </p>
                 <p className="community-school-text">
-                  Experience the power of collective growth and shared wisdom in our 
+                  Experience the power of collective growth and shared wisdom in a 
                   nurturing environment designed for personal transformation
                 </p>
               </div>
+
             </div>
           </div>
+
         </div>
       </div>
     </section>

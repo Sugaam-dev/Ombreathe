@@ -2,7 +2,7 @@
 
 .bali-experience-section {
 
-  padding: 100px 0;
+  padding: 50px 0;
   position: relative;
   overflow: hidden;
 }
@@ -416,7 +416,7 @@
 
 @media (max-width: 992px) {
   .bali-experience-section {
-    padding: 80px 0;
+    padding: 50px 0;
   }
   
   .bali-experience-content {
@@ -443,7 +443,7 @@
 
 @media (max-width: 768px) {
   .bali-experience-section {
-    padding: 60px 0;
+    padding: 25px 0;
   }
   
   .bali-experience-title {
@@ -532,5 +532,62 @@
   
   .bali-carousel-image-wrapper:hover {
     transform: none;
+  }
+}
+/* --- NEW: Location Tabs Styles --- */
+.location-tabs-container {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.location-tab-btn {
+  background: white;
+  border: 1px solid rgba(44, 62, 149, 0.2);
+  padding: 8px 24px;
+  border-radius: 50px;
+  font-weight: 600;
+  color: #666;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.location-tab-btn:hover {
+  border-color: #2c3e95;
+  color: #2c3e95;
+}
+
+.location-tab-btn.active {
+  background: #2c3e95;
+  color: #ffffff;
+  border-color: #2c3e95;
+  box-shadow: 0 4px 15px rgba(44, 62, 149, 0.3);
+  transform: translateY(-2px);
+}
+
+/* Ensure the image transition feels smooth */
+.bali-experience-image {
+  transition: opacity 0.5s ease-in-out;
+  /* Prevent image height jumping */
+ 
+  width: 100%;
+  object-fit: cover;
+}
+
+/* Feature icon tweak */
+.bali-experience-feature-icon {
+  background: rgba(44, 62, 149, 0.05);
+  padding: 5px;
+  border-radius: 8px;
+  margin-right: 12px;
+}
+
+/* Responsive adjustments for tabs */
+@media (max-width: 768px) {
+  .location-tab-btn {
+    padding: 6px 16px;
+    font-size: 0.9rem;
   }
 }

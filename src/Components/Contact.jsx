@@ -103,17 +103,18 @@ const ContactForm = memo(() => {
       errors.name = 'Name must be at least 2 characters long';
     }
 
-    // Validate email
-    const emailRegex = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/i;
-    if (!email || !emailRegex.test(email)) {
-      errors.email = 'Please enter a valid email address';
-    }
+   // Validate email
+const emailRegex = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/i;
+if (!email || !emailRegex.test(email.trim())) {
+  errors.email = 'Please enter a valid email address';
+}
 
-    // Validate phone
-    const phoneRegex = /^[0-9+\-\s\(\)]{10,15}$/;
-    if (!phone || !phoneRegex.test(phone)) {
-      errors.phone = 'Please enter a valid phone number (10-15 digits)';
-    }
+// Validate phone
+// Removed unnecessary escapes from \( and \)
+const phoneRegex = /^[0-9+\-\s()]{10,15}$/;
+if (!phone || !phoneRegex.test(phone.trim())) {
+  errors.phone = 'Please enter a valid phone number (10-15 digits)';
+}
 
     return errors;
   }, []);

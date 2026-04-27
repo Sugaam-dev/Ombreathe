@@ -2,7 +2,7 @@
 
 .founder-philosopher-section {
   /* background: linear-gradient(135deg, #f5f3f0 0%, #ede7e0 100%); */
-  padding: 100px 0;
+  padding: 50px 0;
   position: relative;
   overflow: hidden;
 }
@@ -199,7 +199,7 @@
 
 @media (max-width: 992px) {
   .founder-philosopher-section {
-    padding: 80px 0;
+    padding: 50px 0;
   }
   
   .founder-philosopher-content {
@@ -224,7 +224,7 @@
 
 @media (max-width: 768px) {
   .founder-philosopher-section {
-    padding: 60px 0;
+    padding: 25px 0;
   }
   
   .founder-philosopher-title {

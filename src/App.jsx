@@ -11,7 +11,7 @@ import Service300 from './Components/Services/Hours300/Service300';
 import Service100 from './Components/Services/Hours100/Service100';
 import Retreats7 from './Components/Services/Retreats7/Retreats7';
 import Retreats7Medi from './Components/Services/Retreats7Med/Retreats7Medi';
-import AboutUs_page from './Components/AboutUs/AboutUs_page';
+import AboutUsPage from './Components/AboutUs/AboutUsPage';
 import MembershipProgram from './Components/Services/Membership/MembershipProgram';
 import shaktiSadhanaData from './Components/Services/Membership/data/shaktiSadhanaData';
 import CardsMembership from './Components/Services/Membership/CardsMembership';
@@ -53,14 +53,14 @@ function AppRoutes() {
     <Routes>
       <Route path="/" element={<Layout />}>
         <Route index element={<Home />} />
-        <Route path="about" element={<AboutUs_page />} />
+        <Route path="about" element={<AboutUsPage />} />
         <Route path="contact" element={<Cont />} />
         <Route path="programs" element={<Servicess />} />
         <Route path="our-teachers-list" element={<YogaTeachers />} />
-        <Route path="programs/teacher-training-200" element={<Service1 />} />
-        <Route path="programs/teacher-training-500" element={<Service2 />} />
-        <Route path="programs/teacher-training-300" element={<Service300 />} />
-        <Route path="programs/teacher-training-100" element={<Service100 />} />
+        <Route path="/programs/Bali/200hr" element={<Service1 />} />
+        <Route path="/programs/Bali/500hr" element={<Service2 />} />
+        <Route path="/programs/Bali/300hr" element={<Service300 />} />
+        <Route path="/programs/Bali/100hr" element={<Service100 />} />
         <Route path="programs/retreat-7-adventure" element={<Retreats7 />} />
         <Route path="programs/retreat-7-meditation" element={<Retreats7Medi />} />
         <Route path="programs/community-services" element={<Service1 />} />

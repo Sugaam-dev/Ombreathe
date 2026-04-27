@@ -6,13 +6,13 @@ import About_Header from './About_Header.jsx';
 import AboutUs_section from './AboutUs_section.jsx';
 import Community from './Community.jsx';
 import Founder from './Founder.jsx';
-import YogaTeachers from '../../Components/Teachers/YogaTeachers.jsx';
-import Gallery from '../HomeCredentials/Gallery';
+import YogaTeachers from '../Teachers/YogaTeachers.jsx';
+import Gallery from '../HomeCredentials/Gallery.jsx';
 
 
 import Experience from './Experiences.jsx';
 
-const AboutUs_page = () => {
+const AboutUsPage = () => {
   return (
     <main className="aboutus-main-page">
       {/* Hero Section - About Us Header */}
@@ -36,4 +36,4 @@ const AboutUs_page = () => {
   );
 };
 
-export default AboutUs_page;
+export default AboutUsPage;
