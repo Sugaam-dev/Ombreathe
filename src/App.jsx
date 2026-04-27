@@ -20,7 +20,7 @@ import saptaRishiSadhanaData from './Components/Services/Membership/data/saptaRi
 import pashuPatayaaData from './Components/Services/Membership/data/pashuPatayaaData';
 import YogaTeachers from './Components/Teachers/YogaTeachers';
 import OnlineYogaTeacherTraining from './Components/Services/OnlineCourse/OnlineYogaTeacherTraining';
-import QRDonationForm from './Components/Donation/QRDonationForm/QRDonationForm';
+// import QRDonationForm from './Components/Donation/QRDonationForm/QRDonationForm';
 import UseGTMPageView from './Components/useFullComponent/UseGTMPageView ';
 import MTService100 from './Components/Services/MT100Hours/MTService100';
 import MTService300 from './Components/Services/MT300Hours/MTService300';
@@ -74,7 +74,7 @@ function AppRoutes() {
         <Route path="programs/shiv-shakti-sadhana" element={<MembershipProgram data={shivShaktiSadhanaData} />} />
         <Route path="programs/sapta-rishi-sadhana" element={<MembershipProgram data={saptaRishiSadhanaData} />} />
         <Route path="programs/pashu-patayaa-sadhana" element={<MembershipProgram data={pashuPatayaaData} />} />
-        <Route path="donation" element={<QRDonationForm />} />
+        {/* <Route path="donation" element={<QRDonationForm />} /> */}
         <Route path="programs/100-hours-milti-style-teacher-training-course" element={<MTService100 />} />
         <Route path="programs/300-hours-milti-style-teacher-training-course" element={<MTService300 />} />
         <Route path="programs/200-hours-milti-style-teacher-training-course" element={<MTService200 />} />
