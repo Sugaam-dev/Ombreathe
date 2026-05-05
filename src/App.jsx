@@ -105,7 +105,7 @@ function AppRoutes() {
       {/* <Route path="servic" element={<OmbYogaPage/>}/> */}
 
 
-<Route path="/programs/Bali/:course" element={<OmbYogaPage />} />
+<Route path="/programs/bali/:course" element={<OmbYogaPage />} />
 
       </Route>
     </Routes>
