@@ -18,7 +18,7 @@ const OmbHeroSection = ({ data }) => {
       {/* HERO */}
       <div
         style={{
-          minHeight: "100vh",
+          padding: "clamp(80px,10vw,140px) 20px",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",

@@ -14,6 +14,7 @@ const OmbExcursionSection = ({ data }) => {
 
   const { colors, content } = data;
 
+  // 🔥 ICON MAP (used dynamically)
   const iconMap = {
     globe: <Globe size={16} />,
     leaf: <Leaf size={16} />,
@@ -60,6 +61,8 @@ const OmbExcursionSection = ({ data }) => {
                 borderRadius: 16,
                 overflow: "hidden",
                 boxShadow: colors.cardShadow,
+                transition: "transform 0.3s ease",
+                transform: hovered === i ? "translateY(-6px)" : "none",
               }}
               onMouseEnter={() => setHovered(i)}
               onMouseLeave={() => setHovered(null)}
@@ -105,6 +108,8 @@ const OmbExcursionSection = ({ data }) => {
 
               {/* CONTENT */}
               <div style={{ padding: 20 }}>
+                
+                {/* TAG */}
                 <span
                   style={{
                     background: exc.tagBg,
@@ -117,21 +122,37 @@ const OmbExcursionSection = ({ data }) => {
                   {exc.tag}
                 </span>
 
-                <h3 style={{ margin: "10px 0" }}>{exc.title}</h3>
+                {/* TITLE + ICON */}
+                <h3
+                  style={{
+                    margin: "10px 0",
+                    display: "flex",
+                    alignItems: "center",
+                    gap: 8,
+                  }}
+                >
+                  {iconMap[exc.icon] || <CheckCircle size={16} />}
+                  {exc.title}
+                </h3>
 
+                {/* DESC */}
                 <p>{exc.desc}</p>
 
+                {/* HIGHLIGHTS */}
                 <div style={{ marginTop: 10 }}>
                   {exc.highlights.map((h, j) => (
                     <div
                       key={j}
                       style={{
                         display: "flex",
-                        gap: 6,
+                        alignItems: "center",
+                        gap: 8,
                         fontSize: "0.8rem",
                       }}
                     >
-                      <CheckCircle size={14} color={colors.sage} />
+                      {iconMap[exc.icon] || (
+                        <CheckCircle size={14} color={colors.sage} />
+                      )}
                       {h}
                     </div>
                   ))}

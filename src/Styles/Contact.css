@@ -1,55 +1,67 @@
-/* @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap'); */
-
 * {
 	padding: 0;
 	margin: 0;
 	box-sizing: border-box;
 }
 
-.cont{
-	/* height: 700px; */
+/* SECTION WRAPPER */
+.cont {
 	display: grid;
 	align-items: center;
-	/* font-family: 'Poppins', sans-serif; */
-	margin-top: 5%;
+	padding-top: 60px; /* ✅ replaces margin-top */
 }
+
+/* HEADING */
 .headingc {
 	text-align: center;
 	font-family: Caudex, serif;
 }
-.headingc img{
+
+.headingc img {
 	width: 300px;
 }
+
+/* FLEX LAYOUT (UNCHANGED DESIGN) */
 .contact-wrap {
 	width: 100%;
-	height: auto;
 	margin: auto;
 	display: flex;
 	flex-wrap: wrap;
+	align-items: stretch; /* 🔥 KEY FIX */
 }
 
+/* CARDS */
 .contact-in {
 	padding: 40px 30px;
-
+	display: flex;              /* 🔥 FIX */
+	flex-direction: column;     /* 🔥 FIX */
+	justify-content: flex-start;
 }
 
+/* LEFT PANEL */
 .contact-in:nth-child(1) {
 	flex: 30%;
 	background: url(../images/AyurvedaBack.jpeg);
-	/* background: #000; */
+	background-size: cover;
+	background-position: center;
 	color: #fff;
 }
 
+/* FORM PANEL */
 .contact-in:nth-child(2) {
 	flex: 45%;
 	background: #c31432;
+	color: #fff;
 }
 
+/* MAP PANEL */
 .contact-in:nth-child(3) {
 	flex: 25%;
 	padding: 0;
+	display: flex; /* 🔥 FIX */
 }
 
+/* TEXT */
 .contact-in h1 {
 	font-size: 24px;
 	color: #fff;
@@ -62,6 +74,9 @@
 	font-size: 20px;
 	font-weight: 400;
 	margin-bottom: 15px;
+	display: flex;
+	align-items: center;
+	gap: 10px;
 }
 
 .contact-in h2 i {
@@ -82,6 +97,7 @@
 	margin-bottom: 20px;
 }
 
+/* SOCIAL */
 .contact-in ul {
 	padding: 0;
 	margin: 0;
@@ -99,7 +115,6 @@
 	width: 35px;
 	height: 35px;
 	text-align: center;
-	/* background: #fff; */
 	border-radius: 50px;
 	font-size: 25px;
 	color: #fff;
@@ -111,9 +126,9 @@
 	color: #000;
 }
 
+/* FORM */
 .contact-in form {
 	width: 100%;
-	height: auto;
 }
 
 .contact-in-input {
@@ -140,8 +155,7 @@
 	margin-bottom: 20px;
 	border: 1px solid #fff;
 	outline: none;
-	padding-top: 5px;
-	padding-left: 5px;
+	padding: 5px;
 	background: transparent;
 	color: #fff;
 	font-size: 12px;
@@ -166,16 +180,17 @@
 	cursor: pointer;
 }
 
+/* 🔥 MAP FIX (CRITICAL) */
 .contact-in iframe {
 	width: 100%;
-	height: 100%;
+	height: 100%;       /* 🔥 FIX */
+	min-height: 400px;  /* keeps same look */
+	border: 0;
 }
 
+/* RESPONSIVE */
 @media only screen and (max-width:480px) {
-	.contact-in:nth-child(1) {
-		flex: 50%;
-	}
-
+	.contact-in:nth-child(1),
 	.contact-in:nth-child(2) {
 		flex: 50%;
 	}
@@ -183,22 +198,16 @@
 	.contact-in:nth-child(3) {
 		flex: 100%;
 	}
-	.headingc img{
+
+	.headingc img {
 		width: 70%;
 	}
 }
 
 @media only screen and (max-width:360px) {
-	.contact-in:nth-child(1) {
-		flex: 50%;
-	}
-
-	.contact-in:nth-child(2) {
-		flex: 50%;
-	}
-
+	.contact-in:nth-child(1),
+	.contact-in:nth-child(2),
 	.contact-in:nth-child(3) {
 		flex: 100%;
 	}
-
 }
