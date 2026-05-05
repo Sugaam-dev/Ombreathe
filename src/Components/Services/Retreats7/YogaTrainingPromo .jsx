@@ -33,7 +33,7 @@ const YogaTrainingPromo = ({
 
   return (
     <>
-      <style jsx>{`
+      <style>{`
         .ytp-container { padding: 3rem 1rem; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: white; }
         .ytp-main-content { opacity: 0; transform: translateY(20px); transition: all 0.8s ease-out; }
         .ytp-main-content.ytp-visible { opacity: 1; transform: translateY(0); }

@@ -14,7 +14,7 @@ const BannerImage = React.memo(() => {
         />
       </picture>
 
-      <style jsx>{`
+      <style>{`
         .banner-container {
           width: 100%;
           overflow: hidden;

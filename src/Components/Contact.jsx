@@ -16,7 +16,7 @@ import { IoLogoYoutube } from "react-icons/io";
 import { FaPhoneAlt } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 import { CiLocationOn } from "react-icons/ci";
-
+import logoimage from "../images/lg.png"
 // Lazy load Google Maps for better performance
 const LazyGoogleMap = lazy(() => 
   Promise.resolve({
@@ -273,7 +273,7 @@ function Contact() {
   // Memoized header content
   const headerContent = useMemo(() => ({
     title: "Get In Touch With Ombreathe",
-    logo: "./images/lg.png"
+    logo: logoimage
   }), []);
 
   return (

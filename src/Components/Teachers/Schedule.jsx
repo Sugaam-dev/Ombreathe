@@ -157,7 +157,7 @@ const Schedule = () => {
       
       <Legend />
       
-      <style jsx>{`
+      <style>{`
       .schedule-item.animate-in { animation: slideInUp 0.5s ease forwards; }
         .schedule-item { will-change: transform, opacity; backface-visibility: hidden; }
         @keyframes slideInUp {

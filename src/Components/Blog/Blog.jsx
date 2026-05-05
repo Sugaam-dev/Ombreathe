@@ -267,19 +267,18 @@ const Blog = () => {
   }, []);
 
   // Performance monitoring
-  useEffect(() => {
-    const loadedCount = Object.values(imageLoadStats).filter(stat => stat.loaded).length;
-    if (loadedCount === visibleCards.length && loadedCount > 0) {
-      console.log('Blog: All visible images loaded', {
-        totalCards: visibleCards.length,
-        loadStats: imageLoadStats
-      });
-    }
-  }, [imageLoadStats, visibleCards.length]);
+ useEffect(() => {
+  const loadedCount = Object.values(imageLoadStats)
+    .filter(stat => stat.loaded).length;
+
+  if (loadedCount === visibleCards.length && loadedCount > 0) {
+    // do nothing (or trigger UI state if needed)
+  }
+}, [imageLoadStats, visibleCards.length]);
 
   return (
     <>
-      <style jsx>{`
+      <style>{`
         @keyframes shimmer {
           0% { background-position: 200% 0; }
           100% { background-position: -200% 0; }

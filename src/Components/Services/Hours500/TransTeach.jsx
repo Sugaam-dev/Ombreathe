@@ -43,7 +43,7 @@ const TransTeach = () => {
 
   return (
     <>
-      <style jsx>{`
+      <style>{`
         .yt-main-container {
           background: white;
           overflow: hidden;

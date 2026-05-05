@@ -50,7 +50,7 @@ const TransTeach = ({
 
   return (
     <>
-      <style jsx>{`
+      <style>{`
         .yt-main-container { background: white; overflow: hidden; }
         .yt-main-heading {
           font-size: 3.2rem; font-weight: 300; color: #4a5568;

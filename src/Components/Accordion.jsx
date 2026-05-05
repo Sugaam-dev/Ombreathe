@@ -178,7 +178,7 @@ const Accordion = () => {
         <div className="accordion-items">{renderedItems}</div>
       </div>
 
-      <style jsx>{`
+      <style>{`
         .faq-wrapper {
           min-height: 100vh;
         }

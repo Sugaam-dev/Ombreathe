@@ -757,7 +757,7 @@ const Navbar = () => {
         )}
       </nav>
 
-      <style jsx>{`
+      <style>{`
         .premium-navbar,
         .premium-link,
         .column-title,
@@ -771,7 +771,7 @@ const Navbar = () => {
         }
         .premium-navbar {
           background: #fff !important;
-          padding: 0.6rem 0 !important;
+          padding: 0 !important;
           z-index: 2000;
         }
         .logo-image {

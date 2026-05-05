@@ -27,7 +27,7 @@ const WhatsAppButton = ({ phone = "917483987568", message }) => {
         </span>
       </button>
 
-      <style jsx>{`
+      <style>{`
         .wa-wave-btn {
           position: fixed;
           bottom: 20px;

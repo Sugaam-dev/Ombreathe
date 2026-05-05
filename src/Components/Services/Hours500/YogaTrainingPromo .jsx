@@ -74,7 +74,7 @@ const YogaTrainingPromo = () => {
 
   return (
     <>
-      <style jsx>{`
+      <style>{`
         .ytp-container {
           padding: 3rem 1rem;
           font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;

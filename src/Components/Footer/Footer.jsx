@@ -345,7 +345,7 @@ const Footer = () => {
 
   return (
     <>
-      <style jsx>{`
+      <style>{`
         @keyframes shimmer {
           0% { background-position: 200% 0; }
           100% { background-position: -200% 0; }
@@ -408,7 +408,7 @@ const Footer = () => {
       {/* <ScrollToTopButton /> */}
 
       {/* Custom Styles (WhatsApp styles completely removed) */}
-      <style jsx>{`
+      <style>{`
         .social-links h6,
         .px-lg-3 h6,
         .ps-lg-4 h6,

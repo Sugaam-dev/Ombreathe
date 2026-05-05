@@ -214,7 +214,7 @@ Whether you want to deepen your practice or become a certified yoga teacher, Omb
 
   return (
     <>
-      <style jsx>{`
+      <style>{`
         @keyframes shimmer {
           0% { background-position: 200% 0; }
           100% { background-position: -200% 0; }

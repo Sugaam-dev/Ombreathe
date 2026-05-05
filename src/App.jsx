@@ -6,9 +6,9 @@ import Cont from './Components/Cont';
 import Servicess from './Components/Services/Servicess';
 import Layout from './Layout';
 import Service1 from './Components/Services/Service1/Service1';
-import Service2 from './Components/Services/Hours500/Service2';
-import Service300 from './Components/Services/Hours300/Service300';
-import Service100 from './Components/Services/Hours100/Service100';
+// import Service2 from './Components/Services/Hours500/Service2';
+// import Service300 from './Components/Services/Hours300/Service300';
+// import Service100 from './Components/Services/Hours100/Service100';
 import Retreats7 from './Components/Services/Retreats7/Retreats7';
 import Retreats7Medi from './Components/Services/Retreats7Med/Retreats7Medi';
 import AboutUsPage from './Components/AboutUs/AboutUsPage';
@@ -41,6 +41,8 @@ import baliPrenatalData from './Components/Services/ShortRetreats/data/bali/bali
 import rishikeshYinYogaData from './Components/Services/ShortRetreats/data/rishikesh/rishikeshYinYogaData';
 import rishikeshAerialYogaData from './Components/Services/ShortRetreats/data/rishikesh/rishikeshAerialYogaData';
 import rishikeshPrenatalData from './Components/Services/ShortRetreats/data/rishikesh/rishikeshPrenatalYogaData';
+// import Service1000 from './Components/Services/Service100combined';
+import OmbYogaPage from './ombYoga/pages/OmbYogaPage';
 
 
 
@@ -57,10 +59,11 @@ function AppRoutes() {
         <Route path="contact" element={<Cont />} />
         <Route path="programs" element={<Servicess />} />
         <Route path="our-teachers-list" element={<YogaTeachers />} />
-        <Route path="/programs/Bali/200hr" element={<Service1 />} />
+        {/* <Route path="/programs/Bali/200hr" element={<Service1 />} />
         <Route path="/programs/Bali/500hr" element={<Service2 />} />
-        <Route path="/programs/Bali/300hr" element={<Service300 />} />
-        <Route path="/programs/Bali/100hr" element={<Service100 />} />
+        <Route path="/programs/Bali/300hr" element={<Service300 />} /> */}
+        {/* <Route path="/programs/Bali/100hr" element={<Service100 />} /> */}
+        {/* <Route path="/programs/Bali/100hr" element={<OmbYogaPage/>} /> */}
         <Route path="programs/retreat-7-adventure" element={<Retreats7 />} />
         <Route path="programs/retreat-7-meditation" element={<Retreats7Medi />} />
         <Route path="programs/community-services" element={<Service1 />} />
@@ -99,6 +102,11 @@ function AppRoutes() {
         <Route path="programs/short-retreats/rishikesh/yin-yoga-teacher-training" element={<RetreatPage data={rishikeshYinYogaData} />} />
         <Route path="programs/short-retreats/rishikesh/aerial-yoga-teacher-training" element={<RetreatPage data={rishikeshAerialYogaData} />} />
         <Route path="programs/short-retreats/rishikesh/prenatal-yoga-teacher-training" element={<RetreatPage data={rishikeshPrenatalData} />} />
+      {/* <Route path="servic" element={<OmbYogaPage/>}/> */}
+
+
+<Route path="/programs/Bali/:course" element={<OmbYogaPage />} />
+
       </Route>
     </Routes>
   );
