@@ -6,7 +6,8 @@
 .soulfit-credentials-section {
   min-height: 100vh;
   /* background: linear-gradient(135deg, #fff7ed 0%, #fed7aa 100%); */
-  padding: 2rem 1rem;
+  padding: 0rem 1rem;
+  padding-bottom: 2rem;
 }
 
 .soulfit-credentials-container {
@@ -287,3 +288,5 @@
     font-size: 1.75rem;
   }
 }
+
+

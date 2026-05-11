@@ -2,7 +2,9 @@ import React from "react";
 import { FaFacebook, FaInstagram, FaYoutube } from "react-icons/fa";
 import { IoStar, IoStarHalf } from "react-icons/io5";
 import "../Styles/ratings.css";
-import lg from '../images/lg.png'
+import SectionHeading from "./useFullComponent/SectionHeading";
+// import lg from '../images/lg.png'
+// import {SectionHeading} from "./useFullComponent/SectionHeading";
 function Ratings() {
   const data = [
     {
@@ -34,10 +36,17 @@ function Ratings() {
 
   return (
     <div className="ratings-container">
-      <div className="heading">
+      {/* <div className="heading">
         <h1>What our students say about their yoga teacher training by Ombreathe</h1>
         <img src={lg} alt="Ombreathe Logo" />
-      </div>
+      </div> */}
+<SectionHeading
+  title="What Our Students Say About Their"
+  highlight="Yoga Teacher Training"
+  subtitle="Hear inspiring experiences and transformational journeys shared by students from the Ombreathe community"
+  highlightColor="#4a7c68"
+  textColor="#1e1e1c"
+/>
 
       <div className="main-content">
         <div className="reviews-section">

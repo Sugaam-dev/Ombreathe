@@ -1,271 +1,383 @@
-import React, { useEffect, useState, useMemo, useCallback } from "react";
-import { lazy, Suspense } from "react";
+import React, {
+  useEffect,
+  useState,
+  useMemo,
+} from "react";
+
 import "../Styles/Yogaschool.css";
 import "aos/dist/aos.css";
 import Aos from "aos";
-import school from '../images/logo/1.png'
-import Teachings from '../images/logo/2.png'
-import Wisdom from '../images/logo/3.png'
-import Methodology from '../images/logo/4.png'
-import logo from '../images/lg.png'
-import firstimage from '../images/Websitefirstimage.jpg'
-// Lazy load Slider component
-const Slider = lazy(() => import("react-slick"));
+import Slider from "react-slick";
+
+import school from "../images/logo/1.png";
+import Teachings from "../images/logo/2.png";
+import Wisdom from "../images/logo/3.png";
+import Methodology from "../images/logo/4.png";
+
+import logo from "../images/lg.png";
+import firstimage from "../images/Websitefirstimage.jpg";
+import SectionHeading from "./useFullComponent/SectionHeading";
 
 const Yogaschool = () => {
+
   const [images, setImages] = useState({
     logo: null,
-    yogaSchool: null
+    yogaSchool: null,
   });
-  const [isSliderLoaded, setIsSliderLoaded] = useState(false);
 
-  // Memoized slider settings
-  const locationSettings = useMemo(() => ({
-    dots: true,
-    infinite: true,
-    speed: 300,
-    autoplay: true,
-    autoplaySpeed: 2500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    fade: false,
-    cssEase: "ease-in-out",
-    lazyLoad: "ondemand",
-    pauseOnHover: true,
-    pauseOnFocus: true,
-    swipeToSlide: true,
-    touchThreshold: 10,
-  }), []);
+  // =========================================
+  // AOS
+  // =========================================
 
-  // Memoized slide content
-  const slideContent = useMemo(() => [
-    {
-      title: "Want To Join The Best Yoga School In Rishikesh, India?",
-      description: "Experience the spiritual birthplace of yoga in Rishikesh, nestled in the foothills of the Himalayas. Our Bali and Rishikesh location offers authentic traditional yoga teachings in the most sacred environment. Join thousands of practitioners who have transformed their lives through our comprehensive yoga teacher training programs in this holy city."
-    },
-    {
-      title: "Discover Yoga Paradise In Bali, Indonesia",
-      description: "Immerse yourself in the tropical serenity of Bali while deepening your yoga practice. Our Bali location combines traditional yoga wisdom with the island's natural beauty and spiritual energy. Experience transformative yoga training surrounded by lush landscapes, ancient temples, and the warm hospitality of Balinese culture."
-    },
-    {
-      title: "Find Inner Peace In The Himalayas",
-      description: "Escape to the majestic Himalayas for the ultimate yoga retreat experience. Our Himalayan location offers pristine mountain air, breathtaking views, and complete tranquility for deep meditation and yoga practice. Connect with nature and yourself in one of the world's most spiritually powerful locations."
-    }
-  ], []);
-
-  // Memoized features data
-  const features = useMemo(() => [
-    {
-      icon: school,
-      title: "No. 1 Yoga School",
-      description: "Best Yoga School in Bali and Rishikesh, India",
-      delay: 0
-    },
-    {
-      icon:  Teachings,
-      title: "Intense Yoga Teachings",
-      description: "Comprehensive & immersive yoga courses",
-      delay: 100
-    },
-    {
-      icon: Wisdom ,
-      title: "Ancient Wisdom",
-      description: "Yoga is the journey into the self",
-      delay: 200
-    },
-    {
-      icon: Methodology ,
-      title: "Traditional Methodology",
-      description: "Natural Healing for body & mind",
-      delay: 300
-    }
-  ], []);
-
-  // Load images dynamically
-  useEffect(() => {
-    const loadImages = async () => {
-      try {
-        // Use actual image imports or URLs as needed
-        setImages({
-          logo: logo,
-          yogaSchool: firstimage
-        });
-      } catch (error) {
-        console.error("Error loading images:", error);
-      }
-    };
-
-    loadImages();
-  }, []);
-
-  // Initialize AOS with cleanup
   useEffect(() => {
     Aos.init({
       duration: 800,
       offset: 100,
       easing: "ease-out",
       once: true,
-      mirror: false,
-      anchorPlacement: "top-bottom",
     });
-
-    return () => {
-      Aos.refresh();
-    };
   }, []);
 
-  // Intersection Observer for lazy loading slider
+  // =========================================
+  // LOAD IMAGES
+  // =========================================
+
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting && !isSliderLoaded) {
-            setIsSliderLoaded(true);
-          }
-        });
+    setImages({
+      logo: logo,
+      yogaSchool: firstimage,
+    });
+  }, []);
+
+  // =========================================
+  // SLIDER SETTINGS
+  // =========================================
+
+  const locationSettings = useMemo(
+    () => ({
+      dots: true,
+      infinite: true,
+      speed: 700,
+      autoplay: true,
+      autoplaySpeed: 3500,
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      arrows: false,
+      pauseOnHover: true,
+      swipeToSlide: true,
+      adaptiveHeight: false,
+    }),
+    []
+  );
+
+  // =========================================
+  // SLIDER CONTENT
+  // =========================================
+
+  const slideContent = useMemo(
+    () => [
+      {
+        location: "Bali",
+        image:
+          "https://images.unsplash.com/photo-1537953773345-d172ccf13cf1?q=80&w=2070&auto=format&fit=crop",
+        title: "Discover Yoga Paradise In Bali",
+        description:
+          "Immerse yourself in tropical serenity, sacred temples, waterfalls, and transformative yoga retreats surrounded by Bali's spiritual energy.",
+        color: "#ff914d",
       },
-      { 
-        threshold: 0.1,
-        rootMargin: '50px 0px'
-      }
-    );
+      {
+        location: "Mysuru",
+        image:
+          "https://images.unsplash.com/photo-1593693411515-c20261bcad6e?q=80&w=2070&auto=format&fit=crop",
+        title: "Birthplace Of Traditional Ashtanga Yoga",
+        description:
+          "Train in Mysuru, the yoga capital of South India, where authentic yogic discipline and ancient teachings continue to inspire practitioners worldwide.",
+        color: "#2e8b57",
+      },
+      {
+        location: "Rishikesh",
+        image:
+          "https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?q=80&w=2070&auto=format&fit=crop",
+        title: "Experience Yoga In Rishikesh",
+        description:
+          "Practice yoga by the sacred Ganges River surrounded by Himalayan energy in the spiritual heart of India.",
+        color: "#4caf50",
+      },
+      {
+        location: "Chiang Mai",
+        image:
+          "https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?q=80&w=2070&auto=format&fit=crop",
+        title: "Mindful Retreats In Chiang Mai",
+        description:
+          "Blend yoga, meditation, mindfulness, and nature in the peaceful mountains and temples of Northern Thailand.",
+        color: "#d97706",
+      },
+      {
+        location: "Dharamshala",
+        image:
+          "https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=2070&auto=format&fit=crop",
+        title: "Yoga In The Himalayas",
+        description:
+          "Reconnect with yourself in the serene Himalayan atmosphere inspired by Tibetan spiritual culture and meditation.",
+        color: "#6b7280",
+      },
+    ],
+    []
+  );
 
-    const sliderElement = document.querySelector('.location-slider');
-    if (sliderElement) {
-      observer.observe(sliderElement);
-    }
+  // =========================================
+  // FEATURES
+  // =========================================
 
-    return () => {
-      if (sliderElement) {
-        observer.unobserve(sliderElement);
-      }
-    };
-  }, [isSliderLoaded]);
-
-  // Memoized slider loading component
-  const SliderLoader = useCallback(() => (
-    <div className="slider-loading" style={{ 
-      height: '200px', 
-      display: 'flex', 
-      alignItems: 'center', 
-      justifyContent: 'center',
-      backgroundColor: '#f8f9fa',
-      borderRadius: '8px'
-    }}>
-      <div className="text-center">
-        <div className="spinner-border text-primary mb-2" role="status">
-          <span className="visually-hidden">Loading...</span>
-        </div>
-        <p className="text-muted small">Loading locations...</p>
-      </div>
-    </div>
-  ), []);
+  const features = useMemo(
+    () => [
+      {
+        icon: school,
+        title: "No. 1 Yoga School",
+        description: "Best Yoga School in Bali and Rishikesh, India",
+        delay: 0,
+        color: "#e8f5e9",
+        hoverColor: "#c8e6c9",
+        accent: "#4caf50",
+      },
+      {
+        icon: Teachings,
+        title: "Intense Yoga Teachings",
+        description: "Comprehensive & immersive yoga courses",
+        delay: 100,
+        color: "#e3f2fd",
+        hoverColor: "#bbdefb",
+        accent: "#2196f3",
+      },
+      {
+        icon: Wisdom,
+        title: "Ancient Wisdom",
+        description: "Yoga is the journey into the self",
+        delay: 200,
+        color: "#fce4ec",
+        hoverColor: "#f8bbd0",
+        accent: "#e91e63",
+      },
+      {
+        icon: Methodology,
+        title: "Traditional Methodology",
+        description: "Natural Healing for body & mind",
+        delay: 300,
+        color: "#fff8e1",
+        hoverColor: "#ffecb3",
+        accent: "#ff9800",
+      },
+    ],
+    []
+  );
 
   return (
     <>
       <div className="yogaschool">
+
         <div className="yogaa">
-          <div className="heading">
-            <h1>Best Yoga School In India and Indonesia</h1>
+
+          {/* ========================================= */}
+          {/* HEADING */}
+          {/* ========================================= */}
+
+          {/* <div className="heading">
+
+            <h1>
+              Best Yoga School In India and Indonesia
+            </h1>
+
             {images.logo && (
-              <img 
-                src={images.logo} 
-                alt="Ombreathe Logo" 
+              <img
+                src={images.logo}
+                alt="Ombreathe Logo"
                 loading="lazy"
-                style={{ maxWidth: '100%', height: 'auto' }}
               />
             )}
+
+          </div> */}
+
+          <SectionHeading
+  title="Best Yoga School In"
+  highlight="India and Indonesia"
+  subtitle="Discover authentic yoga teacher training, retreats & holistic wellness programs with Ombreathe"
+  highlightColor="#4a7c68"
+  textColor="#1e1e1c"
+/>
+
+          {/* ========================================= */}
+          {/* MODERN LOCATION SLIDER */}
+          {/* ========================================= */}
+
+          <div className="location-slider">
+
+            <Slider {...locationSettings}>
+
+              {slideContent.map((slide, index) => (
+
+                <div key={index} className="modern-slide">
+
+                  <div
+                    className="modern-slide-image"
+                    style={{
+                      backgroundImage: `url(${slide.image})`,
+                    }}
+                  >
+
+                    <div className="modern-overlay">
+
+                      <div className="modern-location-badge">
+                        {slide.location}
+                      </div>
+
+                      <div className="modern-slide-content">
+
+                        <h3>{slide.title}</h3>
+
+                        <p>{slide.description}</p>
+
+                        <button style={{ background: slide.color }}>
+                          Explore More
+                        </button>
+
+                      </div>
+
+                    </div>
+
+                  </div>
+
+                </div>
+
+              ))}
+
+            </Slider>
+
           </div>
 
-          {/* Location Slider with Lazy Loading */}
-          <div className="location-slider">
-            {isSliderLoaded ? (
-              <Suspense fallback={<SliderLoader />}>
-                <Slider {...locationSettings}>
-                  {slideContent.map((slide, index) => (
-                    <div key={index} className="location-slide">
-                      <div className="location-content">
-                        <h3>{slide.title}</h3>
-                        <p>{slide.description}</p>
-                      </div>
-                    </div>
-                  ))}
-                </Slider>
-              </Suspense>
-            ) : (
-              <SliderLoader />
-            )}
-          </div>
+          {/* ========================================= */}
+          {/* CONTENT SECTION — image LEFT, text RIGHT */}
+          {/* ========================================= */}
 
           <div className="box">
+
             <div
               className="box1"
               data-aos="fade-right"
               data-aos-offset="50"
               data-aos-duration="600"
             >
+
               {images.yogaSchool && (
-                <img 
-                  src={images.yogaSchool} 
-                  alt="Yoga School" 
+                <img
+                  src={images.yogaSchool}
+                  alt="Yoga School"
                   loading="lazy"
-                  style={{ maxWidth: '100%', height: 'auto' }}
                 />
               )}
+
             </div>
+
             <div
               className="box2"
               data-aos="fade-left"
               data-aos-offset="50"
               data-aos-duration="600"
             >
+
               <p>
-                At Ombreathe, all courses are led by skilled and certified yoga
-                teachers dedicated to delivering authentic, immersive, and Yoga
-                Alliance-accredited programs. Whether you're beginning your
-                journey or aiming to become a certified instructor, our
-                comprehensive training helps you build a strong, mindful
-                foundation in yoga. <br/> <br/> With serene campuses in both Bali and
-                Rishikesh, we offer an inspiring environment that nurtures
-                self-growth, discipline, and spiritual connection. At Ombreathe,
-                we guide you to develop your own teaching style, deepen your
-                practice, and embrace a holistic yogic lifestyle. <br/> <br/> Our courses
-                are designed to transform habits, enhance awareness, and lead
-                you toward a life of balance, clarity, and inner peace.<br/> <br/> From
-                in-person teacher training and retreats to online programs,
-                Ombreathe offers a global platform to learn, grow, and share
-                yoga with the world — all rooted in the spiritual essence of
-                traditional Indian yoga. <br/> <br/> Join us at Ombreathe and step into your
-                fullest potential as a student, seeker, or teacher of yoga.
+                At Ombreathe, all courses are led by skilled and
+                certified yoga teachers dedicated to delivering
+                authentic, immersive, and Yoga
+                Alliance-accredited programs.
+
+                <br /><br />
+
+                Whether you're beginning your journey or aiming
+                to become a certified instructor, our
+                comprehensive training helps you build a strong,
+                mindful foundation in yoga.
+
+                <br /><br />
+
+                With serene campuses in Bali, Mysuru,
+                Rishikesh, Chiang Mai, and Dharamshala,
+                we offer an inspiring environment that nurtures
+                self-growth, discipline, and spiritual
+                connection.
+
+                <br /><br />
+
+                At Ombreathe, we guide you to develop your own
+                teaching style, deepen your practice, and
+                embrace a holistic yogic lifestyle.
+
+                <br /><br />
+
+                Our courses are designed to transform habits,
+                enhance awareness, and lead you toward a life
+                of balance, clarity, and inner peace.
+
+                <br /><br />
+
+                From in-person teacher training and retreats to
+                online programs, Ombreathe offers a global
+                platform to learn, grow, and share yoga with
+                the world — all rooted in the spiritual essence
+                of traditional Indian yoga.
+
+                <br /><br />
+
+                Join us at Ombreathe and step into your fullest
+                potential as a student, seeker, or teacher of
+                yoga.
               </p>
-              <div className="boxcontent">
-                {features.map((feature, index) => (
-                  <div
-                    key={index}
-                    className="item1"
-                    data-aos="zoom-in"
-                    data-aos-delay={feature.delay}
-                    data-aos-offset="30"
-                    data-aos-duration="500"
-                  >
-                    <div className="itemlogo">
-                      <img
-                        src={feature.icon}
-                        alt={feature.title}
-                        loading="lazy"
-                        style={{ maxWidth: '100%', height: 'auto' }}
-                      />
-                    </div>
-                    <div className="item2">
-                      <h3>{feature.title}</h3>
-                      <p>{feature.description}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
+
             </div>
+
           </div>
+
+          {/* ========================================= */}
+          {/* FEATURES — full width below both columns */}
+          {/* ========================================= */}
+
+          <div className="boxcontent">
+
+            {features.map((feature, index) => (
+
+              <div
+                key={index}
+                className="item1"
+                data-aos="zoom-in"
+                data-aos-delay={feature.delay}
+                data-aos-offset="30"
+                data-aos-duration="500"
+                style={{ "--accent": feature.accent }}
+              >
+
+                <div
+                  className="itemlogo"
+                  style={{ background: feature.color }}
+                >
+                  <img
+                    src={feature.icon}
+                    alt={feature.title}
+                    loading="lazy"
+                  />
+                </div>
+
+                <div className="item2">
+                  <h3>{feature.title}</h3>
+                  <p>{feature.description}</p>
+                </div>
+
+              </div>
+
+            ))}
+
+          </div>
+
         </div>
+
       </div>
     </>
   );

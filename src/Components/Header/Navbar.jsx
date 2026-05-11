@@ -14,6 +14,23 @@ const Navbar = () => {
   const [ttcView, setTtcView] = useState("main");
   const [selectedTtcLoc, setSelectedTtcLoc] = useState("");
 
+  const [retreatView, setRetreatView] = useState("main");
+  const [selectedRetreatLoc, setSelectedRetreatLoc] = useState("");
+
+  // Separate state for mobile accordion (independent from desktop hover dropdowns)
+  const [mobileAccordion, setMobileAccordion] = useState({ programs: false, retreats: false });
+
+  const toggleMobileAccordion = (key) => {
+    setMobileAccordion((prev) => ({ ...prev, [key]: !prev[key] }));
+  };
+
+  // Tracks which TTC sub-category is open: key = "Loc-subcat", value = bool
+  const [openSubCat, setOpenSubCat] = useState({});
+
+  const toggleSubCat = (key) => {
+    setOpenSubCat((prev) => ({ ...prev, [key]: !prev[key] }));
+  };
+
   const location = useLocation();
   const timeoutRef = useRef(null);
 
@@ -37,22 +54,46 @@ const Navbar = () => {
     else if (path === "/contact") setActiveLink("contact");
     else if (path.includes("/programs") || path.includes("/online"))
       setActiveLink("programs");
+    else if (path.includes("/retreat")) setActiveLink("retreats");
   }, [location]);
 
   const openProgramsMenu = () => {
     if (isDesktop) {
       if (timeoutRef.current) clearTimeout(timeoutRef.current);
-      setDropdownOpen({ programs: true });
+      // Close all others, open only programs
+      setDropdownOpen({ programs: true, retreats: false });
     }
   };
 
   const closeProgramsMenu = () => {
     if (isDesktop) {
       timeoutRef.current = setTimeout(() => {
-        // Only close the dropdown panel — do NOT reset activeLocation, ttcView,
-        // selectedTtcLoc, or activeMobileCategory so they are restored on next hover.
-        setDropdownOpen({ programs: false });
+        setDropdownOpen((prev) => ({ ...prev, programs: false }));
       }, 300);
+    }
+  };
+
+  const openRetreatsMenu = () => {
+    if (isDesktop) {
+      if (timeoutRef.current) clearTimeout(timeoutRef.current);
+      // Close all others, open only retreats
+      setDropdownOpen({ programs: false, retreats: true });
+    }
+  };
+
+  const closeRetreatsMenu = () => {
+    if (isDesktop) {
+      timeoutRef.current = setTimeout(() => {
+        setDropdownOpen((prev) => ({ ...prev, retreats: false }));
+      }, 300);
+    }
+  };
+
+  // Called when hovering over a plain nav item (Home, About, Contact)
+  const closeAllMenus = () => {
+    if (isDesktop) {
+      if (timeoutRef.current) clearTimeout(timeoutRef.current);
+      setDropdownOpen({ programs: false, retreats: false });
     }
   };
 
@@ -61,8 +102,6 @@ const Navbar = () => {
   const handleLinkClick = (linkName) => {
     setActiveLink(linkName);
     setDropdownOpen({});
-    // Do NOT reset activeLocation, ttcView, or selectedTtcLoc here —
-    // we want Programs to reopen at the same sub-section the user was in.
     setIsDrawerOpen(false);
   };
 
@@ -81,17 +120,37 @@ const Navbar = () => {
     setTtcView("detail");
   };
 
+  const RETREAT_LINKS = {
+    Mysuru: [
+      // { path: "retreats6days", label: "6 Days Retreat" },
+    ],
+    Bali: [
+      { path: "retreats6days", label: "6 Days Retreat" },
+    ],
+    Rishikesh: [
+      // { path: "retreats6days", label: "6 Days Retreat" },
+    ],
+    "Chiang Mai": [
+      // { path: "retreats6days", label: "6 Days Retreat" },
+    ],
+    Dharamshala: [
+      // { path: "retreats6days", label: "6 Days Retreat" },
+    ],
+  };
+
   const renderRetreatLinks = (city) => {
-    return Array.from({ length: 3 }).map((_, i) => {
-      const path = `/programs/retreat-${city.toLowerCase()}-${i + 1}`;
+    const links = RETREAT_LINKS[city] || [];
+    if (links.length === 0) return <span style={{ color: "#aaa", fontSize: "13px" }}>Coming Soon</span>;
+    return links.map(({ path, label }) => {
+      const fullPath = `/programs/${city}/${path}`;
       return (
         <Link
-          key={i}
-          to={path}
-          className={isSubActive(path) ? "sub-link-active" : ""}
-          onClick={() => handleLinkClick("programs")}
+          key={path}
+          to={fullPath}
+          className={isSubActive(fullPath) ? "sub-link-active" : ""}
+          onClick={() => handleLinkClick("retreats")}
         >
-          {city} Session {i + 1}
+          {label}
         </Link>
       );
     });
@@ -113,7 +172,7 @@ const Navbar = () => {
 
           {isDesktop && (
             <ul className="navbar-nav mx-auto d-flex flex-row align-items-center nav-spacing">
-              <li className="nav-item">
+              <li className="nav-item" onMouseEnter={closeAllMenus}>
                 <Link
                   className={`nav-link premium-link ${activeLink === "home" ? "active" : ""}`}
                   to="/"
@@ -122,7 +181,7 @@ const Navbar = () => {
                   Home
                 </Link>
               </li>
-              <li className="nav-item">
+              <li className="nav-item" onMouseEnter={closeAllMenus}>
                 <Link
                   className={`nav-link premium-link ${activeLink === "about" ? "active" : ""}`}
                   to="/about"
@@ -132,6 +191,7 @@ const Navbar = () => {
                 </Link>
               </li>
 
+              {/* PROGRAMS NAV ITEM */}
               <li
                 className="nav-item mega-static"
                 onMouseEnter={openProgramsMenu}
@@ -164,7 +224,7 @@ const Navbar = () => {
                   <div className="container-fluid px-lg-5">
                     {ttcView === "main" ? (
                       <div className="row py-4 fade-in">
-                        <div className="col-lg-3 mega-column">
+                        <div className="col-lg-4 mega-column">
                           <h6 className="column-title">MEMBERSHIP PROGRAMS</h6>
                           <Link
                             className={
@@ -212,7 +272,7 @@ const Navbar = () => {
                           </Link>
                         </div>
 
-                        <div className="col-lg-3 mega-column">
+                        <div className="col-lg-4 mega-column">
                           <h6 className="column-title">ONLINE COURSES</h6>
                           <Link
                             className={
@@ -249,11 +309,11 @@ const Navbar = () => {
                           </Link>
                         </div>
 
-                        <div className="col-lg-3 mega-column">
+                        <div className="col-lg-4 mega-column no-border">
                           <h6 className="column-title">
                             TTC (TEACHER TRAINING)
                           </h6>
-                          {["Mysuru", "Bali", "Rishikesh", "Chiang Mai","Dharamshala"].map(
+                          {["Mysuru", "Bali", "Rishikesh", "Chiang Mai", "Dharamshala"].map(
                             (loc) => (
                               <div
                                 key={loc}
@@ -262,30 +322,6 @@ const Navbar = () => {
                               >
                                 <span>{loc} TTC</span>{" "}
                                 <span className="symbol">→</span>
-                              </div>
-                            ),
-                          )}
-                        </div>
-
-                        <div className="col-lg-3 mega-column no-border">
-                          <h6 className="column-title">RETREATS</h6>
-                          {["Mysuru", "Bali", "Rishikesh", "Chiang Mai","Dharamshala"].map(
-                            (loc) => (
-                              <div key={loc} className="mb-1">
-                                <div
-                                  className={`loc-toggle ${activeLocation === loc || location.pathname.includes(loc.toLowerCase()) ? "active-loc-text" : ""}`}
-                                  onClick={(e) => toggleLocation(e, loc)}
-                                >
-                                  <span>{loc} Retreat</span>{" "}
-                                  <span className="symbol">
-                                    {activeLocation === loc ? "−" : "+"}
-                                  </span>
-                                </div>
-                                <div
-                                  className={`loc-content scrollable-loc ${activeLocation === loc ? "open" : ""}`}
-                                >
-                                  {renderRetreatLinks(loc)}
-                                </div>
                               </div>
                             ),
                           )}
@@ -306,7 +342,18 @@ const Navbar = () => {
                         </div>
                         <div className="col-lg-3 mega-column">
                           <h6 className="column-title">Multi-Style YTTC</h6>
-                             <Link
+                          <Link
+                            className={
+                              isSubActive(`/programs/${selectedTtcLoc}/50hr`)
+                                ? "sub-link-active"
+                                : ""
+                            }
+                            to={`/programs/${selectedTtcLoc}/50hr`}
+                            onClick={() => handleLinkClick("programs")}
+                          >
+                            50 Hour Foundation
+                          </Link>
+                          <Link
                             className={
                               isSubActive(`/programs/${selectedTtcLoc}/100hr`)
                                 ? "sub-link-active"
@@ -353,82 +400,22 @@ const Navbar = () => {
                         </div>
                         <div className="col-lg-3 mega-column">
                           <h6 className="column-title">Kundalini YTTC</h6>
-                          <Link
-                            className={
-                              isSubActive(`/programs/${selectedTtcLoc}/k1`)
-                                ? "sub-link-active"
-                                : ""
-                            }
-                            to={`/programs/${selectedTtcLoc}/k1`}
-                            onClick={() => handleLinkClick("programs")}
-                          >
-                            Level 1 Foundation
-                          </Link>
-                          <Link
-                            className={
-                              isSubActive(`/programs/${selectedTtcLoc}/k2`)
-                                ? "sub-link-active"
-                                : ""
-                            }
-                            to={`/programs/${selectedTtcLoc}/k2`}
-                            onClick={() => handleLinkClick("programs")}
-                          >
-                            Level 2 Advanced
-                          </Link>
+                          <Link className={isSubActive(`/programs/${selectedTtcLoc}/kundalini50hr`) ? "sub-link-active" : ""} to={`/programs/${selectedTtcLoc}/kundalini50hr`} onClick={() => handleLinkClick("programs")}>Kundalini 50 Hours</Link>
+                          <Link className={isSubActive(`/programs/${selectedTtcLoc}/kundalini100hr`) ? "sub-link-active" : ""} to={`/programs/${selectedTtcLoc}/kundalini100hr`} onClick={() => handleLinkClick("programs")}>Kundalini 100 Hours</Link>
+                          <Link className={isSubActive(`/programs/${selectedTtcLoc}/kundalini200hr`) ? "sub-link-active" : ""} to={`/programs/${selectedTtcLoc}/kundalini200hr`} onClick={() => handleLinkClick("programs")}>Kundalini 200 Hours</Link>
+                          <Link className={isSubActive(`/programs/${selectedTtcLoc}/kundalini300hr`) ? "sub-link-active" : ""} to={`/programs/${selectedTtcLoc}/kundalini300hr`} onClick={() => handleLinkClick("programs")}>Kundalini 300 Hours</Link>
+                          <Link className={isSubActive(`/programs/${selectedTtcLoc}/kundalini500hr`) ? "sub-link-active" : ""} to={`/programs/${selectedTtcLoc}/kundalini500hr`} onClick={() => handleLinkClick("programs")}>Kundalini 500 Hours</Link>
                         </div>
                         <div className="col-lg-3 mega-column">
                           <h6 className="column-title">Short Courses</h6>
-                          <Link
-                            className={
-                              isSubActive(`/programs/${selectedTtcLoc}/nidra`)
-                                ? "sub-link-active"
-                                : ""
-                            }
-                            to={`/programs/${selectedTtcLoc}/nidra`}
-                            onClick={() => handleLinkClick("programs")}
-                          >
-                            Yoga Nidra Course
-                          </Link>
-                          <Link
-                            className={
-                              isSubActive(
-                                `/programs/${selectedTtcLoc}/pranayama`,
-                              )
-                                ? "sub-link-active"
-                                : ""
-                            }
-                            to={`/programs/${selectedTtcLoc}/pranayama`}
-                            onClick={() => handleLinkClick("programs")}
-                          >
-                            Pranayama Intensive
-                          </Link>
+                          <Link className={isSubActive(`/programs/${selectedTtcLoc}/yinyoga`) ? "sub-link-active" : ""} to={`/programs/${selectedTtcLoc}/yinyoga`} onClick={() => handleLinkClick("programs")}>Yin Yoga</Link>
+                          <Link className={isSubActive(`/programs/${selectedTtcLoc}/prenatalyoga`) ? "sub-link-active" : ""} to={`/programs/${selectedTtcLoc}/prenatalyoga`} onClick={() => handleLinkClick("programs")}>Prenatal Yoga</Link>
+                          <Link className={isSubActive(`/programs/${selectedTtcLoc}/aerialyoga`) ? "sub-link-active" : ""} to={`/programs/${selectedTtcLoc}/aerialyoga`} onClick={() => handleLinkClick("programs")}>Aerial Yoga</Link>
+                          <Link className={isSubActive(`/programs/${selectedTtcLoc}/acroYoga`) ? "sub-link-active" : ""} to={`/programs/${selectedTtcLoc}/acroYoga`} onClick={() => handleLinkClick("programs")}>Acro Yoga</Link>
                         </div>
                         <div className="col-lg-3 mega-column no-border">
                           <h6 className="column-title">Specialization</h6>
-                          <Link
-                            className={
-                              isSubActive(
-                                `/programs/${selectedTtcLoc}/prenatal`,
-                              )
-                                ? "sub-link-active"
-                                : ""
-                            }
-                            to={`/programs/${selectedTtcLoc}/prenatal`}
-                            onClick={() => handleLinkClick("programs")}
-                          >
-                            Prenatal Specialist
-                          </Link>
-                          <Link
-                            className={
-                              isSubActive(`/programs/${selectedTtcLoc}/therapy`)
-                                ? "sub-link-active"
-                                : ""
-                            }
-                            to={`/programs/${selectedTtcLoc}/therapy`}
-                            onClick={() => handleLinkClick("programs")}
-                          >
-                            Yoga Therapy
-                          </Link>
+                          <Link className={isSubActive(`/programs/${selectedTtcLoc}/soundhealing`) ? "sub-link-active" : ""} to={`/programs/${selectedTtcLoc}/soundhealing`} onClick={() => handleLinkClick("programs")}>Sound Healing</Link>
                         </div>
                       </div>
                     )}
@@ -436,7 +423,55 @@ const Navbar = () => {
                 </div>
               </li>
 
-              <li className="nav-item">
+              {/* RETREATS NAV ITEM — new top-level */}
+              <li
+                className="nav-item mega-static"
+                onMouseEnter={openRetreatsMenu}
+                onMouseLeave={closeRetreatsMenu}
+              >
+                <Link
+                  className={`nav-link premium-link ${activeLink === "retreats" ? "active" : ""}`}
+                  to="#"
+                >
+                  Retreats{" "}
+                  <span
+                    className={`arrow-icon ${dropdownOpen.retreats ? "rotated" : ""}`}
+                  >
+                    ▼
+                  </span>
+                </Link>
+
+                {dropdownOpen.retreats && (
+                  <div
+                    className="bridge-area"
+                    onMouseEnter={openRetreatsMenu}
+                  ></div>
+                )}
+
+                <div
+                  className={`mega-panel shadow-lg ${dropdownOpen.retreats ? "show" : ""}`}
+                  onMouseEnter={openRetreatsMenu}
+                  onMouseLeave={closeRetreatsMenu}
+                >
+                  <div className="container-fluid px-lg-5">
+                    <div className="row py-4 fade-in">
+                      {["Mysuru", "Bali", "Rishikesh", "Chiang Mai", "Dharamshala"].map(
+                        (loc, idx, arr) => (
+                          <div
+                            key={loc}
+                            className={`col-lg mega-column ${idx === arr.length - 1 ? "no-border" : ""}`}
+                          >
+                            <h6 className="column-title">{loc.toUpperCase()} RETREAT</h6>
+                            {renderRetreatLinks(loc)}
+                          </div>
+                        ),
+                      )}
+                    </div>
+                  </div>
+                </div>
+              </li>
+
+              <li className="nav-item" onMouseEnter={closeAllMenus}>
                 <Link
                   className={`nav-link premium-link ${activeLink === "contact" ? "active" : ""}`}
                   to="/contact"
@@ -488,22 +523,21 @@ const Navbar = () => {
               About
             </Link>
 
+            {/* MOBILE PROGRAMS ACCORDION */}
             <div className="drawer-accordion">
               <div
                 className={`drawer-link d-flex justify-content-between align-items-center ${activeLink === "programs" ? "mobile-active-text" : ""}`}
-                onClick={() =>
-                  setDropdownOpen({ programs: !dropdownOpen.programs })
-                }
+                onClick={() => toggleMobileAccordion("programs")}
               >
                 Programs{" "}
                 <span
-                  className={`arrow-icon ${dropdownOpen.programs ? "rotated" : ""}`}
+                  className={`arrow-icon ${mobileAccordion.programs ? "rotated" : ""}`}
                 >
                   ▼
                 </span>
               </div>
 
-              {dropdownOpen.programs && (
+              {mobileAccordion.programs && (
                 <div className="drawer-sub-menu">
                   <div className="drawer-loc-item">
                     <div
@@ -623,8 +657,9 @@ const Navbar = () => {
                     <div
                       className={`drawer-loc-body ${activeMobileCategory === "TTC" ? "open" : ""}`}
                     >
-                      {["Mysuru", "Bali", "Rishikesh", "Gokarna"].map((loc) => (
+                      {["Mysuru", "Bali", "Rishikesh", "Chiang Mai", "Dharamshala"].map((loc) => (
                         <div key={loc} className="drawer-nested-loc mb-2">
+                          {/* Location toggle */}
                           <div
                             className={`drawer-loc-header nested ${location.pathname.toLowerCase().includes(loc.toLowerCase()) ? "m-active-path-text" : ""}`}
                             onClick={(e) => toggleLocation(e, `m-ttc-${loc}`)}
@@ -637,92 +672,112 @@ const Navbar = () => {
                           <div
                             className={`drawer-loc-body ${activeLocation === `m-ttc-${loc}` ? "open" : ""}`}
                           >
-                             <Link
-                              className={
-                                isSubActive(
-                                  `/programs/${loc.toLowerCase()}/100hr`,
-                                )
-                                  ? "m-sub-active-text"
-                                  : ""
-                              }
-                              to={`/programs/${loc.toLowerCase()}/100hr`}
-                              onClick={() => handleLinkClick("programs")}
+                            {/* Sub-category: Multi-Style YTTC */}
+                            <div
+                              className="mobile-sub-category-label"
+                              onClick={(e) => { e.stopPropagation(); toggleSubCat(`${loc}-multiStyle`); }}
                             >
-                              100 Hour Foundation
-                            </Link>
-                            <Link
-                              className={
-                                isSubActive(
-                                  `/programs/${loc.toLowerCase()}/200hr`,
-                                )
-                                  ? "m-sub-active-text"
-                                  : ""
-                              }
-                              to={`/programs/${loc.toLowerCase()}/200hr`}
-                              onClick={() => handleLinkClick("programs")}
-                            >
-                              200 Hour Foundation
-                            </Link>
-                            <Link
-                              className={
-                                isSubActive(
-                                  `/programs/${loc.toLowerCase()}/300hr`,
-                                )
-                                  ? "m-sub-active-text"
-                                  : ""
-                              }
-                              to={`/programs/${loc.toLowerCase()}/300hr`}
-                              onClick={() => handleLinkClick("programs")}
-                            >
-                              300 Hour Advanced
-                            </Link>
-                            <Link
-                              className={
-                                isSubActive(
-                                  `/programs/${loc.toLowerCase()}/500hr`,
-                                )
-                                  ? "m-sub-active-text"
-                                  : ""
-                              }
-                              to={`/programs/${loc.toLowerCase()}/500hr`}
-                              onClick={() => handleLinkClick("programs")}
-                            >
-                              500 Hour Master
-                            </Link>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
+                              Multi-Style YTTC <span className="sub-cat-arrow">{openSubCat[`${loc}-multiStyle`] ? "−" : "+"}</span>
+                            </div>
+                            {openSubCat[`${loc}-multiStyle`] && (
+                              <div className="mobile-sub-cat-body">
+                                {[
+                                  { path: "50hr", label: "50 Hour Foundation" },
+                                  { path: "100hr", label: "100 Hour Foundation" },
+                                  { path: "200hr", label: "200 Hour Foundation" },
+                                  { path: "300hr", label: "300 Hour Advanced" },
+                                  { path: "500hr", label: "500 Hour Master" },
+                                ].map(({ path, label }) => (
+                                  <Link
+                                    key={path}
+                                    className={isSubActive(`/programs/${loc}/${path}`) ? "m-sub-active-text" : ""}
+                                    to={`/programs/${loc}/${path}`}
+                                    onClick={() => handleLinkClick("programs")}
+                                  >
+                                    {label}
+                                  </Link>
+                                ))}
+                              </div>
+                            )}
 
-                  <div className="drawer-loc-item">
-                    <div
-                      className="drawer-loc-header"
-                      onClick={() => toggleMobileCategory("RETREATS")}
-                    >
-                      RETREATS{" "}
-                      <span>
-                        {activeMobileCategory === "RETREATS" ? "−" : "+"}
-                      </span>
-                    </div>
-                    <div
-                      className={`drawer-loc-body ${activeMobileCategory === "RETREATS" ? "open" : ""}`}
-                    >
-                      {["Mysuru", "Bali", "Rishikesh", "Gokarna"].map((loc) => (
-                        <div key={loc} className="drawer-nested-loc mb-2">
-                          <div
-                            className={`drawer-loc-header nested ${location.pathname.toLowerCase().includes(loc.toLowerCase()) ? "m-active-path-text" : ""}`}
-                            onClick={(e) => toggleLocation(e, `m-ret-${loc}`)}
-                          >
-                            {loc} Retreat{" "}
-                            <span>
-                              {activeLocation === `m-ret-${loc}` ? "−" : "+"}
-                            </span>
-                          </div>
-                          <div
-                            className={`drawer-loc-body ${activeLocation === `m-ret-${loc}` ? "open" : ""}`}
-                          >
-                            {renderRetreatLinks(loc)}
+                            {/* Sub-category: Kundalini YTTC */}
+                            <div
+                              className="mobile-sub-category-label"
+                              onClick={(e) => { e.stopPropagation(); toggleSubCat(`${loc}-kundalini`); }}
+                            >
+                              Kundalini YTTC <span className="sub-cat-arrow">{openSubCat[`${loc}-kundalini`] ? "−" : "+"}</span>
+                            </div>
+                            {openSubCat[`${loc}-kundalini`] && (
+                              <div className="mobile-sub-cat-body">
+                                {[
+                                  { path: "kundalini50hr", label: "Kundalini 50 Hours" },
+                                  { path: "kundalini100hr", label: "Kundalini 100 Hours" },
+                                  { path: "kundalini200hr", label: "Kundalini 200 Hours" },
+                                  { path: "kundalini300hr", label: "Kundalini 300 Hours" },
+                                  { path: "kundalini500hr", label: "Kundalini 500 Hours" },
+                                ].map(({ path, label }) => (
+                                  <Link
+                                    key={path}
+                                    className={isSubActive(`/programs/${loc}/${path}`) ? "m-sub-active-text" : ""}
+                                    to={`/programs/${loc}/${path}`}
+                                    onClick={() => handleLinkClick("programs")}
+                                  >
+                                    {label}
+                                  </Link>
+                                ))}
+                              </div>
+                            )}
+
+                            {/* Sub-category: Short Courses */}
+                            <div
+                              className="mobile-sub-category-label"
+                              onClick={(e) => { e.stopPropagation(); toggleSubCat(`${loc}-short`); }}
+                            >
+                              Short Courses <span className="sub-cat-arrow">{openSubCat[`${loc}-short`] ? "−" : "+"}</span>
+                            </div>
+                            {openSubCat[`${loc}-short`] && (
+                              <div className="mobile-sub-cat-body">
+                                {[
+                                  { path: "yinyoga", label: "Yin Yoga" },
+                                  { path: "prenatalyoga", label: "Prenatal Yoga" },
+                                  { path: "aerialyoga", label: "Aerial Yoga" },
+                                  { path: "acroYoga", label: "Acro Yoga" },
+                                ].map(({ path, label }) => (
+                                  <Link
+                                    key={path}
+                                    className={isSubActive(`/programs/${loc}/${path}`) ? "m-sub-active-text" : ""}
+                                    to={`/programs/${loc}/${path}`}
+                                    onClick={() => handleLinkClick("programs")}
+                                  >
+                                    {label}
+                                  </Link>
+                                ))}
+                              </div>
+                            )}
+
+                            {/* Sub-category: Specialization */}
+                            <div
+                              className="mobile-sub-category-label"
+                              onClick={(e) => { e.stopPropagation(); toggleSubCat(`${loc}-special`); }}
+                            >
+                              Specialization <span className="sub-cat-arrow">{openSubCat[`${loc}-special`] ? "−" : "+"}</span>
+                            </div>
+                            {openSubCat[`${loc}-special`] && (
+                              <div className="mobile-sub-cat-body">
+                                {[
+                                  { path: "soundhealing", label: "Sound Healing" },
+                                ].map(({ path, label }) => (
+                                  <Link
+                                    key={path}
+                                    className={isSubActive(`/programs/${loc}/${path}`) ? "m-sub-active-text" : ""}
+                                    to={`/programs/${loc}/${path}`}
+                                    onClick={() => handleLinkClick("programs")}
+                                  >
+                                    {label}
+                                  </Link>
+                                ))}
+                              </div>
+                            )}
                           </div>
                         </div>
                       ))}
@@ -731,6 +786,77 @@ const Navbar = () => {
                 </div>
               )}
             </div>
+
+            {/* MOBILE RETREATS ACCORDION */}
+            <div className="drawer-accordion">
+              <div
+                className={`drawer-link d-flex justify-content-between align-items-center ${activeLink === "retreats" ? "mobile-active-text" : ""}`}
+                onClick={() => toggleMobileAccordion("retreats")}
+              >
+                Retreats{" "}
+                <span
+                  className={`arrow-icon ${mobileAccordion.retreats ? "rotated" : ""}`}
+                >
+                  ▼
+                </span>
+              </div>
+
+              {mobileAccordion.retreats && (
+                <div className="drawer-sub-menu">
+                  <div className="drawer-loc-item">
+                    <div className="drawer-loc-header" style={{ color: "#007bff", borderBottom: "1px solid #f0f0f0", padding: "12px 0" }}>
+                      RETREATS BY LOCATION
+                    </div>
+
+                    {retreatView === "main" ? (
+                      /* Location list — same → arrow style as TTC */
+                      ["Mysuru", "Bali", "Rishikesh", "Chiang Mai", "Dharamshala"].map((loc) => (
+                        <div
+                          key={loc}
+                          className={`drawer-loc-header nested ${location.pathname.toLowerCase().includes(loc.toLowerCase()) ? "m-active-path-text" : ""}`}
+                          onClick={(e) => { e.stopPropagation(); setSelectedRetreatLoc(loc); setRetreatView("detail"); }}
+                        >
+                          <span>{loc} Retreat</span>
+                          <span className="symbol">→</span>
+                        </div>
+                      ))
+                    ) : (
+                      <div>
+                        <div
+                          className="drawer-loc-header nested"
+                          onClick={(e) => { e.stopPropagation(); setRetreatView("main"); }}
+                          style={{ color: "#007bff", fontWeight: 600 }}
+                        >
+                          ← Back to Retreats
+                        </div>
+                        <div style={{ padding: "8px 0 4px 0", fontSize: "13px", fontWeight: 700, color: "#333", textTransform: "uppercase", letterSpacing: "0.5px" }}>
+                          {selectedRetreatLoc} Retreat
+                        </div>
+                        <div className="mobile-sub-cat-body">
+                          {(RETREAT_LINKS[selectedRetreatLoc] || []).length === 0
+                            ? <span style={{ color: "#aaa", fontSize: "13px", padding: "8px 0", display: "block" }}>Coming Soon</span>
+                            : (RETREAT_LINKS[selectedRetreatLoc] || []).map(({ path, label }) => {
+                                const fullPath = `/programs/${selectedRetreatLoc}/${path}`;
+                                return (
+                                  <Link
+                                    key={path}
+                                    to={fullPath}
+                                    className={isSubActive(fullPath) ? "m-sub-active-text" : ""}
+                                    onClick={() => handleLinkClick("retreats")}
+                                  >
+                                    {label}
+                                  </Link>
+                                );
+                              })
+                          }
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              )}
+            </div>
+
             <Link
               className={`drawer-link ${activeLink === "contact" ? "mobile-active-text" : ""}`}
               to="/contact"
@@ -1041,6 +1167,44 @@ const Navbar = () => {
           color: #666;
           font-size: 14.5px;
           text-decoration: none;
+        }
+        .mobile-sub-category-label {
+          font-size: 12px;
+          font-weight: 700;
+          color: #007bff;
+          text-transform: uppercase;
+          letter-spacing: 0.8px;
+          padding: 10px 0 6px 0;
+          border-bottom: 1px dashed #e8e8e8;
+          margin-bottom: 2px;
+          font-family: Caudex, serif;
+          cursor: pointer;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          user-select: none;
+        }
+        .mobile-sub-category-label:hover {
+          color: #0056cc;
+        }
+        .sub-cat-arrow {
+          font-size: 14px;
+          font-weight: 400;
+          opacity: 0.8;
+        }
+        .mobile-sub-cat-body {
+          padding-left: 10px;
+          padding-bottom: 4px;
+        }
+        .mobile-sub-cat-body a {
+          display: block;
+          padding: 7px 0;
+          color: #666;
+          font-size: 13.5px;
+          text-decoration: none;
+        }
+        .mobile-sub-cat-body a:hover {
+          color: #007bff;
         }
         .drawer-overlay {
           position: fixed;

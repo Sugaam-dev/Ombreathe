@@ -11,6 +11,10 @@ import {
   Award,
   ChevronRight,
   CheckCircle,
+  Sun,
+  AlignEndHorizontal,
+  BrainCircuit,
+  BellRing,
 } from "lucide-react";
 
 const OmbCurriculumSection = ({ data }) => {
@@ -25,6 +29,11 @@ const OmbCurriculumSection = ({ data }) => {
     brain: <Brain size={22} />,
     sparkles: <Sparkles size={22} />,
     leaf: <Leaf size={22} />,
+    sun: <Sun size={22} />,
+    align:<AlignEndHorizontal size={22}/>,
+    brainCircuit: <BrainCircuit size={22} />,
+    bellRing: <BellRing size={22} />,
+
   };
 
   return (

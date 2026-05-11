@@ -1,5 +1,6 @@
 import React, { useState, useMemo, useCallback, memo } from "react";
-import lg from "../images/lg.png";
+import SectionHeading from "./useFullComponent/SectionHeading";
+// import lg from "../images/lg.png";
 
 const Accordion = () => {
   const [activeIndex, setActiveIndex] = useState(null);
@@ -126,7 +127,7 @@ const Accordion = () => {
     <div className="faq-wrapper">
       <div className="yogaschool">
         <div className="yogaa">
-          <div className="heading">
+          {/* <div className="heading">
             <h1>Frequently Asked Questions</h1>
             <img
               src={lg}
@@ -134,7 +135,14 @@ const Accordion = () => {
               className="logo-img"
               loading="eager"
             />
-          </div>
+          </div> */}
+    <SectionHeading
+  title="Frequently Asked"
+  highlight="Questions"
+  subtitle="Find answers to common questions about our yoga teacher training, retreats, classes and wellness programs"
+  highlightColor="#4a7c68"
+  textColor="#1e1e1c"
+/>
         </div>
       </div>
 

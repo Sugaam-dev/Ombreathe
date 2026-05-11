@@ -11,9 +11,11 @@ import { OmbDataMap } from "../data/OmbDataMap";
 import { useParams } from "react-router-dom";
 import Gallery from "../../Components/HomeCredentials/Gallery";
 import YogaTeachers from "../../Components/Teachers/YogaTeachers";
-import Accordion from "../../Components/Accordion";
+// import Accordion from "../../Components/Accordion";
 import Ratings from "../../Components/Ratings";
 import Contact from "../../Components/Contact";
+import Questions from "./questions/Questions";
+
 // ✅ Lazy sections
 const OmbPromoSection = lazy(() => import("../sections/OmbPromoSection"));
 const OmbTransformationSection = lazy(() => import("../sections/OmbTransformationSection"));
@@ -96,7 +98,8 @@ const data = OmbDataMap[normalizedCourse];
         </Suspense>
 
           <Suspense fallback={<Loading />}>
-          <Accordion/>
+          {/* <Accordion/> */}
+        <Questions data={data.teacherTrainingFaq} />
         </Suspense>
 
 

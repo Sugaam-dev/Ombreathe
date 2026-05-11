@@ -6,7 +6,8 @@ import Footer from './Components/Footer/Footer';
 import ScrollToTop from './Components/useFullComponent/ScrollToTop';
 // import FloatingDonateButton from './Components/useFullComponent/FloatingDonateButton';
 import WhatsAppButton from './Components/WhatsAppButton';
-import DiscountPopup from './Components/DiscountPopup';
+import DiscountPopup from './Components/useFullComponent/DiscountPopup';
+
 
 
 function Layout() {
@@ -44,7 +45,7 @@ function Layout() {
       />
       <ScrollToTop />
       <Navbar />
-      <DiscountPopup />  
+      <DiscountPopup/>  
       <main style={mainStyle}>
         <Outlet />
       </main>

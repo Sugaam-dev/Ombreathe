@@ -11,6 +11,7 @@ import React, {
   memo
 } from 'react';
 import './Blog.css';
+import SectionHeading from '../useFullComponent/SectionHeading';
 
 // Lazy load images with dynamic imports for code splitting
 const loadImage = (imageName) => {
@@ -288,7 +289,7 @@ const Blog = () => {
       <div className="main-container" ref={sectionRef}>
         <div className="yogaschool">
           <div className="yogaa">
-            <div className="heading">
+            {/* <div className="heading">
               <h1>Blog</h1>
               <img 
                 src="./images/lg.png" 
@@ -296,7 +297,14 @@ const Blog = () => {
                 loading="eager"
                 style={{ maxWidth: '100%', height: 'auto' }}
               />
-            </div>
+            </div> */}
+         <SectionHeading
+  title="Our"
+  highlight="Blog"
+  subtitle="Explore yoga insights, wellness tips, mindfulness practices and inspiring stories from the Ombreathe community"
+  highlightColor="#4a7c68"
+  textColor="#1e1e1c"
+/>
           </div>
         </div>
         

@@ -7,7 +7,8 @@ import abhishekh from '../../images/Teachers/abhishekh.webp'
 import savitri from '../../images/Teachers/savitri.webp'
 import ranjan from '../../images/Teachers/yogiji.jpeg'
 import ishani from '../../images/Teachers/Ishani_Ghate.jpg'
-import lg from '../../images/lg.png'
+// import lg from '../../images/lg.png'
+import SectionHeading from '../useFullComponent/SectionHeading';
 
 const YogaTeachers = () => {
   const [showAll, setShowAll] = useState(false);
@@ -231,7 +232,7 @@ const YogaTeachers = () => {
       <div className="yoga-teachers-container" ref={sectionRef}>
         <div className="yogaschool">
           <div className="yogaa">
-            <div className="heading">
+            {/* <div className="heading">
               <h1>Our Yoga Teachers</h1>
               <img 
                 src={lg} 
@@ -239,7 +240,14 @@ const YogaTeachers = () => {
                 loading="eager"
                 style={{ maxWidth: '100%', height: 'auto' }}
               />
-            </div>
+            </div> */}
+           <SectionHeading
+  title="Our Yoga"
+  highlight="Teachers"
+  subtitle="Learn from experienced yoga masters dedicated to guiding your journey with wisdom, authenticity and compassion"
+  highlightColor="#4a7c68"
+  textColor="#1e1e1c"
+/>
           </div>
         </div>
 

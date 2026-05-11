@@ -1,13 +1,22 @@
+import SectionHeading from "../useFullComponent/SectionHeading";
+
 // import "./Styles/WelcometoOmbreathe.css";
 const WelcomeToYogalayaa = () => {
   return (
     <>
       <div className="yogaschool">
         <div className="yogaa">
-          <div className="heading">
+          {/* <div className="heading">
             <h1>Welcome To Ombreathe</h1>
             <img src="./images/lg.png" alt="logo" />
-          </div>
+          </div> */}
+<SectionHeading
+  title="Welcome To"
+  highlight="Ombreathe"
+  subtitle="Experience authentic yoga, mindfulness & holistic healing with expert guidance"
+  highlightColor="#4a7c68"
+  textColor="#1e1e1c"
+/>
 
           <div className="join">
             <p style={{ lineHeight: "30px", fontSize: "18px" }}>

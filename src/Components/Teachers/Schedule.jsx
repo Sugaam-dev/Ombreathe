@@ -1,5 +1,6 @@
 import React, { useMemo, useCallback, memo, useState, useEffect, useRef } from 'react';
 import './Schedule.css';
+import SectionHeading from '../useFullComponent/SectionHeading';
 
 // Memoized Schedule Item Component
 const ScheduleItem = memo(({ item, index, isVisible }) => {
@@ -116,16 +117,16 @@ const Schedule = () => {
     { time: '10:00 pm', activity: 'Lights Out', type: 'rest', icon: '🌙', displayType: 'Rest' }
   ], []);
 
-  const headerContent = useMemo(() => ({
-    title: "Yoga Teacher Training Schedule",
-    logo: "./images/lg.png"
-  }), []);
+  // const headerContent = useMemo(() => ({
+  //   title: "Yoga Teacher Training Schedule",
+  //   logo: "./images/lg.png"
+  // }), []);
 
   return (
     <div className="schedule-container">
       <div className="yogaschool">
         <div className="yogaa">
-          <div className="heading">
+          {/* <div className="heading">
             <h1>{headerContent.title}</h1>
             <img 
               src={headerContent.logo} 
@@ -133,7 +134,14 @@ const Schedule = () => {
               loading="eager"
               style={{ maxWidth: '100%', height: 'auto' }}
             />
-          </div>
+          </div> */}
+   <SectionHeading
+  title="Yoga Teacher Training"
+  highlight="Schedule"
+  subtitle="Explore upcoming yoga teacher training programs, retreat dates and transformational learning experiences"
+  highlightColor="#4a7c68"
+  textColor="#1e1e1c"
+/>
         </div>
       </div>
       

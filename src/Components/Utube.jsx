@@ -8,6 +8,7 @@ import React, {
   Suspense 
 } from "react";
 import "../Styles/utube.css";
+import SectionHeading from "./useFullComponent/SectionHeading";
 
 // Lazy load YouTube iframe for better performance
 const LazyYouTubeEmbed = lazy(() => 
@@ -229,7 +230,7 @@ Whether you want to deepen your practice or become a certified yoga teacher, Omb
         }
       `}</style>
       
-      <div className="headingu">
+      {/* <div className="headingu">
         <h1>{content.title}</h1>
         <img 
           src="./images/lg.png" 
@@ -237,7 +238,14 @@ Whether you want to deepen your practice or become a certified yoga teacher, Omb
           loading="eager"
           style={{ maxWidth: '100%', height: 'auto' }}
         />
-      </div>
+      </div> */}
+  <SectionHeading
+  title="Yoga School By"
+  highlight="Ombreathe"
+  subtitle="Experience authentic yoga education, mindful living and transformational wellness guided by experienced teachers"
+  highlightColor="#4a7c68"
+  textColor="#1e1e1c"
+/>
       
       <div className="contt">
         <h3>{content.subtitle}</h3>

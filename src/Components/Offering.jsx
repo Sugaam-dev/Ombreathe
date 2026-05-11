@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import '../Styles/offering.css';
 import 'aos/dist/aos.css';
 import Aos from 'aos';
+import SectionHeading from './useFullComponent/SectionHeading';
 
 function Offering() {
   // Memoized offerings data
@@ -57,15 +58,24 @@ function Offering() {
   return (
     <>
       <div className="offering">
-        <div className="offerheading" style={{paddingTop:'20px'}}>
+        {/* <div className="offerheading" style={{paddingTop:'20px'}}>
           <h1>Discover Our Holistic Offering</h1>
           <img 
             src="./images/lg.png" 
             alt="Yogalayaa Logo" 
             loading="eager"
           />
-        </div>
-        
+        </div> */}
+        <div>
+  <SectionHeading
+    title="Discover Our Holistic"
+    highlight="Offering"
+    subtitle="Explore transformative yoga programs, healing practices & wellness experiences designed for mind, body and soul"
+    highlightColor="#4a7c68"
+    textColor="#1e1e1c"
+  />
+</div>
+      
         <div className="oo">
           <div className="offeringcards">
             {offerings.map((offering, index) => (

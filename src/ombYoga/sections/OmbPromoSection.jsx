@@ -51,7 +51,7 @@ const OmbPromoSection = ({ data }) => {
 
             <h2>
               {content.title}{" "}
-              <em>{content.highlight}</em> 13-day journey in{" "}
+              <em>{content.highlight}</em> {content.duration} journey in{" "}
               <strong>{content.strongText}</strong>
             </h2>
 
@@ -117,7 +117,7 @@ const OmbPromoSection = ({ data }) => {
 
           {/* RIGHT */}
           <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
-            
+
             {/* MAIN IMAGE */}
             <div
               style={{

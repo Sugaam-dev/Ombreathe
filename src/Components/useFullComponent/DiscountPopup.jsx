@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import img1 from "../images/Gallery/1.jpeg";
+import img1 from "../../images/Gallery/1.jpeg";
 const DiscountPopup = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [showTrigger, setShowTrigger] = useState(false);

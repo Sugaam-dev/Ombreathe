@@ -16,7 +16,8 @@ import { IoLogoYoutube } from "react-icons/io";
 import { FaPhoneAlt } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 import { CiLocationOn } from "react-icons/ci";
-import logoimage from "../images/lg.png"
+import SectionHeading from "./useFullComponent/SectionHeading";
+// import logoimage from "../images/lg.png"
 // Lazy load Google Maps for better performance
 const LazyGoogleMap = lazy(() => 
   Promise.resolve({
@@ -271,15 +272,15 @@ const MapLoader = memo(() => (
 
 function Contact() {
   // Memoized header content
-  const headerContent = useMemo(() => ({
-    title: "Get In Touch With Ombreathe",
-    logo: logoimage
-  }), []);
+  // const headerContent = useMemo(() => ({
+  //   title: "Get In Touch With Ombreathe",
+  //   logo: logoimage
+  // }), []);
 
   return (
     <>
       <div className="cont">
-        <div className="headingc">
+        {/* <div className="headingc">
           <h1>{headerContent.title}</h1>
           <img 
             src={headerContent.logo} 
@@ -287,8 +288,14 @@ function Contact() {
             loading="eager"
             style={{ maxWidth: '100%', height: 'auto' }}
           />
-        </div>
-        
+        </div> */}
+        <SectionHeading
+          title="Get In Touch With Ombreathe"
+          highlight="Contact Us"
+          subtitle="Have questions or want to learn more? Reach out to us!"
+          highlightColor="#4a7c68"
+          textColor="#1e1e1c"
+        />
         <div className="contact-wrap">
           <ContactInfo />
           <ContactForm />
