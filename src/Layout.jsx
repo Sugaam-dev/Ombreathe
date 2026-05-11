@@ -1,62 +1,101 @@
-import { Outlet } from 'react-router-dom';
-import { useState, useEffect } from 'react';
-import Navbar from './Components/Header/Navbar';
-import logo from './images/omBreatheLogo.png';
-import Footer from './Components/Footer/Footer';
-import ScrollToTop from './Components/useFullComponent/ScrollToTop';
-// import FloatingDonateButton from './Components/useFullComponent/FloatingDonateButton';
-import WhatsAppButton from './Components/WhatsAppButton';
-import DiscountPopup from './Components/useFullComponent/DiscountPopup';
+// Layout.jsx
 
+import React, { Suspense, lazy } from "react";
+import { Outlet } from "react-router-dom";
 
+import Navbar from "./Components/Header/Navbar";
+import ScrollToTop from "./Components/useFullComponent/ScrollToTop";
+
+import logo from "./images/omBreatheLogo.png";
+
+// Lazy loaded components
+const Footer = lazy(() => import("./Components/Footer/Footer"));
+const WhatsAppButton = lazy(() => import("./Components/WhatsAppButton"));
+const DiscountPopup = lazy(() =>
+  import("./Components/useFullComponent/DiscountPopup")
+);
 
 function Layout() {
-  const [isDesktop, setIsDesktop] = useState(window.innerWidth >= 992);
-
-  useEffect(() => {
-    const handleResize = () => {
-      setIsDesktop(window.innerWidth >= 992);
-    };
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
-
-  const logoStyle = {
-    position: 'fixed',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-    zIndex: -1,
-    opacity: 0.15,
-    maxWidth: '60vw',
-    maxHeight: '60vh',
-    width: 'auto',
-    height: 'auto'
-  };
-
-  const mainStyle = isDesktop ? { paddingTop: '96px' } : {};
-
   return (
-    <div>
-      <img 
-        src={logo} 
-        alt="Yogalayaa Background Logo" 
-        style={logoStyle}
+    <div className="layout-wrapper">
+      {/* Background Logo */}
+      <img
+        src={logo}
+        alt="Ombreathe Background Logo"
+        className="background-logo"
+        loading="lazy"
+        decoding="async"
+        width="500"
+        height="320"
       />
+
       <ScrollToTop />
+
+      {/* Navbar */}
       <Navbar />
-      <DiscountPopup/>  
-      <main style={mainStyle}>
+
+      {/* Main Content */}
+      <main className="main-layout">
         <Outlet />
       </main>
-      {/* <FloatingDonateButton /> */}
-      <Footer />
 
-      {/* Global floating WhatsApp button */}
-      <WhatsAppButton
-        phone="917483987568"
-        message="Hello! I'd like to know more about your yoga programs."
-      />
+      {/* Lazy Loaded Components */}
+      <Suspense fallback={null}>
+        <Footer />
+
+        <WhatsAppButton
+          phone="917483987568"
+          message="Hello! I'd like to know more about your yoga programs."
+        />
+
+        <DiscountPopup />
+      </Suspense>
+
+      {/* CSS */}
+      <style jsx="true">{`
+        .layout-wrapper {
+          position: relative;
+          overflow-x: hidden;
+          background: #fff;
+        }
+
+        .main-layout {
+          padding-top: 96px;
+          position: relative;
+          z-index: 2;
+        }
+
+        .background-logo {
+          position: fixed;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          width: min(500px, 60vw);
+          height: auto;
+          opacity: 0.06;
+          z-index: -1;
+          pointer-events: none;
+          user-select: none;
+          will-change: transform;
+        }
+
+        @media (max-width: 991px) {
+          .main-layout {
+            padding-top: 0;
+          }
+
+          .background-logo {
+            width: 70vw;
+            opacity: 0.04;
+          }
+        }
+
+        @media (max-width: 576px) {
+          .background-logo {
+            width: 85vw;
+          }
+        }
+      `}</style>
     </div>
   );
 }
