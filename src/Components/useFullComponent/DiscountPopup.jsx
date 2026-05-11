@@ -1,529 +1,307 @@
-import React, {
-  useState,
-  useEffect,
-  useRef,
-  useCallback,
-  memo,
-} from "react";
-
+import React, { useState, useEffect, useRef } from "react";
 import img1 from "../../images/Gallery/1.jpeg";
-
-const WHATSAPP_NUMBER = "917483987568";
-
-const MESSAGE =
-  "Hi! I'd like to claim the 20% discount for the Rishikesh 2026 retreat.";
-
 const DiscountPopup = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [showTrigger, setShowTrigger] = useState(false);
-
   const canvasRef = useRef(null);
-  const animationRef = useRef(null);
+  const animFrameRef = useRef(null);
+  const particlesRef = useRef([]);
 
-  // =========================
-  // FIRST TIME POPUP LOGIC
-  // =========================
+  const WHATSAPP_NUMBER = "917483987568";
+  const MESSAGE =
+    "Hi! I'd like to claim the 20% discount for the Rishikesh 2026 retreat.";
+
   useEffect(() => {
-    let timer;
-
-    const hasSeenPopup = sessionStorage.getItem("popupSeen");
-
-    if (!hasSeenPopup) {
-      timer = setTimeout(() => {
+    const seen = sessionStorage.getItem("popupSeen");
+    if (!seen) {
+      // FIRST TIME: Open automatically after 2 seconds
+      const timer = setTimeout(() => {
         setIsOpen(true);
-        setShowTrigger(false);
-
         sessionStorage.setItem("popupSeen", "true");
       }, 2000);
+      return () => clearTimeout(timer);
     } else {
+      // RETURNING (Same Session): Just show the small floating badge
       setShowTrigger(true);
     }
-
-    return () => {
-      if (timer) clearTimeout(timer);
-    };
   }, []);
 
-  // =========================
-  // LIGHTWEIGHT CONFETTI
-  // =========================
+  // Confetti Logic
   useEffect(() => {
     if (!isOpen) return;
-
     const canvas = canvasRef.current;
-
     if (!canvas) return;
-
     const ctx = canvas.getContext("2d");
-
-    const width = window.innerWidth;
-    const height = window.innerHeight;
-
-    canvas.width = width;
-    canvas.height = height;
-
-    const particles = Array.from({ length: 25 }).map(() => ({
-      x: Math.random() * width,
-      y: Math.random() * -100,
-      size: Math.random() * 5 + 2,
-      speedY: Math.random() * 3 + 1,
-      speedX: Math.random() * 2 - 1,
-      color: ["#084d46", "#D4AF37", "#ffffff"][
-        Math.floor(Math.random() * 3)
-      ],
-    }));
-
-    const animate = () => {
-      ctx.clearRect(0, 0, width, height);
-
-      particles.forEach((p) => {
-        p.y += p.speedY;
-        p.x += p.speedX;
-
+    const W = canvas.offsetWidth;
+    const H = canvas.offsetHeight;
+    canvas.width = W;
+    canvas.height = H;
+    const COLORS = ["#084d46", "#D4AF37", "#fdfdfd"];
+    const makeParticle = () => ({
+      x: Math.random() * W,
+      y: Math.random() * H * 0.1 - 20,
+      vx: (Math.random() - 0.5) * 2,
+      vy: Math.random() * 2 + 1,
+      size: Math.random() * 4 + 1,
+      color: COLORS[Math.floor(Math.random() * COLORS.length)],
+      alpha: 1,
+    });
+    particlesRef.current = Array.from({ length: 30 }, makeParticle);
+    const draw = () => {
+      ctx.clearRect(0, 0, W, H);
+      particlesRef.current.forEach((p) => {
+        ctx.globalAlpha = p.alpha;
         ctx.fillStyle = p.color;
         ctx.beginPath();
-        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+        ctx.arc(p.x, p.y, p.size / 2, 0, Math.PI * 2);
         ctx.fill();
+        p.x += p.vx;
+        p.y += p.vy;
+        if (p.y > H * 0.4) p.alpha -= 0.01;
       });
-
-      animationRef.current = requestAnimationFrame(animate);
+      animFrameRef.current = requestAnimationFrame(draw);
     };
-
-    animate();
-
-    // Stop animation after 2.5 sec
-    const timeout = setTimeout(() => {
-      if (animationRef.current) {
-        cancelAnimationFrame(animationRef.current);
-      }
-
-      ctx.clearRect(0, 0, width, height);
-    }, 2500);
-
-    return () => {
-      clearTimeout(timeout);
-
-      if (animationRef.current) {
-        cancelAnimationFrame(animationRef.current);
-      }
-    };
+    draw();
+    return () => cancelAnimationFrame(animFrameRef.current);
   }, [isOpen]);
 
-  // =========================
-  // CLOSE POPUP
-  // =========================
-  const handleClose = useCallback(() => {
+  const handleClose = () => {
     setIsOpen(false);
+    setShowTrigger(true);
+  };
 
-    setTimeout(() => {
-      setShowTrigger(true);
-    }, 100);
-  }, []);
-
-  // =========================
-  // WHATSAPP BUTTON
-  // =========================
-  const handleClaimClick = useCallback(() => {
-    window.open(
-      `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(MESSAGE)}`,
-      "_blank"
-    );
-  }, []);
+  const handleClaimClick = () => {
+    const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(MESSAGE)}`;
+    window.open(url, "_blank");
+  };
 
   return (
     <>
-  
-
       <style>{`
-      .popup-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.78);
-  z-index: 99999;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 18px;
-  animation: fadeIn 0.3s ease;
-}
+        @keyframes shine { 0% { left: -100%; } 100% { left: 100%; } }
+        @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
-.luxury-card {
-  width: min(92vw, 680px);
-  min-height: 320px;
-  background: #ffffff;
-  border-radius: 24px;
-  overflow: hidden;
-  display: flex;
-  position: relative;
-  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.35);
-  animation: popupUp 0.45s ease;
-}
+        .trigger-badge {
+          position: fixed; bottom: 20px; right: 20px; z-index: 9999;
+          background: #084d46; color: #D4AF37; width: 50px; height: 50px;
+          border-radius: 50%; display: flex; flex-direction: column;
+          align-items: center; justify-content: center; cursor: pointer;
+          border: 1.5px solid #D4AF37; box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+          transition: transform 0.3s ease;
+        }
 
-/* IMAGE SIDE */
+        .luxury-card {
+          background: #fff; border-radius: 20px; overflow: hidden;
+          width: 90%; max-width: 700px; display: flex; position: relative;
+          box-shadow: 0 30px 60px rgba(0,0,0,0.4);
+          animation: slideUp 0.4s ease-out forwards;
+        }
 
-.img-box {
-  flex: 1;
-  background: #f6f6f6;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 14px;
-}
+        .btn-premium {
+          position: relative; background: #084d46; color: white;
+          border: none; padding: 14px; border-radius: 10px;
+          font-size: 14px; font-weight: 800; cursor: pointer;
+          overflow: hidden; width: 100%; display: flex;
+          align-items: center; justify-content: center; gap: 8px;
+        }
+        .btn-premium::after {
+          content: ""; position: absolute; top: 0; left: -100%;
+          width: 50%; height: 100%;
+          background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+          animation: shine 3s infinite;
+        }
 
-.img-box img {
-  width: 100%;
-  height: auto;
-  max-height: 460px;
-  object-fit: contain;
-  display: block;
-  border-radius: 18px;
-}
-
-/* CONTENT SIDE */
-
-.content-box {
-  flex: 1;
-  padding: clamp(20px, 2vw, 34px);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.content-box h3 {
-  color: #D4AF37;
-  font-size: clamp(10px, 1vw, 12px);
-  font-weight: 800;
-  letter-spacing: 3px;
-  margin-bottom: 10px;
-}
-
-.content-box h2 {
-  font-size: clamp(28px, 3vw, 42px);
-  line-height: 1.1;
-  color: #1d2a28;
-  margin-bottom: 14px;
-  font-weight: 900;
-}
-
-.content-box h2 span {
-  color: #084d46;
-}
-
-.content-box p {
-  color: #666;
-  line-height: 1.7;
-  font-size: clamp(13px, 1vw, 15px);
-  margin-bottom: 22px;
-}
-
-.offer-box {
-  background: #f5f8f7;
-  border-radius: 14px;
-  padding: 16px;
-  margin-bottom: 22px;
-  border: 1px solid rgba(8, 77, 70, 0.08);
-}
-
-.offer-box small {
-  display: block;
-  color: #084d46;
-  font-size: 11px;
-  font-weight: 700;
-  margin-bottom: 4px;
-}
-
-.offer-box strong {
-  font-size: clamp(22px, 2vw, 28px);
-  color: #1a2a28;
-  font-weight: 900;
-}
-
-/* BUTTON */
-
-.btn-premium {
-  position: relative;
-  background: #084d46;
-  color: #fff;
-  border: none;
-  border-radius: 14px;
-  padding: 15px 18px;
-  font-size: 14px;
-  font-weight: 800;
-  cursor: pointer;
-  overflow: hidden;
-  transition: all 0.3s ease;
-  width: 100%;
-}
-
-.btn-premium:hover {
-  transform: translateY(-2px);
-}
-
-.btn-premium::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 50%;
-  height: 100%;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(255,255,255,0.2),
-    transparent
-  );
-  animation: shine 3s infinite;
-}
-
-/* CLOSE BUTTON */
-
-.close-btn {
-  position: absolute;
-  top: 14px;
-  right: 14px;
-  width: 34px;
-  height: 34px;
-  border-radius: 50%;
-  border: none;
-  background: #fff;
-  color: #084d46;
-  font-size: 16px;
-  font-weight: 700;
-  cursor: pointer;
-  z-index: 10;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.12);
-}
-
-/* FLOATING BADGE */
-
-.trigger-badge {
-  position: fixed;
-  bottom: 22px;
-  right: 22px;
-  width: clamp(38px, 3vw, 42px);
-  height: clamp(38px, 3vw, 42px);
-  border-radius: 50%;
-  background: #084d46;
-  color: #D4AF37;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: clamp(13px, 1vw, 16px);
-  font-weight: 900;
-  cursor: pointer;
-  z-index: 9999;
-  border: 2px solid #D4AF37;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-  transition: all 0.3s ease;
-  animation: pulseBadge 2s infinite;
-}
-
-.trigger-badge:hover {
-  transform: scale(1.08);
-}
-
-/* CONFETTI */
-
-.confetti-canvas {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-}
-
-/* ANIMATIONS */
-
-@keyframes popupUp {
-  from {
-    opacity: 0;
-    transform: translateY(40px) scale(0.96);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes shine {
-  0% {
-    left: -100%;
-  }
-
-  100% {
-    left: 200%;
-  }
-}
-
-@keyframes pulseBadge {
-  0% {
-    box-shadow: 0 0 0 0 rgba(212,175,55,0.5);
-  }
-
-  70% {
-    box-shadow: 0 0 0 14px rgba(212,175,55,0);
-  }
-
-  100% {
-    box-shadow: 0 0 0 0 rgba(212,175,55,0);
-  }
-}
-
-/* ========================= */
-/* LARGE TABLETS */
-/* ========================= */
-
-@media (max-width: 992px) {
-  .luxury-card {
-    width: min(94vw, 620px);
-  }
-}
-
-/* ========================= */
-/* TABLET */
-/* ========================= */
-
-@media (max-width: 768px) {
-  .luxury-card {
-    flex-direction: column;
-    width: min(94vw, 420px);
-    min-height: auto;
-  }
-
-  .img-box {
-    width: 100%;
-    padding: 14px 14px 0;
-  }
-
-  .img-box img {
-    max-height: 260px;
-  }
-
-  .content-box {
-    width: 100%;
-    padding: 24px 20px 28px;
-    text-align: center;
-  }
-}
-
-/* ========================= */
-/* MOBILE */
-/* ========================= */
-
-@media (max-width: 480px) {
-  .popup-overlay {
-    padding: 14px;
-  }
-
-  .luxury-card {
-    width: 100%;
-    border-radius: 22px;
-  }
-
-  .content-box {
-    padding: 22px 18px 24px;
-  }
-
-  .btn-premium {
-    font-size: 13px;
-    padding: 14px;
-  }
-
-  .close-btn {
-    width: 30px;
-    height: 30px;
-    font-size: 14px;
-  }
-}
-
-/* ========================= */
-/* 2K & 4K SCREEN FIX */
-/* ========================= */
-
-@media (min-width: 1800px) {
-  .luxury-card {
-    max-width: 760px;
-  }
-}
+        @media (max-width: 768px) {
+          .luxury-card { flex-direction: column; width: 85%; max-height: 85vh; }
+          .img-box { height: 140px !important; width: 100% !important; }
+          .content-box { width: 100% !important; padding: 20px !important; text-align: center; }
+          .title-text { font-size: 22px !important; margin-bottom: 8px !important; }
+          .desc-text { font-size: 13px !important; margin-bottom: 15px !important; line-height: 1.4 !important; }
+          .offer-box { padding: 10px !important; margin-bottom: 15px !important; }
+          .offer-text { font-size: 20px !important; }
+        }
       `}</style>
 
-      {/* FLOATING BUTTON */}
       {showTrigger && !isOpen && (
-        <div
-          className="trigger-badge"
-          onClick={() => {
-            setIsOpen(true);
-            setShowTrigger(false);
-          }}
-        >
-          20%
+        <div className="trigger-badge" onClick={() => setIsOpen(true)}>
+          <span style={{ fontSize: "11px", fontWeight: "900" }}>20%</span>
+          <span
+            style={{
+              fontSize: "6px",
+              fontWeight: "700",
+              textTransform: "uppercase",
+            }}
+          >
+            Off
+          </span>
         </div>
       )}
 
-      {/* POPUP */}
-      {isOpen && (
-        <div className="popup-overlay" onClick={handleClose}>
-          <canvas ref={canvasRef} className="confetti-canvas" />
+      <div
+        style={{
+          position: "fixed",
+          top: 0,
+          left: 0,
+          width: "100%",
+          height: "100%",
+          background: "rgba(0, 18, 16, 0.8)",
+          zIndex: 100000,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          opacity: isOpen ? 1 : 0,
+          pointerEvents: isOpen ? "all" : "none",
+          transition: "opacity 0.4s ease",
+          backdropFilter: "blur(6px)",
+        }}
+        onClick={handleClose}
+      >
+        <canvas
+          ref={canvasRef}
+          style={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            pointerEvents: "none",
+          }}
+        />
 
-          <div
-            className="luxury-card"
-            onClick={(e) => e.stopPropagation()}
-          >
-            {/* CLOSE */}
-            <button className="close-btn" onClick={handleClose}>
+        {isOpen && (
+          <div className="luxury-card" onClick={(e) => e.stopPropagation()}>
+            <div
+              onClick={handleClose}
+              style={{
+                position: "absolute",
+                top: "10px",
+                right: "10px",
+                width: "28px",
+                height: "28px",
+                background: "#fff",
+                borderRadius: "50%",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                cursor: "pointer",
+                zIndex: 20,
+                color: "#084d46",
+                fontSize: "14px",
+                fontWeight: "bold",
+                boxShadow: "0 2px 5px rgba(0,0,0,0.1)",
+              }}
+            >
               ✕
-            </button>
+            </div>
 
-            {/* IMAGE */}
-            <div className="img-box">
+            <div
+              className="img-box"
+              style={{ width: "60%", position: "relative" }}
+            >
               <img
                 src={img1}
                 alt="Retreat"
-                loading="lazy"
-                decoding="async"
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "cover",
+                  display: "block",
+                }}
               />
             </div>
 
-            {/* CONTENT */}
-            <div className="content-box">
-              <h3>GIFT VOUCHER</h3>
-
-              <h2>
-                Pure <span>Serenity</span>
+            <div
+              className="content-box"
+              style={{
+                width: "60%",
+                padding: "30px",
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center",
+              }}
+            >
+              <h3
+                style={{
+                  color: "#D4AF37",
+                  fontSize: "11px",
+                  fontWeight: "800",
+                  letterSpacing: "2px",
+                  marginBottom: "5px",
+                }}
+              >
+                GIFT VOUCHER
+              </h3>
+              <h2
+                className="title-text"
+                style={{
+                  color: "#1a2a28",
+                  fontSize: "28px",
+                  fontWeight: "900",
+                  lineHeight: "1.1",
+                  marginBottom: "10px",
+                }}
+              >
+                Pure <span style={{ color: "#084d46" }}>Serenity</span>
               </h2>
-
-              <p>
-                Claim your exclusive 20% discount for the
-                2026 Rishikesh retreat.
+              <p
+                className="desc-text"
+                style={{
+                  color: "#666",
+                  fontSize: "14px",
+                  lineHeight: "1.5",
+                  marginBottom: "20px",
+                }}
+              >
+                Claim your exclusive 20% discount for the 2026 Rishikesh
+                retreat.
               </p>
 
-              <div className="offer-box">
-                <small>SAVINGS:</small>
-
-                <strong>20% DISCOUNT</strong>
+              <div
+                className="offer-box"
+                style={{
+                  background: "#f4f9f8",
+                  padding: "15px",
+                  borderRadius: "10px",
+                  marginBottom: "20px",
+                  border: "1px solid rgba(8, 77, 70, 0.1)",
+                }}
+              >
+                <div
+                  style={{
+                    fontSize: "10px",
+                    color: "#084d46",
+                    fontWeight: "700",
+                  }}
+                >
+                  SAVINGS:
+                </div>
+                <div
+                  className="offer-text"
+                  style={{
+                    fontSize: "22px",
+                    color: "#1a2a28",
+                    fontWeight: "900",
+                  }}
+                >
+                  20% DISCOUNT
+                </div>
               </div>
 
-              <button
-                className="btn-premium"
-                onClick={handleClaimClick}
-              >
+              <button className="btn-premium" onClick={handleClaimClick}>
                 CLAIM VIA WHATSAPP
+                <svg
+                  width="16"
+                  height="16"
+                  fill="currentColor"
+                  viewBox="0 0 16 16"
+                >
+                  <path d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.061 3.966L0 16l4.239-1.113a7.859 7.859 0 0 0 3.758.955h.001c4.367 0 7.926-3.558 7.93-7.93a7.898 7.898 0 0 0-2.322-5.586zM7.994 14.521a6.573 6.573 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592zm3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.729.729 0 0 0-.529.247c-.182.198-.691.677-.691 1.654 0 .977.71 1.916.81 2.049.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232z" />
+                </svg>
               </button>
             </div>
           </div>
-        </div>
-      )}
+        )}
+      </div>
     </>
   );
 };
 
-export default memo(DiscountPopup);
+export default DiscountPopup;
