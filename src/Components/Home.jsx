@@ -3,16 +3,17 @@
 import React, { Suspense, lazy } from "react";
 import { useInView } from "react-intersection-observer";
 
-// Above-the-fold components
+// ==========================
+// ABOVE THE FOLD COMPONENTS
+// ==========================
 import ImageSliderBanner from "./Banner/ImageSliderBanner ";
 import WelcomeToYogalayaa from "./HomeCredentials/WelcomeToYogalayaa";
 import Yogaschool from "./Yogaschool";
+import WhyChoose from "./HomeCredentials/WhyChoose";
 
-// Lazy-loaded components
-const WhyChooseLazy = lazy(() =>
-  import("./HomeCredentials/WhyChoose")
-);
-
+// ==========================
+// LAZY LOADED COMPONENTS
+// ==========================
 const AyurvedaLazy = lazy(() => import("./Ayurveda"));
 
 const OfferingLazy = lazy(() => import("./Offering"));
@@ -51,7 +52,9 @@ const RatingsLazy = lazy(() => import("./Ratings"));
 
 const ContactLazy = lazy(() => import("./Contact"));
 
-// Lightweight Loader
+// ==========================
+// LIGHTWEIGHT LOADER
+// ==========================
 const SectionLoader = () => (
   <div className="section-loader">
     <div className="spinner"></div>
@@ -61,7 +64,7 @@ const SectionLoader = () => (
         display: flex;
         justify-content: center;
         align-items: center;
-        padding: 50px 0;
+        padding: 60px 0;
       }
 
       .spinner {
@@ -82,11 +85,13 @@ const SectionLoader = () => (
   </div>
 );
 
-// Intersection Lazy Section
+// ==========================
+// INTERSECTION OBSERVER
+// ==========================
 const LazySection = ({ Component }) => {
   const { ref, inView } = useInView({
     triggerOnce: true,
-    rootMargin: "250px",
+    rootMargin: "800px",
   });
 
   return (
@@ -100,18 +105,27 @@ const LazySection = ({ Component }) => {
   );
 };
 
+// ==========================
+// HOME COMPONENT
+// ==========================
 const Home = () => {
   return (
     <>
-      {/* ABOVE THE FOLD */}
+      {/* ==========================
+          ABOVE THE FOLD
+      ========================== */}
+
       <ImageSliderBanner />
 
       <WelcomeToYogalayaa />
 
       <Yogaschool />
 
-      {/* BELOW THE FOLD */}
-      <LazySection Component={WhyChooseLazy} />
+      <WhyChoose />
+
+      {/* ==========================
+          BELOW THE FOLD
+      ========================== */}
 
       <LazySection Component={AyurvedaLazy} />
 

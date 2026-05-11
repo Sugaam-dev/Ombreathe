@@ -1,135 +1,304 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, memo } from "react";
 import img1 from "../../images/Gallery/1.jpeg";
+
 const DiscountPopup = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [showTrigger, setShowTrigger] = useState(false);
+
   const canvasRef = useRef(null);
   const animFrameRef = useRef(null);
   const particlesRef = useRef([]);
 
   const WHATSAPP_NUMBER = "917483987568";
+
   const MESSAGE =
     "Hi! I'd like to claim the 20% discount for the Rishikesh 2026 retreat.";
 
+  // =========================
+  // OPEN POPUP
+  // =========================
   useEffect(() => {
     const seen = sessionStorage.getItem("popupSeen");
+
     if (!seen) {
-      // FIRST TIME: Open automatically after 2 seconds
       const timer = setTimeout(() => {
         setIsOpen(true);
         sessionStorage.setItem("popupSeen", "true");
-      }, 2000);
+      }, 2500);
+
       return () => clearTimeout(timer);
     } else {
-      // RETURNING (Same Session): Just show the small floating badge
       setShowTrigger(true);
     }
   }, []);
 
-  // Confetti Logic
+  // =========================
+  // LIGHTWEIGHT CONFETTI
+  // =========================
   useEffect(() => {
     if (!isOpen) return;
+
     const canvas = canvasRef.current;
+
     if (!canvas) return;
+
     const ctx = canvas.getContext("2d");
-    const W = canvas.offsetWidth;
-    const H = canvas.offsetHeight;
-    canvas.width = W;
-    canvas.height = H;
-    const COLORS = ["#084d46", "#D4AF37", "#fdfdfd"];
-    const makeParticle = () => ({
-      x: Math.random() * W,
-      y: Math.random() * H * 0.1 - 20,
-      vx: (Math.random() - 0.5) * 2,
+
+    const resizeCanvas = () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    };
+
+    resizeCanvas();
+
+    window.addEventListener("resize", resizeCanvas);
+
+    const COLORS = ["#084d46", "#D4AF37", "#ffffff"];
+
+    particlesRef.current = Array.from({ length: 18 }, () => ({
+      x: Math.random() * canvas.width,
+      y: Math.random() * -100,
+      vx: (Math.random() - 0.5) * 1.5,
       vy: Math.random() * 2 + 1,
-      size: Math.random() * 4 + 1,
-      color: COLORS[Math.floor(Math.random() * COLORS.length)],
+      size: Math.random() * 4 + 2,
       alpha: 1,
-    });
-    particlesRef.current = Array.from({ length: 30 }, makeParticle);
-    const draw = () => {
-      ctx.clearRect(0, 0, W, H);
+      color: COLORS[Math.floor(Math.random() * COLORS.length)],
+    }));
+
+    const render = () => {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
       particlesRef.current.forEach((p) => {
-        ctx.globalAlpha = p.alpha;
-        ctx.fillStyle = p.color;
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.size / 2, 0, Math.PI * 2);
-        ctx.fill();
         p.x += p.vx;
         p.y += p.vy;
-        if (p.y > H * 0.4) p.alpha -= 0.01;
+        p.alpha -= 0.003;
+
+        ctx.globalAlpha = p.alpha;
+        ctx.fillStyle = p.color;
+
+        ctx.beginPath();
+
+        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+
+        ctx.fill();
+
+        if (p.alpha <= 0) {
+          p.y = Math.random() * -50;
+          p.alpha = 1;
+        }
       });
-      animFrameRef.current = requestAnimationFrame(draw);
+
+      animFrameRef.current = requestAnimationFrame(render);
     };
-    draw();
-    return () => cancelAnimationFrame(animFrameRef.current);
+
+    render();
+
+    return () => {
+      cancelAnimationFrame(animFrameRef.current);
+      window.removeEventListener("resize", resizeCanvas);
+    };
   }, [isOpen]);
 
+  // =========================
+  // HANDLERS
+  // =========================
   const handleClose = () => {
     setIsOpen(false);
     setShowTrigger(true);
   };
 
   const handleClaimClick = () => {
-    const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(MESSAGE)}`;
+    const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
+      MESSAGE
+    )}`;
+
     window.open(url, "_blank");
   };
 
   return (
     <>
+      {/* =========================
+          STYLES
+      ========================= */}
       <style>{`
-        @keyframes shine { 0% { left: -100%; } 100% { left: 100%; } }
-        @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes popupFade {
+          from {
+            opacity: 0;
+            transform: translateY(25px) scale(0.96);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+          }
+        }
 
-        .trigger-badge {
-          position: fixed; bottom: 20px; right: 20px; z-index: 9999;
-          background: #084d46; color: #D4AF37; width: 50px; height: 50px;
-          border-radius: 50%; display: flex; flex-direction: column;
-          align-items: center; justify-content: center; cursor: pointer;
-          border: 1.5px solid #D4AF37; box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-          transition: transform 0.3s ease;
+        .popup-overlay {
+          position: fixed;
+          inset: 0;
+          background: rgba(0, 0, 0, 0.65);
+          backdrop-filter: blur(6px);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          z-index: 999999;
+          transition: opacity 0.3s ease;
         }
 
         .luxury-card {
-          background: #fff; border-radius: 20px; overflow: hidden;
-          width: 90%; max-width: 700px; display: flex; position: relative;
-          box-shadow: 0 30px 60px rgba(0,0,0,0.4);
-          animation: slideUp 0.4s ease-out forwards;
+          width: min(92%, 760px);
+          background: #fff;
+          border-radius: 24px;
+          overflow: hidden;
+          display: flex;
+          position: relative;
+          box-shadow: 0 30px 80px rgba(0, 0, 0, 0.25);
+          animation: popupFade 0.45s ease;
+          will-change: transform, opacity;
         }
 
-        .btn-premium {
-          position: relative; background: #084d46; color: white;
-          border: none; padding: 14px; border-radius: 10px;
-          font-size: 14px; font-weight: 800; cursor: pointer;
-          overflow: hidden; width: 100%; display: flex;
-          align-items: center; justify-content: center; gap: 8px;
+        .img-box {
+          width: 50%;
+          position: relative;
+          overflow: hidden;
+          background: #eee;
         }
-        .btn-premium::after {
-          content: ""; position: absolute; top: 0; left: -100%;
-          width: 50%; height: 100%;
-          background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-          animation: shine 3s infinite;
+
+        .img-box img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          display: block;
+          transform: scale(1.01);
+        }
+
+        .content-box {
+          width: 50%;
+          padding: 34px;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+        }
+
+        .premium-btn {
+          background: #084d46;
+          color: #fff;
+          border: none;
+          height: 54px;
+          border-radius: 14px;
+          font-size: 14px;
+          font-weight: 800;
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 10px;
+          transition: transform 0.25s ease, opacity 0.25s ease;
+          will-change: transform;
+        }
+
+        .premium-btn:hover {
+          transform: translateY(-2px);
+        }
+
+        .premium-btn:active {
+          transform: scale(0.98);
+        }
+
+        .close-btn {
+          position: absolute;
+          top: 12px;
+          right: 12px;
+          width: 34px;
+          height: 34px;
+          border-radius: 50%;
+          border: none;
+          background: rgba(255,255,255,0.95);
+          cursor: pointer;
+          font-size: 16px;
+          font-weight: 700;
+          color: #084d46;
+          z-index: 50;
+          box-shadow: 0 4px 10px rgba(0,0,0,0.12);
+        }
+
+        .trigger-badge {
+          position: fixed;
+          bottom: 20px;
+          right: 20px;
+          width: 58px;
+          height: 58px;
+          border-radius: 50%;
+          background: #084d46;
+          color: #D4AF37;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          z-index: 99999;
+          cursor: pointer;
+          box-shadow: 0 10px 25px rgba(0,0,0,0.22);
+          border: 2px solid #D4AF37;
+          transition: transform 0.25s ease;
+        }
+
+        .trigger-badge:hover {
+          transform: scale(1.08);
+        }
+
+        .offer-box {
+          background: #f5faf9;
+          border: 1px solid rgba(8,77,70,0.08);
+          border-radius: 14px;
+          padding: 14px;
+          margin-bottom: 22px;
         }
 
         @media (max-width: 768px) {
-          .luxury-card { flex-direction: column; width: 85%; max-height: 85vh; }
-          .img-box { height: 140px !important; width: 100% !important; }
-          .content-box { width: 100% !important; padding: 20px !important; text-align: center; }
-          .title-text { font-size: 22px !important; margin-bottom: 8px !important; }
-          .desc-text { font-size: 13px !important; margin-bottom: 15px !important; line-height: 1.4 !important; }
-          .offer-box { padding: 10px !important; margin-bottom: 15px !important; }
-          .offer-text { font-size: 20px !important; }
+          .luxury-card {
+            flex-direction: column;
+            width: 90%;
+            max-height: 88vh;
+          }
+
+          .img-box {
+            width: 100%;
+            height: 220px;
+          }
+
+          .content-box {
+            width: 100%;
+            padding: 24px;
+            text-align: center;
+          }
+
+          .title-text {
+            font-size: 24px !important;
+          }
+
+          .desc-text {
+            font-size: 13px !important;
+          }
         }
       `}</style>
 
+      {/* =========================
+          FLOATING BADGE
+      ========================= */}
       {showTrigger && !isOpen && (
-        <div className="trigger-badge" onClick={() => setIsOpen(true)}>
-          <span style={{ fontSize: "11px", fontWeight: "900" }}>20%</span>
+        <div
+          className="trigger-badge"
+          onClick={() => setIsOpen(true)}
+        >
+          <span style={{ fontSize: "14px", fontWeight: "900" }}>
+            20%
+          </span>
+
           <span
             style={{
-              fontSize: "6px",
-              fontWeight: "700",
+              fontSize: "7px",
               textTransform: "uppercase",
+              fontWeight: "700",
+              letterSpacing: "1px",
             }}
           >
             Off
@@ -137,171 +306,125 @@ const DiscountPopup = () => {
         </div>
       )}
 
-      <div
-        style={{
-          position: "fixed",
-          top: 0,
-          left: 0,
-          width: "100%",
-          height: "100%",
-          background: "rgba(0, 18, 16, 0.8)",
-          zIndex: 100000,
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          opacity: isOpen ? 1 : 0,
-          pointerEvents: isOpen ? "all" : "none",
-          transition: "opacity 0.4s ease",
-          backdropFilter: "blur(6px)",
-        }}
-        onClick={handleClose}
-      >
-        <canvas
-          ref={canvasRef}
-          style={{
-            position: "absolute",
-            top: 0,
-            left: 0,
-            pointerEvents: "none",
-          }}
-        />
+      {/* =========================
+          POPUP
+      ========================= */}
+      {isOpen && (
+        <div className="popup-overlay" onClick={handleClose}>
+          <canvas
+            ref={canvasRef}
+            style={{
+              position: "absolute",
+              inset: 0,
+              pointerEvents: "none",
+            }}
+          />
 
-        {isOpen && (
-          <div className="luxury-card" onClick={(e) => e.stopPropagation()}>
-            <div
-              onClick={handleClose}
-              style={{
-                position: "absolute",
-                top: "10px",
-                right: "10px",
-                width: "28px",
-                height: "28px",
-                background: "#fff",
-                borderRadius: "50%",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                cursor: "pointer",
-                zIndex: 20,
-                color: "#084d46",
-                fontSize: "14px",
-                fontWeight: "bold",
-                boxShadow: "0 2px 5px rgba(0,0,0,0.1)",
-              }}
-            >
+          <div
+            className="luxury-card"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* CLOSE */}
+            <button className="close-btn" onClick={handleClose}>
               ✕
-            </div>
+            </button>
 
-            <div
-              className="img-box"
-              style={{ width: "60%", position: "relative" }}
-            >
+            {/* IMAGE */}
+            <div className="img-box">
               <img
                 src={img1}
-                alt="Retreat"
-                style={{
-                  width: "100%",
-                  height: "100%",
-                  objectFit: "cover",
-                  display: "block",
-                }}
+                alt="Rishikesh Retreat"
+                loading="lazy"
+                decoding="async"
+                width="600"
+                height="800"
               />
             </div>
 
-            <div
-              className="content-box"
-              style={{
-                width: "60%",
-                padding: "30px",
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "center",
-              }}
-            >
-              <h3
+            {/* CONTENT */}
+            <div className="content-box">
+              <div
                 style={{
                   color: "#D4AF37",
                   fontSize: "11px",
                   fontWeight: "800",
                   letterSpacing: "2px",
-                  marginBottom: "5px",
+                  marginBottom: "8px",
                 }}
               >
                 GIFT VOUCHER
-              </h3>
+              </div>
+
               <h2
                 className="title-text"
                 style={{
-                  color: "#1a2a28",
-                  fontSize: "28px",
-                  fontWeight: "900",
+                  fontSize: "32px",
                   lineHeight: "1.1",
-                  marginBottom: "10px",
+                  fontWeight: "900",
+                  color: "#1a2a28",
+                  marginBottom: "14px",
                 }}
               >
                 Pure <span style={{ color: "#084d46" }}>Serenity</span>
               </h2>
+
               <p
                 className="desc-text"
                 style={{
                   color: "#666",
                   fontSize: "14px",
-                  lineHeight: "1.5",
-                  marginBottom: "20px",
+                  lineHeight: "1.6",
+                  marginBottom: "22px",
                 }}
               >
-                Claim your exclusive 20% discount for the 2026 Rishikesh
-                retreat.
+                Claim your exclusive 20% discount for the 2026
+                Rishikesh retreat.
               </p>
 
-              <div
-                className="offer-box"
-                style={{
-                  background: "#f4f9f8",
-                  padding: "15px",
-                  borderRadius: "10px",
-                  marginBottom: "20px",
-                  border: "1px solid rgba(8, 77, 70, 0.1)",
-                }}
-              >
+              <div className="offer-box">
                 <div
                   style={{
-                    fontSize: "10px",
+                    fontSize: "11px",
                     color: "#084d46",
                     fontWeight: "700",
+                    marginBottom: "4px",
                   }}
                 >
-                  SAVINGS:
+                  SAVINGS
                 </div>
+
                 <div
-                  className="offer-text"
                   style={{
-                    fontSize: "22px",
-                    color: "#1a2a28",
+                    fontSize: "24px",
                     fontWeight: "900",
+                    color: "#1a2a28",
                   }}
                 >
                   20% DISCOUNT
                 </div>
               </div>
 
-              <button className="btn-premium" onClick={handleClaimClick}>
+              <button
+                className="premium-btn"
+                onClick={handleClaimClick}
+              >
                 CLAIM VIA WHATSAPP
+
                 <svg
-                  width="16"
-                  height="16"
+                  width="18"
+                  height="18"
                   fill="currentColor"
                   viewBox="0 0 16 16"
                 >
-                  <path d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.061 3.966L0 16l4.239-1.113a7.859 7.859 0 0 0 3.758.955h.001c4.367 0 7.926-3.558 7.93-7.93a7.898 7.898 0 0 0-2.322-5.586zM7.994 14.521a6.573 6.573 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592zm3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.729.729 0 0 0-.529.247c-.182.198-.691.677-.691 1.654 0 .977.71 1.916.81 2.049.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232z" />
+                  <path d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.061 3.966L0 16l4.239-1.113a7.859 7.859 0 0 0 3.758.955h.001c4.367 0 7.926-3.558 7.93-7.93a7.898 7.898 0 0 0-2.322-5.586z" />
                 </svg>
               </button>
             </div>
           </div>
-        )}
-      </div>
+        </div>
+      )}
     </>
   );
 };
 
-export default DiscountPopup;
+export default memo(DiscountPopup);
