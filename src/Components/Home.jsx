@@ -1,19 +1,18 @@
 // Home.jsx
 
 import React, { Suspense, lazy } from "react";
-import { useInView } from "react-intersection-observer";
 
-// ==========================
-// ABOVE THE FOLD COMPONENTS
-// ==========================
+// ==========================================
+// NORMAL IMPORTS (ABOVE THE FOLD)
+// ==========================================
 import ImageSliderBanner from "./Banner/ImageSliderBanner ";
 import WelcomeToYogalayaa from "./HomeCredentials/WelcomeToYogalayaa";
 import Yogaschool from "./Yogaschool";
 import WhyChoose from "./HomeCredentials/WhyChoose";
 
-// ==========================
+// ==========================================
 // LAZY LOADED COMPONENTS
-// ==========================
+// ==========================================
 const AyurvedaLazy = lazy(() => import("./Ayurveda"));
 
 const OfferingLazy = lazy(() => import("./Offering"));
@@ -52,24 +51,24 @@ const RatingsLazy = lazy(() => import("./Ratings"));
 
 const ContactLazy = lazy(() => import("./Contact"));
 
-// ==========================
+// ==========================================
 // LIGHTWEIGHT LOADER
-// ==========================
+// ==========================================
 const SectionLoader = () => (
   <div className="section-loader">
-    <div className="spinner"></div>
+    <div className="loader-spinner"></div>
 
     <style jsx="true">{`
       .section-loader {
         display: flex;
         justify-content: center;
         align-items: center;
-        padding: 60px 0;
+        padding: 70px 0;
       }
 
-      .spinner {
-        width: 34px;
-        height: 34px;
+      .loader-spinner {
+        width: 36px;
+        height: 36px;
         border-radius: 50%;
         border: 3px solid rgba(0, 0, 0, 0.08);
         border-top-color: #f97316;
@@ -85,35 +84,15 @@ const SectionLoader = () => (
   </div>
 );
 
-// ==========================
-// INTERSECTION OBSERVER
-// ==========================
-const LazySection = ({ Component }) => {
-  const { ref, inView } = useInView({
-    triggerOnce: true,
-    rootMargin: "800px",
-  });
-
-  return (
-    <section ref={ref}>
-      {inView && (
-        <Suspense fallback={<SectionLoader />}>
-          <Component />
-        </Suspense>
-      )}
-    </section>
-  );
-};
-
-// ==========================
+// ==========================================
 // HOME COMPONENT
-// ==========================
+// ==========================================
 const Home = () => {
   return (
     <>
-      {/* ==========================
-          ABOVE THE FOLD
-      ========================== */}
+      {/* ==========================================
+          NORMAL TOP SECTIONS
+      ========================================== */}
 
       <ImageSliderBanner />
 
@@ -123,35 +102,37 @@ const Home = () => {
 
       <WhyChoose />
 
-      {/* ==========================
-          BELOW THE FOLD
-      ========================== */}
+      {/* ==========================================
+          LAZY LOADED SECTIONS
+      ========================================== */}
 
-      <LazySection Component={AyurvedaLazy} />
+      <Suspense fallback={<SectionLoader />}>
+        <AyurvedaLazy />
 
-      <LazySection Component={OfferingLazy} />
+        <OfferingLazy />
 
-      <LazySection Component={ServicessLazy} />
+        <ServicessLazy />
 
-      <LazySection Component={BannerImageLazy} />
+        <BannerImageLazy />
 
-      <LazySection Component={YogaTeachersLazy} />
+        <YogaTeachersLazy />
 
-      <LazySection Component={GuruLineageLazy} />
+        <GuruLineageLazy />
 
-      <LazySection Component={ScheduleLazy} />
+        <ScheduleLazy />
 
-      <LazySection Component={BlogLazy} />
+        <BlogLazy />
 
-      <LazySection Component={GalleryLazy} />
+        <GalleryLazy />
 
-      <LazySection Component={UtubeLazy} />
+        <UtubeLazy />
 
-      <LazySection Component={AccordionLazy} />
+        <AccordionLazy />
 
-      <LazySection Component={RatingsLazy} />
+        <RatingsLazy />
 
-      <LazySection Component={ContactLazy} />
+        <ContactLazy />
+      </Suspense>
     </>
   );
 };

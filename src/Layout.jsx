@@ -6,11 +6,19 @@ import { Outlet } from "react-router-dom";
 import Navbar from "./Components/Header/Navbar";
 import ScrollToTop from "./Components/useFullComponent/ScrollToTop";
 
+// IMPORTANT:
+// Convert logo to WebP if possible
 import logo from "./images/omBreatheLogo.png";
 
-// Lazy loaded components
+// ==========================================
+// LAZY LOADED COMPONENTS
+// ==========================================
 const Footer = lazy(() => import("./Components/Footer/Footer"));
-const WhatsAppButton = lazy(() => import("./Components/WhatsAppButton"));
+
+const WhatsAppButton = lazy(() =>
+  import("./Components/WhatsAppButton")
+);
+
 const DiscountPopup = lazy(() =>
   import("./Components/useFullComponent/DiscountPopup")
 );
@@ -18,7 +26,10 @@ const DiscountPopup = lazy(() =>
 function Layout() {
   return (
     <div className="layout-wrapper">
-      {/* Background Logo */}
+      {/* ==========================================
+          BACKGROUND LOGO
+      ========================================== */}
+
       <img
         src={logo}
         alt="Ombreathe Background Logo"
@@ -29,17 +40,30 @@ function Layout() {
         height="320"
       />
 
+      {/* ==========================================
+          SCROLL TOP
+      ========================================== */}
+
       <ScrollToTop />
 
-      {/* Navbar */}
+      {/* ==========================================
+          NAVBAR
+      ========================================== */}
+
       <Navbar />
 
-      {/* Main Content */}
+      {/* ==========================================
+          MAIN CONTENT
+      ========================================== */}
+
       <main className="main-layout">
         <Outlet />
       </main>
 
-      {/* Lazy Loaded Components */}
+      {/* ==========================================
+          LAZY COMPONENTS
+      ========================================== */}
+
       <Suspense fallback={null}>
         <Footer />
 
@@ -51,18 +75,22 @@ function Layout() {
         <DiscountPopup />
       </Suspense>
 
-      {/* CSS */}
+      {/* ==========================================
+          CSS
+      ========================================== */}
+
       <style jsx="true">{`
         .layout-wrapper {
           position: relative;
           overflow-x: hidden;
-          background: #fff;
+          background: #ffffff;
+          min-height: 100vh;
         }
 
         .main-layout {
-          padding-top: 96px;
           position: relative;
           z-index: 2;
+          padding-top: 96px;
         }
 
         .background-logo {
@@ -72,12 +100,32 @@ function Layout() {
           transform: translate(-50%, -50%);
           width: min(500px, 60vw);
           height: auto;
-          opacity: 0.06;
+          opacity: 0.05;
           z-index: -1;
           pointer-events: none;
           user-select: none;
           will-change: transform;
+          backface-visibility: hidden;
+          -webkit-backface-visibility: hidden;
         }
+
+        /* ==========================================
+           DESKTOP LARGE SCREEN
+        ========================================== */
+
+        @media (min-width: 1800px) {
+          .main-layout {
+            padding-top: 110px;
+          }
+
+          .background-logo {
+            width: 550px;
+          }
+        }
+
+        /* ==========================================
+           TABLET
+        ========================================== */
 
         @media (max-width: 991px) {
           .main-layout {
@@ -90,9 +138,14 @@ function Layout() {
           }
         }
 
+        /* ==========================================
+           MOBILE
+        ========================================== */
+
         @media (max-width: 576px) {
           .background-logo {
-            width: 85vw;
+            width: 82vw;
+            opacity: 0.03;
           }
         }
       `}</style>
