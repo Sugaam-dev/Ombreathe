@@ -22,7 +22,7 @@ const OfferingLazy = lazy(() => import("./Offering"));
 // );
 
 const BannerImageLazy = lazy(() =>
-  import("./HomeCredentials/BannerImage")
+  import("./HomeCredentials/BannerImage") 
 );
 
 const ProgramsCarouselLazy = lazy(() =>

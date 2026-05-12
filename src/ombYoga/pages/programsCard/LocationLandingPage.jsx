@@ -510,7 +510,7 @@ const styles = `
 
   @media (max-width: 580px) {
     .llp-intro__highlights { grid-template-columns: 1fr 1fr; gap: 12px; }
-    .llp-programs__grid { grid-template-columns: 1fr 1fr; }
+    .llp-programs__grid { grid-template-columns: 1fr; }
     .llp-tabs { gap: 6px; }
     .llp-tab { font-size: 12px; padding: 8px 13px; }
   }
