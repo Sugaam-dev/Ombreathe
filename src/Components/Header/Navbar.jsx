@@ -120,6 +120,164 @@ const Navbar = () => {
     setTtcView("detail");
   };
 
+  // ==========================================
+// PROGRAM LINKS CONFIG
+// ==========================================
+
+const PROGRAM_LINKS = {
+  Mysuru: {
+    multiStyle: [
+      // {
+      //   path: "100hr",
+      //   label: "100 Hour Foundation",
+      // },
+      // {
+      //   path: "200hr",
+      //   label: "200 Hour TTC",
+      // },
+    ],
+
+    kundalini: [
+      // {
+      //   path: "kundalini100hr",
+      //   label: "Kundalini 100 Hours",
+      // },
+    ],
+
+    shortCourses: [
+      // {
+      //   path: "yinyoga",
+      //   label: "Yin Yoga",
+      // },
+    ],
+
+    specialization: [],
+  },
+
+  Bali: {
+    multiStyle: [
+      {
+        path: "50hr",
+        label: "50 Hour Foundation",
+      },
+      {
+        path: "100hr",
+        label: "100 Hour Foundation",
+      },
+      {
+        path: "200hr",
+        label: "200 Hour TTC",
+      },
+      {
+        path: "300hr",
+        label: "300 Hour Advanced",
+      },
+      {
+        path: "500hr",
+        label: "500 Hour Master",
+      },
+    ],
+
+    kundalini: [
+      {
+        path: "kundalini50hr",
+        label: "Kundalini 50 Hours",
+      },
+      {
+        path: "kundalini100hr",
+        label: "Kundalini 100 Hours",
+      },
+      {
+        path: "kundalini200hr",
+        label: "Kundalini 200 Hours",
+      },
+      {
+        path: "kundalini300hr",
+        label: "Kundalini 300 Hours",
+      },
+      {
+        path: "kundalini500hr",
+        label: "Kundalini 500 Hours",
+      }
+    ],
+
+    shortCourses: [
+      {
+        path: "yinyoga",
+        label: "Yin Yoga",
+      },
+      {
+        path: "prenatalyoga",
+        label: "Prenatal Yoga",
+      },
+      {
+        path: "aerialyoga",
+        label: "Aerial Yoga",
+      },
+      {
+        path: "acroYoga",
+        label: "Acro Yoga",
+      },
+    ],
+
+    specialization: [
+      {
+        path: "soundhealing",
+        label: "Sound Healing",
+      },
+    ],
+  },
+
+  Rishikesh: {
+    multiStyle: [
+      // {
+      //   path: "200hr",
+      //   label: "200 Hour TTC",
+      // },
+    ],
+
+    kundalini: [],
+
+    shortCourses: [],
+
+    specialization: [],
+  },
+
+  "Chiang Mai": {
+    multiStyle: [
+      {
+        path: "100hr",
+        label: "100 Hour Foundation",
+      },
+      {
+        path: "200hr",
+        label: "200 Hour TTC",
+      },
+    ],
+
+    kundalini: [],
+
+    shortCourses: [
+      {
+        path: "acroYoga",
+        label: "Acro Yoga",
+      },
+    ],
+
+    specialization: [],
+  },
+
+  Dharamshala: {
+    multiStyle: [],
+
+    kundalini: [],
+
+    shortCourses: [],
+
+    specialization: [],
+  },
+};
+
   const RETREAT_LINKS = {
     Mysuru: [
       // { path: "retreats6days", label: "6 Days Retreat" },
@@ -340,83 +498,67 @@ const Navbar = () => {
                             {selectedTtcLoc} Teacher Training
                           </h5>
                         </div>
-                        <div className="col-lg-3 mega-column">
-                          <h6 className="column-title">Multi-Style YTTC</h6>
-                          <Link
-                            className={
-                              isSubActive(`/programs/${selectedTtcLoc}/50hr`)
-                                ? "sub-link-active"
-                                : ""
-                            }
-                            to={`/programs/${selectedTtcLoc}/50hr`}
-                            onClick={() => handleLinkClick("programs")}
-                          >
-                            50 Hour Foundation
-                          </Link>
-                          <Link
-                            className={
-                              isSubActive(`/programs/${selectedTtcLoc}/100hr`)
-                                ? "sub-link-active"
-                                : ""
-                            }
-                            to={`/programs/${selectedTtcLoc}/100hr`}
-                            onClick={() => handleLinkClick("programs")}
-                          >
-                            100 Hour Foundation
-                          </Link>
-                          <Link
-                            className={
-                              isSubActive(`/programs/${selectedTtcLoc}/200hr`)
-                                ? "sub-link-active"
-                                : ""
-                            }
-                            to={`/programs/${selectedTtcLoc}/200hr`}
-                            onClick={() => handleLinkClick("programs")}
-                          >
-                            200 Hour Foundation
-                          </Link>
-                          <Link
-                            className={
-                              isSubActive(`/programs/${selectedTtcLoc}/300hr`)
-                                ? "sub-link-active"
-                                : ""
-                            }
-                            to={`/programs/${selectedTtcLoc}/300hr`}
-                            onClick={() => handleLinkClick("programs")}
-                          >
-                            300 Hour Advanced
-                          </Link>
-                          <Link
-                            className={
-                              isSubActive(`/programs/${selectedTtcLoc}/500hr`)
-                                ? "sub-link-active"
-                                : ""
-                            }
-                            to={`/programs/${selectedTtcLoc}/500hr`}
-                            onClick={() => handleLinkClick("programs")}
-                          >
-                            500 Hour Master
-                          </Link>
-                        </div>
-                        <div className="col-lg-3 mega-column">
-                          <h6 className="column-title">Kundalini YTTC</h6>
-                          <Link className={isSubActive(`/programs/${selectedTtcLoc}/kundalini50hr`) ? "sub-link-active" : ""} to={`/programs/${selectedTtcLoc}/kundalini50hr`} onClick={() => handleLinkClick("programs")}>Kundalini 50 Hours</Link>
-                          <Link className={isSubActive(`/programs/${selectedTtcLoc}/kundalini100hr`) ? "sub-link-active" : ""} to={`/programs/${selectedTtcLoc}/kundalini100hr`} onClick={() => handleLinkClick("programs")}>Kundalini 100 Hours</Link>
-                          <Link className={isSubActive(`/programs/${selectedTtcLoc}/kundalini200hr`) ? "sub-link-active" : ""} to={`/programs/${selectedTtcLoc}/kundalini200hr`} onClick={() => handleLinkClick("programs")}>Kundalini 200 Hours</Link>
-                          <Link className={isSubActive(`/programs/${selectedTtcLoc}/kundalini300hr`) ? "sub-link-active" : ""} to={`/programs/${selectedTtcLoc}/kundalini300hr`} onClick={() => handleLinkClick("programs")}>Kundalini 300 Hours</Link>
-                          <Link className={isSubActive(`/programs/${selectedTtcLoc}/kundalini500hr`) ? "sub-link-active" : ""} to={`/programs/${selectedTtcLoc}/kundalini500hr`} onClick={() => handleLinkClick("programs")}>Kundalini 500 Hours</Link>
-                        </div>
-                        <div className="col-lg-3 mega-column">
-                          <h6 className="column-title">Short Courses</h6>
-                          <Link className={isSubActive(`/programs/${selectedTtcLoc}/yinyoga`) ? "sub-link-active" : ""} to={`/programs/${selectedTtcLoc}/yinyoga`} onClick={() => handleLinkClick("programs")}>Yin Yoga</Link>
-                          <Link className={isSubActive(`/programs/${selectedTtcLoc}/prenatalyoga`) ? "sub-link-active" : ""} to={`/programs/${selectedTtcLoc}/prenatalyoga`} onClick={() => handleLinkClick("programs")}>Prenatal Yoga</Link>
-                          <Link className={isSubActive(`/programs/${selectedTtcLoc}/aerialyoga`) ? "sub-link-active" : ""} to={`/programs/${selectedTtcLoc}/aerialyoga`} onClick={() => handleLinkClick("programs")}>Aerial Yoga</Link>
-                          <Link className={isSubActive(`/programs/${selectedTtcLoc}/acroYoga`) ? "sub-link-active" : ""} to={`/programs/${selectedTtcLoc}/acroYoga`} onClick={() => handleLinkClick("programs")}>Acro Yoga</Link>
-                        </div>
-                        <div className="col-lg-3 mega-column no-border">
-                          <h6 className="column-title">Specialization</h6>
-                          <Link className={isSubActive(`/programs/${selectedTtcLoc}/soundhealing`) ? "sub-link-active" : ""} to={`/programs/${selectedTtcLoc}/soundhealing`} onClick={() => handleLinkClick("programs")}>Sound Healing</Link>
-                        </div>
+                      {[
+  {
+    title: "Multi-Style YTTC",
+    key: "multiStyle",
+  },
+
+  {
+    title: "Kundalini YTTC",
+    key: "kundalini",
+  },
+
+  {
+    title: "Short Courses",
+    key: "shortCourses",
+  },
+
+  {
+    title: "Specialization",
+    key: "specialization",
+  },
+].map((section, idx) => (
+  <div
+    key={section.key}
+    className={`col-lg-3 mega-column ${
+      idx === 3 ? "no-border" : ""
+    }`}
+  >
+    <h6 className="column-title">
+      {section.title}
+    </h6>
+
+    {(PROGRAM_LINKS[selectedTtcLoc]?.[
+      section.key
+    ] || []).length === 0 ? (
+      <span className="coming-soon-text">
+        Coming Soon
+      </span>
+    ) : (
+      PROGRAM_LINKS[selectedTtcLoc][
+        section.key
+      ].map(({ path, label }) => (
+        <Link
+          key={path}
+          className={
+            isSubActive(
+              `/programs/${selectedTtcLoc}/${path}`
+            )
+              ? "sub-link-active"
+              : ""
+          }
+          to={`/programs/${selectedTtcLoc}/${path}`}
+          onClick={() =>
+            handleLinkClick("programs")
+          }
+        >
+          {label}
+        </Link>
+      ))
+    )}
+  </div>
+))}
                       </div>
                     )}
                   </div>
@@ -681,13 +823,7 @@ const Navbar = () => {
                             </div>
                             {openSubCat[`${loc}-multiStyle`] && (
                               <div className="mobile-sub-cat-body">
-                                {[
-                                  { path: "50hr", label: "50 Hour Foundation" },
-                                  { path: "100hr", label: "100 Hour Foundation" },
-                                  { path: "200hr", label: "200 Hour Foundation" },
-                                  { path: "300hr", label: "300 Hour Advanced" },
-                                  { path: "500hr", label: "500 Hour Master" },
-                                ].map(({ path, label }) => (
+                                {PROGRAM_LINKS[loc]?.multiStyle || [].map(({ path, label }) => (
                                   <Link
                                     key={path}
                                     className={isSubActive(`/programs/${loc}/${path}`) ? "m-sub-active-text" : ""}
@@ -709,13 +845,7 @@ const Navbar = () => {
                             </div>
                             {openSubCat[`${loc}-kundalini`] && (
                               <div className="mobile-sub-cat-body">
-                                {[
-                                  { path: "kundalini50hr", label: "Kundalini 50 Hours" },
-                                  { path: "kundalini100hr", label: "Kundalini 100 Hours" },
-                                  { path: "kundalini200hr", label: "Kundalini 200 Hours" },
-                                  { path: "kundalini300hr", label: "Kundalini 300 Hours" },
-                                  { path: "kundalini500hr", label: "Kundalini 500 Hours" },
-                                ].map(({ path, label }) => (
+                                {PROGRAM_LINKS[loc]?.kundalini || [].map(({ path, label }) => (
                                   <Link
                                     key={path}
                                     className={isSubActive(`/programs/${loc}/${path}`) ? "m-sub-active-text" : ""}
@@ -737,12 +867,7 @@ const Navbar = () => {
                             </div>
                             {openSubCat[`${loc}-short`] && (
                               <div className="mobile-sub-cat-body">
-                                {[
-                                  { path: "yinyoga", label: "Yin Yoga" },
-                                  { path: "prenatalyoga", label: "Prenatal Yoga" },
-                                  { path: "aerialyoga", label: "Aerial Yoga" },
-                                  { path: "acroYoga", label: "Acro Yoga" },
-                                ].map(({ path, label }) => (
+                                {PROGRAM_LINKS[loc]?.shortCourses || [].map(({ path, label }) => (
                                   <Link
                                     key={path}
                                     className={isSubActive(`/programs/${loc}/${path}`) ? "m-sub-active-text" : ""}
@@ -764,9 +889,7 @@ const Navbar = () => {
                             </div>
                             {openSubCat[`${loc}-special`] && (
                               <div className="mobile-sub-cat-body">
-                                {[
-                                  { path: "soundhealing", label: "Sound Healing" },
-                                ].map(({ path, label }) => (
+                                {PROGRAM_LINKS[loc]?.specialization || [].map(({ path, label }) => (
                                   <Link
                                     key={path}
                                     className={isSubActive(`/programs/${loc}/${path}`) ? "m-sub-active-text" : ""}
@@ -895,6 +1018,12 @@ const Navbar = () => {
         .ttc-selected-title {
           font-family: Caudex, serif !important;
         }
+          .coming-soon-text {
+  color: #aaa;
+  font-size: 13px;
+  display: block;
+  padding-top: 8px;
+}
         .premium-navbar {
           background: #fff !important;
           padding: 0 !important;

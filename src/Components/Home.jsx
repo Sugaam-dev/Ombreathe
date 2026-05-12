@@ -17,12 +17,16 @@ const AyurvedaLazy = lazy(() => import("./Ayurveda"));
 
 const OfferingLazy = lazy(() => import("./Offering"));
 
-const ServicessLazy = lazy(() =>
-  import("./Services/Servicess")
-);
+// const ServicessLazy = lazy(() =>
+//   import("./Services/Servicess")
+// );
 
 const BannerImageLazy = lazy(() =>
   import("./HomeCredentials/BannerImage")
+);
+
+const ProgramsCarouselLazy = lazy(() =>
+  import("../ombYoga/pages/programsCard/ProgramsCarousel")
 );
 
 const YogaTeachersLazy = lazy(() =>
@@ -111,9 +115,11 @@ const Home = () => {
 
         <OfferingLazy />
 
-        <ServicessLazy />
+        {/* <ServicessLazy /> */}
 
         <BannerImageLazy />
+
+        <ProgramsCarouselLazy />
 
         <YogaTeachersLazy />
 

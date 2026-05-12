@@ -7,13 +7,11 @@ import React, {
   
 } from 'react';
 import { Link } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faPhone,
-  faEnvelope,
-  faLocationDot,
- 
-} from "@fortawesome/free-solid-svg-icons";
+  Phone,
+  Mail,
+  MapPin,
+} from "lucide-react";
 import { FaFacebookF, FaInstagram, FaYoutube } from "react-icons/fa6";
 
 // Lazy load images for better performance
@@ -191,11 +189,11 @@ const ContactInfo = memo(() => {
       <h6 className="text-uppercase fw-bold mb-3">Contact Info</h6>
       <ul className="list-unstyled ">
         <li className="mb-3 d-flex align-items-start">
-          <FontAwesomeIcon 
-            icon={faPhone} 
-            className="me-3 mt-1 flex-shrink-0" 
-            style={{ color: '#42A5F6' }} 
-          />
+        <Phone
+  size={18}
+  className="me-3 mt-1 flex-shrink-0"
+  style={{ color: '#42A5F6' }}
+/>
           <div>
             {contactData.phones.map(({ number, display }) => (
               <p key={number} className="mb-1">
@@ -208,11 +206,11 @@ const ContactInfo = memo(() => {
           </div>
         </li>
         <li className="mb-3 d-flex align-items-start">
-          <FontAwesomeIcon 
-            icon={faEnvelope} 
-            className="me-3 mt-1 flex-shrink-0" 
-            style={{ color: '#42A5F6' }} 
-          />
+         <Mail
+  size={18}
+  className="me-3 mt-1 flex-shrink-0"
+  style={{ color: '#42A5F6' }}
+/>
           <div>
             {contactData.email.map(({ address, display }) => (
               <p key={address} className="mb-1">
@@ -225,11 +223,11 @@ const ContactInfo = memo(() => {
           </div>
         </li>
         <li className="mb-3 d-flex align-items-start">
-          <FontAwesomeIcon 
-            icon={faLocationDot} 
-            className="me-3 mt-1 flex-shrink-0" 
-            style={{ color: '#42A5F6' }} 
-          />
+         <MapPin
+  size={18}
+  className="me-3 mt-1 flex-shrink-0"
+  style={{ color: '#42A5F6' }}
+/>
           <div>
             <address className="mb-0 footer-address">
               {contactData.address}

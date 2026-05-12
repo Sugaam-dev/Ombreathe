@@ -43,6 +43,7 @@ import rishikeshAerialYogaData from './Components/Services/ShortRetreats/data/ri
 import rishikeshPrenatalData from './Components/Services/ShortRetreats/data/rishikesh/rishikeshPrenatalYogaData';
 // import Service1000 from './Components/Services/Service100combined';
 import OmbYogaPage from './ombYoga/pages/OmbYogaPage';
+import LocationLandingPage from './ombYoga/pages/programsCard/LocationLandingPage';
 
 
 
@@ -106,6 +107,7 @@ function AppRoutes() {
 
 
 <Route path="/programs/bali/:course" element={<OmbYogaPage />} />
+<Route path="programs/:location" element={<LocationLandingPage />} />
 
       </Route>
     </Routes>

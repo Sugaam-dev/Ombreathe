@@ -2,8 +2,8 @@
 
 import React, { useEffect, useState } from "react";
 import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+// import "slick-carousel/slick/slick.css";
+// import "slick-carousel/slick/slick-theme.css";
 import { Link } from "react-router-dom";
 import "../Styles/ayurveda.css"; // Import the separate CSS file
 import ayurveda from '../images/ayurveda.webp'
