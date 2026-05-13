@@ -3,6 +3,7 @@ import React, {
   useState,
   useMemo,
 } from "react";
+import { useNavigate } from "react-router-dom";
 
 import "../Styles/Yogaschool.css";
 import "aos/dist/aos.css";
@@ -24,6 +25,8 @@ const Yogaschool = () => {
     logo: null,
     yogaSchool: null,
   });
+
+  const navigate = useNavigate();
 
   // =========================================
   // AOS
@@ -75,56 +78,60 @@ const Yogaschool = () => {
   // =========================================
 
   const slideContent = useMemo(
-    () => [
-      {
-        location: "Bali",
-        image:
-          "https://images.unsplash.com/photo-1537953773345-d172ccf13cf1?q=80&w=2070&auto=format&fit=crop",
-        title: "Discover Yoga Paradise In Bali",
-        description:
-          "Immerse yourself in tropical serenity, sacred temples, waterfalls, and transformative yoga retreats surrounded by Bali's spiritual energy.",
-        color: "#ff914d",
-      },
-      {
-        location: "Mysuru",
-        image:
-          "https://images.unsplash.com/photo-1593693411515-c20261bcad6e?q=80&w=2070&auto=format&fit=crop",
-        title: "Birthplace Of Traditional Ashtanga Yoga",
-        description:
-          "Train in Mysuru, the yoga capital of South India, where authentic yogic discipline and ancient teachings continue to inspire practitioners worldwide.",
-        color: "#2e8b57",
-      },
-      {
-        location: "Rishikesh",
-        image:
-          "https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?q=80&w=2070&auto=format&fit=crop",
-        title: "Experience Yoga In Rishikesh",
-        description:
-          "Practice yoga by the sacred Ganges River surrounded by Himalayan energy in the spiritual heart of India.",
-        color: "#4caf50",
-      },
-      {
-        location: "Chiang Mai",
-        image:
-          "https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?q=80&w=2070&auto=format&fit=crop",
-        title: "Mindful Retreats In Chiang Mai",
-        description:
-          "Blend yoga, meditation, mindfulness, and nature in the peaceful mountains and temples of Northern Thailand.",
-        color: "#d97706",
-      },
-      {
-        location: "Dharamshala",
-        image:
-          "https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=2070&auto=format&fit=crop",
-        title: "Yoga In The Himalayas",
-        description:
-          "Reconnect with yourself in the serene Himalayan atmosphere inspired by Tibetan spiritual culture and meditation.",
-        color: "#6b7280",
-      },
-    ],
-    []
-  );
-
+  () => [
+    {
+      location: "Bali",
+      image:
+        "https://images.unsplash.com/photo-1537953773345-d172ccf13cf1?q=80&w=2070&auto=format&fit=crop",
+      title: "Discover Yoga Paradise In Bali",
+      description:
+        "Immerse yourself in tropical serenity, sacred temples, waterfalls, and transformative yoga retreats surrounded by Bali's spiritual energy.",
+      color: "#ff914d",
+      link: "/programs/bali",
+    },
+    {
+      location: "Mysuru",
+      image:
+        "https://images.unsplash.com/photo-1593693411515-c20261bcad6e?q=80&w=2070&auto=format&fit=crop",
+      title: "Birthplace Of Traditional Ashtanga Yoga",
+      description:
+        "Train in Mysuru, the yoga capital of South India, where authentic yogic discipline and ancient teachings continue to inspire practitioners worldwide.",
+      color: "#2e8b57",
+      link: "/mysuru-yoga-teacher-training",
+    },
+    {
+      location: "Rishikesh",
+      image:
+        "https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?q=80&w=2070&auto=format&fit=crop",
+      title: "Experience Yoga In Rishikesh",
+      description:
+        "Practice yoga by the sacred Ganges River surrounded by Himalayan energy in the spiritual heart of India.",
+      color: "#4caf50",
+      link: "/rishikesh-yoga-retreat",
+    },
+    {
+      location: "Chiang Mai",
+      image:
+        "https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?q=80&w=2070&auto=format&fit=crop",
+      title: "Mindful Retreats In Chiang Mai",
+      description:
+        "Blend yoga, meditation, mindfulness, and nature in the peaceful mountains and temples of Northern Thailand.",
+      color: "#d97706",
+      link: "/chiangmai-retreat",
+    },
+    {
+      location: "Dharamshala",
+      image:
+        "https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=2070&auto=format&fit=crop",
+      title: "Yoga In The Himalayas",
+      description:
+        "Reconnect with yourself in the serene Himalayan atmosphere inspired by Tibetan spiritual culture and meditation.",
+      color: "#6b7280",
+      link: "/dharamshala-yoga-retreat",
+    },
+  ],
+  []
+);
   // =========================================
   // FEATURES
   // =========================================
@@ -236,9 +243,12 @@ const Yogaschool = () => {
 
                         <p>{slide.description}</p>
 
-                        <button style={{ background: slide.color }}>
-                          Explore More
-                        </button>
+                        <button
+  style={{ background: slide.color }}
+  onClick={() => navigate(slide.link)}
+>
+  Explore More
+</button>
 
                       </div>
 

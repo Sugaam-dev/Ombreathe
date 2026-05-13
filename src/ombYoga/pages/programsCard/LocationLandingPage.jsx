@@ -539,7 +539,7 @@ const ProgramCard = ({ prog, location, accentColor, onNavigate }) => (
 
     <div className="prog-card__body">
       <h4 className="prog-card__title">
-        {prog.hours === "N/A" ? prog.title : `${prog.hours}-Hour ${prog.title}`}
+        {prog.hours === "N/A" ? prog.title : `${prog.title}`}
       </h4>
       <div className="prog-card__meta">
         <span>⏱ {prog.duration}</span>
